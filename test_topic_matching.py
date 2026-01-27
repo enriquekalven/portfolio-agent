@@ -47,7 +47,7 @@ def llm_match_topic_to_chapters(topic: str, max_chapters: int = 2) -> list:
     )
 
     chapter_list = get_chapter_list_for_llm()
-    model_id = os.getenv("GENAI_MODEL", "gemini-2.5-flash")
+    model_id = os.getenv("GENAI_MODEL", "gemini-1.5-flash")
 
     # Same prompt as deploy.py
     prompt = f"""You are a biology textbook expert. Match the user's topic to the MOST relevant chapters.

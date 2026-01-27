@@ -37,10 +37,10 @@ class LearningMaterialAgent:
     
     SUPPORTED_FORMATS = [
         "flashcards", "quiz", "podcast", "video", "image", "timeline", 
-        "video_cards", "blog_cards", "awards", "certs", "speaker", "testimonials", "gallery"
+        "video_cards", "blog_cards", "awards", "certs", "speaker", "testimonials", "gallery", "creative"
     ]
     
-    def __init__(self, model_id: str = "gemini-2.5-flash"):
+    def __init__(self, model_id: str = "gemini-1.5-flash"):
         self.model_id = model_id
         # Client will be initialized on first use if needed for simple calls
         self.client = None
@@ -95,7 +95,7 @@ CURRENT_TIMESTAMP: {time.time()}
         
         is_json_format = format_type in [
             "flashcards", "quiz", "image", "video", "timeline", 
-            "video_cards", "blog_cards", "awards", "certs", "speaker", "testimonials", "gallery"
+            "video_cards", "blog_cards", "awards", "certs", "speaker", "testimonials", "gallery", "creative"
         ]
         
         # Simple non-streaming call for the tool-like behavior
@@ -158,17 +158,28 @@ CURRENT_TIMESTAMP: {time.time()}
             yield {"text": response_text}
             return
 
-        # Handle specific portfolio intents if they appear in the message
-        # This is for requests coming from the frontend orchestrator
-        message_lower = message.lower()
-        if "award" in message_lower or "honor" in message_lower:
-            format_type = "awards"
-        elif "cert" in message_lower or "credential" in message_lower:
-            format_type = "certs"
-        elif "speak" in message_lower or "keynote" in message_lower:
-            format_type = "speaker"
-        elif "testimonial" in message_lower or "what people say" in message_lower:
-            format_type = "testimonials"
+        if format_type not in self.SUPPORTED_FORMATS:
+            # Handle specific portfolio intents if they appear in the message
+            # This is for requests coming from the frontend orchestrator or raw chat
+            message_lower = message.lower()
+            if "award" in message_lower or "honor" in message_lower or "trophy" in message_lower:
+                format_type = "awards"
+            elif "cert" in message_lower or "credential" in message_lower or "badge" in message_lower:
+                format_type = "certs"
+            elif "speak" in message_lower or "keynote" in message_lower:
+                format_type = "speaker"
+            elif "testimonial" in message_lower or "what people say" in message_lower:
+                format_type = "testimonials"
+            elif "blog" in message_lower or "article" in message_lower or "medium" in message_lower:
+                format_type = "blog_cards"
+            elif "video cards" in message_lower or "video gallery" in message_lower or "youtube gallery" in message_lower:
+                format_type = "video_cards"
+            elif "timeline" in message_lower or "career journey" in message_lower or "history" in message_lower:
+                format_type = "timeline"
+            elif "gallery" in message_lower or "portfolio sample" in message_lower:
+                format_type = "gallery"
+            elif "skill match" in message_lower or "analyze fit" in message_lower or "role fit" in message_lower:
+                format_type = "flashcards"
 
         if format_type in self.SUPPORTED_FORMATS:
             result = await self.generate_content(format_type, context)
@@ -195,5 +206,5 @@ _agent = None
 def get_agent() -> LearningMaterialAgent:
     global _agent
     if _agent is None:
-        _agent = LearningMaterialAgent(model_id=os.getenv("GENAI_MODEL", "gemini-3-flash"))
+        _agent = LearningMaterialAgent(model_id=os.getenv("GENAI_MODEL", "gemini-1.5-flash"))
     return _agent

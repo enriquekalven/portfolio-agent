@@ -46,6 +46,9 @@ type Intent =
   | "testimonials"
   | "timeline"
   | "gallery"
+  | "blog_cards"
+  | "video_cards"
+  | "creative"
   | "general"
   | "greeting";
 
@@ -65,7 +68,7 @@ export class ChatOrchestrator {
 
   private generateSystemPrompt(): string {
     const { PROFILE, EXPERIENCE, PROJECTS, CERTIFICATIONS, AWARDS } = portfolioData;
-    
+
     return `You are ${PROFILE.name}'s Portfolio Agent, a premium AI assistant for recruiters and hiring managers.
 Your goal is to provide deep, high-signal insights into ${PROFILE.name}'s experience across Google, AWS, and Accenture.
 
@@ -267,18 +270,20 @@ Return ONLY ONE of these exact words (nothing else):
 - video - if user wants to watch something or see a video
 - podcast - if user wants audio content, podcast, or to listen to something
 - quiz - if user wants to be tested or take a quiz
-- awards - if user asks for awards, honors, hackathons, achievements, highlights, or recognitions
+- awards - if user asks for awards, honors, hackathons, achievements, highlights, recognitions, or trophies
 - certs - if user asks for certifications or credentials
 - speaker - if user asks for speaking engagements or keynotes
 - testimonials - if user asks for what people say or feedback
 - timeline - if user asks for career history, journey, timeline, or sequential experience
 - gallery - if user asks for a picture gallery, work samples, or visual portfolio
+- creative - if user asks for a 'matrix', 'comparison', 'dashboard', 'framework', or 'visual breakdown'
 - greeting - if user is just saying hello/hi
 - general - for questions, explanations, or general conversation
 
 Examples:
 - "make me some flashcards" → flashcards
 - "what awards have you won?" → awards
+- "show me your trophies" → awards
 - "show me your certifications" → certs
 - "explain ATP" → general
 - "hi there" → greeting`,
@@ -325,41 +330,47 @@ Examples:
     if (lower.match(/^(hi|hello|hey|good morning|good afternoon|good evening)/i)) {
       return "greeting";
     }
-    if (lower.match(/flash\s*card|study\s*card|review\s*card|f'?card|match|skill|fit|analyze/i)) {
-      return "flashcards";
-    }
-    if (lower.match(/podcast|audio|listen/i)) {
-      return "podcast";
-    }
-    if (lower.match(/blog|article|medium|whitepaper|insight/i)) {
-      return "blog";
-    }
-    if (lower.match(/video|watch|youtube|cinema/i)) {
-      return "video_cards";
-    }
-    if (lower.match(/image|photo|picture|pic|headshot/i)) {
-      return "image";
-    }
-    if (lower.match(/quiz|test me/i)) {
-      return "quiz";
-    }
-    if (lower.match(/timeline|career history|journey/i)) {
+    if (lower.match(/timeline|career journey|sequential|history/i)) {
       return "timeline";
     }
-    if (lower.match(/award|honor|hackathon|recogni|achievement/i)) {
-      return "awards";
+    if (lower.match(/skill match|analyze fit|role fit|fit analyze|skill set/i)) {
+      return "flashcards";
     }
-    if (lower.match(/certif|credential/i)) {
-      return "certs";
+    if (lower.match(/flash\s*card|study\s*card|review\s*card|f'?card/i)) {
+      return "flashcards";
+    }
+    if (lower.match(/blog|article|medium|publication|whitepaper|insight/i)) {
+      return "blog_cards";
+    }
+    if (lower.match(/video gallery|youtube gallery|video cards|watch|cinema/i)) {
+      return "video_cards";
+    }
+    if (lower.match(/award|honor|hackathon|trophy|recogni|achievement/i)) {
+      return "awards";
     }
     if (lower.match(/gallery|portfolio|work samples|pictures of work/i)) {
       return "gallery";
     }
-    if (lower.match(/speak|keynote/i)) {
+    if (lower.match(/certif|credential|badge/i)) {
+      return "certs";
+    }
+    if (lower.match(/speak|keynote|cloud next/i)) {
       return "speaker";
     }
-    if (lower.match(/testimonial|what people say/i)) {
+    if (lower.match(/testimonial|what people say|feedback|quote/i)) {
       return "testimonials";
+    }
+    if (lower.match(/quiz|test me|assessment/i)) {
+      return "quiz";
+    }
+    if (lower.match(/podcast|audio|listen/i)) {
+      return "podcast";
+    }
+    if (lower.match(/image|photo|picture|pic|headshot|avatar|bubble/i)) {
+      return "image";
+    }
+    if (lower.match(/matrix|dashboard|framework|comparison|visual breakdown/i)) {
+      return "creative";
     }
     return "general";
   }
@@ -426,9 +437,25 @@ Examples:
         intentGuidance =
           "The user wants to see your career journey. Provide a SHORT (1 sentence) acknowledgment. The sequential timeline with ExperienceCards will be rendered below. Just say 'Here is a walk through my professional journey over the last 15 years.'";
         break;
+      case "gallery":
+        intentGuidance =
+          "The user wants to see a gallery of your work. Provide a SHORT (1 sentence) acknowledgment. A grid of portfolio samples will be rendered below. Just say 'Here is a gallery highlighting some of my key project work.'";
+        break;
+      case "blog_cards":
+        intentGuidance =
+          "The user wants to see your blog posts or articles. Provide a SHORT (1 sentence) acknowledgment. A grid of blog cards will be rendered below. Just say 'Here are some of my featured Medium articles and blog posts.'";
+        break;
+      case "video_cards":
+        intentGuidance =
+          "The user wants to see your videos or video gallery. Provide a SHORT (1 sentence) acknowledgment. A grid of video cards will be rendered below. Just say 'I have pulled up my video gallery, including keynotes and technical deep dives.'";
+        break;
+      case "creative":
+        intentGuidance =
+          "The user wants a creative visual breakdown or framework. Provide a SHORT (1 sentence) acknowledgment. The custom high-fidelity dashboard/matrix will be rendered below. Just say something like 'Let me synthesize a unique visual framework for you.'";
+        break;
       case "greeting":
         intentGuidance =
-          "The user is greeting you. Respond warmly in 1-2 sentences and briefly mention you can help them explore Enrique's career highlights, top projects, and skills through flashcards or quizzes.";
+          "The user is greeting you. Respond warmly in 1-2 sentences and briefly mention you can help them explore Enrique's career highlights, top projects, and skills through flashcards or AI-powered quizzes.";
         break;
       default:
         intentGuidance =
@@ -686,20 +713,20 @@ Examples:
     btn.className = "json-toggle-btn";
     btn.title = "Show A2UI JSON Schema";
     btn.innerHTML = '<span class="material-symbols-outlined" style="font-size: 18px;">code</span>';
-    
+
     // Create viewer element
     const viewer = document.createElement("pre");
     viewer.className = "json-viewer";
     viewer.style.display = "none"; // Ensure absolute initial state
     viewer.textContent = JSON.stringify(json, null, 2);
-    
+
     // Add event listener with logging
     btn.addEventListener("click", () => {
       console.log("[Orchestrator] JSON Toggle Clicked");
       const isShowing = viewer.style.display === "none";
       viewer.style.display = isShowing ? "block" : "none";
       btn.classList.toggle("active", isShowing);
-      
+
       // Scroll into view if opening
       if (isShowing) {
         setTimeout(() => {

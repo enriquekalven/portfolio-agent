@@ -87,7 +87,7 @@ AWARDS: {json.dumps(_AWARDS)}
 TESTIMONIALS: {json.dumps(TESTIMONIALS)}
 """
 
-    model_id = os.getenv("GENAI_MODEL", "gemini-2.5-flash")
+    model_id = os.getenv("GENAI_MODEL", "gemini-1.5-flash")
     
     # Define the core ADK Agent
     # For Agent Engine, we pass a clear instruction set

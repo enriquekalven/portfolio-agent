@@ -6,21 +6,14 @@ export default defineConfig({
     port: 5175,
     proxy: {
       "/api": {
-        target: "http://localhost:8082",
+        target: "http://localhost:8085",
         changeOrigin: true,
       },
       "/a2ui-agent": {
-        target: "http://localhost:8082",
+        target: "http://localhost:8085",
         changeOrigin: true,
       },
-      "/log": {
-        target: "http://localhost:8082",
-        changeOrigin: true,
-      },
-      "/reset-log": {
-        target: "http://localhost:8082",
-        changeOrigin: true,
-      },
+
     },
   },
   resolve: {

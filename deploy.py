@@ -110,7 +110,7 @@ def main():
     from google.adk.tools import ToolContext
     from vertexai.agent_engines import AdkApp
 
-    model_id = os.getenv("GENAI_MODEL", "gemini-2.5-flash")
+    model_id = os.getenv("GENAI_MODEL", "gemini-1.5-flash")
     SURFACE_ID = "learningContent"
 
     # =========================================================================
