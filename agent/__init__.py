@@ -1,10 +1,4 @@
 """
-Personalized Learning Agent Package
-
-This package exports the ADK agent for use with `adk web` or deployment
-to Agent Engine.
+Enrique K Chan Portfolio Agent Package
 """
-
-from .agent import root_agent
-
-__all__ = ["root_agent"]
+# Empty to avoid side-effects during deployment discovery

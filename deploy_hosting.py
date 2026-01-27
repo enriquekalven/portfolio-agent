@@ -42,7 +42,7 @@ import time
 from pathlib import Path
 
 # Configuration defaults
-DEFAULT_SERVICE_NAME = "personalized-learning-demo"
+DEFAULT_SERVICE_NAME = "enriq-portfolio-agent"
 DEFAULT_REGION = "us-central1"
 
 

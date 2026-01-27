@@ -6,6 +6,7 @@ console.log("[Demo] main.ts starting...");
 
 import { ChatOrchestrator } from "./chat-orchestrator";
 import { A2UIRenderer } from "./a2ui-renderer";
+import { UIManager } from "./ui-manager";
 
 // Registry for components (side-effect import)
 import "./theme-provider";
@@ -30,17 +31,18 @@ function start() {
     appContainer.style.display = "flex";
   }
 
-  // Initialize renderer and orchestrator
+  // Initialize renderer, orchestrator and UI manager
   const renderer = new A2UIRenderer();
   const orchestrator = new ChatOrchestrator(renderer);
+  const uiManager = new UIManager();
 
   // Set up UI
-  setupUI(orchestrator);
+  setupUI(orchestrator, uiManager);
   
   console.log("[Demo] Application started successfully");
 }
 
-function setupUI(orchestrator: ChatOrchestrator) {
+function setupUI(orchestrator: ChatOrchestrator, uiManager: UIManager) {
   const chatInput = document.getElementById("chatInput") as HTMLTextAreaElement;
   const sendBtn = document.getElementById("sendBtn") as HTMLButtonElement;
   const chatArea = document.getElementById("chatArea") as HTMLDivElement;
@@ -69,13 +71,13 @@ function setupUI(orchestrator: ChatOrchestrator) {
   chatInput.addEventListener("keydown", (e) => {
     if (e.key === "Enter" && !e.shiftKey) {
       e.preventDefault();
-      handleSend(orchestrator, chatInput, chatArea);
+      handleSend(orchestrator, chatInput, chatArea, uiManager);
     }
   });
 
   // Click to send
   sendBtn.addEventListener("click", () => {
-    handleSend(orchestrator, chatInput, chatArea);
+    handleSend(orchestrator, chatInput, chatArea, uiManager);
   });
 
   // Chips
@@ -86,7 +88,7 @@ function setupUI(orchestrator: ChatOrchestrator) {
       if (prompt) {
         chatInput.value = prompt;
         chatInput.dispatchEvent(new Event("input"));
-        handleSend(orchestrator, chatInput, chatArea);
+        handleSend(orchestrator, chatInput, chatArea, uiManager);
       }
     });
   });
@@ -105,56 +107,56 @@ function setupUI(orchestrator: ChatOrchestrator) {
     gemHistorian.addEventListener("click", () => {
       chatInput.value = "Show me Enrique's career highlights as a sequential timeline";
       chatInput.dispatchEvent(new Event("input"));
-      handleSend(orchestrator, chatInput, chatArea);
+      handleSend(orchestrator, chatInput, chatArea, uiManager);
     });
   }
   if (gemMatcher) {
     gemMatcher.addEventListener("click", () => {
       chatInput.value = "How do Enrique's skills match a Senior AI role?";
       chatInput.dispatchEvent(new Event("input"));
-      handleSend(orchestrator, chatInput, chatArea);
+      handleSend(orchestrator, chatInput, chatArea, uiManager);
     });
   }
   if (gemAnalyzer) {
     gemAnalyzer.addEventListener("click", () => {
       chatInput.value = "Analyze Enrique's fit for an AI Lead role";
       chatInput.dispatchEvent(new Event("input"));
-      handleSend(orchestrator, chatInput, chatArea);
+      handleSend(orchestrator, chatInput, chatArea, uiManager);
     });
   }
   if (gemMedia) {
     gemMedia.addEventListener("click", () => {
       chatInput.value = "Show me his top YouTube videos";
       chatInput.dispatchEvent(new Event("input"));
-      handleSend(orchestrator, chatInput, chatArea);
+      handleSend(orchestrator, chatInput, chatArea, uiManager);
     });
   }
   if (gemBlogs) {
     gemBlogs.addEventListener("click", () => {
       chatInput.value = "Show me some of his Medium blog posts";
       chatInput.dispatchEvent(new Event("input"));
-      handleSend(orchestrator, chatInput, chatArea);
+      handleSend(orchestrator, chatInput, chatArea, uiManager);
     });
   }
   if (gemAwards) {
     gemAwards.addEventListener("click", () => {
       chatInput.value = "List Enrique's major awards and hackathon wins";
       chatInput.dispatchEvent(new Event("input"));
-      handleSend(orchestrator, chatInput, chatArea);
+      handleSend(orchestrator, chatInput, chatArea, uiManager);
     });
   }
   if (gemCerts) {
     gemCerts.addEventListener("click", () => {
       chatInput.value = "Show Enrique's cloud certifications";
       chatInput.dispatchEvent(new Event("input"));
-      handleSend(orchestrator, chatInput, chatArea);
+      handleSend(orchestrator, chatInput, chatArea, uiManager);
     });
   }
   if (gemSpeaker) {
     gemSpeaker.addEventListener("click", () => {
       chatInput.value = "Show Enrique's speaking engagements and keynotes";
       chatInput.dispatchEvent(new Event("input"));
-      handleSend(orchestrator, chatInput, chatArea);
+      handleSend(orchestrator, chatInput, chatArea, uiManager);
     });
   }
 
@@ -163,7 +165,16 @@ function setupUI(orchestrator: ChatOrchestrator) {
     gemTestimonials.addEventListener("click", () => {
       chatInput.value = "Show me what people think of Enrique (testimonials)";
       chatInput.dispatchEvent(new Event("input"));
-      handleSend(orchestrator, chatInput, chatArea);
+      handleSend(orchestrator, chatInput, chatArea, uiManager);
+    });
+  }
+
+  const gemGallery = document.getElementById("gem-gallery");
+  if (gemGallery) {
+    gemGallery.addEventListener("click", () => {
+      chatInput.value = "Show me a gallery of your work and highlights";
+      chatInput.dispatchEvent(new Event("input"));
+      handleSend(orchestrator, chatInput, chatArea, uiManager);
     });
   }
 
@@ -183,10 +194,14 @@ function setupUI(orchestrator: ChatOrchestrator) {
 async function handleSend(
   orchestrator: ChatOrchestrator,
   input: HTMLTextAreaElement,
-  chatArea: HTMLDivElement
+  chatArea: HTMLDivElement,
+  uiManager: UIManager
 ) {
   const message = input.value.trim();
   if (!message) return;
+
+  // Save to sidebar history
+  uiManager.saveToHistory(message);
 
   // Clear input
   input.value = "";

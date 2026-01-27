@@ -11,6 +11,7 @@
     "dev:agent": "cd agent && ./venv/bin/python server.py",
     "build": "tsc && vite build",
     "preview": "vite preview",
+    "start": "tsx api-server.ts",
     "start:all": "concurrently \"npm run dev:api\" \"npm run dev:vite\" \"npm run dev:agent\"",
     "test": "node tests/unit-tests.mjs && node tests/integration-tests.mjs",
     "test:unit": "node tests/unit-tests.mjs",

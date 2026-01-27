@@ -1,18 +1,36 @@
 {
   "hosting": {
-    "public": "public",
+    "target": "agent-ui",
+    "public": "dist",
     "ignore": [
       "firebase.json",
       "**/.*",
       "**/node_modules/**"
     ],
+    "headers": [
+      {
+        "source": "**/*.html",
+        "headers": [
+          {
+            "key": "Content-Type",
+            "value": "text/html"
+          }
+        ]
+      },
+      {
+        "source": "/",
+        "headers": [
+          {
+            "key": "Content-Type",
+            "value": "text/html"
+          }
+        ]
+      }
+    ],
     "rewrites": [
       {
         "source": "**",
-        "run": {
-          "serviceId": "personalized-learning-demo",
-          "region": "us-central1"
-        }
+        "destination": "/index.html"
       }
     ]
   }

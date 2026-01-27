@@ -69,6 +69,31 @@ export class ExperienceCard extends LitElement {
       backdrop-filter: blur(12px);
     }
 
+    /* Light Mode Overrides */
+    :host-context(.light-mode) .card {
+      background: white;
+      border-color: rgba(0, 0, 0, 0.1);
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05);
+    }
+
+    :host-context(.light-mode) .company,
+    :host-context(.light-mode) .impact-text {
+      color: #1a1a1b;
+    }
+
+    :host-context(.light-mode) .highlights li {
+      color: #3c4043;
+    }
+
+    :host-context(.light-mode) .logo-container {
+      background: #f8f9fa;
+      border-color: #dadce0;
+    }
+
+    :host-context(.light-mode) .impact-box {
+      background: linear-gradient(90deg, rgba(0, 0, 0, 0.03) 0%, transparent 100%);
+    }
+
     .card:hover {
       transform: translateY(-8px);
       box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);

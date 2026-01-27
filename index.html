@@ -115,6 +115,13 @@
         align-items: center;
         justify-content: center;
         box-shadow: 0 4px 12px rgba(66, 133, 244, 0.3);
+        overflow: hidden;
+      }
+
+      .sidebar-logo .gemini-icon img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
       }
 
       .sidebar-logo .gemini-icon span {
@@ -601,6 +608,60 @@
         font-size: 14px;
       }
 
+      #recent-chats-container {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+        max-height: 250px;
+        overflow-y: auto;
+      }
+
+      #recent-chats-container .sidebar-item {
+        padding: 10px 16px;
+        font-size: 13px;
+      }
+
+      .sidebar-section-title {
+        padding: 0 16px;
+        margin-bottom: 8px;
+        font-size: 11px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.8px;
+        color: var(--sidebar-text-secondary);
+      }
+
+      .a2ui-links {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        padding: 4px 16px;
+      }
+
+      .a2ui-link {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 32px;
+        height: 32px;
+        border-radius: 8px;
+        background: var(--sidebar-hover);
+        color: var(--sidebar-text-secondary);
+        transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+        text-decoration: none;
+      }
+
+      .a2ui-link:hover {
+        background: rgba(255, 255, 255, 0.1);
+        color: var(--accent-blue);
+        transform: translateY(-2px);
+      }
+
+      .a2ui-link svg {
+        width: 18px;
+        height: 18px;
+      }
+
       /* Input Area */
       .input-area {
         padding: 16px 24px 24px;
@@ -648,6 +709,17 @@
 
       .input-btn:hover {
         background: var(--sidebar-hover);
+      }
+
+      .input-btn.recording {
+        color: #ea4335;
+        animation: pulse 1.5s infinite;
+      }
+
+      @keyframes pulse {
+        0% { transform: scale(1); opacity: 1; }
+        50% { transform: scale(1.15); opacity: 0.7; }
+        100% { transform: scale(1); opacity: 1; }
       }
 
       .chat-input {
@@ -837,11 +909,30 @@
         display: block;
       }
 
+      body.light-mode .json-viewer {
+        background: #f1f3f4;
+        color: #1a73e8;
+        border-color: #dadce0;
+      }
+
       .message-header {
         display: flex;
         align-items: center;
         justify-content: space-between;
         margin-bottom: 8px;
+        min-height: 28px;
+      }
+
+      .message-actions {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        opacity: 0.3;
+        transition: opacity 0.2s;
+      }
+
+      .message:hover .message-actions {
+        opacity: 1;
       }
 
       /* A2UI Badge and Links */
@@ -1018,25 +1109,26 @@
         <div class="sidebar-header">
           <div class="sidebar-header-row">
             <div class="sidebar-logo">
-              <div class="gemini-icon">
-                <span>E</span>
-              </div>
-              <span>Enrique K Chan</span>
-            </div>
-            <!-- A2UI Integration Badge -->
-            <div class="a2ui-badge" title="Powered by A2UI">
-              <span class="a2ui-badge-icon">A2UI</span>
+              <span class="material-symbols-outlined gemini-icon" style="color: var(--accent-blue);">auto_awesome</span>
+              <span>Enriq K Chan</span>
             </div>
           </div>
-          <!-- A2UI Developer Links -->
+          <!-- Professional Links -->
           <div class="a2ui-links">
-            <a href="https://www.linkedin.com/in/enriquechan/" class="a2ui-link" target="_blank">
-              <span class="material-symbols-outlined">link</span>
-              LinkedIn
+            <a href="https://github.com/enriquekalven/portfolio-agent" class="a2ui-link" target="_blank" title="GitHub">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.43.372.823 1.102.823 2.222 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
             </a>
-            <a href="https://medium.com/@enriq" class="a2ui-link" target="_blank">
-              <span class="material-symbols-outlined">article</span>
-              Medium
+            <a href="https://enriquekchan.web.app/#about" class="a2ui-link" target="_blank" title="My Website">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm-1 17.93c-3.947-.468-7-3.844-7-7.93 0-.41.033-.812.096-1.204l4.904 4.904v1.03c0 .552.448 1 1 1v2.2zm7.65-4.57c-.16-.3-.47-.43-.75-.43h-2.9v-2c0-.55-.45-1-1-1h-4v-2c0-.55-.45-1-1-1h-1.12c-.22 0-.43-.09-.58-.25l-1.05-1.05c-.16-.16-.25-.37-.25-.59v-1.1c0-.42.26-.79.65-.93a8.95 8.95 0 0 1 7.15 1.58c.2.14.35.34.43.57l.63 1.88c.1.3.01.62-.22.84l-1.42 1.42c-.22.22-.32.54-.22.84l.63 1.88c.1.3.4.52.75.52h.9c.35 0 .65.22.75.52l.63 1.88c.1.3-.01.62-.22.84z"/></svg>
+            </a>
+            <a href="https://www.linkedin.com/in/enriquechan/" class="a2ui-link" target="_blank" title="LinkedIn">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451c.981 0 1.775-.773 1.775-1.729V1.729C24 .774 23.206 0 22.225 0z"/></svg>
+            </a>
+            <a href="https://medium.com/@enriq" class="a2ui-link" target="_blank" title="Medium">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.54 12a6.8 6.8 0 11-13.6 0 6.8 6.8 0 0113.6 0zM19.07 12c0 3.412-1.527 6.178-3.41 6.178S12.25 15.412 12.25 12s1.527-6.178 3.41-6.178S19.07 8.588 19.07 12zM24 12c0 3.103-.49 5.62-1.093 5.62s-1.093-2.517-1.093-5.62.49-5.62 1.093-5.62S24 8.897 24 12z"/></svg>
+            </a>
+            <a href="https://www.youtube.com/@enriquekchan" class="a2ui-link" target="_blank" title="YouTube">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
             </a>
           </div>
         </div>
@@ -1047,18 +1139,16 @@
         </button>
 
         <div class="sidebar-section">
-          <div class="sidebar-section-title">Recent</div>
-          <div class="sidebar-item active">
-            <span class="material-symbols-outlined">chat_bubble_outline</span>
-            <span>Olympic AI Chatbot</span>
-          </div>
-          <div class="sidebar-item">
-            <span class="material-symbols-outlined">chat_bubble_outline</span>
-            <span>Agentic Workflows</span>
-          </div>
-          <div class="sidebar-item">
-            <span class="material-symbols-outlined">chat_bubble_outline</span>
-            <span>Massive Scale AI</span>
+          <div class="sidebar-section-title">Recent Chats</div>
+          <div id="recent-chats-container">
+            <div class="sidebar-item active">
+              <span class="material-symbols-outlined">chat_bubble_outline</span>
+              <span>Olympic AI Chatbot</span>
+            </div>
+            <div class="sidebar-item">
+              <span class="material-symbols-outlined">chat_bubble_outline</span>
+              <span>Agentic Workflows</span>
+            </div>
           </div>
         </div>
 
@@ -1066,39 +1156,43 @@
           <div class="sidebar-section-title">Gems</div>
           <div class="sidebar-item" id="gem-historian" style="cursor: pointer;">
             <span class="material-symbols-outlined">history_edu</span>
-            <span>Career Historian</span>
+            <span>Career Historian 📜</span>
           </div>
           <div class="sidebar-item" id="gem-matcher" style="cursor: pointer;">
             <span class="material-symbols-outlined">target</span>
-            <span>Skill Matcher</span>
+            <span>Skill Matcher 🎯</span>
           </div>
           <div class="sidebar-item" id="gem-analyzer" style="cursor: pointer;">
             <span class="material-symbols-outlined">analytics</span>
-            <span>Fit Analyzer</span>
+            <span>Fit Analyzer 📊</span>
           </div>
           <div class="sidebar-item" id="gem-media" style="cursor: pointer;">
             <span class="material-symbols-outlined">play_circle</span>
-            <span>Media Hub</span>
+            <span>Cinema Hub 🎬</span>
           </div>
           <div class="sidebar-item" id="gem-blogs" style="cursor: pointer;">
             <span class="material-symbols-outlined">article</span>
-            <span>Blog Reader</span>
+            <span>Insight Stream ✍️</span>
           </div>
           <div class="sidebar-item" id="gem-awards" style="cursor: pointer;">
             <span class="material-symbols-outlined">emoji_events</span>
-            <span>Awards</span>
+            <span>Trophy Room 🏆</span>
           </div>
           <div class="sidebar-item" id="gem-certs" style="cursor: pointer;">
             <span class="material-symbols-outlined">verified</span>
-            <span>Certifications</span>
+            <span>Cloud Badge Wall ☁️</span>
           </div>
           <div class="sidebar-item" id="gem-speaker" style="cursor: pointer;">
             <span class="material-symbols-outlined">mic_external_on</span>
-            <span>Speaking</span>
+            <span>Stage Presence 🎤</span>
           </div>
           <div class="sidebar-item" id="gem-testimonials" style="cursor: pointer;">
             <span class="material-symbols-outlined">favorite</span>
-            <span>Testimonials</span>
+            <span>Googler Vibes ✨</span>
+          </div>
+          <div class="sidebar-item" id="gem-gallery" style="cursor: pointer;">
+            <span class="material-symbols-outlined">collections</span>
+            <span>Hall of Mastery 🖼️</span>
           </div>
         </div>
 
@@ -1107,12 +1201,16 @@
 
         <div class="sidebar-footer">
           <div class="user-profile">
-            <div class="user-avatar">E</div>
+            <div class="user-avatar" style="overflow: hidden;">
+              <img src="/assets/hero.png" alt="Enrique K Chan" style="width: 100%; height: 100%; object-fit: cover;">
+            </div>
             <div class="user-info">
               <div class="user-name">Enrique K Chan</div>
               <div class="user-email">Chat with my portfolio</div>
             </div>
-            <span class="material-symbols-outlined">more_vert</span>
+            <button class="header-btn" id="profile-actions-btn" style="background: transparent; border: none; cursor: pointer; color: var(--text-secondary);">
+              <span class="material-symbols-outlined">more_vert</span>
+            </button>
           </div>
         </div>
       </aside>
@@ -1127,12 +1225,12 @@
           </div>
           <div class="header-actions">
             <button id="theme-toggle" class="header-btn" title="Toggle Light/Dark Mode">
-              <span class="material-symbols-outlined">light_mode</span>
+              <span class="material-symbols-outlined" id="theme-icon">light_mode</span>
             </button>
-            <button class="header-btn">
+            <button class="header-btn" id="history-btn" title="Chat History">
               <span class="material-symbols-outlined">history</span>
             </button>
-            <button class="header-btn">
+            <button class="header-btn" id="more-actions-btn">
               <span class="material-symbols-outlined">more_vert</span>
             </button>
           </div>
@@ -1158,27 +1256,31 @@
               </div>
               <div class="suggestion-chip" data-prompt="Analyze Enrique's fit for an AI Lead role">
                 <span class="material-symbols-outlined">analytics</span>
-                <span>Fit Analyzer</span>
+                <span>Fit Analyzer 📊</span>
               </div>
               <div class="suggestion-chip" data-prompt="Show me his top YouTube videos">
                 <span class="material-symbols-outlined">play_circle</span>
-                <span>Media Hub</span>
+                <span>Cinema Hub 🎬</span>
               </div>
               <div class="suggestion-chip" data-prompt="Show me some of his Medium blog posts">
                 <span class="material-symbols-outlined">article</span>
-                <span>Blog Reader</span>
+                <span>Insight Stream ✍️</span>
               </div>
               <div class="suggestion-chip" data-prompt="List Enrique's major awards and hackathon wins">
                 <span class="material-symbols-outlined">emoji_events</span>
-                <span>Awards</span>
+                <span>Trophy Room 🏆</span>
               </div>
               <div class="suggestion-chip" data-prompt="Show Enrique's cloud certifications">
                 <span class="material-symbols-outlined">verified</span>
-                <span>Certifications</span>
+                <span>Cloud Badge Wall ☁️</span>
               </div>
               <div class="suggestion-chip" data-prompt="Show Enrique's speaking engagements and keynotes">
                 <span class="material-symbols-outlined">mic_external_on</span>
-                <span>Speaking</span>
+                <span>Stage Presence 🎤</span>
+              </div>
+              <div class="suggestion-chip" data-prompt="Show me a gallery of your work and highlights">
+                <span class="material-symbols-outlined">collections</span>
+                <span>Hall of Mastery 🖼️</span>
               </div>
             </div>
           </div>
@@ -1195,10 +1297,10 @@
               <textarea
                 class="chat-input"
                 id="chatInput"
-                placeholder="Message Gemini..."
+                placeholder="Message Enrique's Agent... (Try: 'Show me your Olympians experience' or 'What awards have you won?')"
                 rows="1"
               ></textarea>
-              <button class="input-btn">
+              <button class="input-btn" id="mic-btn" title="Voice Search">
                 <span class="material-symbols-outlined">mic</span>
               </button>
               <button class="send-btn" id="sendBtn" disabled>

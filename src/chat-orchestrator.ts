@@ -43,6 +43,7 @@ type Intent =
   | "speaker"
   | "testimonials"
   | "timeline"
+  | "gallery"
   | "general"
   | "greeting";
 
@@ -98,10 +99,11 @@ Your goal is to provide deep, high-signal insights into Enrique's 15+ years of e
 - **IMPORTANT**: DO NOT use filler phrases like "That's a great question" or "Let me help you think". Be a direct executive assistant. Provide facts immediately.
 
 ## CONTENT RULES
-- If asked about awards: Mention the GTM awards and the Trophy. The cards will render below.
-- If asked about certs: Mention the 19x cloud certifications. The grid will render below.
-- If asked about speaking: Mention Google Cloud Next and the ADK Summit. The flashcards will render below.
-- If asked about testimonials: Mention feedback from Thomas Kurian and other leaders. The flashcards will render below.`;
+- If asked about awards: Mention the GTM awards and the **Trophy Room 🏆**. The cards will render below.
+- If asked about certs: Mention the 19x cloud certifications and the **Cloud Badge Wall ☁️**. The grid will render below.
+- If asked about speaking: Mention Google Cloud Next and his **Stage Presence 🎤**. The cards will render below.
+- If asked about testimonials: Mention feedback from Thomas Kurian and the **Googler Vibes ✨**. The cards will render below.
+- If asked for a "gallery" or "pictures of work": Mention the **Hall of Mastery 🖼️** and highlights like the Olympics architecture. The gallery will render below.`;
 
   constructor(renderer: A2UIRenderer) {
     this.renderer = renderer;
@@ -268,11 +270,12 @@ Return ONLY ONE of these exact words (nothing else):
 - video - if user wants to watch something or see a video
 - podcast - if user wants audio content, podcast, or to listen to something
 - quiz - if user wants to be tested or take a quiz
-- awards - if user asks for awards, honors, hackathons, or recognitions
+- awards - if user asks for awards, honors, hackathons, achievements, highlights, or recognitions
 - certs - if user asks for certifications or credentials
 - speaker - if user asks for speaking engagements or keynotes
 - testimonials - if user asks for what people say or feedback
 - timeline - if user asks for career history, journey, timeline, or sequential experience
+- gallery - if user asks for a picture gallery, work samples, or visual portfolio
 - greeting - if user is just saying hello/hi
 - general - for questions, explanations, or general conversation
 
@@ -306,6 +309,7 @@ Examples:
       if (intentText.includes("speaker") || intentText.includes("speaking")) return "speaker";
       if (intentText.includes("testimonial") || intentText.includes("people say")) return "testimonials";
       if (intentText.includes("timeline") || intentText.includes("journey")) return "timeline";
+      if (intentText.includes("gallery")) return "gallery";
       if (intentText.includes("greeting")) return "greeting";
 
       return "general";
@@ -339,11 +343,14 @@ Examples:
     if (lower.match(/quiz|test me/i)) {
       return "quiz";
     }
-    if (lower.match(/award|honor|hackathon|recogni/i)) {
+    if (lower.match(/award|honor|hackathon|recogni|achievement|highlight/i)) {
       return "awards";
     }
     if (lower.match(/certif|credential/i)) {
       return "certs";
+    }
+    if (lower.match(/gallery|portfolio|work samples|pictures of work/i)) {
+      return "gallery";
     }
     if (lower.match(/speak|keynote/i)) {
       return "speaker";
@@ -604,20 +611,30 @@ Examples:
   private getProcessingLabel(intent: Intent): string {
     switch (intent) {
       case "flashcards":
-        return "Generating personalized flashcards...";
+        return "Generating personalized flashcards... 🎲";
       case "podcast":
       case "audio":
-        return "Loading podcast...";
+        return "Loading podcast... 📻";
       case "video":
-        return "Loading video...";
+        return "Loading cinema hub... 🎬";
       case "image":
-        return "Retrieving image...";
+        return "Retrieving visual... 📸";
       case "quiz":
-        return "Creating quiz questions...";
+        return "Creating quiz questions... 🧠";
       case "timeline":
-        return "Building your career timeline...";
+        return "Constructing Career Timeline... 📜";
+      case "gallery":
+        return "Entering the Hall of Mastery... 🖼️";
+      case "awards":
+        return "Unlocking the Trophy Room... 🏆";
+      case "certs":
+        return "Loading the Cloud Badge Wall... ☁️";
+      case "speaker":
+        return "Preparing Stage Presence... 🎤";
+      case "testimonials":
+        return "Gathering Googler Vibes... ✨";
       default:
-        return "Processing...";
+        return "Processing... ⚡";
     }
   }
 
@@ -639,17 +656,27 @@ Examples:
     const btn = document.createElement("button");
     btn.className = "json-toggle-btn";
     btn.title = "Show A2UI JSON Schema";
-    btn.innerHTML = '<span class="material-symbols-outlined">code</span>';
+    btn.innerHTML = '<span class="material-symbols-outlined" style="font-size: 18px;">code</span>';
     
     // Create viewer element
     const viewer = document.createElement("pre");
     viewer.className = "json-viewer";
+    viewer.style.display = "none"; // Ensure absolute initial state
     viewer.textContent = JSON.stringify(json, null, 2);
     
-    // Add event listener
+    // Add event listener with logging
     btn.addEventListener("click", () => {
-      const isShowing = viewer.classList.toggle("show");
+      console.log("[Orchestrator] JSON Toggle Clicked");
+      const isShowing = viewer.style.display === "none";
+      viewer.style.display = isShowing ? "block" : "none";
       btn.classList.toggle("active", isShowing);
+      
+      // Scroll into view if opening
+      if (isShowing) {
+        setTimeout(() => {
+          viewer.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }, 100);
+      }
     });
 
     actionsEl.appendChild(btn);

@@ -1,47 +1,48 @@
-# Portfolio Agent: The Future of Professional Branding with A2UI
+# Enrique K Chan: The Portfolio Agent 🤖✨
 
-This project is a high-fidelity demonstration of **Agentic AI** applied to professional portfolios. It goes beyond simple chatbots by leveraging the **A2UI (Agent-Driven User Interface)** protocol and **Gemini 2.5 Flash** to create a dynamic, interactive, and data-driven brand experience.
+A high-fidelity demonstration of **Agentic AI** applied to professional branding. This project transcends static portfolios by leveraging the **A2UI (Agent-Driven User Interface)** protocol and **Gemini 2.x** to create a living, interactive career ambassador.
 
-## 🎯 Objective
-The primary objective of this project was to transform the traditional, static resume/portfolio into a **living brand agent**. 
-- **Personalization**: Delivery of career data tailored to the specific context of the user's questions.
-- **Interactivity**: Moving from "text-only" chat to high-fidelity UI components (flashcards, quizzes, timelines).
-- **Executive Precision**: Proving that an AI agent can represent a professional with 15+ years of experience (Google, AWS, Accenture) with the correct tone, accuracy, and technical depth.
+[![Visit Enrique's Site](https://img.shields.io/badge/Live-Portfolio-blue?style=for-the-badge&logo=google-chrome&logoColor=white)](https://enriquekchan.web.app/#about)
+[![View on GitHub](https://img.shields.io/badge/GitHub-Source-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/enriquekalven/portfolio-agent)
 
-## 🚀 What Was Proven?
-1. **A2UI Efficacy**: Proven that complex JSON-based UI protocols can be generated with zero latency by Gemini 2.5 Flash, allowing the agent to "render" its own interface based on intent.
-2. **Deterministic Data Binding**: Successfully bound a large, unstructured dataset of career highlights (15 years of Cloud Strategy, MLOps, and GTM) to structured UI components.
-3. **Intent-Driven Architecture**: Proven a dual-layer model:
-    - **Conversational Layer**: Handles natural language, context, and intent detection.
-    - **UI Synthesis Layer**: Generates specialized A2UI payloads for high-signal requests (e.g., "Analyze his fit for this role").
-4. **Premium Aesthetics**: Demonstrated that an agentic interface can maintain a sophisticated, brand-consistent look (Dark Obsidian, Glassmorphism, Google Sans) that rivals professional agency-built sites.
+## 🎯 The Vision
+Modern portfolios should be as dynamic as the careers they represent. This "Portfolio Agent" is designed to:
+- **Tailor the Narrative**: Dynamically synthesize Enrique's 15+ years of experience (Google, AWS, Disney) based on the user's specific interests.
+- **Render Intent**: Use the **A2UI Protocol** to automatically generate high-fidelity UI components (Timelines, Trophies, Quizzes) that match the conversational context.
+- **Establish Presence**: Provide a premium, "Gemini-inspired" experience that feels like chatting with an executive assistant.
 
-## 🛠️ Technology Stack
-### Core AI & Protocol
-- **Gemini 2.5 Flash**: The engine for both conversational reasoning and A2UI JSON generation.
-- **A2UI Protocol**: High-fidelity Agent-Driven UI standard for rendering rich components.
-- **Vertex AI SDK**: Enterprise-grade access to Gemini models.
+## ✨ The "Gems" (Interactive Capabilities)
+The agent features specialized modules (or "Gems") that provide deep-dives into Enrique's history:
 
-### Frontend (High-Fidelity)
-- **Lit & TypeScript**: Lightweight web components for high-performance rendering.
-- **Vite**: Modern build tool for sub-second hot module replacement.
-- **Glassmorphism UI**: Custom CSS system featuring backdrop-blur, subtle gradients, and obsidian-inspired tones.
+- **📜 Career Historian**: A sequential journey through high-scale engineering and strategy.
+- **🎯 Skill Matcher**: Instant analysis of how Enrique's expertise applies to specific roles or problems.
+- **📊 Fit Analyzer**: A data-driven comparison of career highlights against enterprise requirements.
+- **🎬 Cinema Hub**: Interactive access to keynote sessions and AI thought leadership videos.
+- **✍️ Insight Stream**: A curated feed of premium Medium articles on AI architecture and governance.
+- **🏆 Trophy Room**: A visual showcase of Google GTM awards and high-stakes hackathon wins.
+- **☁️ Cloud Badge Wall**: A full-fidelity rendering of 19x professional certifications (GCP, AWS, Azure).
+- **🎤 Stage Presence**: Highlights from global speaking engagements and developer summits.
+- **✨ Googler Vibes**: Real-world testimonials and peer feedback from Google leadership.
+- **🖼️ Hall of Mastery**: A premium visual gallery featuring architectural diagrams and career milestones.
 
-### Backend & Orchestration
-- **Node.js (tsx)**: Conversational gateway and API server (Port 8082).
-- **FastAPI (Python)**: The specialized Agent Engine and data repository (Port 8081).
-- **Agent Development Kit (ADK)**: Framework for building and managing the agentic lifecycle.
+## 🛠️ Advanced Features
+- **🎙️ Voice-to-UI**: Integrated Web Speech API for seamless voice-driven exploration.
+- **🧠 Session Memory**: Persistent "Recent Chats" sidebar that tracks your exploration history in real-time.
+- **🔄 Hybrid Logic**: A dual-layered architecture featuring a remote Agent Engine backend with sub-second client-side A2UI fallbacks.
+- **💎 Premium Design**: Custom CSS system featuring Glassmorphism, Backdrop filters, and Obsidian-inspired dark modes.
+
+## 🧰 Technology Stack
+- **AI Core**: Gemini 2.x (Flash/Pro) & Google ADK (Agent Development Kit).
+- **Protocol**: A2UI (Agent-Driven User Interface) for deterministic UI synthesis.
+- **Frontend**: Vite + TypeScript + Custom Web Components (no heavy frameworks).
+- **Backend**: Python (FastAPI/Agent Engine) + Node.js (Orchestration).
+- **Cloud**: Deployed on Google Cloud Run, Vertex AI, and Firebase.
 
 ## 📁 Project Structure
-- `/src`: The high-fidelity frontend components (Experience cards, Flashcards, Quizzes).
-- `/agent`: The "Brains" – Python scripts managing the 15+ year portfolio dataset and A2UI templates.
-- `api-server.ts`: The orchestrator that manages the handoff between conversational chat and UI generation.
-
-## ⚡ Quick Start
-1. **Install Dependencies**: `npm install` and setup the Python `venv` in `/agent`.
-2. **Start the Engine**: `npm run start:all`
-3. **Access**: Open `http://localhost:5175` to interact with the Portfolio Agent.
+- `/src`: High-fidelity UI components and the `ChatOrchestrator` logic.
+- `/agent`: The "Brains" – Python-based data repository and A2UI synthesis templates.
+- `A2AClient.ts**: The bridge managing remote agent calls and high-fidelity fallback states.
 
 ---
-**Created by Enrique K Chan**  
-*Showcasing the intersection of Agentic AI, Cloud Architecture, and High-Fidelity UX.*
+**Crafted with ❤️ by [Enrique K Chan](https://www.linkedin.com/in/enriquechan/)**  
+*Building the future of Agentic Interfaces.*

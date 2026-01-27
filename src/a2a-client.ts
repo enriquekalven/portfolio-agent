@@ -675,7 +675,7 @@ export class A2AClient {
                     id: "awardRow",
                     component: {
                       Row: {
-                        children: { explicitList: ["a1", "a2"] },
+                        children: { explicitList: ["a1", "a2", "a3"] },
                         distribution: "start",
                         alignment: "stretch",
                       },
@@ -686,10 +686,10 @@ export class A2AClient {
                     component: {
                       PortfolioCard: {
                         type: "project",
-                        title: "AIS Offsite Hackathon Winner",
-                        description: "Won 1st place for the 'Cards Against Humanity Agent' at the 2025 Google AIS Offsite.",
-                        image: "/assets/awards.png",
-                        url: "https://www.linkedin.com/feed/update/urn:li:activity:7265882565578702848/"
+                        title: "Cloud Tech Impact Award 2024 (Trophy) 🏆",
+                        description: "Awarded for the exceptional development of the NBCU OLI Paris Olympic Chatbot using high-fidelity agentic AI.",
+                        image: "/assets/award_gtm_2024.jpg",
+                        url: "https://www.google.com/search?q=nbcu+oli+paris+olympics+chatbot"
                       }
                     },
                   },
@@ -703,6 +703,96 @@ export class A2AClient {
                         image: "/assets/awards.png",
                         url: "https://www.linkedin.com/in/enriquechan/details/honors/"
                       }
+                    },
+                  },
+                  {
+                    id: "a3",
+                    component: {
+                      PortfolioCard: {
+                        type: "project",
+                        title: "AIS Offsite Hackathon Winner",
+                        description: "Won 1st place for the 'Cards Against Humanity Agent' at the 2025 Google AIS Offsite.",
+                        image: "/assets/awards.png",
+                        url: "https://www.linkedin.com/feed/update/urn:li:activity:7265882565578702848/"
+                      }
+                    },
+                  },
+                ],
+              },
+            },
+          ],
+        };
+
+      case "gallery":
+        return {
+          format: "gallery",
+          surfaceId,
+          a2ui: [
+            { beginRendering: { surfaceId, root: "mainColumn" } },
+            {
+              surfaceUpdate: {
+                surfaceId,
+                components: [
+                  {
+                    id: "mainColumn",
+                    component: {
+                      Column: {
+                        children: { explicitList: ["header", "galleryRow"] },
+                        distribution: "start",
+                        alignment: "stretch",
+                      },
+                    },
+                  },
+                  {
+                    id: "header",
+                    component: {
+                      Text: {
+                        text: { literalString: "Hall of Mastery 🖼️" },
+                        usageHint: "h2",
+                      },
+                    },
+                  },
+                  {
+                    id: "galleryRow",
+                    component: {
+                      Row: {
+                        children: { explicitList: ["g1", "g2", "g3"] },
+                        distribution: "start",
+                        alignment: "stretch",
+                      },
+                    },
+                  },
+                  {
+                    id: "g1",
+                    component: {
+                      PortfolioCard: {
+                        type: "project",
+                        title: "NBC Olympic Concierge Architecture",
+                        image: "/assets/architecture.jpg",
+                        description: "High-fidelity architecture diagram for the OLI AI agent serving 40M viewers.",
+                      },
+                    },
+                  },
+                  {
+                    id: "g2",
+                    component: {
+                      PortfolioCard: {
+                        type: "project",
+                        title: "Cloud Tech Impact Award 2024",
+                        image: "/assets/award_gtm_2024.jpg",
+                        description: "Enrique receiving the GTM Cloud Regional Award for technical excellence.",
+                      },
+                    },
+                  },
+                  {
+                    id: "g3",
+                    component: {
+                      PortfolioCard: {
+                        type: "project",
+                        title: "Professional Certifications Wall",
+                        image: "/assets/gcp_logo.png",
+                        description: "A showcase of Enrique's 19x professional cloud certifications across GCP, AWS, and Azure.",
+                      },
                     },
                   },
                 ],
@@ -757,7 +847,7 @@ export class A2AClient {
                         type: "project",
                         title: "Google Cloud Professional ML Engineer",
                         description: "10x Google Cloud Certified, specializing in enterprise ML and AI architecture.",
-                        image: "/assets/certs.png",
+                        image: "/assets/gcp_logo.png",
                         url: "https://www.credential.net/profile/enriquekchan"
                       }
                     },
@@ -769,7 +859,7 @@ export class A2AClient {
                         type: "project",
                         title: "AWS Solutions Architect Professional",
                         description: "7x AWS Certified with deep expertise in high-scale cloud systems.",
-                        image: "/assets/certs.png",
+                        image: "/assets/aws_logo.png",
                         url: "https://www.credly.com/users/enrique-chan"
                       }
                     },
@@ -822,24 +912,20 @@ export class A2AClient {
                   {
                     id: "s1",
                     component: {
-                      PortfolioCard: {
-                        type: "video",
-                        title: "Keynote: Rise of Agentic AI",
-                        description: "Leading the transition from RAG to Agentic Workflows at scale.",
-                        image: "/assets/speaker.png",
-                        url: "https://www.youtube.com/watch?v=nZa5-WyN-rE"
+                      Flashcard: {
+                        front: { literalString: "Google Cloud Next '24 (Las Vegas)" },
+                        back: { literalString: "Keynote Talk: Architecting High-Fidelity Agentic Workflows at Enterprise Scale." },
+                        category: { literalString: "Public Speaking" }
                       }
                     },
                   },
                   {
                     id: "s2",
                     component: {
-                      PortfolioCard: {
-                        type: "video",
-                        title: "Building Agentic Interfaces",
-                        description: "Explaining high-fidelity UI for AI assistants at the Google ADK summit.",
-                        image: "/assets/speaker.png",
-                        url: "https://www.youtube.com/watch?v=ZMIAlxx-Jx4"
+                      Flashcard: {
+                        front: { literalString: "Google ADK Summit" },
+                        back: { literalString: "Deep Dive: Defining the A2UI Protocol for the Future of Agentic Interfaces." },
+                        category: { literalString: "Technical Keynote" }
                       }
                     },
                   },
