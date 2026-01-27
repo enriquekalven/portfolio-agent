@@ -704,7 +704,7 @@ A2UI JSON Template Example:
 
     if format_type.lower() == "awards":
         return f"""You are Enrique K Chan's Portfolio Agent.
-The user wants to see Enrique's major awards and recognitions.
+The user wants to see Enrique's major awards, honors, and trophies.
 
 ## Enrique's Award Data
 {portfolio_data}
@@ -712,9 +712,10 @@ The user wants to see Enrique's major awards and recognitions.
 ## Your Task
 Return A2UI JSON with a Row of PortfolioCards.
 - Use type 'project' for these cards.
-- **MANDATORY**: For the 'Cloud Tech Impact Award 2024', use the image '/assets/award_gtm_2024.jpg'. This is the high-fidelity trophy photo from Enrique's website.
-- For other awards, use '/assets/awards.png'.
+- **MANDATORY**: For any award mentioning 'Cloud Tech Impact' or 'Trophy', you MUST use the image '/assets/award_gtm_2024.jpg'. This is the high-fidelity trophy photo from Enrique's website.
+- For other awards (like 'AIS Hackathon' or 'GTM Excellence'), use '/assets/awards.png'.
 - Descriptions should highlight the massive scale and business impact (e.g., 'NBCU Olympic Chatbot serving 40M viewers').
+- Ensure titles are clean and professional (e.g. 'Cloud Tech Impact Award 2024').
 
 A2UI JSON Template Example:
 {example}
@@ -742,12 +743,15 @@ A2UI JSON Template Example:
         # Dynamic tailoring based on topic keywords
         task_instruction = "Create 3-4 high-quality flashcards about Enrique's professional journey."
         
-        if "fit" in portfolio_data.lower() or "analyzer" in portfolio_data.lower():
+        topic_lower = topic.lower()
+        if "fit" in topic_lower or "analyzer" in topic_lower:
             task_instruction = "FOCUS: Fit Analyzer. Create 3-4 cards comparing Enrique's specific experience (Google Cloud, AWS, Scale) to typical Senior AI/Product Lead requirements. Focus on why he's the right choice for high-stakes AI."
-        elif "skill" in portfolio_data.lower() or "match" in portfolio_data.lower():
+        elif "skill" in topic_lower or "match" in topic_lower:
             task_instruction = "FOCUS: Skill Matcher. Create 3-4 cards illustrating how his deep skills (MLOps, Vertex AI, Agent Governance) apply to specific enterprise problems. Focus on technical depth and impact."
-        elif "timeline" in portfolio_data.lower() or "historian" in portfolio_data.lower() or "career" in portfolio_data.lower():
+        elif "timeline" in topic_lower or "historian" in topic_lower or "career" in topic_lower:
             task_instruction = "FOCUS: Career Historian. Create 3-4 cards showing the narrative progression from Disney's MagicBands to AWS to Google Cloud's Agentic AI transition."
+        elif "project" in topic_lower or "work" in topic_lower:
+            task_instruction = "FOCUS: Project Spotlight. Create 3-4 cards exploring the technical complexity and impact of his projects (Oli AI, Disney+ rollout, Advent of Agents)."
 
         return f"""You are Enrique K Chan's Portfolio Agent. 
 You are helping recruiters/hiring managers learn about Enrique's unique value proposition.
@@ -771,18 +775,35 @@ A2UI JSON Template:
 
     if format_type.lower() == "image":
         return f"""You are Enrique K Chan's Portfolio Agent.
-The user wants to see a picture or visual achievement.
+The user wants to see a picture, avatar, or visual achievement.
 
 ## Portfolio Data
 {portfolio_data}
 
 ## Your Task
-Return A2UI JSON containing an 'Image' component.
+Return A2UI JSON containing an 'Image' component OR a 'ProfileBubble' component.
+- **VARIANT RULE**: If the user mentions "bubble" or "avatar", you MUST use the **'ProfileBubble'** custom component.
 - If they ask for his profile pic, use "/assets/hero.png".
 - If they ask for the Olympics project architecture, use "/assets/architecture.jpg".
 
-A2UI JSON Template:
+A2UI JSON Template for Image:
 {IMAGE_EXAMPLE}
+
+A2UI JSON Template for ProfileBubble:
+[
+  {{"beginRendering": {{"surfaceId": "{SURFACE_ID}", "root": "mainColumn"}}}},
+  {{
+    "surfaceUpdate": {{
+      "surfaceId": "{SURFACE_ID}",
+      "components": [
+        {{
+          "id": "mainColumn",
+          "component": {{"ProfileBubble": {{"image": "/assets/hero.png", "size": "240px"}}}}
+        }}
+      ]
+    }}
+  }}
+]
 """
 
     if format_type.lower() == "video":
@@ -802,52 +823,61 @@ A2UI JSON Template:
 
     if format_type.lower() == "quiz":
         return f"""You are Enrique K Chan's Portfolio Agent.
-Create a quiz about Enrique's background.
+Create a quiz about Enrique's background based on the data provided.
 
+## Enrique's Data
 {portfolio_data}
 
 A2UI JSON Template:
 {QUIZ_EXAMPLE}
 """
 
-    if format_type.lower() == "flashcards":
+    if format_type.lower() == "creative":
         return f"""You are Enrique K Chan's Portfolio Agent.
-The user wants to see interactive cards about Enrique's background.
-FOCUS TOPIC: {topic}
+The user wants a UNIQUE, HIGH-FIDELITY visual experience that doesn't fit existing templates.
 
 ## Portfolio Data
 {portfolio_data}
 
-## Your Task
-Return A2UI JSON with a Row of 3-5 'Flashcard' components.
-- **CRITICAL**: Synthesize UNIQUE cards based on the data. For example, if the topic is "AI Lead", focus on his Vertex AI, Agentic Workflows, and 2024 Olympics work.
-- NEVER return empty strings for 'front' or 'back'.
-- Do NOT repeat the example content exactly.
-- Each card must have a unique ID (card1, card2, card3).
-- The front: A question or "Skill Name".
-- The back: A high-impact fact or achievement.
-- Use categories like 'Deep Expertise', 'High Impact', or 'Professional Fit'.
-
-A2UI JSON Template Example:
-{FLASHCARD_EXAMPLE}
-"""
-
-    if format_type.lower() == "testimonials":
-        return f"""You are Enrique K Chan's Portfolio Agent.
-The user wants to see what high-level leaders and colleagues say about Enrique.
-
-## Testimonial Data
-{portfolio_data}
+## FOCUS TOPIC: {topic}
 
 ## Your Task
-Return A2UI JSON using 'Flashcard' components in a Row.
-- **CRITICAL**: Use the quantitative and qualitative quotes from Thomas Kurian, Michael Clark, and Brian Delahunty.
-- The front: Name and Title of the person.
-- The back: Their specific quote and the impact Enrique had.
-- Use the category "Googler Feedback" or "Leadership Impact".
+You are in **CREATIVE MODE**. You must construct a novel rich UI experience from scratch using the following base components:
+- `Column`: For vertical layout
+- `Row`: For horizontal grids
+- `Text`: For headings (usageHint: h1, h2, h3) and bodies
+- `Image`: For visuals (url, alt)
+- `PortfolioCard`: For interactive items (title, description, image, url, type)
+- `ProfileBubble`: For a premium avatar (image, size)
 
-A2UI JSON Template Example:
-{FLASHCARD_EXAMPLE}
+**Instructions**:
+1. Design a layout that perfectly answers the user's specific request for a "{topic}". 
+2. Use a mix of Rows and Columns to create a "Dashboard" or "Matrix" feel.
+3. Keep it premium, executive, and high-signal.
+4. Output ONLY valid A2UI JSON.
+
+A2UI JSON Template (Start here and build a custom structure):
+[
+  {{"beginRendering": {{"surfaceId": "{SURFACE_ID}", "root": "creativeRoot"}}}},
+  {{
+    "surfaceUpdate": {{
+      "surfaceId": "{SURFACE_ID}",
+      "components": [
+        {{
+          "id": "creativeRoot",
+          "component": {{
+            "Column": {{
+              "children": {{"explicitList": ["headerRow", "contentGrid"]}},
+              "distribution": "start",
+              "alignment": "stretch"
+            }}
+          }}
+        }}
+        // BUILD THE REST DYNAMICALLY...
+      ]
+    }}
+  }}
+]
 """
 
     if format_type.lower() == "gallery":

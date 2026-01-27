@@ -56,13 +56,13 @@ export class A2AClient {
     // The deployed agent returns GCS URLs which won't work locally,
     // and we only have one pre-built podcast/video anyway.
     const lowerFormat = format.toLowerCase();
-    
+
     const backendFormat = lowerFormat === "blog" ? "blog_cards" : (lowerFormat === "video" || lowerFormat === "video_cards") ? "video_cards" : lowerFormat;
 
     if (
-      backendFormat === "podcast" || 
-      backendFormat === "audio" || 
-      backendFormat === "video" || 
+      backendFormat === "podcast" ||
+      backendFormat === "audio" ||
+      backendFormat === "video" ||
       backendFormat === "blog_cards" ||
       backendFormat === "video_cards" ||
       backendFormat === "awards" ||
@@ -326,7 +326,7 @@ export class A2AClient {
                     },
                   },
                   ...shuffled.map((card, i) => ({
-                    id: `card${i+1}`,
+                    id: `card${i + 1}`,
                     component: {
                       Flashcard: {
                         front: { literalString: card.front },
@@ -389,7 +389,6 @@ export class A2AClient {
             },
           ],
         };
-
       case "awards":
         return {
           format: "awards",

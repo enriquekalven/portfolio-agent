@@ -97,8 +97,8 @@ def prepare_build_context(demo_dir: Path) -> Path:
     """
     print("\nPreparing build context...")
 
-    # The A2UI web-lib is at ../../renderers/lit relative to demo_dir
-    a2ui_source = demo_dir.parent.parent / "renderers" / "lit"
+    # The A2UI web-lib is at ./renderers/lit
+    a2ui_source = demo_dir / "renderers" / "lit"
     a2ui_dest = demo_dir / "a2ui-web-lib"
 
     if not a2ui_source.exists():

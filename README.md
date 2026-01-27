@@ -63,6 +63,14 @@ The agent features specialized modules (or "Gems") that provide deep-dives into 
 - **Backend**: Python (FastAPI/Agent Engine) + Node.js (Orchestration).
 - **Cloud**: Deployed on Google Cloud Run, Vertex AI, and Firebase.
 
+## 🚀 Quick Deployment (Firebase Hosting)
+To get your portfolio live in minutes:
+1. **Install Firebase CLI**: `npm install -g firebase-tools`
+2. **Login**: `firebase login`
+3. **Deploy everything**: `npm run deploy:all -- --project [YOUR_PROJECT_ID]`
+
+For more granular control, see the [Deployment Workflow](.agent/workflows/quick-deploy.md).
+
 ## 📁 Project Structure
 - `/src`: High-fidelity UI components and the `ChatOrchestrator` logic.
 - `/agent`: The "Brains" – Python-based data repository and A2UI synthesis templates.

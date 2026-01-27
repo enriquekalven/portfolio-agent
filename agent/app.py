@@ -23,7 +23,7 @@ TESTIMONIALS: {json.dumps(TESTIMONIALS)}
 GALLERY: {json.dumps(_GALLERY)}
 """
 
-model_id = os.getenv("GENAI_MODEL", "gemini-2.0-flash")
+model_id = os.getenv("GENAI_MODEL", "gemini-2.5-flash")
 
 # Define functions for the agent if needed, or just use instruction
 # For now, we'll use a strong system instruction to handle A2UI generation

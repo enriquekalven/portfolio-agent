@@ -104,6 +104,10 @@ const PORTFOLIO_SECTIONS: Record<string, { slug: string; title: string }> = {
   "aws": { slug: "#experience", title: "AWS Cloud Architecture" },
   "agent": { slug: "#publications", title: "Agentic AI Thought Leadership" },
   "a2ui": { slug: "#publications", title: "Building the Future of Agentic Interfaces" },
+  "blog": { slug: "#publications", title: "Insight Stream (Medium Blogs)" },
+  "video": { slug: "#publications", title: "Cinema Hub (YouTube Keynotes)" },
+  "award": { slug: "#honors", title: "Trophy Room" },
+  "timeline": { slug: "#experience", title: "Career Journey" },
   "default": { slug: "", title: "Enrique K Chan Portfolio" },
 };
 
@@ -133,12 +137,13 @@ let genai: any = null;
 async function initGenAI() {
   const { GoogleGenAI } = await import("@google/genai");
   // Use VertexAI with Application Default Credentials
+  const useVertex = process.env.GOOGLE_GENAI_USE_VERTEXAI !== "FALSE";
   genai = new GoogleGenAI({
-    vertexai: true,
+    vertexai: useVertex,
     project: PROJECT,
     location: LOCATION,
   });
-  console.log(`[API Server] Using VertexAI: ${PROJECT}/${LOCATION}`);
+  console.log(`[API Server] Using ${useVertex ? "VertexAI" : "Gemini API"}: ${PROJECT}/${LOCATION}`);
   console.log(`[API Server] Model: ${MODEL}`);
 }
 
@@ -213,7 +218,7 @@ async function queryAgentEngine(format: string, context: string = ""): Promise<a
   if (process.env.USE_LOCAL_AGENT === "TRUE") {
     const localUrl = `http://localhost:8081/a2a/query`;
     console.log(`[API Server] Querying LOCAL agent: ${format}`);
-    
+
     const response = await fetch(localUrl, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -261,12 +266,7 @@ async function queryAgentEngine(format: string, context: string = ""): Promise<a
     },
   };
 
-  // LOG: Server → Agent Engine request
-  logMessage("SERVER_TO_AGENT", "Vertex AI Agent Engine (A2UI Generator)", {
-    description: "Request to remote A2UI-generating agent",
-    agentUrl: url,
-    payload: requestPayload,
-  });
+  // No logging here
 
   const response = await fetch(url, {
     method: "POST",
@@ -288,15 +288,7 @@ async function queryAgentEngine(format: string, context: string = ""): Promise<a
   console.log("[API Server] Agent Engine response length:", responseText.length);
   console.log("[API Server] Raw response (first 1000 chars):", responseText.substring(0, 1000));
 
-  // LOG: Agent Engine → Server raw response
-  logMessage("AGENT_TO_SERVER", "Vertex AI Agent Engine (raw)", {
-    description: "Raw streaming response from Agent Engine (newline-delimited JSON)",
-    responseLength: responseText.length,
-    rawChunks: responseText.trim().split("\n").slice(0, 5).map(chunk => {
-      try { return JSON.parse(chunk); } catch { return chunk.substring(0, 200); }
-    }),
-    note: "Showing first 5 chunks only",
-  });
+  // No raw logging here
 
   // Extract text from all chunks
   const chunks = responseText.trim().split("\n").filter((line: string) => line.trim());
@@ -350,7 +342,7 @@ async function queryAgentEngine(format: string, context: string = ""): Promise<a
         try {
           const parsed = JSON.parse(text);
           if (Array.isArray(parsed)) return { a2ui: parsed };
-        } catch {}
+        } catch { }
       }
 
       // Try parsing as object with a2ui and source (new format)
@@ -372,7 +364,7 @@ async function queryAgentEngine(format: string, context: string = ""): Promise<a
             }
             if (Array.isArray(inner)) return { a2ui: inner };
           }
-        } catch {}
+        } catch { }
       }
 
       // Try to find and extract JSON array from text
@@ -381,7 +373,7 @@ async function queryAgentEngine(format: string, context: string = ""): Promise<a
         try {
           const parsed = JSON.parse(arrayMatch[0]);
           if (Array.isArray(parsed)) return { a2ui: parsed };
-        } catch {}
+        } catch { }
       }
 
       // Try to extract result field with regex and parse its content
@@ -398,7 +390,7 @@ async function queryAgentEngine(format: string, context: string = ""): Promise<a
             return { a2ui: parsed.a2ui, source: parsed.source || undefined };
           }
           if (Array.isArray(parsed)) return { a2ui: parsed };
-        } catch {}
+        } catch { }
       }
 
       return { a2ui: null };
@@ -413,15 +405,7 @@ async function queryAgentEngine(format: string, context: string = ""): Promise<a
         source: extracted.source,
       };
 
-      // LOG: Parsed A2UI content
-      logMessage("AGENT_TO_SERVER", "Vertex AI Agent Engine (parsed A2UI)", {
-        description: "Successfully parsed A2UI JSON from agent response",
-        format,
-        surfaceId: "portfolioContent",
-        source: extracted.source,
-        a2uiMessageCount: extracted.a2ui.length,
-        a2uiMessages: extracted.a2ui,
-      });
+      // Parsed A2UI content ready
 
       return result;
     }
@@ -586,7 +570,8 @@ async function handleChatRequest(request: ChatRequest): Promise<{ text: string }
   const fullSystemPrompt = `${systemPrompt}\n\n${intentGuidance}`;
 
   // Convert messages to Gemini format
-  const contents = messages.map((m) => ({
+  const messagesList = messages || [];
+  const contents = messagesList.map((m) => ({
     role: m.role === "assistant" ? "model" : "user",
     parts: m.parts,
   }));
@@ -682,7 +667,8 @@ Analyze the user's message and context to determine the most high-signal intent:
 Then provide an appropriate conversational response.`;
 
   // Convert messages to Gemini format
-  const contents = messages.map((m) => ({
+  const messagesList = messages || [];
+  const contents = messagesList.map((m) => ({
     role: m.role === "assistant" ? "model" : "user",
     parts: m.parts,
   }));
@@ -777,20 +763,7 @@ async function main() {
       return;
     }
 
-    // Reset message log (useful before demo)
-    if (req.url === "/reset-log" && req.method === "POST") {
-      resetLog();
-      res.writeHead(200, { "Content-Type": "application/json" });
-      res.end(JSON.stringify({ status: "log reset", file: LOG_FILE }));
-      return;
-    }
-
-    // View current log
-    if (req.url === "/log" && req.method === "GET") {
-      res.writeHead(200, { "Content-Type": "application/json" });
-      res.end(JSON.stringify(messageLog, null, 2));
-      return;
-    }
+    // Endpoints removed
 
     // A2A Agent Engine endpoint
     if (req.url === "/a2ui-agent/a2a/query" && req.method === "POST") {
@@ -802,11 +775,7 @@ async function main() {
         console.log("[API Server] Session ID:", body.session_id);
         console.log("[API Server] ========================================");
 
-        // LOG: Client → Server request for A2UI content
-        logMessage("CLIENT_TO_SERVER", "/a2ui-agent/a2a/query", {
-          description: "Browser client requesting A2UI content generation",
-          requestBody: body,
-        });
+        // No logging
 
         // Parse format from message (e.g., "flashcards:context" or just "flashcards")
         const parts = (body.message || "flashcards").split(":");
@@ -836,15 +805,7 @@ async function main() {
           }
         }
 
-        // LOG: Server → Client response with A2UI
-        logMessage("SERVER_TO_CLIENT", "/a2ui-agent/a2a/query", {
-          description: "Sending A2UI JSON payload to browser for rendering",
-          format: result.format,
-          surfaceId: result.surfaceId,
-          source: result.source,
-          a2uiMessageCount: result.a2ui?.length || 0,
-          a2uiPayload: result.a2ui,
-        });
+        // No logging
 
         res.writeHead(200, { "Content-Type": "application/json" });
         res.end(JSON.stringify(result));
@@ -862,21 +823,11 @@ async function main() {
         const body = await parseBody(req);
         console.log("[API Server] Chat request received");
 
-        // LOG: Client → Server chat request
-        logMessage("CLIENT_TO_SERVER", "/api/chat", {
-          description: "Browser client sending chat message to Gemini",
-          userMessage: body.userMessage,
-          intentGuidance: body.intentGuidance?.substring(0, 100) + "...",
-          conversationLength: body.messages?.length || 0,
-        });
+        // No logging
 
         const result = await handleChatRequest(body);
 
-        // LOG: Server → Client chat response
-        logMessage("SERVER_TO_CLIENT", "/api/chat", {
-          description: "Gemini response text (conversational layer)",
-          responseText: result.text,
-        });
+        // No logging
 
         res.writeHead(200, { "Content-Type": "application/json" });
         res.end(JSON.stringify(result));
@@ -898,14 +849,7 @@ async function main() {
         console.log("[API Server] Conversation history length:", body.messages?.length || 0);
         console.log("[API Server] ========================================");
 
-        // LOG: Client → Server combined request
-        logMessage("CLIENT_TO_SERVER", "/api/chat-with-intent", {
-          description: "Browser client requesting combined intent+response (latency optimization)",
-          userMessage: body.userMessage,
-          recentContext: body.recentContext,
-          conversationLength: body.messages?.length || 0,
-          fullMessages: body.messages,
-        });
+        // No logging
 
         const result = await handleCombinedChatRequest(body);
 
@@ -916,13 +860,7 @@ async function main() {
         console.log("[API Server] Text:", result.text.substring(0, 200));
         console.log("[API Server] ========================================");
 
-        // LOG: Server → Client combined response
-        logMessage("SERVER_TO_CLIENT", "/api/chat-with-intent", {
-          description: "Combined intent detection and response in single LLM call",
-          intent: result.intent,
-          keywords: result.keywords,
-          responseText: result.text,
-        });
+        // No logging
 
         res.writeHead(200, { "Content-Type": "application/json" });
         res.end(JSON.stringify(result));
@@ -981,12 +919,7 @@ async function main() {
 
   server.listen(PORT, () => {
     console.log(`[API Server] Running on http://localhost:${PORT}`);
-    console.log(`[API Server] Chat endpoint: POST http://localhost:${PORT}/api/chat`);
-    console.log(`\n📋 MESSAGE LOG ENABLED`);
-    console.log(`   Log file: ${LOG_FILE}`);
-    console.log(`   View log: GET http://localhost:${PORT}/log`);
-    console.log(`   Reset log: POST http://localhost:${PORT}/reset-log`);
-    console.log(`\n   After running the demo, check ${LOG_FILE} for the full message sequence!\n`);
+    console.log(`\n✅ API server ready\n`);
   });
 }
 

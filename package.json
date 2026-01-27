@@ -8,15 +8,17 @@
     "dev": "concurrently \"npm run dev:api\" \"npm run dev:vite\"",
     "dev:vite": "vite",
     "dev:api": "tsx api-server.ts",
-    "dev:agent": "cd agent && ./venv/bin/python server.py",
-    "build": "vite build",
+    "dev:agent": "PYTHONPATH=. ./agent/venv/bin/python -m agent.server",
+    "build": "tsc && vite build",
     "preview": "vite preview",
     "start": "tsx api-server.ts",
     "start:all": "concurrently \"npm run dev:api\" \"npm run dev:vite\" \"npm run dev:agent\"",
     "test": "node tests/unit-tests.mjs && node tests/integration-tests.mjs",
     "test:unit": "node tests/unit-tests.mjs",
     "test:integration": "node tests/integration-tests.mjs",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "deploy:hosting": "python3 deploy_hosting.py",
+    "deploy:all": "make deploy-all"
   },
   "dependencies": {
     "@a2ui/web-lib": "file:./renderers/lit",
