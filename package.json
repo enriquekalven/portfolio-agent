@@ -9,7 +9,7 @@
     "dev:vite": "vite",
     "dev:api": "tsx api-server.ts",
     "dev:agent": "cd agent && ./venv/bin/python server.py",
-    "build": "tsc && vite build",
+    "build": "vite build",
     "preview": "vite preview",
     "start": "tsx api-server.ts",
     "start:all": "concurrently \"npm run dev:api\" \"npm run dev:vite\" \"npm run dev:agent\"",

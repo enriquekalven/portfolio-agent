@@ -67,7 +67,7 @@ function resetLog() {
 // Reset log on server start
 resetLog();
 
-const PORT = parseInt(process.env.API_PORT || "8080");
+const PORT = parseInt(process.env.PORT || process.env.API_PORT || "8080");
 const PROJECT = process.env.GOOGLE_CLOUD_PROJECT;
 // Use us-central1 region for consistency with Agent Engine
 const LOCATION = process.env.GOOGLE_CLOUD_LOCATION || "us-central1";

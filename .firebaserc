@@ -1,12 +1,12 @@
 {
   "projects": {
-    "default": "esai-31177"
+    "default": "project-maui"
   },
   "targets": {
-    "esai-31177": {
+    "project-maui": {
       "hosting": {
         "agent-ui": [
-          "agent-cockpit"
+          "enriquekchan-agent"
         ]
       }
     }

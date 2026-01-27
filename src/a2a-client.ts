@@ -6,6 +6,7 @@
  */
 
 import { getIdToken } from "./firebase-auth";
+import portfolioData from "./portfolio-data.json";
 
 // Helper to get auth headers for API requests
 async function getAuthHeaders(): Promise<Record<string, string>> {
@@ -55,9 +56,24 @@ export class A2AClient {
     // The deployed agent returns GCS URLs which won't work locally,
     // and we only have one pre-built podcast/video anyway.
     const lowerFormat = format.toLowerCase();
-    if (lowerFormat === "podcast" || lowerFormat === "audio" || lowerFormat === "video") {
+    
+    const backendFormat = lowerFormat === "blog" ? "blog_cards" : (lowerFormat === "video" || lowerFormat === "video_cards") ? "video_cards" : lowerFormat;
+
+    if (
+      backendFormat === "podcast" || 
+      backendFormat === "audio" || 
+      backendFormat === "video" || 
+      backendFormat === "blog_cards" ||
+      backendFormat === "video_cards" ||
+      backendFormat === "awards" ||
+      backendFormat === "certs" ||
+      backendFormat === "speaker" ||
+      backendFormat === "testimonials" ||
+      backendFormat === "gallery" ||
+      backendFormat === "timeline"
+    ) {
       console.log(`[A2AClient] Using local fallback for ${format} (pre-built content)`);
-      return this.getFallbackContent(format);
+      return this.getFallbackContent(backendFormat, context);
     }
 
     try {
@@ -65,7 +81,7 @@ export class A2AClient {
         method: "POST",
         headers: await getAuthHeaders(),
         body: JSON.stringify({
-          message: context ? `${format}:${context}` : format,
+          message: context ? `${backendFormat}:${context}` : backendFormat,
           session_id: this.getSessionId(),
           extensions: ["https://a2ui.org/a2a-extension/a2ui/v0.8"],
         }),
@@ -87,17 +103,17 @@ export class A2AClient {
         data.rawText?.includes("cannot fulfill") ||
         data.rawText?.includes("do not have the functionality")
       ) {
-        console.log(`[A2AClient] Agent returned empty/error, using fallback for ${format}`);
-        return this.getFallbackContent(format);
+        console.log(`[A2AClient] Agent returned empty/error, using fallback for ${backendFormat}`);
+        return this.getFallbackContent(backendFormat, context);
       }
 
       // Special case: if we requested a quiz but agent returned flashcards,
       // use our quiz fallback instead (agent doesn't know about QuizCard)
-      if (format.toLowerCase() === "quiz") {
+      if (backendFormat === "quiz") {
         const a2uiStr = JSON.stringify(data.a2ui);
         if (a2uiStr.includes("Flashcard") && !a2uiStr.includes("QuizCard")) {
           console.log(`[A2AClient] Agent returned Flashcards for quiz request, using QuizCard fallback`);
-          return this.getFallbackContent(format);
+          return this.getFallbackContent(backendFormat, context);
         }
       }
 
@@ -106,7 +122,7 @@ export class A2AClient {
       console.error("[A2AClient] Error calling agent:", error);
 
       // Return fallback content for demo purposes
-      return this.getFallbackContent(format);
+      return this.getFallbackContent(backendFormat, context);
     }
   }
 
@@ -165,7 +181,9 @@ export class A2AClient {
       }
     } catch (error) {
       console.error("[A2AClient] Stream error:", error);
-      yield { status: "complete", data: this.getFallbackContent(format) };
+      const lowerFormat = format.toLowerCase();
+      const backendFormat = lowerFormat === "blog" ? "blog_cards" : lowerFormat;
+      yield { status: "complete", data: this.getFallbackContent(backendFormat, context) };
     }
   }
 
@@ -184,14 +202,94 @@ export class A2AClient {
   /**
    * Get fallback content for demo purposes when agent is unavailable.
    */
-  private getFallbackContent(format: string): A2UIResponse {
+  /**
+   * Get fallback content for demo purposes when agent is unavailable.
+   */
+  private getFallbackContent(format: string, context: string = ""): A2UIResponse {
     const surfaceId = "learningContent";
+    const { PROFILE, EXPERIENCE, CERTIFICATIONS, AWARDS, TESTIMONIALS, BLOGS, VIDEOS, SPEAKING, GALLERY } = portfolioData;
 
     switch (format.toLowerCase()) {
       case "flashcards":
+        const skillPool = [
+          {
+            front: "What is his unique edge in Agentic workflows?",
+            back: "Specializes in transition from RAG to autonomous agents. Leads AI Agents Enablement COE at Google Cloud.",
+            category: "Skill Matcher"
+          },
+          {
+            front: "Which Cloud platforms is Enrique certified in?",
+            back: "Enrique holds 19x professional certifications across Google Cloud, AWS, and Microsoft Azure.",
+            category: "Cloud Mastery"
+          },
+          {
+            front: "What are his core AI/ML competencies?",
+            back: "Vertex AI, LLMOps, RLHF, SFT, and building autonomous agent substrates.",
+            category: "Technical Skills"
+          },
+          {
+            front: "How does he approach Enterprise Data?",
+            back: "Expert in BigQuery, Data Mesh architecture, and migrating legacy analytics to modern AI-ready stacks.",
+            category: "Data Strategy"
+          }
+        ];
+
+        const fitPool = [
+          {
+            front: `How does ${PROFILE.name.split(' ')[0]}'s background fit an AI Lead role?`,
+            back: `Combining 15+ years of distributed systems with a focus on Agentic AI. Lead on NBC Olympics 'Oli' chatbot for 40M viewers.`,
+            category: "Fit Analyzer"
+          },
+          {
+            front: "What is his architectural philosophy for AI?",
+            back: "Architecture-first AI. Success depends on GenAI infrastructure (Cloud Run, Vertex AI) and verifiable logic.",
+            category: "Visionary Fit"
+          },
+          {
+            front: "Why is Enrique a good fit for high-scale AI systems?",
+            back: "Proven track record scaling Disney+ and Disney MagicBands globally. Expert in high-availability cloud architecture.",
+            category: "Enterprise Fit"
+          },
+          {
+            front: "What did he achieve with the NBC Olympics chatbot?",
+            back: "Handled 90M+ queries with sub-second latency for 40M viewers using Vertex AI Provisioned Throughput.",
+            category: "Project Impact"
+          },
+          {
+            front: "What do Google Cloud leaders say about him?",
+            back: "Thomas Kurian praised his customer empathy and engineering excellence; Michael Clark awarded him for technical impact.",
+            category: "Leadership Sentiment"
+          }
+        ];
+
+        // Determine which pool to favor based on context
+        const isSkillQuery = context.toLowerCase().includes("skill") || context.toLowerCase().includes("matcher");
+        const isFitQuery = context.toLowerCase().includes("fit") || context.toLowerCase().includes("analyzer") || context.toLowerCase().includes("analyze");
+
+        let flashcardPool;
+        if (isSkillQuery) {
+          flashcardPool = skillPool;
+        } else if (isFitQuery) {
+          flashcardPool = fitPool;
+        } else {
+          flashcardPool = [...skillPool, ...fitPool];
+        }
+
+        // Robust Fisher-Yates shuffle
+        const shuffle = (array: any[]) => {
+          for (let i = array.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [array[i], array[j]] = [array[j], array[i]];
+          }
+          return array;
+        };
+
+        const shuffled = shuffle([...flashcardPool]).slice(0, 3);
+
         return {
           format: "flashcards",
           surfaceId,
+          source: { provider: "Portfolio", url: PROFILE.links.portfolio, title: "Career Highlights" },
           a2ui: [
             { beginRendering: { surfaceId, root: "mainColumn" } },
             {
@@ -212,7 +310,7 @@ export class A2AClient {
                     id: "headerText",
                     component: {
                       Text: {
-                        text: { literalString: "Career Highlights: Enrique K Chan" },
+                        text: { literalString: `Career Highlights & Insights: ${PROFILE.name}` },
                         usageHint: "h3",
                       },
                     },
@@ -227,191 +325,16 @@ export class A2AClient {
                       },
                     },
                   },
-                  {
-                    id: "card1",
+                  ...shuffled.map((card, i) => ({
+                    id: `card${i+1}`,
                     component: {
                       Flashcard: {
-                        front: { literalString: "How does Enrique's background fit an AI Lead role?" },
-                        back: {
-                          literalString:
-                            "Enrique combines 15+ years of distributed systems experience with a modern focus on Agentic AI. At Google, he led the technical delivery of the Olympic 'Oli' chatbot (Vertex AI), demonstrating an ability to scale GenAI to 40M+ viewers.",
-                        },
-                        category: { literalString: "Fit Analyzer" },
+                        front: { literalString: card.front },
+                        back: { literalString: card.back },
+                        category: { literalString: card.category },
                       },
                     },
-                  },
-                  {
-                    id: "card2",
-                    component: {
-                      Flashcard: {
-                        front: { literalString: "What is Enrique's unique edge in Agentic workflows?" },
-                        back: {
-                          literalString:
-                            "He specializes in the transition from simple RAG to autonomous agents that use tools. He co-authored the 'Intro to Agents' whitepaper and leads the AI Agents Enablement Center of Excellence at Google Cloud.",
-                        },
-                        category: { literalString: "Skill Matcher" },
-                      },
-                    },
-                  },
-                  {
-                    id: "card3",
-                    component: {
-                      Flashcard: {
-                        front: {
-                          literalString:
-                            "What is Enrique's architectural philosophy for AI?",
-                        },
-                        back: {
-                          literalString:
-                            "Architecture-first AI. He believes enterprise AI success depends on robust GenAI infrastructure (Cloud Run, AlloyDB, Vertex AI) and verifiable agentic logic rather than just prompt engineering.",
-                        },
-                        category: { literalString: "Visionary Fit" },
-                      },
-                    },
-                  },
-                ],
-              },
-            },
-          ],
-        };
-
-      case "podcast":
-      case "audio":
-        return {
-          format: "audio",
-          surfaceId,
-          a2ui: [
-            { beginRendering: { surfaceId, root: "audioCard" } },
-            {
-              surfaceUpdate: {
-                surfaceId,
-                components: [
-                  {
-                    id: "audioCard",
-                    component: { Card: { child: "audioContent" } },
-                  },
-                  {
-                    id: "audioContent",
-                    component: {
-                      Column: {
-                        children: {
-                          explicitList: ["audioHeader", "audioPlayer", "audioDescription"],
-                        },
-                        distribution: "start",
-                        alignment: "stretch",
-                      },
-                    },
-                  },
-                  {
-                    id: "audioHeader",
-                    component: {
-                      Row: {
-                        children: { explicitList: ["audioIcon", "audioTitle"] },
-                        distribution: "start",
-                        alignment: "center",
-                      },
-                    },
-                  },
-                  {
-                    id: "audioIcon",
-                    component: {
-                      Icon: { name: { literalString: "podcasts" } },
-                    },
-                  },
-                  {
-                    id: "audioTitle",
-                    component: {
-                      Text: {
-                        text: {
-                          literalString: "The Future of Agentic AI: A Portfolio Deep Dive",
-                        },
-                        usageHint: "h3",
-                      },
-                    },
-                  },
-                  {
-                    id: "audioPlayer",
-                    component: {
-                      AudioPlayer: {
-                        url: { literalString: "/assets/podcast.m4a" },
-                        audioTitle: { literalString: "Enrique K Chan: Career & Vision" },
-                        audioDescription: { literalString: "A personalized audio overview of Enrique's journey from Disney to Google Cloud AI." },
-                      },
-                    },
-                  },
-                  {
-                    id: "audioDescription",
-                    component: {
-                      Text: {
-                        text: {
-                          literalString:
-                            "Listen to this deep dive into Enrique's background as an architect of high-scale AI systems and his vision for the future of agentic workflows.",
-                        },
-                        usageHint: "body",
-                      },
-                    },
-                  },
-                ],
-              },
-            },
-          ],
-        };
-
-      case "video":
-        return {
-          format: "video",
-          surfaceId,
-          a2ui: [
-            { beginRendering: { surfaceId, root: "videoCard" } },
-            {
-              surfaceUpdate: {
-                surfaceId,
-                components: [
-                  {
-                    id: "videoCard",
-                    component: { Card: { child: "videoContent" } },
-                  },
-                  {
-                    id: "videoContent",
-                    component: {
-                      Column: {
-                        children: {
-                          explicitList: ["videoTitle", "videoPlayer", "videoDescription"],
-                        },
-                        distribution: "start",
-                        alignment: "stretch",
-                      },
-                    },
-                  },
-                  {
-                    id: "videoTitle",
-                    component: {
-                      Text: {
-                        text: { literalString: "The Rise of Agentic AI" },
-                        usageHint: "h3",
-                      },
-                    },
-                  },
-                  {
-                    id: "videoPlayer",
-                    component: {
-                      Video: {
-                        url: { literalString: "https://www.youtube.com/watch?v=nZa5-WyN-rE" },
-                      },
-                    },
-                  },
-                  {
-                    id: "videoDescription",
-                    component: {
-                      Text: {
-                        text: {
-                          literalString:
-                            "Watch Enrique's keynote on the future of AI Agents and how they are transforming enterprise workflows.",
-                        },
-                        usageHint: "body",
-                      },
-                    },
-                  },
+                  })),
                 ],
               },
             },
@@ -432,7 +355,7 @@ export class A2AClient {
                     id: "mainColumn",
                     component: {
                       Column: {
-                        children: { explicitList: ["header", "exp1", "exp2", "exp3"] },
+                        children: { explicitList: ["header", ...EXPERIENCE.map((_, i) => `exp${i}`)] },
                         distribution: "start",
                         alignment: "stretch",
                       },
@@ -447,195 +370,20 @@ export class A2AClient {
                       },
                     },
                   },
-                  {
-                    id: "exp1",
+                  ...EXPERIENCE.map((exp: any, i: number) => ({
+                    id: `exp${i}`,
                     component: {
                       ExperienceCard: {
-                        company: "Google Cloud",
-                        role: "Outbound Product Manager, Cloud AI",
-                        period: "Nov 2025 – Present",
-                        logo: "google",
-                        color: "#4285F4",
-                        highlights: [
-                          "Leading vision and strategy for the AI Agents Enablement COE.",
-                          "Co-authored global 'Intro to Agents' whitepaper (1.5M+ attendees).",
-                        ],
-                        impact: "Scaled Agentic AI enablement to 1.5M+ people globally.",
+                        company: exp.company,
+                        role: exp.role,
+                        period: exp.period,
+                        logo: exp.logo || "business",
+                        color: exp.color || "#4285F4",
+                        highlights: exp.highlights,
+                        impact: exp.impact,
                       },
                     },
-                  },
-                  {
-                    id: "exp2",
-                    component: {
-                      ExperienceCard: {
-                        company: "Google Cloud",
-                        role: "Senior AI Consultant, PSO",
-                        period: "Jun 2023 – Nov 2025",
-                        logo: "google",
-                        color: "#34A853",
-                        highlights: [
-                          "NBC Olympic Concierge: Technical lead for GenAI solution serving 40M viewers.",
-                          "Secured $1.3M revenue commitment for Vertex AI throughput.",
-                        ],
-                        impact: "Delivered 99.99% availability for 90M+ Olympic queries.",
-                      },
-                    },
-                  },
-                  {
-                    id: "exp3",
-                    component: {
-                      ExperienceCard: {
-                        company: "Amazon Web Services (AWS)",
-                        role: "Senior Cloud Architect",
-                        period: "May 2020 – May 2021",
-                        logo: "aws",
-                        color: "#FF9900",
-                        highlights: [
-                          "Designed large-scale cloud architectures for Fortune 500 enterprise clients.",
-                          "Built distributed microservices with TypeScript and AWS CDK.",
-                        ],
-                        impact: "Modernized legacy infrastructures into high-availability cloud systems.",
-                      },
-                    },
-                  },
-                ],
-              },
-            },
-          ],
-        };
-
-      case "video_cards":
-        return {
-          format: "video_cards",
-          surfaceId,
-          a2ui: [
-            { beginRendering: { surfaceId, root: "mainColumn" } },
-            {
-              surfaceUpdate: {
-                surfaceId,
-                components: [
-                  {
-                    id: "mainColumn",
-                    component: {
-                      Column: {
-                        children: { explicitList: ["header", "videoRow"] },
-                        distribution: "start",
-                        alignment: "stretch",
-                      },
-                    },
-                  },
-                  {
-                    id: "header",
-                    component: {
-                      Text: {
-                        text: { literalString: "Featured Video Content" },
-                        usageHint: "h2",
-                      },
-                    },
-                  },
-                  {
-                    id: "videoRow",
-                    component: {
-                      Row: {
-                        children: { explicitList: ["v1", "v2"] },
-                        distribution: "start",
-                        alignment: "stretch",
-                      },
-                    },
-                  },
-                  {
-                    id: "v1",
-                    component: {
-                      PortfolioCard: {
-                        type: "video",
-                        title: "The Rise of Agentic AI",
-                        description: "Enrique's keynote on the transition to autonomous AI agents.",
-                        image: "https://img.youtube.com/vi/nZa5-WyN-rE/maxresdefault.jpg",
-                        url: "https://www.youtube.com/watch?v=nZa5-WyN-rE"
-                      }
-                    },
-                  },
-                  {
-                    id: "v2",
-                    component: {
-                      PortfolioCard: {
-                        type: "video",
-                        title: "A2UI & Agentic Interfaces",
-                        description: "A deep dive into high-fidelity Agentic User Interfaces.",
-                        image: "https://img.youtube.com/vi/ZMIAlxx-Jx4/maxresdefault.jpg",
-                        url: "https://www.youtube.com/watch?v=ZMIAlxx-Jx4"
-                      }
-                    },
-                  },
-                ],
-              },
-            },
-          ],
-        };
-
-      case "blog_cards":
-        return {
-          format: "blog_cards",
-          surfaceId,
-          a2ui: [
-            { beginRendering: { surfaceId, root: "mainColumn" } },
-            {
-              surfaceUpdate: {
-                surfaceId,
-                components: [
-                  {
-                    id: "mainColumn",
-                    component: {
-                      Column: {
-                        children: { explicitList: ["header", "blogRow"] },
-                        distribution: "start",
-                        alignment: "stretch",
-                      },
-                    },
-                  },
-                  {
-                    id: "header",
-                    component: {
-                      Text: {
-                        text: { literalString: "Medium Articles & Thought Leadership" },
-                        usageHint: "h2",
-                      },
-                    },
-                  },
-                  {
-                    id: "blogRow",
-                    component: {
-                      Row: {
-                        children: { explicitList: ["b1", "b2"] },
-                        distribution: "start",
-                        alignment: "stretch",
-                      },
-                    },
-                  },
-                  {
-                    id: "b1",
-                    component: {
-                      PortfolioCard: {
-                        type: "blog",
-                        title: "Building Agentic Interfaces",
-                        description: "Introducing the Agent UI Starter Pack and the philosophy of agent-first design.",
-                        image: "/assets/blog-a2ui.png",
-                        url: "https://medium.com/@enriq/building-the-future-of-agentic-interfaces-introducing-the-agent-ui-starter-pack-94d8fed86ca7"
-                      }
-                    },
-                  },
-                  {
-                    id: "b2",
-                    component: {
-                      PortfolioCard: {
-                        type: "blog",
-                        title: "The Agent Optimizer",
-                        description: "A guide to optimizing agent performance in complex enterprise workflows.",
-                        image: "/assets/blog-optimizer.png",
-                        url: "https://medium.com/@enriq/introducing-the-agent-optimizer-for-google-adk-3872856e6d7b"
-                      }
-                    },
-                  },
+                  })),
                 ],
               },
             },
@@ -646,6 +394,7 @@ export class A2AClient {
         return {
           format: "awards",
           surfaceId,
+          source: { provider: "LinkedIn", url: PROFILE.links.linkedin, title: "Trophy Room" },
           a2ui: [
             { beginRendering: { surfaceId, root: "mainColumn" } },
             {
@@ -666,7 +415,7 @@ export class A2AClient {
                     id: "header",
                     component: {
                       Text: {
-                        text: { literalString: "Key Industry Awards & Honors" },
+                        text: { literalString: "Key Industry Awards & Honors 🏆" },
                         usageHint: "h2",
                       },
                     },
@@ -675,126 +424,24 @@ export class A2AClient {
                     id: "awardRow",
                     component: {
                       Row: {
-                        children: { explicitList: ["a1", "a2", "a3"] },
+                        children: { explicitList: AWARDS.slice(0, 3).map((_, i) => `a${i}`) },
                         distribution: "start",
                         alignment: "stretch",
                       },
                     },
                   },
-                  {
-                    id: "a1",
+                  ...AWARDS.slice(0, 3).map((award: any, i: number) => ({
+                    id: `a${i}`,
                     component: {
                       PortfolioCard: {
                         type: "project",
-                        title: "Cloud Tech Impact Award 2024 (Trophy) 🏆",
-                        description: "Awarded for the exceptional development of the NBCU OLI Paris Olympic Chatbot using high-fidelity agentic AI.",
-                        image: "/assets/award_gtm_2024.jpg",
-                        url: "https://www.google.com/search?q=nbcu+oli+paris+olympics+chatbot"
+                        title: award.title,
+                        description: award.description,
+                        image: award.image,
+                        url: award.url
                       }
                     },
-                  },
-                  {
-                    id: "a2",
-                    component: {
-                      PortfolioCard: {
-                        type: "project",
-                        title: "Cloud GTM Excellence Award",
-                        description: "Recognized for exceptional impact on Google Cloud's go-to-market strategy.",
-                        image: "/assets/awards.png",
-                        url: "https://www.linkedin.com/in/enriquechan/details/honors/"
-                      }
-                    },
-                  },
-                  {
-                    id: "a3",
-                    component: {
-                      PortfolioCard: {
-                        type: "project",
-                        title: "AIS Offsite Hackathon Winner",
-                        description: "Won 1st place for the 'Cards Against Humanity Agent' at the 2025 Google AIS Offsite.",
-                        image: "/assets/awards.png",
-                        url: "https://www.linkedin.com/feed/update/urn:li:activity:7265882565578702848/"
-                      }
-                    },
-                  },
-                ],
-              },
-            },
-          ],
-        };
-
-      case "gallery":
-        return {
-          format: "gallery",
-          surfaceId,
-          a2ui: [
-            { beginRendering: { surfaceId, root: "mainColumn" } },
-            {
-              surfaceUpdate: {
-                surfaceId,
-                components: [
-                  {
-                    id: "mainColumn",
-                    component: {
-                      Column: {
-                        children: { explicitList: ["header", "galleryRow"] },
-                        distribution: "start",
-                        alignment: "stretch",
-                      },
-                    },
-                  },
-                  {
-                    id: "header",
-                    component: {
-                      Text: {
-                        text: { literalString: "Hall of Mastery 🖼️" },
-                        usageHint: "h2",
-                      },
-                    },
-                  },
-                  {
-                    id: "galleryRow",
-                    component: {
-                      Row: {
-                        children: { explicitList: ["g1", "g2", "g3"] },
-                        distribution: "start",
-                        alignment: "stretch",
-                      },
-                    },
-                  },
-                  {
-                    id: "g1",
-                    component: {
-                      PortfolioCard: {
-                        type: "project",
-                        title: "NBC Olympic Concierge Architecture",
-                        image: "/assets/architecture.jpg",
-                        description: "High-fidelity architecture diagram for the OLI AI agent serving 40M viewers.",
-                      },
-                    },
-                  },
-                  {
-                    id: "g2",
-                    component: {
-                      PortfolioCard: {
-                        type: "project",
-                        title: "Cloud Tech Impact Award 2024",
-                        image: "/assets/award_gtm_2024.jpg",
-                        description: "Enrique receiving the GTM Cloud Regional Award for technical excellence.",
-                      },
-                    },
-                  },
-                  {
-                    id: "g3",
-                    component: {
-                      PortfolioCard: {
-                        type: "project",
-                        title: "Professional Certifications Wall",
-                        image: "/assets/gcp_logo.png",
-                        description: "A showcase of Enrique's 19x professional cloud certifications across GCP, AWS, and Azure.",
-                      },
-                    },
-                  },
+                  })),
                 ],
               },
             },
@@ -805,6 +452,7 @@ export class A2AClient {
         return {
           format: "certs",
           surfaceId,
+          source: { provider: "Credly", url: "https://www.credential.net/profile/enriquekchan", title: "Cloud Badge Wall" },
           a2ui: [
             { beginRendering: { surfaceId, root: "mainColumn" } },
             {
@@ -825,7 +473,7 @@ export class A2AClient {
                     id: "header",
                     component: {
                       Text: {
-                        text: { literalString: "Professional Cloud Certifications" },
+                        text: { literalString: "Professional Cloud Certifications ☁️" },
                         usageHint: "h2",
                       },
                     },
@@ -834,36 +482,24 @@ export class A2AClient {
                     id: "certRow",
                     component: {
                       Row: {
-                        children: { explicitList: ["c1", "c2"] },
+                        children: { explicitList: CERTIFICATIONS.slice(0, 3).map((_, i) => `c${i}`) },
                         distribution: "start",
                         alignment: "stretch",
                       },
                     },
                   },
-                  {
-                    id: "c1",
+                  ...CERTIFICATIONS.slice(0, 3).map((cert: any, i: number) => ({
+                    id: `c${i}`,
                     component: {
                       PortfolioCard: {
                         type: "project",
-                        title: "Google Cloud Professional ML Engineer",
-                        description: "10x Google Cloud Certified, specializing in enterprise ML and AI architecture.",
-                        image: "/assets/gcp_logo.png",
-                        url: "https://www.credential.net/profile/enriquekchan"
+                        title: cert.title,
+                        description: cert.description,
+                        image: cert.image,
+                        url: cert.url
                       }
                     },
-                  },
-                  {
-                    id: "c2",
-                    component: {
-                      PortfolioCard: {
-                        type: "project",
-                        title: "AWS Solutions Architect Professional",
-                        description: "7x AWS Certified with deep expertise in high-scale cloud systems.",
-                        image: "/assets/aws_logo.png",
-                        url: "https://www.credly.com/users/enrique-chan"
-                      }
-                    },
-                  },
+                  })),
                 ],
               },
             },
@@ -903,32 +539,22 @@ export class A2AClient {
                     id: "speakerRow",
                     component: {
                       Row: {
-                        children: { explicitList: ["s1", "s2"] },
+                        children: { explicitList: SPEAKING.slice(0, 2).map((_, i) => `s${i}`) },
                         distribution: "start",
                         alignment: "stretch",
                       },
                     },
                   },
-                  {
-                    id: "s1",
+                  ...SPEAKING.slice(0, 2).map((s: any, i: number) => ({
+                    id: `s${i}`,
                     component: {
                       Flashcard: {
-                        front: { literalString: "Google Cloud Next '24 (Las Vegas)" },
-                        back: { literalString: "Keynote Talk: Architecting High-Fidelity Agentic Workflows at Enterprise Scale." },
+                        front: { literalString: s.title },
+                        back: { literalString: s.description },
                         category: { literalString: "Public Speaking" }
                       }
                     },
-                  },
-                  {
-                    id: "s2",
-                    component: {
-                      Flashcard: {
-                        front: { literalString: "Google ADK Summit" },
-                        back: { literalString: "Deep Dive: Defining the A2UI Protocol for the Future of Agentic Interfaces." },
-                        category: { literalString: "Technical Keynote" }
-                      }
-                    },
-                  },
+                  })),
                 ],
               },
             },
@@ -968,61 +594,33 @@ export class A2AClient {
                     id: "testimonialRow",
                     component: {
                       Row: {
-                        children: { explicitList: ["t1", "t2", "t3"] },
+                        children: { explicitList: TESTIMONIALS.slice(0, 3).map((_, i) => `t${i}`) },
                         distribution: "start",
                         alignment: "stretch",
                       },
                     },
                   },
-                  {
-                    id: "t1",
+                  ...TESTIMONIALS.slice(0, 3).map((t: any, i: number) => ({
+                    id: `t${i}`,
                     component: {
                       Flashcard: {
-                        front: { literalString: "Thomas Kurian (CEO, Google Cloud)" },
-                        back: {
-                          literalString:
-                            "Thank you for your work and commitment to leading with customer empathy and engineering excellence.",
-                        },
+                        front: { literalString: t.author },
+                        back: { literalString: t.quote },
                         category: { literalString: "Googler Feedback" },
                       },
                     },
-                  },
-                  {
-                    id: "t2",
-                    component: {
-                      Flashcard: {
-                        front: { literalString: "Michael Clark (President, Google Cloud NorthAm)" },
-                        back: {
-                          literalString:
-                            "Congratulations on being awarded a GTM Cloud Regional Award for your technical impact.",
-                        },
-                        category: { literalString: "Googler Feedback" },
-                      },
-                    },
-                  },
-                  {
-                    id: "t3",
-                    component: {
-                      Flashcard: {
-                        front: { literalString: "Brian Delahunty (VP Agents platform, Google)" },
-                        back: {
-                          literalString:
-                            "Incredible work on the 'Intro to Agents' whitepaper. You've set a high bar for agentic enablement.",
-                        },
-                        category: { literalString: "Googler Feedback" },
-                      },
-                    },
-                  },
+                  })),
                 ],
               },
             },
           ],
         };
 
-      case "quiz":
+      case "video_cards":
         return {
-          format: "quiz",
+          format: "video_cards",
           surfaceId,
+          source: { provider: "YouTube", url: PROFILE.links.youtube, title: "@enriquekchan" },
           a2ui: [
             { beginRendering: { surfaceId, root: "mainColumn" } },
             {
@@ -1033,104 +631,246 @@ export class A2AClient {
                     id: "mainColumn",
                     component: {
                       Column: {
-                        children: { explicitList: ["headerText", "quizRow"] },
+                        children: { explicitList: ["header", "videoRow1", "videoRow2"] },
                         distribution: "start",
                         alignment: "stretch",
                       },
                     },
                   },
                   {
-                    id: "headerText",
+                    id: "header",
                     component: {
                       Text: {
-                        text: { literalString: "Quick Quiz: Enrique's Career" },
-                        usageHint: "h3",
+                        text: { literalString: "Cinema Hub 🎬" },
+                        usageHint: "h2",
                       },
                     },
                   },
                   {
-                    id: "quizRow",
+                    id: "videoRow1",
                     component: {
                       Row: {
-                        children: { explicitList: ["quiz1", "quiz2"] },
+                        children: { explicitList: ["v0", "v1"] },
                         distribution: "start",
                         alignment: "stretch",
                       },
                     },
                   },
                   {
-                    id: "quiz1",
+                    id: "videoRow2",
                     component: {
-                      QuizCard: {
-                        question: {
-                          literalString:
-                            "Which of these was NOT a major cloud platform Enrique worked on?",
-                        },
-                        options: [
-                          {
-                            label: { literalString: "Google Cloud" },
-                            value: "a",
-                            isCorrect: false,
-                          },
-                          {
-                            label: { literalString: "AWS" },
-                            value: "b",
-                            isCorrect: false,
-                          },
-                          {
-                            label: { literalString: "Oracle Cloud" },
-                            value: "c",
-                            isCorrect: true,
-                          },
-                          {
-                            label: { literalString: "Microsoft Azure" },
-                            value: "d",
-                            isCorrect: false,
-                          },
-                        ],
-                        explanation: {
-                          literalString:
-                            "Enrique has extensive experience across the 'Big Three' - Google Cloud (10x certified), AWS (7x certified), and Azure (2x certified). While he has an architectural background in these, Oracle Cloud is not listed in his core certifications or experience.",
-                        },
-                        category: { literalString: "Cloud Experience" },
+                      Row: {
+                        children: { explicitList: ["v2", "v3"] },
+                        distribution: "start",
+                        alignment: "stretch",
+                      },
+                    },
+                  },
+                  ...VIDEOS.slice(0, 4).map((v: any, i: number) => ({
+                    id: `v${i}`,
+                    component: {
+                      PortfolioCard: {
+                        type: "video",
+                        title: v.title,
+                        description: v.description,
+                        image: v.thumbnail,
+                        url: v.url
+                      }
+                    },
+                  })),
+                ],
+              },
+            },
+          ],
+        };
+
+      case "blog_cards":
+        console.log("[A2AClient] Generating blog_cards fallback");
+        const blogItems = [
+          {
+            title: "Intro to Agents Whitepaper",
+            description: "The definitive Kaggle guide with 1.5M+ attendees reached.",
+            image: "/assets/blog-a2ui.png",
+            url: "https://www.kaggle.com/whitepaper-introduction-to-agents"
+          },
+          ...(BLOGS || []).slice(0, 5)
+        ];
+
+        return {
+          format: "blog_cards",
+          surfaceId,
+          source: { provider: "Medium", url: PROFILE.links.medium, title: "Insight Stream" },
+          a2ui: [
+            { beginRendering: { surfaceId, root: "mainColumn" } },
+            {
+              surfaceUpdate: {
+                surfaceId,
+                components: [
+                  {
+                    id: "mainColumn",
+                    component: {
+                      Column: {
+                        children: { explicitList: ["header", "blogRow1", "blogRow2"] },
+                        distribution: "start",
+                        alignment: "stretch",
                       },
                     },
                   },
                   {
-                    id: "quiz2",
+                    id: "header",
                     component: {
-                      QuizCard: {
-                        question: {
-                          literalString:
-                            "Enrique's work on the 'Oli' chatbot served how many viewers?",
-                        },
-                        options: [
-                          {
-                            label: { literalString: "1 Million" },
-                            value: "a",
-                            isCorrect: false,
-                          },
-                          {
-                            label: { literalString: "10 Million" },
-                            value: "b",
-                            isCorrect: false,
-                          },
-                          {
-                            label: { literalString: "40 Million" },
-                            value: "c",
-                            isCorrect: true,
-                          },
-                          {
-                            label: { literalString: "100 Million" },
-                            value: "d",
-                            isCorrect: false,
-                          },
-                        ],
-                        explanation: {
-                          literalString:
-                            "The NBC Olympic 'Oli' chatbot was a massive success, serving 40 million viewers and handling over 90 million queries during the games!",
-                        },
-                        category: { literalString: "Impact" },
+                      Text: {
+                        text: { literalString: "Insight Stream ✍️" },
+                        usageHint: "h2",
+                      },
+                    },
+                  },
+                  {
+                    id: "blogRow1",
+                    component: {
+                      Row: {
+                        children: { explicitList: ["b0", "b1", "b2"] },
+                        distribution: "start",
+                        alignment: "stretch",
+                      },
+                    },
+                  },
+                  {
+                    id: "blogRow2",
+                    component: {
+                      Row: {
+                        children: { explicitList: ["b3", "b4", "b5"] },
+                        distribution: "start",
+                        alignment: "stretch",
+                      },
+                    },
+                  },
+                  ...blogItems.slice(0, 6).map((b: any, i: number) => ({
+                    id: `b${i}`,
+                    component: {
+                      PortfolioCard: {
+                        type: "blog",
+                        title: b.title,
+                        description: b.description,
+                        image: b.image,
+                        url: b.url
+                      }
+                    },
+                  })),
+                ],
+              },
+            },
+          ],
+        };
+
+      case "gallery":
+        return {
+          format: "gallery",
+          surfaceId,
+          source: { provider: "Portfolio", url: PROFILE.links.portfolio, title: "Hall of Mastery" },
+          a2ui: [
+            { beginRendering: { surfaceId, root: "mainColumn" } },
+            {
+              surfaceUpdate: {
+                surfaceId,
+                components: [
+                  {
+                    id: "mainColumn",
+                    component: {
+                      Column: {
+                        children: { explicitList: ["header", "galleryRow"] },
+                        distribution: "start",
+                        alignment: "stretch",
+                      },
+                    },
+                  },
+                  {
+                    id: "header",
+                    component: {
+                      Text: {
+                        text: { literalString: "Hall of Mastery 🖼️" },
+                        usageHint: "h2",
+                      },
+                    },
+                  },
+                  {
+                    id: "galleryRow",
+                    component: {
+                      Row: {
+                        children: { explicitList: (GALLERY || []).slice(0, 3).map((_, i) => `g${i}`) },
+                        distribution: "start",
+                        alignment: "stretch",
+                      },
+                    },
+                  },
+                  ...(GALLERY || []).slice(0, 3).map((g: any, i: number) => ({
+                    id: `g${i}`,
+                    component: {
+                      PortfolioCard: {
+                        type: "project",
+                        title: g.title,
+                        image: g.image,
+                        description: g.description,
+                        url: g.url || ""
+                      },
+                    },
+                  })),
+                ],
+              },
+            },
+          ],
+        };
+
+      case "podcast":
+      case "audio":
+        return {
+          format: "audio",
+          surfaceId,
+          a2ui: [
+            { beginRendering: { surfaceId, root: "audioCard" } },
+            {
+              surfaceUpdate: {
+                surfaceId,
+                components: [
+                  { id: "audioCard", component: { Card: { child: "audioContent" } } },
+                  {
+                    id: "audioContent",
+                    component: {
+                      Column: {
+                        children: { explicitList: ["audioHeader", "audioPlayer", "audioDescription"] },
+                        distribution: "start",
+                        alignment: "stretch",
+                      },
+                    },
+                  },
+                  {
+                    id: "audioHeader",
+                    component: {
+                      Row: {
+                        children: { explicitList: ["audioIcon", "audioTitle"] },
+                        distribution: "start",
+                        alignment: "center",
+                      },
+                    },
+                  },
+                  { id: "audioIcon", component: { Icon: { name: { literalString: "podcasts" } } } },
+                  { id: "audioTitle", component: { Text: { text: { literalString: "Portfolio Deep Dive" }, usageHint: "h3" } } },
+                  {
+                    id: "audioPlayer",
+                    component: {
+                      AudioPlayer: {
+                        url: { literalString: "/assets/podcast.m4a" },
+                        audioTitle: { literalString: `${PROFILE.name}: Career & Vision` },
+                        audioDescription: { literalString: "A personalized audio overview of Enrique's journey." },
+                      },
+                    },
+                  },
+                  {
+                    id: "audioDescription",
+                    component: {
+                      Text: {
+                        text: { literalString: "A deep dive into Enrique's background as an architect and his vision for agentic workflows." },
+                        usageHint: "body",
                       },
                     },
                   },
@@ -1140,13 +880,38 @@ export class A2AClient {
           ],
         };
 
-      default:
+      case "video":
         return {
-          format: "error",
+          format: "video",
           surfaceId,
-          a2ui: [],
-          error: `Unknown format: ${format}`,
+          a2ui: [
+            { beginRendering: { surfaceId, root: "videoCard" } },
+            {
+              surfaceUpdate: {
+                surfaceId,
+                components: [
+                  { id: "videoCard", component: { Card: { child: "videoContent" } } },
+                  {
+                    id: "videoContent",
+                    component: {
+                      Column: {
+                        children: { explicitList: ["videoTitle", "videoPlayer", "videoDescription"] },
+                        distribution: "start",
+                        alignment: "stretch",
+                      },
+                    },
+                  },
+                  { id: "videoTitle", component: { Text: { text: { literalString: VIDEOS[0].title }, usageHint: "h3" } } },
+                  { id: "videoPlayer", component: { Video: { url: { literalString: VIDEOS[0].url } } } },
+                  { id: "videoDescription", component: { Text: { text: { literalString: VIDEOS[0].description }, usageHint: "body" } } },
+                ],
+              },
+            },
+          ],
         };
+
+      default:
+        return { format: "error", surfaceId, a2ui: [], error: `Unknown format: ${format}` };
     }
   }
 }

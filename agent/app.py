@@ -6,7 +6,10 @@ Matches the structure expected by Agent Engine.
 import json
 import os
 from google.adk.agents import Agent
-from .portfolio_data import PROFILE, EXPERIENCE, PROJECTS, SKILLS, CERTIFICATIONS, _AWARDS, TESTIMONIALS, _GALLERY
+try:
+    from agent.portfolio_data import PROFILE, EXPERIENCE, PROJECTS, SKILLS, CERTIFICATIONS, _AWARDS, TESTIMONIALS, _GALLERY
+except ImportError:
+    from portfolio_data import PROFILE, EXPERIENCE, PROJECTS, SKILLS, CERTIFICATIONS, _AWARDS, TESTIMONIALS, _GALLERY
 
 # Portfolio context for the agent
 portfolio_context = f"""
@@ -20,7 +23,7 @@ TESTIMONIALS: {json.dumps(TESTIMONIALS)}
 GALLERY: {json.dumps(_GALLERY)}
 """
 
-model_id = os.getenv("GENAI_MODEL", "gemini-2.5-flash")
+model_id = os.getenv("GENAI_MODEL", "gemini-2.0-flash")
 
 # Define functions for the agent if needed, or just use instruction
 # For now, we'll use a strong system instruction to handle A2UI generation
@@ -44,3 +47,9 @@ He has 15+ years of experience across Google, AWS, and Accenture.
    
 Always maintain a premium, professional tone. If asked about non-professional topics, politely pivot back to Enrique's expertise in AI and Cloud Architecture.""",
 )
+
+# Compatibility hack for Vertex AI Agent Engine assembly service
+# Some versions of the AE assembly service expect a 'plugins' attribute on the agent object
+# We use object.__setattr__ to bypass Pydantic's strict attribute checking
+if not hasattr(app, "plugins"):
+    object.__setattr__(app, "plugins", [])

@@ -18,10 +18,16 @@ from google import genai
 from google.genai import types
 
 # Import portfolio data
-from .portfolio_data import PROFILE, EXPERIENCE, PROJECTS, SKILLS, CERTIFICATIONS, _CERTIFICATIONS, AWARDS, _AWARDS, PUBLICATIONS, _BLOGS, _VIDEOS, TESTIMONIALS, _SPEAKING, _GALLERY
+try:
+    from agent.portfolio_data import PROFILE, EXPERIENCE, PROJECTS, SKILLS, CERTIFICATIONS, _CERTIFICATIONS, AWARDS, _AWARDS, PUBLICATIONS, _BLOGS, _VIDEOS, TESTIMONIALS, _SPEAKING, _GALLERY
+except ImportError:
+    from portfolio_data import PROFILE, EXPERIENCE, PROJECTS, SKILLS, CERTIFICATIONS, _CERTIFICATIONS, AWARDS, _AWARDS, PUBLICATIONS, _BLOGS, _VIDEOS, TESTIMONIALS, _SPEAKING, _GALLERY
 
 # Import A2UI templates
-from .a2ui_templates import get_system_prompt, SURFACE_ID
+try:
+    from agent.a2ui_templates import get_system_prompt, SURFACE_ID
+except ImportError:
+    from a2ui_templates import get_system_prompt, SURFACE_ID
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -111,11 +117,28 @@ CURRENT_TIMESTAMP: {time.time()}
             elif "```" in text:
                 text = text.split("```")[1].split("```")[0].strip()
             
+            # Determine source attribution
+            source = {"provider": "Enrique K Chan", "url": PROFILE.get("links", {}).get("portfolio")}
+            
+            if format_type == "video_cards":
+                source = {"provider": "YouTube", "url": PROFILE.get("links", {}).get("youtube"), "title": "@enriquekchan"}
+            elif format_type == "blog_cards":
+                source = {"provider": "Medium", "url": PROFILE.get("links", {}).get("medium"), "title": "Insight Stream"}
+            elif format_type == "certs":
+                source = {"provider": "Credly / Google", "url": "https://www.credential.net/profile/enriquekchan", "title": "Cloud Certifications"}
+            elif format_type == "speaker":
+                source = {"provider": "Google Cloud Next", "url": "https://cloud.withgoogle.com/next", "title": "Speaking Engagements"}
+            elif format_type == "awards":
+                source = {"provider": "LinkedIn", "url": "https://www.linkedin.com/in/enriquechan/details/honors/", "title": "Trophy Room"}
+            elif format_type == "timeline":
+                source = {"provider": "Portfolio", "url": PROFILE.get("links", {}).get("portfolio"), "title": "Career History"}
+
             a2ui_json = json.loads(text)
             return {
                 "format": format_type,
                 "a2ui": a2ui_json,
                 "surfaceId": SURFACE_ID,
+                "source": source
             }
         except Exception as e:
             logger.error(f"Failed to parse A2UI JSON: {e}")
