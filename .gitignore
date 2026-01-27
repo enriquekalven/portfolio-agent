@@ -1,0 +1,15 @@
+node_modules/
+.env
+*.log
+dist/
+.DS_Store
+__pycache__/
+*.pyc
+venv/
+.idea/
+.vscode/
+demo-message-log.json
+api_server.log
+full_app.log
+frontend.log
+agent_server.log
