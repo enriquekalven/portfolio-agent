@@ -8,8 +8,9 @@ A high-fidelity demonstration of **Agentic AI** applied to professional branding
 ## 🏗️ System Architecture
 ```mermaid
 graph TD
-    User((User)) -->|Natural Language| FE[Frontend: Vite/TS/Custom Elements]
-    FE -->|Processing| CO[Chat Orchestrator]
+    User((User)) -->|Natural Language| FE[Frontend: Vite/TS]
+    FE -->|API Calls / JSON| API[Node.js Bridge API: tsx]
+    API -->|Process Intent| CO[Chat Orchestrator Logic]
     CO -->|Detect Intent| CL[A2A Client: Hybrid Bridge]
     
     subgraph "Agent Engine (Remote)"
@@ -18,8 +19,8 @@ graph TD
         AE -->|Data Source| DB[(portfolio_data.py)]
     end
     
-    subgraph "UI Synthesis Layer (Hybrid)"
-        CL -->|Remote Call| AE
+    subgraph "Hybrid UI Synthesis"
+        CL -->|Remote Proxy| AE
         CL -->|High-Fidelity Fallback| FB[A2UI Local Synthesis]
     end
     
