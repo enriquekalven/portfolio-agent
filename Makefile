@@ -21,6 +21,7 @@ dev:
 	npm run start:all
 
 build:
+	python3 scripts/sync_data.py
 	npm run build
 
 # 🚀 Backend: Vertex AI Agent Engine
@@ -44,7 +45,8 @@ deploy-backend:
 # Using the Agent UI Starter Pack deployment pattern
 deploy-frontend: build
 	@echo "📦 Deploying UI Bridge to Cloud Run..."
-	gcloud run deploy $(SERVICE_NAME) --source . --region $(REGION) --allow-unauthenticated --memory 1Gi
+	gcloud run deploy $(SERVICE_NAME) --source . --region $(REGION) --allow-unauthenticated --memory 1Gi \
+		--set-env-vars GOOGLE_CLOUD_PROJECT=$(PROJECT_ID),AGENT_ENGINE_RESOURCE_ID=2034955229966893056,AGENT_ENGINE_PROJECT_NUMBER=697625214430,USE_LOCAL_AGENT=FALSE,GENAI_MODEL=gemini-2.5-flash
 	@echo "🔥 Deploying static assets to Firebase Hosting..."
 	firebase deploy --only hosting --project $(PROJECT_ID)
 
@@ -52,3 +54,7 @@ deploy-frontend: build
 deploy-all: deploy-backend deploy-frontend
 	@echo "✅ Full deployment complete!"
 	@echo "🌍 Live at: https://$(PROJECT_ID).web.app"
+
+# 🧪 Testing
+test-core:
+	PYTHONPATH=. ./venv/bin/python3 -m pytest agent/tests/test_edge_cases.py
