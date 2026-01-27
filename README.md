@@ -5,6 +5,30 @@ A high-fidelity demonstration of **Agentic AI** applied to professional branding
 [![Visit Enrique's Site](https://img.shields.io/badge/Live-Portfolio-blue?style=for-the-badge&logo=google-chrome&logoColor=white)](https://enriquekchan.web.app/#about)
 [![View on GitHub](https://img.shields.io/badge/GitHub-Source-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/enriquekalven/portfolio-agent)
 
+## 🏗️ System Architecture
+```mermaid
+graph TD
+    User((User)) -->|Natural Language| FE[Frontend: Vite/TS/Custom Elements]
+    FE -->|Processing| CO[Chat Orchestrator]
+    CO -->|Detect Intent| CL[A2A Client: Hybrid Bridge]
+    
+    subgraph "Agent Engine (Remote)"
+        AE[Vertex AI Agent Engine]
+        AE -->|Reasoning| GEM[Gemini 2.x]
+        AE -->|Data Source| DB[(portfolio_data.py)]
+    end
+    
+    subgraph "UI Synthesis Layer (Hybrid)"
+        CL -->|Remote Call| AE
+        CL -->|High-Fidelity Fallback| FB[A2UI Local Synthesis]
+    end
+    
+    AE -->|A2UI JSON| CL
+    FB -->|A2UI JSON| CL
+    CL -->|Render| RN[A2UI Renderer]
+    RN -->|Inject Components| FE
+```
+
 ## 🎯 The Vision
 Modern portfolios should be as dynamic as the careers they represent. This "Portfolio Agent" is designed to:
 - **Tailor the Narrative**: Dynamically synthesize Enrique's 15+ years of experience (Google, AWS, Disney) based on the user's specific interests.
