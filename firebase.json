@@ -29,6 +29,20 @@
     ],
     "rewrites": [
       {
+        "source": "/api/**",
+        "run": {
+          "serviceId": "enriq-portfolio-agent",
+          "region": "us-central1"
+        }
+      },
+      {
+        "source": "/a2ui-agent/**",
+        "run": {
+          "serviceId": "enriq-portfolio-agent",
+          "region": "us-central1"
+        }
+      },
+      {
         "source": "**",
         "destination": "/index.html"
       }

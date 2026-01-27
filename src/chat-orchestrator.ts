@@ -36,6 +36,8 @@ type Intent =
   | "podcast"
   | "audio"
   | "video"
+  | "video_cards"
+  | "blog"
   | "image"
   | "quiz"
   | "awards"
@@ -47,67 +49,62 @@ type Intent =
   | "general"
   | "greeting";
 
+import portfolioData from "./portfolio-data.json";
+
 export class ChatOrchestrator {
   private conversationHistory: Message[] = [];
   private renderer: A2UIRenderer;
   private a2aClient: A2AClient;
+  private systemPrompt: string;
 
-  // System prompt for conversational responses.
-  // Note: Maria's profile also appears in agent/agent.py (for content generation) and
-  // learner_context/ files (for dynamic personalization). This duplication is intentional—
-  // the frontend and agent operate independently and both need learner context.
-  private systemPrompt = `You are Enrique K Chan's Portfolio Agent, a premium AI assistant for recruiters and hiring managers.
-Your goal is to provide deep, high-signal insights into Enrique's 15+ years of experience across Google, AWS, and Accenture.
+  constructor(renderer: A2UIRenderer) {
+    this.renderer = renderer;
+    this.a2aClient = new A2AClient();
+    this.systemPrompt = this.generateSystemPrompt();
+  }
+
+  private generateSystemPrompt(): string {
+    const { PROFILE, EXPERIENCE, PROJECTS, CERTIFICATIONS, AWARDS } = portfolioData;
+    
+    return `You are ${PROFILE.name}'s Portfolio Agent, a premium AI assistant for recruiters and hiring managers.
+Your goal is to provide deep, high-signal insights into ${PROFILE.name}'s experience across Google, AWS, and Accenture.
 
 ## CONVERSATIONAL PHILOSOPHY
-1. **Be Direct and Authoritative**: Provide specific facts about Enrique's career. When asked for information (awards, certs, blogs, etc.), acknowledge the request briefly and let the dedicated UI component show the details.
+1. **Be Direct and Authoritative**: Provide specific facts about ${PROFILE.name}'s career. When asked for information (awards, certs, blogs, etc.), acknowledge the request briefly and let the dedicated UI component show the details.
 2. **Handle Requests Directly**: Provide relevant links (LinkedIn, Medium, GitHub) directly in your conversational response.
-3. **Show, Don't Just Tell**: Refer to Enrique's visual achievements directly. The interactive views will be rendered automatically; your job is to provide the narrative context.
+3. **Show, Don't Just Tell**: Refer to ${PROFILE.name}'s visual achievements directly. The interactive views will be rendered automatically; your job is to provide the narrative context.
 
 ## DETAILED EXPERIENCE HISTORY
-- **Google Cloud (Nov 2025 - Present)**: Outbound Product Manager, Cloud AI. Leading AI Agents COE.
-  - Impact: Scaled Agentic AI enablement to 1.5M+ developers.
-- **Google Cloud (Jun 2023 - Nov 2025)**: Sr AI Consultant, PSO.
-  - Impact: Lead on NBC Olympics 'Oli' Chatbot (90M+ queries, 40M viewers). $1.3M Vertex AI revenue.
-- **AWS (May 2020 - May 2021)**: Senior Cloud Architect.
-  - Impact: Modernized legacy infrastructures for Fortune 500s.
-- **Accenture (Nov 2010 - May 2020)**: Senior Manager, Cloud Strategy (10-Year Tenure).
-  - Highlights: Sold $10M+ in delivery work; generated $25M in pre-sales pipeline. Managed 5 direct reports.
-  - Projects: Led high-scale cloud modernization and global data analytics migrations for major enterprises.
+${EXPERIENCE.map((e: any) => `- **${e.company} (${e.period})**: ${e.role}.\n  - Impact: ${e.impact}`).join("\n")}
 
 ## KEY PROFESSIONAL DATA
-- **Role**: Outbound Product Manager, Cloud AI at Google.
+- **Role**: ${PROFILE.role}.
 - **Experience**: 15+ years total.
-- **Major Achievement**: NBC Olympics 'Oli' Chatbot (GenAI).
-- **Architecture**: Leading transition from RAG to Agentic Workflows.
-- **Certifications**: 19x combined (10x Google, 7x AWS, 2x Azure).
-- **Awards**: Cloud Tech Impact Award 2024 (Trophy), GTM Excellence, AIS Hackathon Winner.
+- **Top Projects**: ${PROJECTS.map((p: any) => p.title).join(", ")}.
+- **Certifications**: ${CERTIFICATIONS.length}x combined across Google, AWS, and Azure.
+- **Major Awards**: ${AWARDS.join(", ")}.
 - **Links**:
-  - LinkedIn: https://www.linkedin.com/in/enriquechan/
-  - Medium: https://medium.com/@enriq
-  - GitHub: https://github.com/enriquekalven
-  - YouTube: https://www.youtube.com/@enriquekchan
+  - LinkedIn: ${PROFILE.links.linkedin}
+  - Medium: ${PROFILE.links.medium}
+  - GitHub: ${PROFILE.links.github}
+  - YouTube: ${PROFILE.links.youtube}
 
 ## VISUAL ASSETS (FOR CONTEXT)
-- Profile Pic: ![Enrique K Chan](/assets/hero.png)
+- Profile Pic: ![${PROFILE.name}](${PROFILE.profile_pic})
 - Olympics Architecture: ![Olympic AI Architecture](/assets/architecture.jpg)
 - Trophy: ![Cloud Tech Impact Award](/assets/award_gtm_2024.jpg)
 
 ## RESPONSE STYLE
 - Tone: Premium, professional, high-signal.
-- Persona: A visionary executive assistant who knows Enrique's technical and business impact perfectly.
-- **IMPORTANT**: DO NOT use filler phrases like "That's a great question" or "Let me help you think". Be a direct executive assistant. Provide facts immediately.
+- Persona: A visionary executive assistant who knows ${PROFILE.name}'s technical and business impact perfectly.
+- **IMPORTANT**: DO NOT use filler phrases like "That's a great question". Be a direct executive assistant. Provide facts immediately.
 
 ## CONTENT RULES
 - If asked about awards: Mention the GTM awards and the **Trophy Room 🏆**. The cards will render below.
-- If asked about certs: Mention the 19x cloud certifications and the **Cloud Badge Wall ☁️**. The grid will render below.
+- If asked about certs: Mention the ${CERTIFICATIONS.length}x cloud certifications and the **Cloud Badge Wall ☁️**. The grid will render below.
 - If asked about speaking: Mention Google Cloud Next and his **Stage Presence 🎤**. The cards will render below.
 - If asked about testimonials: Mention feedback from Thomas Kurian and the **Googler Vibes ✨**. The cards will render below.
 - If asked for a "gallery" or "pictures of work": Mention the **Hall of Mastery 🖼️** and highlights like the Olympics architecture. The gallery will render below.`;
-
-  constructor(renderer: A2UIRenderer) {
-    this.renderer = renderer;
-    this.a2aClient = new A2AClient();
   }
 
   /**
@@ -301,8 +298,8 @@ Examples:
 
       // Map response to valid intent
       if (intentText.includes("flashcard")) return "flashcards";
-      if (intentText.includes("podcast") || intentText.includes("audio")) return "podcast";
-      if (intentText.includes("video")) return "video";
+      if (intentText.includes("blog") || intentText.includes("article") || intentText.includes("whitepaper") || intentText.includes("insight")) return "blog";
+      if (intentText.includes("video") || intentText.includes("youtube") || intentText.includes("cinema")) return "video_cards";
       if (intentText.includes("quiz")) return "quiz";
       if (intentText.includes("award")) return "awards";
       if (intentText.includes("cert")) return "certs";
@@ -328,14 +325,17 @@ Examples:
     if (lower.match(/^(hi|hello|hey|good morning|good afternoon|good evening)/i)) {
       return "greeting";
     }
-    if (lower.match(/flash\s*card|study\s*card|review\s*card|f'?card/i)) {
+    if (lower.match(/flash\s*card|study\s*card|review\s*card|f'?card|match|skill|fit|analyze/i)) {
       return "flashcards";
     }
     if (lower.match(/podcast|audio|listen/i)) {
       return "podcast";
     }
-    if (lower.match(/video|watch/i)) {
-      return "video";
+    if (lower.match(/blog|article|medium|whitepaper|insight/i)) {
+      return "blog";
+    }
+    if (lower.match(/video|watch|youtube|cinema/i)) {
+      return "video_cards";
     }
     if (lower.match(/image|photo|picture|pic|headshot/i)) {
       return "image";
@@ -343,7 +343,10 @@ Examples:
     if (lower.match(/quiz|test me/i)) {
       return "quiz";
     }
-    if (lower.match(/award|honor|hackathon|recogni|achievement|highlight/i)) {
+    if (lower.match(/timeline|career history|journey/i)) {
+      return "timeline";
+    }
+    if (lower.match(/award|honor|hackathon|recogni|achievement/i)) {
       return "awards";
     }
     if (lower.match(/certif|credential/i)) {
@@ -357,9 +360,6 @@ Examples:
     }
     if (lower.match(/testimonial|what people say/i)) {
       return "testimonials";
-    }
-    if (lower.match(/timeline|career history|journey/i)) {
-      return "timeline";
     }
     return "general";
   }
@@ -389,10 +389,15 @@ Examples:
         intentGuidance =
           "The user wants to listen to the podcast. Respond with a SHORT (1-2 sentences) introduction. DO NOT write out the podcast transcript or script - the audio player will be rendered separately below your message. Just say something brief like 'Here's a personalized podcast about ATP!' or 'I've got a podcast that explains this with gym analogies you'll love.'";
         break;
-      case "video":
+      case "video_cards":
         intentGuidance =
-          "The user wants to watch a video. Respond with a SHORT (1-2 sentences) introduction. DO NOT describe the video content in detail - the video player will be rendered separately below your message. Just say something brief like 'Here's a video that visualizes this concept!' or 'Check out this visual explanation.'";
+          "The user wants to see your videos. Respond with a SHORT (1-2 sentences) introduction. Mention the 'Cinema Hub'. Just say something like 'Welcome to the Cinema Hub! Here are some of my top talks and keynotes.'";
         break;
+      case "blog":
+        intentGuidance =
+          "The user wants to read your articles. Respond with a SHORT (1-2 sentences) introduction. Mention the 'Insight Stream'. Just say something like 'Here is the Insight Stream, featuring my latest whitepapers and technical blogs.'";
+        break;
+      case "video":
       case "image":
         intentGuidance =
           "The user wants to see a picture. Respond with a SHORT (1-2 sentences) acknowledgment. The image will be rendered separately as an A2UI component below. Just say something like 'Sure, here's a look at that!' or 'I've pulled up the visual for you.'";
@@ -470,21 +475,41 @@ Examples:
         return {
           text: "Here's a quick audio overview of Enrique's professional journey and key technical philosophies.",
         };
+      case "video_cards":
+        return {
+          text: "Welcome to the Cinema Hub! Here are some of my top talks and keynotes on Agentic AI.",
+        };
+      case "blog":
+        return {
+          text: "Here is the Insight Stream, featuring my latest whitepapers and technical blogs on Medium and Kaggle.",
+        };
       case "video":
         return {
-          text: "Let me show you this video message where Enrique discusses the future of Agentic AI and high-fidelity user interfaces.",
+          text: "Let me show you this video message where Enrique discusses the future of Agentic AI.",
         };
       case "quiz":
         return {
           text: "Let's test your knowledge! Here's a quick quiz on Enrique's career highlights and major projects.",
         };
+      case "timeline":
+        return {
+          text: "Here's a breakdown of Enrique's professional journey over the last 15 years, including his impact at Google and AWS.",
+        };
+      case "certs":
+        return {
+          text: "Here is a list of Enrique's 19x professional cloud certifications across Google, AWS, and Azure.",
+        };
+      case "awards":
+        return {
+          text: "Here are some of Enrique's major professional recognitions and award-winning projects.",
+        };
       case "greeting":
         return {
-          text: "Hello! I'm Enrique's AI Agent. How can I help you explore his career and projects today?",
+          text: "Hello! I'm Enrique's AI Agent. How can I help you explore his career today?",
         };
       default:
         return {
-          text: "That's a great question! Let me help you think through this.",
+          text: "I've pulled up some relevant highlights for you. Feel free to ask more specific questions about Enrique's experience at Google or his work on Agentic AI.",
         };
     }
   }
@@ -615,8 +640,12 @@ Examples:
       case "podcast":
       case "audio":
         return "Loading podcast... 📻";
+      case "video_cards":
+        return "Loading Cinema Hub... 🎬";
       case "video":
-        return "Loading cinema hub... 🎬";
+        return "Loading video... 🎥";
+      case "blog":
+        return "Streaming Insights... ✍️";
       case "image":
         return "Retrieving visual... 📸";
       case "quiz":

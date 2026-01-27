@@ -196,7 +196,7 @@ VIDEO_CARDS_EXAMPLE = f"""
           "id": "videoGrid",
           "component": {{
             "Row": {{
-              "children": {{"explicitList": ["v1", "v2"]}},
+              "children": {{"explicitList": ["v1", "v2", "v3", "v4"]}},
               "distribution": "start",
               "alignment": "stretch"
             }}
@@ -226,6 +226,7 @@ VIDEO_CARDS_EXAMPLE = f"""
             }}
           }}
         }}
+        // ... v3 and v4 unique IDs
       ]
     }}
   }}
@@ -244,7 +245,7 @@ BLOG_CARDS_EXAMPLE = f"""
           "id": "mainColumn",
           "component": {{
             "Column": {{
-              "children": {{"explicitList": ["header", "blogGrid"]}},
+              "children": {{"explicitList": ["header", "blogRow1", "blogRow2"]}},
               "distribution": "start",
               "alignment": "stretch"
             }}
@@ -255,10 +256,20 @@ BLOG_CARDS_EXAMPLE = f"""
           "component": {{"Text": {{"text": {{"literalString": "Insight Stream ✍️"}}, "usageHint": "h2"}}}}
         }},
         {{
-          "id": "blogGrid",
+          "id": "blogRow1",
           "component": {{
             "Row": {{
               "children": {{"explicitList": ["b1", "b2", "b3"]}},
+              "distribution": "start",
+              "alignment": "stretch"
+            }}
+          }}
+        }},
+        {{
+          "id": "blogRow2",
+          "component": {{
+            "Row": {{
+              "children": {{"explicitList": ["b4", "b5", "b6"]}},
               "distribution": "start",
               "alignment": "stretch"
             }}
@@ -269,10 +280,10 @@ BLOG_CARDS_EXAMPLE = f"""
           "component": {{
             "PortfolioCard": {{
               "type": "blog",
-              "title": "Building Agentic Interfaces",
-              "description": "Introducing the Agent UI Starter Pack and the philosophy behind agentic design.",
+              "title": "Intro to Agents Whitepaper",
+              "description": "The definitive Kaggle guide to the future of AI agents.",
               "image": "/assets/blog-a2ui.png",
-              "url": "https://medium.com/@enriq/building-the-future-of-agentic-interfaces-introducing-the-agent-ui-starter-pack-94d8fed86ca7"
+              "url": "https://www.kaggle.com/whitepaper-introduction-to-agents"
             }}
           }}
         }},
@@ -281,25 +292,14 @@ BLOG_CARDS_EXAMPLE = f"""
           "component": {{
             "PortfolioCard": {{
               "type": "blog",
-              "title": "Introducing the Agent Optimizer",
-              "description": "Optimizing agent performance for enterprise-scale workflows.",
+              "title": "Advent of Agents",
+              "description": "A 25-day journey into building and deploying agentic workflows.",
               "image": "/assets/blog-optimizer.png",
-              "url": "https://medium.com/@enriq/introducing-the-agent-optimizer-for-google-adk-3872856e6d7b"
-            }}
-          }}
-        }},
-        {{
-          "id": "b3",
-          "component": {{
-            "PortfolioCard": {{
-              "type": "blog",
-              "title": "The Rise of Agentic AI",
-              "description": "How AI agents are moving from conversation to autonomous action.",
-              "image": "/assets/blog-rise.png",
-              "url": "https://medium.com/@enriq"
+              "url": "https://adventofagents.com/"
             }}
           }}
         }}
+        // ... b3 through b6 unique IDs
       ]
     }}
   }}
@@ -629,15 +629,20 @@ A2UI JSON Template Example:
 
     if format_type.lower() == "blog_cards":
         return f"""You are Enrique K Chan's Portfolio Agent.
-Represent Enrique's Medium blogs as a nice grid of cards.
+Represent Enrique's technical blogs and whitepapers as a nice grid of cards.
 
-## Enrique's Blog Data
+## Enrique's Portfolio Data
 {portfolio_data}
 
 ## Your Task
-Return A2UI JSON with a Row of Cards.
-- Each Card should have an 'onAction' link to the medium URL.
-- Use 'Image', 'Text' (h3) for title, and 'Text' (body) for description within the card.
+Return A2UI JSON with 6 cards split across two Rows (3 cards per row).
+- **TOP PRIORITY (Indices 1 & 2)**: 
+    1. The "Intro to Agents Whitepaper" (Kaggle).
+    2. The "Advent of Agents" project.
+- **Remaining 4 Cards**: Choose the most relevant technical blogs from the BLOGS data.
+- Use two Rows: 'blogRow1' (b1, b2, b3) and 'blogRow2' (b4, b5, b6).
+- Each Card should have an 'onAction' link to the medium/kaggle URL.
+- Use 'PortfolioCard' component with type 'blog'.
 
 A2UI JSON Template Example:
 {example}
@@ -651,9 +656,10 @@ Represent Enrique's YouTube videos as high-quality cards.
 {portfolio_data}
 
 ## Your Task
-Return A2UI JSON with a Row of PortfolioCards.
+Return A2UI JSON with a Row of exactly 4 PortfolioCards.
 - Use type 'video' for these cards.
 - Provide a clear title and description.
+- Pull details from the VIDEOS section of the profile.
 
 A2UI JSON Template Example:
 {example}

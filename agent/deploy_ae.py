@@ -11,6 +11,10 @@ import argparse
 import logging
 import json
 import time
+from pathlib import Path
+
+# Add project root to sys.path
+sys.path.insert(0, str(Path(__file__).parent.parent))
 
 from dotenv import load_dotenv
 load_dotenv()

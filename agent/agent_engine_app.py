@@ -18,12 +18,16 @@ from typing import Any
 import vertexai
 from dotenv import load_dotenv
 from google.adk.artifacts import GcsArtifactService, InMemoryArtifactService
-from google.cloud import logging as google_cloud_logging
 from vertexai.agent_engines.templates.adk import AdkApp
 
-from agent.app import app as adk_app
-from agent.app_utils.telemetry import setup_telemetry
-from agent.app_utils.typing import Feedback
+try:
+    from agent.app import app as adk_app
+    from agent.app_utils.telemetry import setup_telemetry
+    from agent.app_utils.typing import Feedback
+except ImportError:
+    from app import app as adk_app
+    from app_utils.telemetry import setup_telemetry
+    from app_utils.typing import Feedback
 
 # Load environment variables from .env file at runtime
 load_dotenv()
@@ -36,15 +40,19 @@ class AgentEngineApp(AdkApp):
         setup_telemetry()
         super().set_up()
         logging.basicConfig(level=logging.INFO)
-        logging_client = google_cloud_logging.Client()
-        self.logger = logging_client.logger(__name__)
+        # ADK handles logging to Cloud Logging automatically in AE
+        # Manual client initialization can sometimes cause auth issues during startup
+        self.logger = logging.getLogger(__name__)
+        
+        gemini_location = os.environ.get("GOOGLE_CLOUD_LOCATION")
         if gemini_location:
             os.environ["GOOGLE_CLOUD_LOCATION"] = gemini_location
 
     def register_feedback(self, feedback: dict[str, Any]) -> None:
         """Collect and log feedback."""
         feedback_obj = Feedback.model_validate(feedback)
-        self.logger.log_struct(feedback_obj.model_dump(), severity="INFO")
+        # Use standard logging which ADK redirects to Cloud Logging
+        self.logger.info(f"Feedback received: {feedback_obj.model_dump()}")
 
     def register_operations(self) -> dict[str, list[str]]:
         """Registers the operations of the Agent."""
