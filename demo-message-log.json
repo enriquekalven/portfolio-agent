@@ -1,0 +1,2893 @@
+[
+  {
+    "sequence": 1,
+    "timestamp": "2026-01-27T02:35:32.500Z",
+    "direction": "CLIENT_TO_SERVER",
+    "endpoint": "/api/chat-with-intent",
+    "data": {
+      "description": "Browser client requesting combined intent+response (latency optimization)",
+      "userMessage": "Show Enrique's speaking engagements and keynotes",
+      "recentContext": "user: Show Enrique's speaking engagements and keynotes",
+      "conversationLength": 1,
+      "fullMessages": [
+        {
+          "role": "user",
+          "parts": [
+            {
+              "text": "Show Enrique's speaking engagements and keynotes"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "sequence": 2,
+    "timestamp": "2026-01-27T02:35:34.252Z",
+    "direction": "SERVER_TO_CLIENT",
+    "endpoint": "/api/chat-with-intent",
+    "data": {
+      "description": "Combined intent detection and response in single LLM call",
+      "intent": "speaker",
+      "keywords": "Google Cloud Next, ADK Summit, speaking engagements, keynotes",
+      "responseText": "Enrique has delivered keynotes and spoken at major industry events, including Google Cloud Next and the ADK Summit."
+    }
+  },
+  {
+    "sequence": 3,
+    "timestamp": "2026-01-27T02:35:34.263Z",
+    "direction": "CLIENT_TO_SERVER",
+    "endpoint": "/a2ui-agent/a2a/query",
+    "data": {
+      "description": "Browser client requesting A2UI content generation",
+      "requestBody": {
+        "message": "speaker:Google Cloud Next, ADK Summit, speaking engagements, keynotes",
+        "session_id": "session_1769481334260_5wove719ns9",
+        "extensions": [
+          "https://a2ui.org/a2a-extension/a2ui/v0.8"
+        ]
+      }
+    }
+  },
+  {
+    "sequence": 4,
+    "timestamp": "2026-01-27T02:35:41.290Z",
+    "direction": "SERVER_TO_CLIENT",
+    "endpoint": "/a2ui-agent/a2a/query",
+    "data": {
+      "description": "Sending A2UI JSON payload to browser for rendering",
+      "format": "speaker",
+      "surfaceId": "portfolioContent",
+      "source": {
+        "provider": "Enrique K Chan Portfolio",
+        "title": "Google Cloud Career",
+        "url": "https://enriquekchan.com/#experience"
+      },
+      "a2uiMessageCount": 2,
+      "a2uiPayload": [
+        {
+          "beginRendering": {
+            "surfaceId": "portfolioContent",
+            "root": "mainColumn"
+          }
+        },
+        {
+          "surfaceUpdate": {
+            "surfaceId": "portfolioContent",
+            "components": [
+              {
+                "id": "mainColumn",
+                "component": {
+                  "Column": {
+                    "children": {
+                      "explicitList": [
+                        "header",
+                        "speakerGrid"
+                      ]
+                    },
+                    "distribution": "start",
+                    "alignment": "stretch"
+                  }
+                }
+              },
+              {
+                "id": "header",
+                "component": {
+                  "Text": {
+                    "text": {
+                      "literalString": "Global Speaking Engagements"
+                    },
+                    "usageHint": "h2"
+                  }
+                }
+              },
+              {
+                "id": "speakerGrid",
+                "component": {
+                  "Row": {
+                    "children": {
+                      "explicitList": [
+                        "s1",
+                        "s2"
+                      ]
+                    },
+                    "distribution": "start",
+                    "alignment": "stretch"
+                  }
+                }
+              },
+              {
+                "id": "s1",
+                "component": {
+                  "Flashcard": {
+                    "front": "Google Cloud Next '25 (Las Vegas) \n Solutions Talk",
+                    "back": "Solutions Talk: Architecting GenAI Agents \n\nExplore the end-to-end lifecycle of agentic systems, from LLMOps to production-ready deployments. For architects and AI leaders.",
+                    "category": "Solutions Talk"
+                  }
+                }
+              },
+              {
+                "id": "s2",
+                "component": {
+                  "Flashcard": {
+                    "front": "Google Cloud Next '25 (Las Vegas) \n AI Agents Booth",
+                    "back": "AI Agents Booth Lead \n\nCoached 1,000+ partners and attendees on agentic capabilities and their transformative potential for enterprise workflows.",
+                    "category": "Booth Lead"
+                  }
+                }
+              },
+              {
+                "id": "speakerGrid2",
+                "component": {
+                  "Row": {
+                    "children": {
+                      "explicitList": [
+                        "s3",
+                        "s4"
+                      ]
+                    },
+                    "distribution": "start",
+                    "alignment": "stretch"
+                  }
+                }
+              },
+              {
+                "id": "s3",
+                "component": {
+                  "Flashcard": {
+                    "front": "Google ADK Summit \n (Internal)",
+                    "back": "Agentic Design Frameworks \n\nDiscussed internal agentic design frameworks and ADK integrations at Google. Aimed at accelerating agentic innovation internally.",
+                    "category": "ADK Summit"
+                  }
+                }
+              },
+              {
+                "id": "s4",
+                "component": {
+                  "Flashcard": {
+                    "front": "Advent of Agents \n (Online)",
+                    "back": "Why 80% of AI Agents Fail \n\nA deep dive into Cloud API Registry and ADK Integration for reliable agentic workflows. Targeted at developers building next-gen AI agents.",
+                    "category": "Online Event"
+                  }
+                }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "sequence": 5,
+    "timestamp": "2026-01-27T02:35:48.298Z",
+    "direction": "CLIENT_TO_SERVER",
+    "endpoint": "/api/chat-with-intent",
+    "data": {
+      "description": "Browser client requesting combined intent+response (latency optimization)",
+      "userMessage": "Show me what people think of Enrique (testimonials)",
+      "recentContext": "user: Show Enrique's speaking engagements and keynotes\nassistant: Enrique has delivered keynotes and spoken at major industry events, including Google Cloud Next and the ADK Summit.\nuser: Show me what people think of Enrique (testimonials)",
+      "conversationLength": 3,
+      "fullMessages": [
+        {
+          "role": "user",
+          "parts": [
+            {
+              "text": "Show Enrique's speaking engagements and keynotes"
+            }
+          ]
+        },
+        {
+          "role": "assistant",
+          "parts": [
+            {
+              "text": "Enrique has delivered keynotes and spoken at major industry events, including Google Cloud Next and the ADK Summit."
+            }
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            {
+              "text": "Show me what people think of Enrique (testimonials)"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "sequence": 6,
+    "timestamp": "2026-01-27T02:35:49.566Z",
+    "direction": "SERVER_TO_CLIENT",
+    "endpoint": "/api/chat-with-intent",
+    "data": {
+      "description": "Combined intent detection and response in single LLM call",
+      "intent": "testimonials",
+      "keywords": "Thomas Kurian, feedback, leaders",
+      "responseText": "Enrique has received excellent feedback from industry leaders, including Thomas Kurian, highlighting his impact and contributions."
+    }
+  },
+  {
+    "sequence": 7,
+    "timestamp": "2026-01-27T02:35:49.572Z",
+    "direction": "CLIENT_TO_SERVER",
+    "endpoint": "/a2ui-agent/a2a/query",
+    "data": {
+      "description": "Browser client requesting A2UI content generation",
+      "requestBody": {
+        "message": "testimonials:Thomas Kurian, feedback, leaders",
+        "session_id": "session_1769481334260_5wove719ns9",
+        "extensions": [
+          "https://a2ui.org/a2a-extension/a2ui/v0.8"
+        ]
+      }
+    }
+  },
+  {
+    "sequence": 8,
+    "timestamp": "2026-01-27T02:35:53.504Z",
+    "direction": "SERVER_TO_CLIENT",
+    "endpoint": "/a2ui-agent/a2a/query",
+    "data": {
+      "description": "Sending A2UI JSON payload to browser for rendering",
+      "format": "testimonials",
+      "surfaceId": "portfolioContent",
+      "source": {
+        "provider": "Enrique K Chan Portfolio",
+        "title": "Enrique K Chan Portfolio",
+        "url": "https://enriquekchan.com/"
+      },
+      "a2uiMessageCount": 2,
+      "a2uiPayload": [
+        {
+          "beginRendering": {
+            "surfaceId": "portfolioContent",
+            "root": "mainColumn"
+          }
+        },
+        {
+          "surfaceUpdate": {
+            "surfaceId": "portfolioContent",
+            "components": [
+              {
+                "id": "mainColumn",
+                "component": {
+                  "Column": {
+                    "children": {
+                      "explicitList": [
+                        "header",
+                        "tGrid"
+                      ]
+                    },
+                    "distribution": "start",
+                    "alignment": "stretch"
+                  }
+                }
+              },
+              {
+                "id": "header",
+                "component": {
+                  "Text": {
+                    "text": {
+                      "literalString": "What Googlers Say About Enrique"
+                    },
+                    "usageHint": "h2"
+                  }
+                }
+              },
+              {
+                "id": "tGrid",
+                "component": {
+                  "Row": {
+                    "children": {
+                      "explicitList": [
+                        "t1",
+                        "t2",
+                        "t3"
+                      ]
+                    },
+                    "distribution": "start",
+                    "alignment": "stretch"
+                  }
+                }
+              },
+              {
+                "id": "t1",
+                "component": {
+                  "Flashcard": {
+                    "front": "Thomas Kurian (CEO, Google Cloud)",
+                    "back": "Thank you for your work and commitment to leading with customer empathy and engineering excellence.",
+                    "category": "Leadership"
+                  }
+                }
+              },
+              {
+                "id": "t2",
+                "component": {
+                  "Flashcard": {
+                    "front": "Brian Delahunty (VP Agents platform, Google)",
+                    "back": "Incredible work on the 'Intro to Agents' whitepaper. You've set a high bar for agentic enablement.",
+                    "category": "Innovation"
+                  }
+                }
+              },
+              {
+                "id": "t3",
+                "component": {
+                  "Flashcard": {
+                    "front": "Google Cloud Architect",
+                    "back": "Enrique doesn't just talk about agents; he builds the substrate they run on.",
+                    "category": "Technical Rigor"
+                  }
+                }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "sequence": 9,
+    "timestamp": "2026-01-27T02:35:57.432Z",
+    "direction": "CLIENT_TO_SERVER",
+    "endpoint": "/api/chat-with-intent",
+    "data": {
+      "description": "Browser client requesting combined intent+response (latency optimization)",
+      "userMessage": "Show Enrique's cloud certifications",
+      "recentContext": "assistant: Enrique has delivered keynotes and spoken at major industry events, including Google Cloud Next and the ADK Summit.\nuser: Show me what people think of Enrique (testimonials)\nassistant: Enrique has received excellent feedback from industry leaders, including Thomas Kurian, highlighting his impact and contributions.\nuser: Show Enrique's cloud certifications",
+      "conversationLength": 5,
+      "fullMessages": [
+        {
+          "role": "user",
+          "parts": [
+            {
+              "text": "Show Enrique's speaking engagements and keynotes"
+            }
+          ]
+        },
+        {
+          "role": "assistant",
+          "parts": [
+            {
+              "text": "Enrique has delivered keynotes and spoken at major industry events, including Google Cloud Next and the ADK Summit."
+            }
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            {
+              "text": "Show me what people think of Enrique (testimonials)"
+            }
+          ]
+        },
+        {
+          "role": "assistant",
+          "parts": [
+            {
+              "text": "Enrique has received excellent feedback from industry leaders, including Thomas Kurian, highlighting his impact and contributions."
+            }
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            {
+              "text": "Show Enrique's cloud certifications"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "sequence": 10,
+    "timestamp": "2026-01-27T02:35:58.760Z",
+    "direction": "SERVER_TO_CLIENT",
+    "endpoint": "/api/chat-with-intent",
+    "data": {
+      "description": "Combined intent detection and response in single LLM call",
+      "intent": "certs",
+      "keywords": "Google Cloud, AWS, Azure, certifications",
+      "responseText": "Enrique holds 19 cloud certifications, including 10 from Google Cloud, 7 from AWS, and 2 from Azure."
+    }
+  },
+  {
+    "sequence": 11,
+    "timestamp": "2026-01-27T02:35:58.771Z",
+    "direction": "CLIENT_TO_SERVER",
+    "endpoint": "/a2ui-agent/a2a/query",
+    "data": {
+      "description": "Browser client requesting A2UI content generation",
+      "requestBody": {
+        "message": "certs:Google Cloud, AWS, Azure, certifications",
+        "session_id": "session_1769481334260_5wove719ns9",
+        "extensions": [
+          "https://a2ui.org/a2a-extension/a2ui/v0.8"
+        ]
+      }
+    }
+  },
+  {
+    "sequence": 12,
+    "timestamp": "2026-01-27T02:36:12.117Z",
+    "direction": "SERVER_TO_CLIENT",
+    "endpoint": "/a2ui-agent/a2a/query",
+    "data": {
+      "description": "Sending A2UI JSON payload to browser for rendering",
+      "format": "certs",
+      "surfaceId": "portfolioContent",
+      "source": {
+        "provider": "Enrique K Chan Portfolio",
+        "title": "Google Cloud Career",
+        "url": "https://enriquekchan.com/#experience"
+      },
+      "a2uiMessageCount": 2,
+      "a2uiPayload": [
+        {
+          "beginRendering": {
+            "surfaceId": "portfolioContent",
+            "root": "mainColumn"
+          }
+        },
+        {
+          "surfaceUpdate": {
+            "surfaceId": "portfolioContent",
+            "components": [
+              {
+                "id": "mainColumn",
+                "component": {
+                  "Column": {
+                    "children": {
+                      "explicitList": [
+                        "header",
+                        "certGrid"
+                      ]
+                    },
+                    "distribution": "start",
+                    "alignment": "stretch"
+                  }
+                }
+              },
+              {
+                "id": "header",
+                "component": {
+                  "Text": {
+                    "text": {
+                      "literalString": "Professional Certifications"
+                    },
+                    "usageHint": "h2"
+                  }
+                }
+              },
+              {
+                "id": "certGrid",
+                "component": {
+                  "Row": {
+                    "children": {
+                      "explicitList": [
+                        "c1",
+                        "c2",
+                        "c3",
+                        "c4"
+                      ]
+                    },
+                    "distribution": "start",
+                    "alignment": "stretch"
+                  }
+                }
+              },
+              {
+                "id": "c1",
+                "component": {
+                  "PortfolioCard": {
+                    "type": "project",
+                    "title": "Google Cloud Professional Machine Learning Engineer",
+                    "description": "Enterprise-grade ML and AI architecture on Vertex AI.",
+                    "image": "/assets/certs.png",
+                    "url": "https://www.credential.net/profile/enriquekchan"
+                  }
+                }
+              },
+              {
+                "id": "c2",
+                "component": {
+                  "PortfolioCard": {
+                    "type": "project",
+                    "title": "Google Cloud Professional Cloud Architect",
+                    "description": "Designing and managing robust, secure, and scalable cloud solutions.",
+                    "image": "/assets/certs.png",
+                    "url": "https://www.credential.net/profile/enriquekchan"
+                  }
+                }
+              },
+              {
+                "id": "c3",
+                "component": {
+                  "PortfolioCard": {
+                    "type": "project",
+                    "title": "Google Cloud Professional Data Engineer",
+                    "description": "Skills related to Google Cloud Professional Data Engineer.",
+                    "image": "/assets/certs.png",
+                    "url": "https://www.credential.net/profile/enriquekchan"
+                  }
+                }
+              },
+              {
+                "id": "c4",
+                "component": {
+                  "PortfolioCard": {
+                    "type": "project",
+                    "title": "Google Cloud Professional Cloud Developer",
+                    "description": "Skills related to Google Cloud Professional Cloud Developer.",
+                    "image": "/assets/certs.png",
+                    "url": "https://www.credential.net/profile/enriquekchan"
+                  }
+                }
+              },
+              {
+                "id": "certGrid2",
+                "component": {
+                  "Row": {
+                    "children": {
+                      "explicitList": [
+                        "c5",
+                        "c6",
+                        "c7",
+                        "c8"
+                      ]
+                    },
+                    "distribution": "start",
+                    "alignment": "stretch"
+                  }
+                }
+              },
+              {
+                "id": "c5",
+                "component": {
+                  "PortfolioCard": {
+                    "type": "project",
+                    "title": "Google Cloud Professional Cloud Security Engineer",
+                    "description": "Skills related to Google Cloud Professional Cloud Security Engineer.",
+                    "image": "/assets/certs.png",
+                    "url": "https://www.credential.net/profile/enriquekchan"
+                  }
+                }
+              },
+              {
+                "id": "c6",
+                "component": {
+                  "PortfolioCard": {
+                    "type": "project",
+                    "title": "Google Cloud Professional Cloud Network Engineer",
+                    "description": "Skills related to Google Cloud Professional Cloud Network Engineer.",
+                    "image": "/assets/certs.png",
+                    "url": "https://www.credential.net/profile/enriquekchan"
+                  }
+                }
+              },
+              {
+                "id": "c7",
+                "component": {
+                  "PortfolioCard": {
+                    "type": "project",
+                    "title": "Google Cloud Professional Collaboration Engineer",
+                    "description": "Skills related to Google Cloud Professional Collaboration Engineer.",
+                    "image": "/assets/certs.png",
+                    "url": "https://www.credential.net/profile/enriquekchan"
+                  }
+                }
+              },
+              {
+                "id": "c8",
+                "component": {
+                  "PortfolioCard": {
+                    "type": "project",
+                    "title": "Google Cloud Professional Cloud DevOps Engineer",
+                    "description": "Skills related to Google Cloud Professional Cloud DevOps Engineer.",
+                    "image": "/assets/certs.png",
+                    "url": "https://www.credential.net/profile/enriquekchan"
+                  }
+                }
+              },
+              {
+                "id": "certGrid3",
+                "component": {
+                  "Row": {
+                    "children": {
+                      "explicitList": [
+                        "c9",
+                        "c10",
+                        "c11",
+                        "c12"
+                      ]
+                    },
+                    "distribution": "start",
+                    "alignment": "stretch"
+                  }
+                }
+              },
+              {
+                "id": "c9",
+                "component": {
+                  "PortfolioCard": {
+                    "type": "project",
+                    "title": "AWS Certified Solutions Architect – Professional",
+                    "description": "Designing distributed systems and applications on AWS.",
+                    "image": "/assets/certs.png",
+                    "url": "https://www.credly.com/users/enrique-chan"
+                  }
+                }
+              },
+              {
+                "id": "c10",
+                "component": {
+                  "PortfolioCard": {
+                    "type": "project",
+                    "title": "AWS Certified DevOps Engineer – Professional",
+                    "description": "Skills related to AWS Certified DevOps Engineer – Professional.",
+                    "image": "/assets/certs.png",
+                    "url": "https://www.credly.com/users/enrique-chan"
+                  }
+                }
+              },
+              {
+                "id": "c11",
+                "component": {
+                  "PortfolioCard": {
+                    "type": "project",
+                    "title": "AWS Certified Security – Specialty",
+                    "description": "Skills related to AWS Certified Security – Specialty.",
+                    "image": "/assets/certs.png",
+                    "url": "https://www.credly.com/users/enrique-chan"
+                  }
+                }
+              },
+              {
+                "id": "c12",
+                "component": {
+                  "PortfolioCard": {
+                    "type": "project",
+                    "title": "AWS Certified Data Analytics – Specialty",
+                    "description": "Skills related to AWS Certified Data Analytics – Specialty.",
+                    "image": "/assets/certs.png",
+                    "url": "https://www.credly.com/users/enrique-chan"
+                  }
+                }
+              },
+              {
+                "id": "certGrid4",
+                "component": {
+                  "Row": {
+                    "children": {
+                      "explicitList": [
+                        "c13",
+                        "c14",
+                        "c15"
+                      ]
+                    },
+                    "distribution": "start",
+                    "alignment": "stretch"
+                  }
+                }
+              },
+              {
+                "id": "c13",
+                "component": {
+                  "PortfolioCard": {
+                    "type": "project",
+                    "title": "AWS Certified Machine Learning – Specialty",
+                    "description": "Skills related to AWS Certified Machine Learning – Specialty.",
+                    "image": "/assets/certs.png",
+                    "url": "https://www.credly.com/users/enrique-chan"
+                  }
+                }
+              },
+              {
+                "id": "c14",
+                "component": {
+                  "PortfolioCard": {
+                    "type": "project",
+                    "title": "Microsoft Certified: Azure Solutions Architect Expert",
+                    "description": "Skills related to Microsoft Certified: Azure Solutions Architect Expert.",
+                    "image": "/assets/certs.png",
+                    "url": "https://www.microsoft.com/en-us/learning/azure-solutions-architect.aspx"
+                  }
+                }
+              },
+              {
+                "id": "c15",
+                "component": {
+                  "PortfolioCard": {
+                    "type": "project",
+                    "title": "Microsoft Certified: Azure AI Engineer Associate",
+                    "description": "Skills related to Microsoft Certified: Azure AI Engineer Associate.",
+                    "image": "/assets/certs.png",
+                    "url": "https://www.microsoft.com/en-us/learning/azure-ai-engineer.aspx"
+                  }
+                }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "sequence": 13,
+    "timestamp": "2026-01-27T02:36:34.755Z",
+    "direction": "CLIENT_TO_SERVER",
+    "endpoint": "/api/chat-with-intent",
+    "data": {
+      "description": "Browser client requesting combined intent+response (latency optimization)",
+      "userMessage": "How do Enrique's skills match a Senior AI role?",
+      "recentContext": "assistant: Enrique has received excellent feedback from industry leaders, including Thomas Kurian, highlighting his impact and contributions.\nuser: Show Enrique's cloud certifications\nassistant: Enrique holds 19 cloud certifications, including 10 from Google Cloud, 7 from AWS, and 2 from Azure.\nuser: How do Enrique's skills match a Senior AI role?",
+      "conversationLength": 7,
+      "fullMessages": [
+        {
+          "role": "user",
+          "parts": [
+            {
+              "text": "Show Enrique's speaking engagements and keynotes"
+            }
+          ]
+        },
+        {
+          "role": "assistant",
+          "parts": [
+            {
+              "text": "Enrique has delivered keynotes and spoken at major industry events, including Google Cloud Next and the ADK Summit."
+            }
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            {
+              "text": "Show me what people think of Enrique (testimonials)"
+            }
+          ]
+        },
+        {
+          "role": "assistant",
+          "parts": [
+            {
+              "text": "Enrique has received excellent feedback from industry leaders, including Thomas Kurian, highlighting his impact and contributions."
+            }
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            {
+              "text": "Show Enrique's cloud certifications"
+            }
+          ]
+        },
+        {
+          "role": "assistant",
+          "parts": [
+            {
+              "text": "Enrique holds 19 cloud certifications, including 10 from Google Cloud, 7 from AWS, and 2 from Azure."
+            }
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            {
+              "text": "How do Enrique's skills match a Senior AI role?"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "sequence": 14,
+    "timestamp": "2026-01-27T02:36:37.033Z",
+    "direction": "SERVER_TO_CLIENT",
+    "endpoint": "/api/chat-with-intent",
+    "data": {
+      "description": "Combined intent detection and response in single LLM call",
+      "intent": "flashcards",
+      "keywords": "Skill Matcher, Fit Analyzer, Senior AI role, Google Cloud, AI Agents, NBC Olympics, RAG, Agentic Workflows",
+      "responseText": "Enrique's 15+ years of experience, including leading AI initiatives at Google Cloud and driving Agentic AI enablement for 1.5M+ developers, makes him an exceptional fit for a Senior AI role. His work on the NBC Olympics 'Oli' Chatbot and transition from RAG to Agentic workflows demonstrates deep expertise."
+    }
+  },
+  {
+    "sequence": 15,
+    "timestamp": "2026-01-27T02:36:37.045Z",
+    "direction": "CLIENT_TO_SERVER",
+    "endpoint": "/a2ui-agent/a2a/query",
+    "data": {
+      "description": "Browser client requesting A2UI content generation",
+      "requestBody": {
+        "message": "flashcards:Skill Matcher, Fit Analyzer, Senior AI role, Google Cloud, AI Agents, NBC Olympics, RAG, Agentic Workflows",
+        "session_id": "session_1769481334260_5wove719ns9",
+        "extensions": [
+          "https://a2ui.org/a2a-extension/a2ui/v0.8"
+        ]
+      }
+    }
+  },
+  {
+    "sequence": 16,
+    "timestamp": "2026-01-27T02:36:42.430Z",
+    "direction": "SERVER_TO_CLIENT",
+    "endpoint": "/a2ui-agent/a2a/query",
+    "data": {
+      "description": "Sending A2UI JSON payload to browser for rendering",
+      "format": "flashcards",
+      "surfaceId": "portfolioContent",
+      "source": {
+        "provider": "Enrique K Chan Portfolio",
+        "title": "Olympic 'Oli' Chatbot",
+        "url": "https://enriquekchan.com/#projects"
+      },
+      "a2uiMessageCount": 2,
+      "a2uiPayload": [
+        {
+          "beginRendering": {
+            "surfaceId": "portfolioContent",
+            "root": "mainColumn"
+          }
+        },
+        {
+          "surfaceUpdate": {
+            "surfaceId": "portfolioContent",
+            "components": [
+              {
+                "id": "mainColumn",
+                "component": {
+                  "Column": {
+                    "children": {
+                      "explicitList": [
+                        "card1",
+                        "card2",
+                        "card3",
+                        "card4"
+                      ]
+                    },
+                    "distribution": "start",
+                    "alignment": "stretch"
+                  }
+                }
+              },
+              {
+                "id": "card1",
+                "component": {
+                  "Flashcard": {
+                    "front": "How does your experience translate strategic vision into tangible AI product roadmaps?",
+                    "back": "As Outbound Product Manager, I lead the vision for Google Cloud's AI Agents Enablement Center of Excellence, translating strategy into impactful offers like 'Build Agentic Workflows' and a globally recognized 'Intro to Agents' whitepaper (1.5M+ attendees).",
+                    "category": "Product Strategy & Vision"
+                  }
+                }
+              },
+              {
+                "id": "card2",
+                "component": {
+                  "Flashcard": {
+                    "front": "How have you managed large-scale AI deployments with sub-second latency requirements?",
+                    "back": "I served as the lead technical consultant for the NBC Olympic Concierge, delivering sub-second latency for 90M+ queries during the Olympics using Vertex AI Provisioned Throughput, demonstrating my proficiency in high-performance AI system architecture.",
+                    "category": "Scalable AI Architecture"
+                  }
+                }
+              },
+              {
+                "id": "card3",
+                "component": {
+                  "Flashcard": {
+                    "front": "How have you driven adoption of AI solutions within a large enterprise ecosystem?",
+                    "back": "I have a proven track record of driving adoption, demonstrated by the successful rollout of Disney+ globally and securing multi-million dollar commitments for Gemini throughput through the 'Build Agentic Workflows' initiative.",
+                    "category": "Ecosystem Adoption & Enablement"
+                  }
+                }
+              },
+              {
+                "id": "card4",
+                "component": {
+                  "Flashcard": {
+                    "front": "What experience do you have with building the underlying infrastructure for AI Agents?",
+                    "back": "Beyond RAG, I'm focused on the future of Agentic AI. From leading the Agent Enablement Center of Excellence to leading technical delivery for Wayfair's AgentSpace (10+ connectors), I'm focused on productionizing Agentic Workflows for Google Cloud.",
+                    "category": "Agentic Workflow Architecture"
+                  }
+                }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "sequence": 17,
+    "timestamp": "2026-01-27T02:36:47.838Z",
+    "direction": "CLIENT_TO_SERVER",
+    "endpoint": "/api/chat-with-intent",
+    "data": {
+      "description": "Browser client requesting combined intent+response (latency optimization)",
+      "userMessage": "what about accenture projects he worked on?",
+      "recentContext": "assistant: Enrique holds 19 cloud certifications, including 10 from Google Cloud, 7 from AWS, and 2 from Azure.\nuser: How do Enrique's skills match a Senior AI role?\nassistant: Enrique's 15+ years of experience, including leading AI initiatives at Google Cloud and driving Agentic AI enablement for 1.5M+ developers, makes him an exceptional fit for a Senior AI role. His work on the NBC Olympics 'Oli' Chatbot and transition from RAG to Agentic workflows demonstrates deep expertise.\nuser: what about accenture projects he worked on?",
+      "conversationLength": 9,
+      "fullMessages": [
+        {
+          "role": "user",
+          "parts": [
+            {
+              "text": "Show Enrique's speaking engagements and keynotes"
+            }
+          ]
+        },
+        {
+          "role": "assistant",
+          "parts": [
+            {
+              "text": "Enrique has delivered keynotes and spoken at major industry events, including Google Cloud Next and the ADK Summit."
+            }
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            {
+              "text": "Show me what people think of Enrique (testimonials)"
+            }
+          ]
+        },
+        {
+          "role": "assistant",
+          "parts": [
+            {
+              "text": "Enrique has received excellent feedback from industry leaders, including Thomas Kurian, highlighting his impact and contributions."
+            }
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            {
+              "text": "Show Enrique's cloud certifications"
+            }
+          ]
+        },
+        {
+          "role": "assistant",
+          "parts": [
+            {
+              "text": "Enrique holds 19 cloud certifications, including 10 from Google Cloud, 7 from AWS, and 2 from Azure."
+            }
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            {
+              "text": "How do Enrique's skills match a Senior AI role?"
+            }
+          ]
+        },
+        {
+          "role": "assistant",
+          "parts": [
+            {
+              "text": "Enrique's 15+ years of experience, including leading AI initiatives at Google Cloud and driving Agentic AI enablement for 1.5M+ developers, makes him an exceptional fit for a Senior AI role. His work on the NBC Olympics 'Oli' Chatbot and transition from RAG to Agentic workflows demonstrates deep expertise."
+            }
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            {
+              "text": "what about accenture projects he worked on?"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "sequence": 18,
+    "timestamp": "2026-01-27T02:36:49.607Z",
+    "direction": "SERVER_TO_CLIENT",
+    "endpoint": "/api/chat-with-intent",
+    "data": {
+      "description": "Combined intent detection and response in single LLM call",
+      "intent": "general",
+      "keywords": "Accenture, cloud modernization, data analytics, pre-sales, delivery",
+      "responseText": "At Accenture, Enrique spent 10 years as a Senior Manager in Cloud Strategy. He led high-scale cloud modernization and global data analytics migrations for major enterprises. He also sold over $10M in delivery work and generated $25M in pre-sales pipeline."
+    }
+  },
+  {
+    "sequence": 19,
+    "timestamp": "2026-01-27T02:37:06.450Z",
+    "direction": "CLIENT_TO_SERVER",
+    "endpoint": "/api/chat-with-intent",
+    "data": {
+      "description": "Browser client requesting combined intent+response (latency optimization)",
+      "userMessage": "Show me some of his Medium blog posts",
+      "recentContext": "assistant: Enrique's 15+ years of experience, including leading AI initiatives at Google Cloud and driving Agentic AI enablement for 1.5M+ developers, makes him an exceptional fit for a Senior AI role. His work on the NBC Olympics 'Oli' Chatbot and transition from RAG to Agentic workflows demonstrates deep expertise.\nuser: what about accenture projects he worked on?\nassistant: At Accenture, Enrique spent 10 years as a Senior Manager in Cloud Strategy. He led high-scale cloud modernization and global data analytics migrations for major enterprises. He also sold over $10M in delivery work and generated $25M in pre-sales pipeline.\nuser: Show me some of his Medium blog posts",
+      "conversationLength": 10,
+      "fullMessages": [
+        {
+          "role": "assistant",
+          "parts": [
+            {
+              "text": "Enrique has delivered keynotes and spoken at major industry events, including Google Cloud Next and the ADK Summit."
+            }
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            {
+              "text": "Show me what people think of Enrique (testimonials)"
+            }
+          ]
+        },
+        {
+          "role": "assistant",
+          "parts": [
+            {
+              "text": "Enrique has received excellent feedback from industry leaders, including Thomas Kurian, highlighting his impact and contributions."
+            }
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            {
+              "text": "Show Enrique's cloud certifications"
+            }
+          ]
+        },
+        {
+          "role": "assistant",
+          "parts": [
+            {
+              "text": "Enrique holds 19 cloud certifications, including 10 from Google Cloud, 7 from AWS, and 2 from Azure."
+            }
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            {
+              "text": "How do Enrique's skills match a Senior AI role?"
+            }
+          ]
+        },
+        {
+          "role": "assistant",
+          "parts": [
+            {
+              "text": "Enrique's 15+ years of experience, including leading AI initiatives at Google Cloud and driving Agentic AI enablement for 1.5M+ developers, makes him an exceptional fit for a Senior AI role. His work on the NBC Olympics 'Oli' Chatbot and transition from RAG to Agentic workflows demonstrates deep expertise."
+            }
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            {
+              "text": "what about accenture projects he worked on?"
+            }
+          ]
+        },
+        {
+          "role": "assistant",
+          "parts": [
+            {
+              "text": "At Accenture, Enrique spent 10 years as a Senior Manager in Cloud Strategy. He led high-scale cloud modernization and global data analytics migrations for major enterprises. He also sold over $10M in delivery work and generated $25M in pre-sales pipeline."
+            }
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            {
+              "text": "Show me some of his Medium blog posts"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "sequence": 20,
+    "timestamp": "2026-01-27T02:37:07.228Z",
+    "direction": "CLIENT_TO_SERVER",
+    "endpoint": "/api/chat-with-intent",
+    "data": {
+      "description": "Browser client requesting combined intent+response (latency optimization)",
+      "userMessage": "Show me his top YouTube videos",
+      "recentContext": "user: what about accenture projects he worked on?\nassistant: At Accenture, Enrique spent 10 years as a Senior Manager in Cloud Strategy. He led high-scale cloud modernization and global data analytics migrations for major enterprises. He also sold over $10M in delivery work and generated $25M in pre-sales pipeline.\nuser: Show me some of his Medium blog posts\nuser: Show me his top YouTube videos",
+      "conversationLength": 10,
+      "fullMessages": [
+        {
+          "role": "user",
+          "parts": [
+            {
+              "text": "Show me what people think of Enrique (testimonials)"
+            }
+          ]
+        },
+        {
+          "role": "assistant",
+          "parts": [
+            {
+              "text": "Enrique has received excellent feedback from industry leaders, including Thomas Kurian, highlighting his impact and contributions."
+            }
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            {
+              "text": "Show Enrique's cloud certifications"
+            }
+          ]
+        },
+        {
+          "role": "assistant",
+          "parts": [
+            {
+              "text": "Enrique holds 19 cloud certifications, including 10 from Google Cloud, 7 from AWS, and 2 from Azure."
+            }
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            {
+              "text": "How do Enrique's skills match a Senior AI role?"
+            }
+          ]
+        },
+        {
+          "role": "assistant",
+          "parts": [
+            {
+              "text": "Enrique's 15+ years of experience, including leading AI initiatives at Google Cloud and driving Agentic AI enablement for 1.5M+ developers, makes him an exceptional fit for a Senior AI role. His work on the NBC Olympics 'Oli' Chatbot and transition from RAG to Agentic workflows demonstrates deep expertise."
+            }
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            {
+              "text": "what about accenture projects he worked on?"
+            }
+          ]
+        },
+        {
+          "role": "assistant",
+          "parts": [
+            {
+              "text": "At Accenture, Enrique spent 10 years as a Senior Manager in Cloud Strategy. He led high-scale cloud modernization and global data analytics migrations for major enterprises. He also sold over $10M in delivery work and generated $25M in pre-sales pipeline."
+            }
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            {
+              "text": "Show me some of his Medium blog posts"
+            }
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            {
+              "text": "Show me his top YouTube videos"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "sequence": 21,
+    "timestamp": "2026-01-27T02:37:07.492Z",
+    "direction": "SERVER_TO_CLIENT",
+    "endpoint": "/api/chat-with-intent",
+    "data": {
+      "description": "Combined intent detection and response in single LLM call",
+      "intent": "blog_cards",
+      "keywords": "Medium, blog posts, articles",
+      "responseText": "Enrique has published several insightful articles on Medium, covering topics related to AI, cloud strategy, and product management."
+    }
+  },
+  {
+    "sequence": 22,
+    "timestamp": "2026-01-27T02:37:07.501Z",
+    "direction": "CLIENT_TO_SERVER",
+    "endpoint": "/a2ui-agent/a2a/query",
+    "data": {
+      "description": "Browser client requesting A2UI content generation",
+      "requestBody": {
+        "message": "blog_cards:Medium, blog posts, articles",
+        "session_id": "session_1769481334260_5wove719ns9",
+        "extensions": [
+          "https://a2ui.org/a2a-extension/a2ui/v0.8"
+        ]
+      }
+    }
+  },
+  {
+    "sequence": 23,
+    "timestamp": "2026-01-27T02:37:08.493Z",
+    "direction": "SERVER_TO_CLIENT",
+    "endpoint": "/api/chat-with-intent",
+    "data": {
+      "description": "Combined intent detection and response in single LLM call",
+      "intent": "video_cards",
+      "keywords": "YouTube, videos, Cloud AI",
+      "responseText": "Enrique shares insights and demonstrations on his YouTube channel. You can view his top videos there."
+    }
+  },
+  {
+    "sequence": 24,
+    "timestamp": "2026-01-27T02:37:08.498Z",
+    "direction": "CLIENT_TO_SERVER",
+    "endpoint": "/a2ui-agent/a2a/query",
+    "data": {
+      "description": "Browser client requesting A2UI content generation",
+      "requestBody": {
+        "message": "video_cards:YouTube, videos, Cloud AI",
+        "session_id": "session_1769481334260_5wove719ns9",
+        "extensions": [
+          "https://a2ui.org/a2a-extension/a2ui/v0.8"
+        ]
+      }
+    }
+  },
+  {
+    "sequence": 25,
+    "timestamp": "2026-01-27T02:37:11.742Z",
+    "direction": "SERVER_TO_CLIENT",
+    "endpoint": "/a2ui-agent/a2a/query",
+    "data": {
+      "description": "Sending A2UI JSON payload to browser for rendering",
+      "format": "blog_cards",
+      "surfaceId": "portfolioContent",
+      "source": {
+        "provider": "Enrique K Chan Portfolio",
+        "title": "Enrique K Chan Portfolio",
+        "url": "https://enriquekchan.com/"
+      },
+      "a2uiMessageCount": 2,
+      "a2uiPayload": [
+        {
+          "beginRendering": {
+            "surfaceId": "portfolioContent",
+            "root": "mainColumn"
+          }
+        },
+        {
+          "surfaceUpdate": {
+            "surfaceId": "portfolioContent",
+            "components": [
+              {
+                "id": "mainColumn",
+                "component": {
+                  "Column": {
+                    "children": {
+                      "explicitList": [
+                        "header",
+                        "blogGrid"
+                      ]
+                    },
+                    "distribution": "start",
+                    "alignment": "stretch"
+                  }
+                }
+              },
+              {
+                "id": "header",
+                "component": {
+                  "Text": {
+                    "text": {
+                      "literalString": "In Enrique's Stream: Medium"
+                    },
+                    "usageHint": "h2"
+                  }
+                }
+              },
+              {
+                "id": "blogGrid",
+                "component": {
+                  "Row": {
+                    "children": {
+                      "explicitList": [
+                        "b1",
+                        "b2",
+                        "b3"
+                      ]
+                    },
+                    "distribution": "start",
+                    "alignment": "stretch"
+                  }
+                }
+              },
+              {
+                "id": "b1",
+                "component": {
+                  "PortfolioCard": {
+                    "type": "blog",
+                    "title": "Building Agentic Interfaces",
+                    "description": "Introducing the Agent UI Starter Pack and the philosophy behind agentic design.",
+                    "image": "/assets/blog-a2ui.png",
+                    "url": "https://medium.com/@enriq/building-the-future-of-agentic-interfaces-introducing-the-agent-ui-starter-pack-94d8fed86ca7"
+                  }
+                }
+              },
+              {
+                "id": "b2",
+                "component": {
+                  "PortfolioCard": {
+                    "type": "blog",
+                    "title": "Introducing the Agent Optimizer",
+                    "description": "A deep dive into optimizing agent performance for Google ADK.",
+                    "image": "/assets/blog-optimizer.png",
+                    "url": "https://medium.com/@enriq/introducing-the-agent-optimizer-for-google-adk-3872856e6d7b"
+                  }
+                }
+              },
+              {
+                "id": "b3",
+                "component": {
+                  "PortfolioCard": {
+                    "type": "blog",
+                    "title": "The Rise of Agentic AI",
+                    "description": "Exploring how AI agents are moving from conversation to autonomous action.",
+                    "image": "/assets/blog-rise.png",
+                    "url": "https://medium.com/@enriq"
+                  }
+                }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "sequence": 26,
+    "timestamp": "2026-01-27T02:37:15.305Z",
+    "direction": "SERVER_TO_CLIENT",
+    "endpoint": "/a2ui-agent/a2a/query",
+    "data": {
+      "description": "Sending A2UI JSON payload to browser for rendering",
+      "format": "video_cards",
+      "surfaceId": "portfolioContent",
+      "source": {
+        "provider": "Enrique K Chan Portfolio",
+        "title": "Enrique K Chan Portfolio",
+        "url": "https://enriquekchan.com/"
+      },
+      "a2uiMessageCount": 2,
+      "a2uiPayload": [
+        {
+          "beginRendering": {
+            "surfaceId": "portfolioContent",
+            "root": "mainColumn"
+          }
+        },
+        {
+          "surfaceUpdate": {
+            "surfaceId": "portfolioContent",
+            "components": [
+              {
+                "id": "mainColumn",
+                "component": {
+                  "Column": {
+                    "children": {
+                      "explicitList": [
+                        "header",
+                        "videoGrid"
+                      ]
+                    },
+                    "distribution": "start",
+                    "alignment": "stretch"
+                  }
+                }
+              },
+              {
+                "id": "header",
+                "component": {
+                  "Text": {
+                    "text": {
+                      "literalString": "Watch My AI Sessions"
+                    },
+                    "usageHint": "h2"
+                  }
+                }
+              },
+              {
+                "id": "videoGrid",
+                "component": {
+                  "Row": {
+                    "children": {
+                      "explicitList": [
+                        "v1",
+                        "v2"
+                      ]
+                    },
+                    "distribution": "start",
+                    "alignment": "stretch"
+                  }
+                }
+              },
+              {
+                "id": "v1",
+                "component": {
+                  "PortfolioCard": {
+                    "type": "video",
+                    "title": "From Talking to Doing: The Rise of Agentic AI",
+                    "description": "Enrique's keynote on the transition to agentic workflows.",
+                    "image": "https://img.youtube.com/vi/nZa5-WyN-rE/maxresdefault.jpg",
+                    "url": "https://www.youtube.com/watch?v=nZa5-WyN-rE"
+                  }
+                }
+              },
+              {
+                "id": "v2",
+                "component": {
+                  "PortfolioCard": {
+                    "type": "video",
+                    "title": "Advent of Agents Day 15 - A2UI",
+                    "description": "A deep dive into Agentic User Interfaces (A2UI) and its impact on user experience.",
+                    "image": "https://img.youtube.com/vi/ZMIAlxx-Jx4/maxresdefault.jpg",
+                    "url": "https://www.youtube.com/watch?v=ZMIAlxx-Jx4"
+                  }
+                }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "sequence": 27,
+    "timestamp": "2026-01-27T02:37:59.578Z",
+    "direction": "CLIENT_TO_SERVER",
+    "endpoint": "/api/chat-with-intent",
+    "data": {
+      "description": "Browser client requesting combined intent+response (latency optimization)",
+      "userMessage": "Show me Enrique's career highlights as a sequential timeline",
+      "recentContext": "user: Show me Enrique's career highlights as a sequential timeline",
+      "conversationLength": 1,
+      "fullMessages": [
+        {
+          "role": "user",
+          "parts": [
+            {
+              "text": "Show me Enrique's career highlights as a sequential timeline"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "sequence": 28,
+    "timestamp": "2026-01-27T02:38:01.479Z",
+    "direction": "SERVER_TO_CLIENT",
+    "endpoint": "/api/chat-with-intent",
+    "data": {
+      "description": "Combined intent detection and response in single LLM call",
+      "intent": "timeline",
+      "keywords": "Google Cloud, AWS, Accenture, career highlights, timeline",
+      "responseText": "Enrique's career journey highlights over 15+ years at Google, AWS, and Accenture demonstrate significant leadership and impact across cloud strategy, AI innovation, and large-scale digital transformations."
+    }
+  },
+  {
+    "sequence": 29,
+    "timestamp": "2026-01-27T02:38:01.503Z",
+    "direction": "CLIENT_TO_SERVER",
+    "endpoint": "/a2ui-agent/a2a/query",
+    "data": {
+      "description": "Browser client requesting A2UI content generation",
+      "requestBody": {
+        "message": "timeline:Google Cloud, AWS, Accenture, career highlights, timeline",
+        "session_id": "session_1769481334260_5wove719ns9",
+        "extensions": [
+          "https://a2ui.org/a2a-extension/a2ui/v0.8"
+        ]
+      }
+    }
+  },
+  {
+    "sequence": 30,
+    "timestamp": "2026-01-27T02:38:07.800Z",
+    "direction": "SERVER_TO_CLIENT",
+    "endpoint": "/a2ui-agent/a2a/query",
+    "data": {
+      "description": "Sending A2UI JSON payload to browser for rendering",
+      "format": "timeline",
+      "surfaceId": "portfolioContent",
+      "source": {
+        "provider": "Enrique K Chan Portfolio",
+        "title": "Google Cloud Career",
+        "url": "https://enriquekchan.com/#experience"
+      },
+      "a2uiMessageCount": 2,
+      "a2uiPayload": [
+        {
+          "beginRendering": {
+            "surfaceId": "portfolioContent",
+            "root": "mainColumn"
+          }
+        },
+        {
+          "surfaceUpdate": {
+            "surfaceId": "portfolioContent",
+            "components": [
+              {
+                "id": "mainColumn",
+                "component": {
+                  "Column": {
+                    "children": {
+                      "explicitList": [
+                        "header",
+                        "exp1",
+                        "exp2",
+                        "exp3",
+                        "exp4"
+                      ]
+                    },
+                    "distribution": "start",
+                    "alignment": "stretch"
+                  }
+                }
+              },
+              {
+                "id": "header",
+                "component": {
+                  "Text": {
+                    "text": {
+                      "literalString": "Sequential Career Timeline"
+                    },
+                    "usageHint": "h2"
+                  }
+                }
+              },
+              {
+                "id": "exp1",
+                "component": {
+                  "ExperienceCard": {
+                    "company": "Google Cloud",
+                    "role": "Outbound Product Manager, Cloud AI",
+                    "period": "Nov 2025 – Present",
+                    "logo": "google",
+                    "color": "#4285F4",
+                    "highlights": [
+                      "Leading vision and strategy for the AI Agents Enablement Center of Excellence.",
+                      "Co-authored global 'Intro to Agents' whitepaper (1.5M+ attendees).",
+                      "Drove adoption of the 'Build Agentic Workflows' offer on go/sell-services."
+                    ],
+                    "impact": "Scaled Agentic AI enablement to 1.5M+ developers and secured multi-million dollar commitments for Gemini throughput."
+                  }
+                }
+              },
+              {
+                "id": "exp2",
+                "component": {
+                  "ExperienceCard": {
+                    "company": "Google Cloud",
+                    "role": "Senior AI Consultant, PSO",
+                    "period": "Jun 2023 – Nov 2025",
+                    "logo": "google",
+                    "color": "#34A853",
+                    "highlights": [
+                      "NBC Olympic Concierge: Lead technical consultant for a GenAI solution serving 40M viewers.",
+                      "WBD Translation & Caption AI: Owned technical delivery for STT pipelines.",
+                      "Wayfair Agentspace: Led technical delivery for Project Bozeman (10+ connectors)."
+                    ],
+                    "impact": "Delivered sub-second latency for 90M+ Olympic queries and secured $1.3M in Vertex AI revenue."
+                  }
+                }
+              },
+              {
+                "id": "exp3",
+                "component": {
+                  "ExperienceCard": {
+                    "company": "Amazon Web Services",
+                    "role": "Senior Cloud Architect",
+                    "period": "May 2020 – May 2021",
+                    "logo": "aws",
+                    "color": "#FF9900",
+                    "highlights": [
+                      "Designed and deployed large-scale cloud architectures for enterprise clients.",
+                      "Built distributed microservices with TypeScript and AWS CDK.",
+                      "Administered AWS Well-Architected Framework reviews."
+                    ],
+                    "impact": "Modernized legacy infrastructures for Fortune 500 clients into highly available AWS architectures."
+                  }
+                }
+              },
+              {
+                "id": "exp4",
+                "component": {
+                  "ExperienceCard": {
+                    "company": "Accenture",
+                    "role": "Senior Manager, Cloud Strategy",
+                    "period": "Nov 2010 – May 2020",
+                    "logo": "accenture",
+                    "color": "#A100FF",
+                    "highlights": [
+                      "Lead, Cloud Strategy & Data Analytics (10-Year Tenure).",
+                      "Sold $10M+ in delivery work; generated $25M in pre-sales pipeline.",
+                      "Managed career growth for 5 direct reports."
+                    ],
+                    "impact": "Generated $25M in pre-sales pipeline and successfully delivered $10M+ in cloud modernization services."
+                  }
+                }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "sequence": 31,
+    "timestamp": "2026-01-27T02:43:14.639Z",
+    "direction": "CLIENT_TO_SERVER",
+    "endpoint": "/api/chat-with-intent",
+    "data": {
+      "description": "Browser client requesting combined intent+response (latency optimization)",
+      "userMessage": "Show me Enrique's career highlights as a sequential timeline",
+      "recentContext": "user: Show me Enrique's career highlights as a sequential timeline",
+      "conversationLength": 1,
+      "fullMessages": [
+        {
+          "role": "user",
+          "parts": [
+            {
+              "text": "Show me Enrique's career highlights as a sequential timeline"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "sequence": 32,
+    "timestamp": "2026-01-27T02:43:16.471Z",
+    "direction": "SERVER_TO_CLIENT",
+    "endpoint": "/api/chat-with-intent",
+    "data": {
+      "description": "Combined intent detection and response in single LLM call",
+      "intent": "timeline",
+      "keywords": "Career highlights, Google Cloud, AWS, Accenture, timeline",
+      "responseText": "Enrique's career spans over 15 years, starting with a significant 10-year tenure at Accenture, followed by impactful roles at AWS, and culminating in his current leadership positions at Google Cloud, where he drives AI innovation. Key milestones include leading the NBC Olympics 'Oli' Chatbot and scaling Agentic AI enablement to over 1.5 million developers."
+    }
+  },
+  {
+    "sequence": 33,
+    "timestamp": "2026-01-27T02:43:16.484Z",
+    "direction": "CLIENT_TO_SERVER",
+    "endpoint": "/a2ui-agent/a2a/query",
+    "data": {
+      "description": "Browser client requesting A2UI content generation",
+      "requestBody": {
+        "message": "timeline:Career highlights, Google Cloud, AWS, Accenture, timeline",
+        "session_id": "session_1769481334260_5wove719ns9",
+        "extensions": [
+          "https://a2ui.org/a2a-extension/a2ui/v0.8"
+        ]
+      }
+    }
+  },
+  {
+    "sequence": 34,
+    "timestamp": "2026-01-27T02:43:22.140Z",
+    "direction": "SERVER_TO_CLIENT",
+    "endpoint": "/a2ui-agent/a2a/query",
+    "data": {
+      "description": "Sending A2UI JSON payload to browser for rendering",
+      "format": "timeline",
+      "surfaceId": "portfolioContent",
+      "source": {
+        "provider": "Enrique K Chan Portfolio",
+        "title": "Google Cloud Career",
+        "url": "https://enriquekchan.com/#experience"
+      },
+      "a2uiMessageCount": 2,
+      "a2uiPayload": [
+        {
+          "beginRendering": {
+            "surfaceId": "portfolioContent",
+            "root": "mainColumn"
+          }
+        },
+        {
+          "surfaceUpdate": {
+            "surfaceId": "portfolioContent",
+            "components": [
+              {
+                "id": "mainColumn",
+                "component": {
+                  "Column": {
+                    "children": {
+                      "explicitList": [
+                        "header",
+                        "exp1",
+                        "exp2",
+                        "exp3",
+                        "exp4"
+                      ]
+                    },
+                    "distribution": "start",
+                    "alignment": "stretch"
+                  }
+                }
+              },
+              {
+                "id": "header",
+                "component": {
+                  "Text": {
+                    "text": {
+                      "literalString": "Sequential Career Timeline"
+                    },
+                    "usageHint": "h2"
+                  }
+                }
+              },
+              {
+                "id": "exp1",
+                "component": {
+                  "ExperienceCard": {
+                    "company": "Google Cloud",
+                    "role": "Outbound Product Manager, Cloud AI",
+                    "period": "Nov 2025 – Present",
+                    "logo": "google",
+                    "color": "#4285F4",
+                    "highlights": [
+                      "Leading vision and strategy for the AI Agents Enablement Center of Excellence.",
+                      "Co-authored global 'Intro to Agents' whitepaper (1.5M+ attendees).",
+                      "Drove adoption of the 'Build Agentic Workflows' offer on go/sell-services."
+                    ],
+                    "impact": "Scaled Agentic AI enablement to 1.5M+ developers and secured multi-million dollar commitments for Gemini throughput."
+                  }
+                }
+              },
+              {
+                "id": "exp2",
+                "component": {
+                  "ExperienceCard": {
+                    "company": "Google Cloud",
+                    "role": "Senior AI Consultant, PSO",
+                    "period": "Jun 2023 – Nov 2025",
+                    "logo": "google",
+                    "color": "#34A853",
+                    "highlights": [
+                      "NBC Olympic Concierge: Lead technical consultant for a GenAI solution serving 40M viewers.",
+                      "WBD Translation & Caption AI: Owned technical delivery for STT pipelines.",
+                      "Wayfair Agentspace: Led technical delivery for Project Bozeman (10+ connectors)."
+                    ],
+                    "impact": "Delivered sub-second latency for 90M+ Olympic queries and secured $1.3M in Vertex AI revenue."
+                  }
+                }
+              },
+              {
+                "id": "exp3",
+                "component": {
+                  "ExperienceCard": {
+                    "company": "Amazon Web Services",
+                    "role": "Senior Cloud Architect",
+                    "period": "May 2020 – May 2021",
+                    "logo": "aws",
+                    "color": "#FF9900",
+                    "highlights": [
+                      "Designed and deployed large-scale cloud architectures for enterprise clients.",
+                      "Built distributed microservices with TypeScript and AWS CDK.",
+                      "Administered AWS Well-Architected Framework reviews."
+                    ],
+                    "impact": "Modernized legacy infrastructures for Fortune 500 clients into highly available AWS architectures."
+                  }
+                }
+              },
+              {
+                "id": "exp4",
+                "component": {
+                  "ExperienceCard": {
+                    "company": "Accenture",
+                    "role": "Senior Manager, Cloud Strategy",
+                    "period": "Nov 2010 – May 2020",
+                    "logo": "accenture",
+                    "color": "#A100FF",
+                    "highlights": [
+                      "Lead, Cloud Strategy & Data Analytics (10-Year Tenure).",
+                      "Sold $10M+ in delivery work; generated $25M in pre-sales pipeline.",
+                      "Managed career growth for 5 direct reports."
+                    ],
+                    "impact": "Generated $25M in pre-sales pipeline and successfully delivered $10M+ in cloud modernization services."
+                  }
+                }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "sequence": 35,
+    "timestamp": "2026-01-27T02:43:28.420Z",
+    "direction": "CLIENT_TO_SERVER",
+    "endpoint": "/api/chat-with-intent",
+    "data": {
+      "description": "Browser client requesting combined intent+response (latency optimization)",
+      "userMessage": "List Enrique's major awards and hackathon wins",
+      "recentContext": "user: Show me Enrique's career highlights as a sequential timeline\nassistant: Enrique's career spans over 15 years, starting with a significant 10-year tenure at Accenture, followed by impactful roles at AWS, and culminating in his current leadership positions at Google Cloud, where he drives AI innovation. Key milestones include leading the NBC Olympics 'Oli' Chatbot and scaling Agentic AI enablement to over 1.5 million developers.\nuser: List Enrique's major awards and hackathon wins",
+      "conversationLength": 3,
+      "fullMessages": [
+        {
+          "role": "user",
+          "parts": [
+            {
+              "text": "Show me Enrique's career highlights as a sequential timeline"
+            }
+          ]
+        },
+        {
+          "role": "assistant",
+          "parts": [
+            {
+              "text": "Enrique's career spans over 15 years, starting with a significant 10-year tenure at Accenture, followed by impactful roles at AWS, and culminating in his current leadership positions at Google Cloud, where he drives AI innovation. Key milestones include leading the NBC Olympics 'Oli' Chatbot and scaling Agentic AI enablement to over 1.5 million developers."
+            }
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            {
+              "text": "List Enrique's major awards and hackathon wins"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "sequence": 36,
+    "timestamp": "2026-01-27T02:43:29.696Z",
+    "direction": "SERVER_TO_CLIENT",
+    "endpoint": "/api/chat-with-intent",
+    "data": {
+      "description": "Combined intent detection and response in single LLM call",
+      "intent": "awards",
+      "keywords": "Cloud Tech Impact Award, GTM Excellence, AIS Hackathon",
+      "responseText": "Enrique has received significant recognition, including the Cloud Tech Impact Award 2024 and GTM Excellence Awards. He is also an AIS Hackathon winner. These achievements highlight his impact and innovation."
+    }
+  },
+  {
+    "sequence": 37,
+    "timestamp": "2026-01-27T02:43:29.702Z",
+    "direction": "CLIENT_TO_SERVER",
+    "endpoint": "/a2ui-agent/a2a/query",
+    "data": {
+      "description": "Browser client requesting A2UI content generation",
+      "requestBody": {
+        "message": "awards:Cloud Tech Impact Award, GTM Excellence, AIS Hackathon",
+        "session_id": "session_1769481334260_5wove719ns9",
+        "extensions": [
+          "https://a2ui.org/a2a-extension/a2ui/v0.8"
+        ]
+      }
+    }
+  },
+  {
+    "sequence": 38,
+    "timestamp": "2026-01-27T02:43:33.657Z",
+    "direction": "SERVER_TO_CLIENT",
+    "endpoint": "/a2ui-agent/a2a/query",
+    "data": {
+      "description": "Sending A2UI JSON payload to browser for rendering",
+      "format": "awards",
+      "surfaceId": "portfolioContent",
+      "source": {
+        "provider": "Enrique K Chan Portfolio",
+        "title": "Enrique K Chan Portfolio",
+        "url": "https://enriquekchan.com/"
+      },
+      "a2uiMessageCount": 2,
+      "a2uiPayload": [
+        {
+          "beginRendering": {
+            "surfaceId": "portfolioContent",
+            "root": "mainColumn"
+          }
+        },
+        {
+          "surfaceUpdate": {
+            "surfaceId": "portfolioContent",
+            "components": [
+              {
+                "id": "mainColumn",
+                "component": {
+                  "Column": {
+                    "children": {
+                      "explicitList": [
+                        "header",
+                        "awardGrid"
+                      ]
+                    },
+                    "distribution": "start",
+                    "alignment": "stretch"
+                  }
+                }
+              },
+              {
+                "id": "header",
+                "component": {
+                  "Text": {
+                    "text": {
+                      "literalString": "Major Awards & Recognitions"
+                    },
+                    "usageHint": "h2"
+                  }
+                }
+              },
+              {
+                "id": "awardGrid",
+                "component": {
+                  "Row": {
+                    "children": {
+                      "explicitList": [
+                        "a1",
+                        "a2",
+                        "a3"
+                      ]
+                    },
+                    "distribution": "start",
+                    "alignment": "stretch"
+                  }
+                }
+              },
+              {
+                "id": "a1",
+                "component": {
+                  "PortfolioCard": {
+                    "type": "project",
+                    "title": "Cloud Tech Impact Award 2024",
+                    "description": "Awarded for the NBCU Olympic Chatbot serving 40M viewers with agentic AI.",
+                    "image": "/assets/award_gtm_2024.jpg",
+                    "url": "https://www.google.com/search?q=nbcu+oli+paris+olympics+chatbot"
+                  }
+                }
+              },
+              {
+                "id": "a2",
+                "component": {
+                  "PortfolioCard": {
+                    "type": "project",
+                    "title": "GTM Excellence Award 2025",
+                    "description": "Recognized for outstanding contributions to Google Cloud's Go-To-Market strategy.",
+                    "image": "/assets/awards.png",
+                    "url": "https://www.linkedin.com/in/enriquechan/"
+                  }
+                }
+              },
+              {
+                "id": "a3",
+                "component": {
+                  "PortfolioCard": {
+                    "type": "project",
+                    "title": "AIS Offsite Hackathon Winner 2025",
+                    "description": "Won 1st place for the 'Cards Against Humanity Agent' at the Google AIS Offsite.",
+                    "image": "/assets/awards.png",
+                    "url": "https://www.linkedin.com/feed/update/urn:li:activity:7265882565578702848/"
+                  }
+                }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "sequence": 39,
+    "timestamp": "2026-01-27T02:43:39.820Z",
+    "direction": "CLIENT_TO_SERVER",
+    "endpoint": "/api/chat-with-intent",
+    "data": {
+      "description": "Browser client requesting combined intent+response (latency optimization)",
+      "userMessage": "Show me what people think of Enrique (testimonials)",
+      "recentContext": "assistant: Enrique's career spans over 15 years, starting with a significant 10-year tenure at Accenture, followed by impactful roles at AWS, and culminating in his current leadership positions at Google Cloud, where he drives AI innovation. Key milestones include leading the NBC Olympics 'Oli' Chatbot and scaling Agentic AI enablement to over 1.5 million developers.\nuser: List Enrique's major awards and hackathon wins\nassistant: Enrique has received significant recognition, including the Cloud Tech Impact Award 2024 and GTM Excellence Awards. He is also an AIS Hackathon winner. These achievements highlight his impact and innovation.\nuser: Show me what people think of Enrique (testimonials)",
+      "conversationLength": 5,
+      "fullMessages": [
+        {
+          "role": "user",
+          "parts": [
+            {
+              "text": "Show me Enrique's career highlights as a sequential timeline"
+            }
+          ]
+        },
+        {
+          "role": "assistant",
+          "parts": [
+            {
+              "text": "Enrique's career spans over 15 years, starting with a significant 10-year tenure at Accenture, followed by impactful roles at AWS, and culminating in his current leadership positions at Google Cloud, where he drives AI innovation. Key milestones include leading the NBC Olympics 'Oli' Chatbot and scaling Agentic AI enablement to over 1.5 million developers."
+            }
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            {
+              "text": "List Enrique's major awards and hackathon wins"
+            }
+          ]
+        },
+        {
+          "role": "assistant",
+          "parts": [
+            {
+              "text": "Enrique has received significant recognition, including the Cloud Tech Impact Award 2024 and GTM Excellence Awards. He is also an AIS Hackathon winner. These achievements highlight his impact and innovation."
+            }
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            {
+              "text": "Show me what people think of Enrique (testimonials)"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "sequence": 40,
+    "timestamp": "2026-01-27T02:43:40.908Z",
+    "direction": "SERVER_TO_CLIENT",
+    "endpoint": "/api/chat-with-intent",
+    "data": {
+      "description": "Combined intent detection and response in single LLM call",
+      "intent": "testimonials",
+      "keywords": "Thomas Kurian, feedback, leadership",
+      "responseText": "Enrique has received excellent feedback from industry leaders, including Thomas Kurian, recognizing his technical expertise and leadership."
+    }
+  },
+  {
+    "sequence": 41,
+    "timestamp": "2026-01-27T02:43:40.917Z",
+    "direction": "CLIENT_TO_SERVER",
+    "endpoint": "/a2ui-agent/a2a/query",
+    "data": {
+      "description": "Browser client requesting A2UI content generation",
+      "requestBody": {
+        "message": "testimonials:Thomas Kurian, feedback, leadership",
+        "session_id": "session_1769481334260_5wove719ns9",
+        "extensions": [
+          "https://a2ui.org/a2a-extension/a2ui/v0.8"
+        ]
+      }
+    }
+  },
+  {
+    "sequence": 42,
+    "timestamp": "2026-01-27T02:43:44.334Z",
+    "direction": "SERVER_TO_CLIENT",
+    "endpoint": "/a2ui-agent/a2a/query",
+    "data": {
+      "description": "Sending A2UI JSON payload to browser for rendering",
+      "format": "testimonials",
+      "surfaceId": "portfolioContent",
+      "source": {
+        "provider": "Enrique K Chan Portfolio",
+        "title": "Enrique K Chan Portfolio",
+        "url": "https://enriquekchan.com/"
+      },
+      "a2uiMessageCount": 2,
+      "a2uiPayload": [
+        {
+          "beginRendering": {
+            "surfaceId": "portfolioContent",
+            "root": "mainColumn"
+          }
+        },
+        {
+          "surfaceUpdate": {
+            "surfaceId": "portfolioContent",
+            "components": [
+              {
+                "id": "mainColumn",
+                "component": {
+                  "Column": {
+                    "children": {
+                      "explicitList": [
+                        "header",
+                        "tGrid"
+                      ]
+                    },
+                    "distribution": "start",
+                    "alignment": "stretch"
+                  }
+                }
+              },
+              {
+                "id": "header",
+                "component": {
+                  "Text": {
+                    "text": {
+                      "literalString": "What Googlers Say About Enrique"
+                    },
+                    "usageHint": "h2"
+                  }
+                }
+              },
+              {
+                "id": "tGrid",
+                "component": {
+                  "Row": {
+                    "children": {
+                      "explicitList": [
+                        "t1",
+                        "t2",
+                        "t3"
+                      ]
+                    },
+                    "distribution": "start",
+                    "alignment": "stretch"
+                  }
+                }
+              },
+              {
+                "id": "t1",
+                "component": {
+                  "Flashcard": {
+                    "front": "Thomas Kurian (CEO, Google Cloud)",
+                    "back": "Thank you for your work and commitment to leading with customer empathy and engineering excellence.",
+                    "category": "Leadership"
+                  }
+                }
+              },
+              {
+                "id": "t2",
+                "component": {
+                  "Flashcard": {
+                    "front": "Michael Clark (President, Google Cloud NorthAm)",
+                    "back": "Congratulations on being awarded a GTM Cloud Regional Award for your technical impact.",
+                    "category": "Technical Rigor"
+                  }
+                }
+              },
+              {
+                "id": "t3",
+                "component": {
+                  "Flashcard": {
+                    "front": "Brian Delahunty (VP Agents platform, Google)",
+                    "back": "Incredible work on the 'Intro to Agents' whitepaper. You've set a high bar for agentic enablement.",
+                    "category": "Innovation"
+                  }
+                }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "sequence": 43,
+    "timestamp": "2026-01-27T02:43:58.960Z",
+    "direction": "CLIENT_TO_SERVER",
+    "endpoint": "/api/chat-with-intent",
+    "data": {
+      "description": "Browser client requesting combined intent+response (latency optimization)",
+      "userMessage": "Show me some of his Medium blog posts",
+      "recentContext": "assistant: Enrique has received significant recognition, including the Cloud Tech Impact Award 2024 and GTM Excellence Awards. He is also an AIS Hackathon winner. These achievements highlight his impact and innovation.\nuser: Show me what people think of Enrique (testimonials)\nassistant: Enrique has received excellent feedback from industry leaders, including Thomas Kurian, recognizing his technical expertise and leadership.\nuser: Show me some of his Medium blog posts",
+      "conversationLength": 7,
+      "fullMessages": [
+        {
+          "role": "user",
+          "parts": [
+            {
+              "text": "Show me Enrique's career highlights as a sequential timeline"
+            }
+          ]
+        },
+        {
+          "role": "assistant",
+          "parts": [
+            {
+              "text": "Enrique's career spans over 15 years, starting with a significant 10-year tenure at Accenture, followed by impactful roles at AWS, and culminating in his current leadership positions at Google Cloud, where he drives AI innovation. Key milestones include leading the NBC Olympics 'Oli' Chatbot and scaling Agentic AI enablement to over 1.5 million developers."
+            }
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            {
+              "text": "List Enrique's major awards and hackathon wins"
+            }
+          ]
+        },
+        {
+          "role": "assistant",
+          "parts": [
+            {
+              "text": "Enrique has received significant recognition, including the Cloud Tech Impact Award 2024 and GTM Excellence Awards. He is also an AIS Hackathon winner. These achievements highlight his impact and innovation."
+            }
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            {
+              "text": "Show me what people think of Enrique (testimonials)"
+            }
+          ]
+        },
+        {
+          "role": "assistant",
+          "parts": [
+            {
+              "text": "Enrique has received excellent feedback from industry leaders, including Thomas Kurian, recognizing his technical expertise and leadership."
+            }
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            {
+              "text": "Show me some of his Medium blog posts"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "sequence": 44,
+    "timestamp": "2026-01-27T02:44:00.393Z",
+    "direction": "SERVER_TO_CLIENT",
+    "endpoint": "/api/chat-with-intent",
+    "data": {
+      "description": "Combined intent detection and response in single LLM call",
+      "intent": "blog_cards",
+      "keywords": "Medium, blog posts, articles, AI, Cloud, architecture",
+      "responseText": "Enrique has published insightful articles on Medium, covering topics like AI, cloud architecture, and strategic technology adoption. You can find his work directly at https://medium.com/@enriq."
+    }
+  },
+  {
+    "sequence": 45,
+    "timestamp": "2026-01-27T02:44:00.400Z",
+    "direction": "CLIENT_TO_SERVER",
+    "endpoint": "/a2ui-agent/a2a/query",
+    "data": {
+      "description": "Browser client requesting A2UI content generation",
+      "requestBody": {
+        "message": "blog_cards:Medium, blog posts, articles, AI, Cloud, architecture",
+        "session_id": "session_1769481334260_5wove719ns9",
+        "extensions": [
+          "https://a2ui.org/a2a-extension/a2ui/v0.8"
+        ]
+      }
+    }
+  },
+  {
+    "sequence": 46,
+    "timestamp": "2026-01-27T02:44:04.593Z",
+    "direction": "SERVER_TO_CLIENT",
+    "endpoint": "/a2ui-agent/a2a/query",
+    "data": {
+      "description": "Sending A2UI JSON payload to browser for rendering",
+      "format": "blog_cards",
+      "surfaceId": "portfolioContent",
+      "source": {
+        "provider": "Enrique K Chan Portfolio",
+        "title": "Enrique K Chan Portfolio",
+        "url": "https://enriquekchan.com/"
+      },
+      "a2uiMessageCount": 2,
+      "a2uiPayload": [
+        {
+          "beginRendering": {
+            "surfaceId": "portfolioContent",
+            "root": "mainColumn"
+          }
+        },
+        {
+          "surfaceUpdate": {
+            "surfaceId": "portfolioContent",
+            "components": [
+              {
+                "id": "mainColumn",
+                "component": {
+                  "Column": {
+                    "children": {
+                      "explicitList": [
+                        "header",
+                        "blogGrid"
+                      ]
+                    },
+                    "distribution": "start",
+                    "alignment": "stretch"
+                  }
+                }
+              },
+              {
+                "id": "header",
+                "component": {
+                  "Text": {
+                    "text": {
+                      "literalString": "In Enrique's Stream: Medium"
+                    },
+                    "usageHint": "h2"
+                  }
+                }
+              },
+              {
+                "id": "blogGrid",
+                "component": {
+                  "Row": {
+                    "children": {
+                      "explicitList": [
+                        "b1",
+                        "b2",
+                        "b3"
+                      ]
+                    },
+                    "distribution": "start",
+                    "alignment": "stretch"
+                  }
+                }
+              },
+              {
+                "id": "b1",
+                "component": {
+                  "PortfolioCard": {
+                    "type": "blog",
+                    "title": "Building the Future of Agentic Interfaces",
+                    "description": "Introducing the Agent UI Starter Pack and the philosophy behind agentic design.",
+                    "image": "/assets/blog-a2ui.png",
+                    "url": "https://medium.com/@enriq/building-the-future-of-agentic-interfaces-introducing-the-agent-ui-starter-pack-94d8fed86ca7"
+                  }
+                }
+              },
+              {
+                "id": "b2",
+                "component": {
+                  "PortfolioCard": {
+                    "type": "blog",
+                    "title": "Introducing the Agent Optimizer",
+                    "description": "A deep dive into optimizing agent performance for Google ADK.",
+                    "image": "/assets/blog-optimizer.png",
+                    "url": "https://medium.com/@enriq/introducing-the-agent-optimizer-for-google-adk-3872856e6d7b"
+                  }
+                }
+              },
+              {
+                "id": "b3",
+                "component": {
+                  "PortfolioCard": {
+                    "type": "blog",
+                    "title": "The Rise of Agentic AI",
+                    "description": "Exploring how AI agents are moving from conversation to autonomous action.",
+                    "image": "/assets/blog-rise.png",
+                    "url": "https://medium.com/@enriq"
+                  }
+                }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "sequence": 47,
+    "timestamp": "2026-01-27T02:45:33.135Z",
+    "direction": "CLIENT_TO_SERVER",
+    "endpoint": "/api/chat-with-intent",
+    "data": {
+      "description": "Browser client requesting combined intent+response (latency optimization)",
+      "userMessage": "Show me Enrique's career highlights as a sequential timeline",
+      "recentContext": "assistant: Enrique has received excellent feedback from industry leaders, including Thomas Kurian, recognizing his technical expertise and leadership.\nuser: Show me some of his Medium blog posts\nassistant: Enrique has published insightful articles on Medium, covering topics like AI, cloud architecture, and strategic technology adoption. You can find his work directly at https://medium.com/@enriq.\nuser: Show me Enrique's career highlights as a sequential timeline",
+      "conversationLength": 9,
+      "fullMessages": [
+        {
+          "role": "user",
+          "parts": [
+            {
+              "text": "Show me Enrique's career highlights as a sequential timeline"
+            }
+          ]
+        },
+        {
+          "role": "assistant",
+          "parts": [
+            {
+              "text": "Enrique's career spans over 15 years, starting with a significant 10-year tenure at Accenture, followed by impactful roles at AWS, and culminating in his current leadership positions at Google Cloud, where he drives AI innovation. Key milestones include leading the NBC Olympics 'Oli' Chatbot and scaling Agentic AI enablement to over 1.5 million developers."
+            }
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            {
+              "text": "List Enrique's major awards and hackathon wins"
+            }
+          ]
+        },
+        {
+          "role": "assistant",
+          "parts": [
+            {
+              "text": "Enrique has received significant recognition, including the Cloud Tech Impact Award 2024 and GTM Excellence Awards. He is also an AIS Hackathon winner. These achievements highlight his impact and innovation."
+            }
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            {
+              "text": "Show me what people think of Enrique (testimonials)"
+            }
+          ]
+        },
+        {
+          "role": "assistant",
+          "parts": [
+            {
+              "text": "Enrique has received excellent feedback from industry leaders, including Thomas Kurian, recognizing his technical expertise and leadership."
+            }
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            {
+              "text": "Show me some of his Medium blog posts"
+            }
+          ]
+        },
+        {
+          "role": "assistant",
+          "parts": [
+            {
+              "text": "Enrique has published insightful articles on Medium, covering topics like AI, cloud architecture, and strategic technology adoption. You can find his work directly at https://medium.com/@enriq."
+            }
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            {
+              "text": "Show me Enrique's career highlights as a sequential timeline"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "sequence": 48,
+    "timestamp": "2026-01-27T02:45:34.355Z",
+    "direction": "SERVER_TO_CLIENT",
+    "endpoint": "/api/chat-with-intent",
+    "data": {
+      "description": "Combined intent detection and response in single LLM call",
+      "intent": "timeline",
+      "keywords": "Career highlights, Accenture, AWS, Google Cloud, AI innovation",
+      "responseText": "Enrique's career journey highlights over 15 years, beginning with a decade at Accenture, followed by significant contributions at AWS, and culminating in his current leadership roles at Google Cloud, where he drives AI innovation and scaled Agentic AI enablement to over 1.5 million developers."
+    }
+  },
+  {
+    "sequence": 49,
+    "timestamp": "2026-01-27T02:45:34.364Z",
+    "direction": "CLIENT_TO_SERVER",
+    "endpoint": "/a2ui-agent/a2a/query",
+    "data": {
+      "description": "Browser client requesting A2UI content generation",
+      "requestBody": {
+        "message": "timeline:Career highlights, Accenture, AWS, Google Cloud, AI innovation",
+        "session_id": "session_1769481334260_5wove719ns9",
+        "extensions": [
+          "https://a2ui.org/a2a-extension/a2ui/v0.8"
+        ]
+      }
+    }
+  },
+  {
+    "sequence": 50,
+    "timestamp": "2026-01-27T02:45:39.496Z",
+    "direction": "CLIENT_TO_SERVER",
+    "endpoint": "/api/chat-with-intent",
+    "data": {
+      "description": "Browser client requesting combined intent+response (latency optimization)",
+      "userMessage": "Show Enrique's speaking engagements and keynotes",
+      "recentContext": "user: Show me some of his Medium blog posts\nassistant: Enrique has published insightful articles on Medium, covering topics like AI, cloud architecture, and strategic technology adoption. You can find his work directly at https://medium.com/@enriq.\nuser: Show me Enrique's career highlights as a sequential timeline\nuser: Show Enrique's speaking engagements and keynotes",
+      "conversationLength": 10,
+      "fullMessages": [
+        {
+          "role": "user",
+          "parts": [
+            {
+              "text": "Show me Enrique's career highlights as a sequential timeline"
+            }
+          ]
+        },
+        {
+          "role": "assistant",
+          "parts": [
+            {
+              "text": "Enrique's career spans over 15 years, starting with a significant 10-year tenure at Accenture, followed by impactful roles at AWS, and culminating in his current leadership positions at Google Cloud, where he drives AI innovation. Key milestones include leading the NBC Olympics 'Oli' Chatbot and scaling Agentic AI enablement to over 1.5 million developers."
+            }
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            {
+              "text": "List Enrique's major awards and hackathon wins"
+            }
+          ]
+        },
+        {
+          "role": "assistant",
+          "parts": [
+            {
+              "text": "Enrique has received significant recognition, including the Cloud Tech Impact Award 2024 and GTM Excellence Awards. He is also an AIS Hackathon winner. These achievements highlight his impact and innovation."
+            }
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            {
+              "text": "Show me what people think of Enrique (testimonials)"
+            }
+          ]
+        },
+        {
+          "role": "assistant",
+          "parts": [
+            {
+              "text": "Enrique has received excellent feedback from industry leaders, including Thomas Kurian, recognizing his technical expertise and leadership."
+            }
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            {
+              "text": "Show me some of his Medium blog posts"
+            }
+          ]
+        },
+        {
+          "role": "assistant",
+          "parts": [
+            {
+              "text": "Enrique has published insightful articles on Medium, covering topics like AI, cloud architecture, and strategic technology adoption. You can find his work directly at https://medium.com/@enriq."
+            }
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            {
+              "text": "Show me Enrique's career highlights as a sequential timeline"
+            }
+          ]
+        },
+        {
+          "role": "user",
+          "parts": [
+            {
+              "text": "Show Enrique's speaking engagements and keynotes"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  {
+    "sequence": 51,
+    "timestamp": "2026-01-27T02:45:40.325Z",
+    "direction": "SERVER_TO_CLIENT",
+    "endpoint": "/a2ui-agent/a2a/query",
+    "data": {
+      "description": "Sending A2UI JSON payload to browser for rendering",
+      "format": "timeline",
+      "surfaceId": "portfolioContent",
+      "source": {
+        "provider": "Enrique K Chan Portfolio",
+        "title": "Google Cloud Career",
+        "url": "https://enriquekchan.com/#experience"
+      },
+      "a2uiMessageCount": 2,
+      "a2uiPayload": [
+        {
+          "beginRendering": {
+            "surfaceId": "portfolioContent",
+            "root": "mainColumn"
+          }
+        },
+        {
+          "surfaceUpdate": {
+            "surfaceId": "portfolioContent",
+            "components": [
+              {
+                "id": "mainColumn",
+                "component": {
+                  "Column": {
+                    "children": {
+                      "explicitList": [
+                        "header",
+                        "exp1",
+                        "exp2",
+                        "exp3",
+                        "exp4"
+                      ]
+                    },
+                    "distribution": "start",
+                    "alignment": "stretch"
+                  }
+                }
+              },
+              {
+                "id": "header",
+                "component": {
+                  "Text": {
+                    "text": {
+                      "literalString": "Sequential Career Timeline"
+                    },
+                    "usageHint": "h2"
+                  }
+                }
+              },
+              {
+                "id": "exp1",
+                "component": {
+                  "ExperienceCard": {
+                    "company": "Google Cloud",
+                    "role": "Outbound Product Manager, Cloud AI",
+                    "period": "Nov 2025 – Present",
+                    "logo": "google",
+                    "color": "#4285F4",
+                    "highlights": [
+                      "Leading vision and strategy for the AI Agents Enablement Center of Excellence.",
+                      "Co-authored global 'Intro to Agents' whitepaper (1.5M+ attendees).",
+                      "Drove adoption of the 'Build Agentic Workflows' offer on go/sell-services."
+                    ],
+                    "impact": "Scaled Agentic AI enablement to 1.5M+ developers and secured multi-million dollar commitments for Gemini throughput."
+                  }
+                }
+              },
+              {
+                "id": "exp2",
+                "component": {
+                  "ExperienceCard": {
+                    "company": "Google Cloud",
+                    "role": "Senior AI Consultant, PSO",
+                    "period": "Jun 2023 – Nov 2025",
+                    "logo": "google",
+                    "color": "#34A853",
+                    "highlights": [
+                      "NBC Olympic Concierge: Lead technical consultant for a GenAI solution serving 40M viewers.",
+                      "WBD Translation & Caption AI: Owned technical delivery for STT pipelines.",
+                      "Wayfair Agentspace: Led technical delivery for Project Bozeman (10+ connectors)."
+                    ],
+                    "impact": "Delivered sub-second latency for 90M+ Olympic queries and secured $1.3M in Vertex AI revenue."
+                  }
+                }
+              },
+              {
+                "id": "exp3",
+                "component": {
+                  "ExperienceCard": {
+                    "company": "Amazon Web Services",
+                    "role": "Senior Cloud Architect",
+                    "period": "May 2020 – May 2021",
+                    "logo": "aws",
+                    "color": "#FF9900",
+                    "highlights": [
+                      "Designed and deployed large-scale cloud architectures for enterprise clients.",
+                      "Built distributed microservices with TypeScript and AWS CDK.",
+                      "Administered AWS Well-Architected Framework reviews."
+                    ],
+                    "impact": "Modernized legacy infrastructures for Fortune 500 clients into highly available AWS architectures."
+                  }
+                }
+              },
+              {
+                "id": "exp4",
+                "component": {
+                  "ExperienceCard": {
+                    "company": "Accenture",
+                    "role": "Senior Manager, Cloud Strategy",
+                    "period": "Nov 2010 – May 2020",
+                    "logo": "accenture",
+                    "color": "#A100FF",
+                    "highlights": [
+                      "Lead, Cloud Strategy & Data Analytics (10-Year Tenure).",
+                      "Sold $10M+ in delivery work; generated $25M in pre-sales pipeline.",
+                      "Managed career growth for 5 direct reports."
+                    ],
+                    "impact": "Generated $25M in pre-sales pipeline and successfully delivered $10M+ in cloud modernization services."
+                  }
+                }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  },
+  {
+    "sequence": 52,
+    "timestamp": "2026-01-27T02:45:41.052Z",
+    "direction": "SERVER_TO_CLIENT",
+    "endpoint": "/api/chat-with-intent",
+    "data": {
+      "description": "Combined intent detection and response in single LLM call",
+      "intent": "speaker",
+      "keywords": "Cloud Next, ADK Summit, speaking engagements, keynotes",
+      "responseText": "Enrique is a recognized speaker at industry events, including Google Cloud Next and the ADK Summit, where he shares insights on cloud AI and advanced architectures."
+    }
+  },
+  {
+    "sequence": 53,
+    "timestamp": "2026-01-27T02:45:41.060Z",
+    "direction": "CLIENT_TO_SERVER",
+    "endpoint": "/a2ui-agent/a2a/query",
+    "data": {
+      "description": "Browser client requesting A2UI content generation",
+      "requestBody": {
+        "message": "speaker:Cloud Next, ADK Summit, speaking engagements, keynotes",
+        "session_id": "session_1769481334260_5wove719ns9",
+        "extensions": [
+          "https://a2ui.org/a2a-extension/a2ui/v0.8"
+        ]
+      }
+    }
+  },
+  {
+    "sequence": 54,
+    "timestamp": "2026-01-27T02:45:45.001Z",
+    "direction": "SERVER_TO_CLIENT",
+    "endpoint": "/a2ui-agent/a2a/query",
+    "data": {
+      "description": "Sending A2UI JSON payload to browser for rendering",
+      "format": "speaker",
+      "surfaceId": "portfolioContent",
+      "source": {
+        "provider": "Enrique K Chan Portfolio",
+        "title": "Enrique K Chan Portfolio",
+        "url": "https://enriquekchan.com/"
+      },
+      "a2uiMessageCount": 2,
+      "a2uiPayload": [
+        {
+          "beginRendering": {
+            "surfaceId": "portfolioContent",
+            "root": "mainColumn"
+          }
+        },
+        {
+          "surfaceUpdate": {
+            "surfaceId": "portfolioContent",
+            "components": [
+              {
+                "id": "mainColumn",
+                "component": {
+                  "Column": {
+                    "children": {
+                      "explicitList": [
+                        "header",
+                        "speakerGrid"
+                      ]
+                    },
+                    "distribution": "start",
+                    "alignment": "stretch"
+                  }
+                }
+              },
+              {
+                "id": "header",
+                "component": {
+                  "Text": {
+                    "text": {
+                      "literalString": "Global Speaking Engagements"
+                    },
+                    "usageHint": "h2"
+                  }
+                }
+              },
+              {
+                "id": "speakerGrid",
+                "component": {
+                  "Row": {
+                    "children": {
+                      "explicitList": [
+                        "s1",
+                        "s2",
+                        "s3",
+                        "s4"
+                      ]
+                    },
+                    "distribution": "start",
+                    "alignment": "stretch"
+                  }
+                }
+              },
+              {
+                "id": "s1",
+                "component": {
+                  "Flashcard": {
+                    "front": "Google Cloud Next '25\nLas Vegas/San Francisco",
+                    "back": "Solutions Talk:\nArchitecting GenAI Agents\nEnd-to-end lifecycle of agentic systems from LLMOps to production",
+                    "category": "Conference"
+                  }
+                }
+              },
+              {
+                "id": "s2",
+                "component": {
+                  "Flashcard": {
+                    "front": "Google Cloud Next '25\nLas Vegas/San Francisco",
+                    "back": "Booth Lead - AI Agents\nFacilitated 1:1 coaching and demoed agentic capabilities to 1,000+ partners and attendees",
+                    "category": "Conference"
+                  }
+                }
+              },
+              {
+                "id": "s3",
+                "component": {
+                  "Flashcard": {
+                    "front": "Google ADK Summit\nInternal Google Event",
+                    "back": "Agentic Design Frameworks\nInternal agentic design frameworks and ADK integrations.",
+                    "category": "Summit"
+                  }
+                }
+              },
+              {
+                "id": "s4",
+                "component": {
+                  "Flashcard": {
+                    "front": "Advent of Agents\nOnline Event",
+                    "back": "Why 80% of AI Agents Fail\nCloud API Registry and ADK Integration for reliable agentic workflows.",
+                    "category": "Webinar"
+                  }
+                }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  }
+]

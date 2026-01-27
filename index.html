@@ -1,0 +1,1218 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>Enrique K Chan | Portfolio Agent</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;600&family=Google+Sans+Text:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Symbols+Outlined"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      :root {
+        --sidebar-bg: #1e1f20;
+        --sidebar-hover: rgba(255, 255, 255, 0.05);
+        --sidebar-text: #e3e3e3;
+        --sidebar-text-secondary: #9aa0a6;
+        --main-bg: #0a0a0c;
+        --chat-bg: #1e1f20;
+        --input-bg: rgba(30, 31, 32, 0.8);
+        --border-color: rgba(255, 255, 255, 0.08);
+        --accent-blue: #8ab4f8;
+        --accent-purple: #c58af9;
+        --text-primary: #e3e3e3;
+        --text-secondary: #9aa0a6;
+        --gemini-gradient: linear-gradient(135deg, #4285f4 0%, #8ab4f8 50%, #c58af9 100%);
+        --glass-bg: rgba(30, 31, 32, 0.7);
+        --glass-border: rgba(255, 255, 255, 0.1);
+      }
+
+      body.light-mode {
+        --sidebar-bg: #f8f9fa;
+        --sidebar-hover: rgba(0, 0, 0, 0.03);
+        --sidebar-text: #202124;
+        --sidebar-text-secondary: #5f6368;
+        --main-bg: #ffffff;
+        --chat-bg: #f8f9fa;
+        --input-bg: #f1f3f4;
+        --border-color: #dadce0;
+        --accent-blue: #1a73e8;
+        --accent-purple: #9334e6;
+        --text-primary: #202124;
+        --text-secondary: #5f6368;
+        --gemini-gradient: linear-gradient(135deg, #1a73e8 0%, #4285f4 50%, #9334e6 100%);
+        --glass-bg: rgba(248, 249, 250, 0.8);
+        --glass-border: rgba(0, 0, 0, 0.1);
+      }
+      body {
+        font-family: "Google Sans Text", "Google Sans", -apple-system, BlinkMacSystemFont, sans-serif;
+        background: var(--main-bg);
+        color: var(--text-primary);
+        height: 100vh;
+        overflow: hidden;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      .app-container {
+        display: flex;
+        height: 100vh;
+        position: relative;
+      }
+
+      /* Sidebar */
+      .sidebar {
+        width: 280px;
+        background: var(--sidebar-bg);
+        display: flex;
+        flex-direction: column;
+        border-right: 1px solid var(--border-color);
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        z-index: 10;
+      }
+
+      .sidebar-header {
+        padding: 24px 16px;
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+      }
+
+      .sidebar-header-row {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .sidebar-logo {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 18px;
+        font-weight: 500;
+        color: var(--sidebar-text);
+        letter-spacing: -0.2px;
+      }
+
+      .sidebar-logo .gemini-icon {
+        width: 32px;
+        height: 32px;
+        background: var(--gemini-gradient);
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 4px 12px rgba(66, 133, 244, 0.3);
+      }
+
+      .sidebar-logo .gemini-icon span {
+        font-size: 16px;
+        color: white;
+      }
+
+      .new-chat-btn {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 12px 16px;
+        margin: 8px 12px;
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid var(--border-color);
+        border-radius: 14px;
+        color: var(--sidebar-text);
+        cursor: pointer;
+        font-size: 14px;
+        font-family: inherit;
+        font-weight: 500;
+        transition: all 0.2s;
+      }
+
+      .new-chat-btn:hover {
+        background: var(--sidebar-hover);
+        border-color: rgba(255, 255, 255, 0.2);
+        transform: translateY(-1px);
+      }
+
+      .sidebar-section {
+        padding: 8px 0;
+      }
+
+      .sidebar-section-title {
+        padding: 8px 16px;
+        font-size: 11px;
+        font-weight: 600;
+        color: var(--sidebar-text-secondary);
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        opacity: 0.6;
+      }
+
+      .sidebar-item {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 10px 16px;
+        color: var(--sidebar-text);
+        cursor: pointer;
+        font-size: 14px;
+        transition: all 0.2s;
+        border-radius: 0 20px 20px 0;
+        margin-right: 12px;
+      }
+
+      .sidebar-item:hover {
+        background: var(--sidebar-hover);
+        color: white;
+      }
+
+      .sidebar-item.active {
+        background: rgba(138, 180, 248, 0.1);
+        color: var(--accent-blue);
+      }
+
+      .sidebar-item.active .material-symbols-outlined {
+        color: var(--accent-blue);
+      }
+
+      .sidebar-item .material-symbols-outlined {
+        font-size: 20px;
+        color: var(--sidebar-text-secondary);
+        transition: color 0.2s;
+      }
+
+      .sidebar-spacer {
+        flex: 1;
+      }
+
+      .sidebar-footer {
+        padding: 16px;
+        border-top: 1px solid var(--border-color);
+      }
+
+      .user-profile {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 8px;
+        border-radius: 8px;
+        cursor: pointer;
+      }
+
+      .user-profile:hover {
+        background: var(--sidebar-hover);
+      }
+
+      .user-avatar {
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        background: #5f6368;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 14px;
+        font-weight: 500;
+      }
+
+      .user-info {
+        flex: 1;
+      }
+
+      .user-name {
+        font-size: 14px;
+        font-weight: 500;
+      }
+
+      .user-email {
+        font-size: 12px;
+        color: var(--sidebar-text-secondary);
+      }
+
+      /* Main Content */
+      .main-content {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        background: var(--main-bg);
+        position: relative;
+      }
+
+      /* Animated background gradient or subtle effect */
+      .main-content::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 300px;
+        background: radial-gradient(circle at top left, rgba(66, 133, 244, 0.05) 0%, transparent 70%);
+        pointer-events: none;
+      }
+
+      .main-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 16px 24px;
+        border-bottom: 1px solid var(--border-color);
+        backdrop-filter: blur(10px);
+        background: rgba(10, 10, 12, 0.8);
+        z-index: 5;
+      }
+
+      .model-selector {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 16px;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid var(--border-color);
+        border-radius: 12px;
+        cursor: pointer;
+        font-size: 14px;
+        font-weight: 500;
+        transition: all 0.2s;
+      }
+
+      .model-selector:hover {
+        background: rgba(255, 255, 255, 0.08);
+        border-color: rgba(255, 255, 255, 0.2);
+      }
+
+      .header-actions {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .header-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 36px;
+        height: 36px;
+        border-radius: 10px;
+        background: transparent;
+        border: 1px solid transparent;
+        color: var(--text-secondary);
+        cursor: pointer;
+        transition: all 0.2s;
+      }
+
+      .header-btn:hover {
+        background: rgba(255, 255, 255, 0.05);
+        color: white;
+        border-color: var(--border-color);
+      }
+
+      /* Chat Area */
+      .chat-area {
+        flex: 1;
+        overflow-y: auto;
+        padding: 40px 24px;
+        display: flex;
+        flex-direction: column;
+        gap: 32px;
+        scroll-behavior: smooth;
+      }
+
+      .welcome-screen {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+        text-align: center;
+        gap: 24px;
+        max-width: 800px;
+        margin: 0 auto;
+        padding-bottom: 60px;
+      }
+
+      .welcome-logo {
+        width: 64px;
+        height: 64px;
+        background: var(--gemini-gradient);
+        border-radius: 18px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 8px 32px rgba(66, 133, 244, 0.3);
+        margin-bottom: 8px;
+      }
+
+      .welcome-logo .material-symbols-outlined {
+        font-size: 32px;
+        color: white;
+      }
+
+      .welcome-title {
+        font-size: 40px;
+        font-weight: 500;
+        color: white;
+        letter-spacing: -1px;
+      }
+
+      .welcome-subtitle {
+        font-size: 18px;
+        color: var(--text-secondary);
+        max-width: 500px;
+        line-height: 1.5;
+        margin-bottom: 12px;
+      }
+
+      .suggestion-chips {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        justify-content: center;
+        margin-top: 20px;
+      }
+
+      .suggestion-chip {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        padding: 14px 20px;
+        background: rgba(255, 255, 255, 0.03);
+        border: 1px solid var(--border-color);
+        border-radius: 20px;
+        color: var(--text-primary);
+        cursor: pointer;
+        font-size: 14px;
+        font-weight: 500;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      .suggestion-chip:hover {
+        background: rgba(255, 255, 255, 0.07);
+        border-color: rgba(255, 255, 255, 0.2);
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+      }
+
+      .suggestion-chip .material-symbols-outlined {
+        font-size: 20px;
+        color: var(--accent-blue);
+      }
+
+      /* Messages */
+      .message {
+        display: flex;
+        gap: 20px;
+        max-width: 850px;
+        margin: 0 auto;
+        width: 100%;
+        animation: fadeIn 0.4s ease-out;
+      }
+
+      @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(10px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+
+      .message-avatar {
+        width: 36px;
+        height: 36px;
+        border-radius: 12px;
+        flex-shrink: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 4px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      }
+
+      .message.user .message-avatar {
+        background: #5f6368;
+        font-size: 14px;
+        font-weight: 600;
+        color: white;
+      }
+
+      .message.assistant .message-avatar {
+        background: var(--gemini-gradient);
+      }
+
+      .message.assistant .message-avatar .material-symbols-outlined {
+        font-size: 20px;
+        color: white;
+      }
+
+      .message-content {
+        flex: 1;
+        position: relative;
+      }
+
+      .message-sender {
+        font-size: 13px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        margin-bottom: 8px;
+        color: var(--text-secondary);
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .message-text {
+        font-size: 16px;
+        line-height: 1.7;
+        color: var(--text-primary);
+        background: rgba(255, 255, 255, 0.03);
+        padding: 16px 20px;
+        border-radius: 20px;
+        border: 1px solid var(--border-color);
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        backdrop-filter: blur(8px);
+      }
+
+      .message.user .message-text {
+        background: rgba(66, 133, 244, 0.1);
+        border-color: rgba(66, 133, 244, 0.2);
+        margin-left: auto;
+        max-width: max-content;
+      }
+
+      .message-text p {
+        margin-bottom: 12px;
+      }
+
+      .message-text p:last-child {
+        margin-bottom: 0;
+      }
+
+      .message-text strong {
+        font-weight: 600;
+        color: var(--text-primary);
+      }
+
+      .message-text em {
+        font-style: italic;
+      }
+
+      .message-text code {
+        background: rgba(255, 255, 255, 0.1);
+        padding: 2px 6px;
+        border-radius: 4px;
+        font-family: 'Roboto Mono', monospace;
+        font-size: 0.9em;
+      }
+
+      .message-text ul,
+      .message-text ol {
+        margin: 8px 0;
+        padding-left: 24px;
+      }
+
+      .message-text li {
+        margin-bottom: 4px;
+      }
+
+      .message-text br {
+        display: block;
+        content: "";
+        margin-top: 4px;
+      }
+
+      /* A2UI Container for inline components */
+      .a2ui-container {
+        margin-top: 20px;
+        padding: 24px;
+        background: rgba(255, 255, 255, 0.02);
+        border-radius: 24px;
+        border: 1px solid var(--border-color);
+        backdrop-filter: blur(4px);
+      }
+
+      /* Source attribution styling */
+      .source-attribution {
+        margin-top: 16px;
+        padding-top: 10px;
+        border-top: 1px solid var(--border-color);
+        font-size: 11px;
+        color: var(--text-secondary);
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+
+      .source-attribution .source-label {
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        opacity: 0.5;
+      }
+
+      .source-attribution .source-link {
+        color: var(--accent-blue);
+        text-decoration: none;
+        transition: all 0.2s;
+        font-weight: 500;
+      }
+
+      .source-attribution .source-link:hover {
+        opacity: 0.8;
+        text-decoration: underline;
+      }
+
+      /* Processing placeholder */
+      .processing-card {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        padding: 20px;
+        background: rgba(255, 255, 255, 0.03);
+        border-radius: 16px;
+        border: 1px dashed var(--border-color);
+        margin-top: 16px;
+      }
+
+      .processing-card .spinner {
+        width: 24px;
+        height: 24px;
+        border: 2px solid var(--border-color);
+        border-top-color: var(--accent-blue);
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+      }
+
+      @keyframes spin {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+
+      .processing-card .text {
+        color: var(--text-secondary);
+        font-size: 14px;
+      }
+
+      /* Input Area */
+      .input-area {
+        padding: 16px 24px 24px;
+        border-top: 1px solid var(--border-color);
+      }
+
+      .input-container {
+        max-width: 800px;
+        margin: 0 auto;
+      }
+
+      .input-wrapper {
+        display: flex;
+        align-items: flex-end;
+        gap: 12px;
+        padding: 12px 16px;
+        background: var(--input-bg);
+        border-radius: 24px;
+        border: 1px solid var(--border-color);
+      }
+
+      .input-wrapper:focus-within {
+        border-color: var(--accent-blue);
+      }
+
+      .input-actions-left {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+      }
+
+      .input-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        background: transparent;
+        border: none;
+        color: var(--text-secondary);
+        cursor: pointer;
+        transition: background 0.2s;
+      }
+
+      .input-btn:hover {
+        background: var(--sidebar-hover);
+      }
+
+      .chat-input {
+        flex: 1;
+        background: transparent;
+        border: none;
+        outline: none;
+        color: var(--text-primary);
+        font-size: 15px;
+        font-family: inherit;
+        resize: none;
+        min-height: 24px;
+        max-height: 200px;
+        line-height: 1.5;
+      }
+
+      .chat-input::placeholder {
+        color: var(--text-secondary);
+      }
+
+      .send-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        background: var(--accent-blue);
+        border: none;
+        color: #1e1f20;
+        cursor: pointer;
+        transition: opacity 0.2s;
+      }
+
+      .send-btn:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+      }
+
+      .input-footer {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 4px;
+        margin-top: 12px;
+        font-size: 12px;
+        color: var(--text-secondary);
+      }
+
+      /* Flashcard Row */
+      .flashcard-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 16px;
+        margin-top: 16px;
+      }
+
+      /* Audio/Video Card */
+      .media-card {
+        margin-top: 16px;
+        padding: 16px;
+        background: var(--chat-bg);
+        border-radius: 12px;
+        border: 1px solid var(--border-color);
+      }
+
+      .media-card-header {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 12px;
+      }
+
+      .media-card-icon {
+        width: 40px;
+        height: 40px;
+        border-radius: 8px;
+        background: var(--gemini-gradient);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .media-card-icon .material-symbols-outlined {
+        font-size: 24px;
+        color: white;
+      }
+
+      .media-card-title {
+        font-size: 16px;
+        font-weight: 500;
+      }
+
+      .media-card audio,
+      .media-card video {
+        width: 100%;
+        border-radius: 8px;
+        margin-top: 8px;
+      }
+
+      /* Typing indicator */
+      .typing-indicator {
+        display: flex;
+        gap: 4px;
+        padding: 8px 0;
+      }
+
+      .typing-indicator span {
+        width: 8px;
+        height: 8px;
+        background: var(--text-secondary);
+        border-radius: 50%;
+        animation: typing 1.4s infinite ease-in-out;
+      }
+
+      .typing-indicator span:nth-child(1) {
+        animation-delay: -0.32s;
+      }
+
+      .typing-indicator span:nth-child(2) {
+        animation-delay: -0.16s;
+      }
+
+      @keyframes typing {
+        0%,
+        80%,
+        100% {
+          transform: scale(0.8);
+          opacity: 0.5;
+        }
+        40% {
+          transform: scale(1);
+          opacity: 1;
+        }
+      }
+
+      /* Hide welcome screen when there are messages */
+      .chat-area:has(.message) .welcome-screen {
+        display: none;
+      }
+
+      /* JSON Viewer Styles */
+      .json-toggle-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 28px;
+        height: 28px;
+        border-radius: 6px;
+        background: transparent;
+        border: 1px solid var(--border-color);
+        color: var(--text-secondary);
+        cursor: pointer;
+        transition: all 0.2s;
+        margin-left: 8px;
+        vertical-align: middle;
+      }
+
+      .json-toggle-btn:hover {
+        background: var(--sidebar-hover);
+        color: var(--accent-blue);
+        border-color: var(--accent-blue);
+      }
+
+      .json-toggle-btn.active {
+        background: rgba(138, 180, 248, 0.1);
+        color: var(--accent-blue);
+        border-color: var(--accent-blue);
+      }
+
+      .json-viewer {
+        display: none;
+        margin-top: 16px;
+        padding: 12px;
+        background: #000;
+        border: 1px solid var(--border-color);
+        border-radius: 8px;
+        font-family: 'Roboto Mono', monospace;
+        font-size: 12px;
+        color: #8ab4f8;
+        overflow-x: auto;
+        white-space: pre-wrap;
+        word-break: break-all;
+      }
+
+      .json-viewer.show {
+        display: block;
+      }
+
+      .message-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 8px;
+      }
+
+      /* A2UI Badge and Links */
+      .a2ui-badge {
+        margin-left: auto;
+      }
+
+      .a2ui-badge-icon {
+        display: inline-block;
+        padding: 3px 8px;
+        background: linear-gradient(135deg, rgba(197, 138, 249, 0.2) 0%, rgba(138, 180, 248, 0.2) 100%);
+        border: 1px solid rgba(197, 138, 249, 0.4);
+        border-radius: 4px;
+        font-size: 10px;
+        font-weight: 600;
+        color: #c58af9;
+        letter-spacing: 0.5px;
+      }
+
+      .a2ui-links {
+        display: flex;
+        gap: 6px;
+        padding: 6px 8px;
+        margin-top: 8px;
+        background: rgba(197, 138, 249, 0.08);
+        border-radius: 8px;
+        border: 1px solid rgba(197, 138, 249, 0.15);
+      }
+
+      .a2ui-link {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 4px;
+        padding: 6px 8px;
+        background: transparent;
+        border-radius: 6px;
+        color: var(--sidebar-text-secondary);
+        text-decoration: none;
+        font-size: 11px;
+        transition: all 0.2s;
+      }
+
+      .a2ui-link:hover {
+        background: rgba(197, 138, 249, 0.15);
+        color: #c58af9;
+      }
+
+      .a2ui-link .material-symbols-outlined {
+        font-size: 14px;
+      }
+
+      /* Login Screen */
+      #login-screen {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: var(--main-bg);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 1000;
+      }
+
+      .login-container {
+        text-align: center;
+      }
+
+      .login-card {
+        background: var(--sidebar-bg);
+        border: 1px solid var(--border-color);
+        border-radius: 16px;
+        padding: 48px;
+        max-width: 400px;
+      }
+
+      .login-logo {
+        width: 80px;
+        height: 80px;
+        margin: 0 auto 24px;
+        background: var(--gemini-gradient);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .login-logo .material-symbols-outlined {
+        font-size: 40px;
+        color: white;
+      }
+
+      .login-card h1 {
+        font-size: 24px;
+        font-weight: 500;
+        margin-bottom: 12px;
+        background: var(--gemini-gradient);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+
+      .login-subtitle {
+        color: var(--text-secondary);
+        margin-bottom: 8px;
+        font-size: 14px;
+      }
+
+      .login-restriction {
+        color: var(--accent-blue);
+        font-size: 12px;
+        margin-bottom: 24px;
+      }
+
+      .google-signin-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+        width: 100%;
+        padding: 12px 24px;
+        background: white;
+        border: none;
+        border-radius: 8px;
+        font-size: 14px;
+        font-weight: 500;
+        color: #1f1f1f;
+        cursor: pointer;
+        transition: background 0.2s, box-shadow 0.2s;
+        font-family: inherit;
+      }
+
+      .google-signin-btn:hover {
+        background: #f8f9fa;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+      }
+
+      .google-signin-btn:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+      }
+
+      .login-error {
+        color: #f87171;
+        font-size: 13px;
+        margin-top: 16px;
+        min-height: 20px;
+      }
+
+      /* Sign out button in header */
+      #sign-out-btn {
+        font-size: 12px;
+        padding: 6px 12px;
+        background: transparent;
+        border: 1px solid var(--border-color);
+        border-radius: 16px;
+        color: var(--text-secondary);
+        cursor: pointer;
+        transition: background 0.2s;
+      }
+
+      #sign-out-btn:hover {
+        background: var(--sidebar-hover);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="app-container" id="app-container" style="display: flex;">
+      <!-- Sidebar -->
+      <aside class="sidebar">
+        <div class="sidebar-header">
+          <div class="sidebar-header-row">
+            <div class="sidebar-logo">
+              <div class="gemini-icon">
+                <span>E</span>
+              </div>
+              <span>Enrique K Chan</span>
+            </div>
+            <!-- A2UI Integration Badge -->
+            <div class="a2ui-badge" title="Powered by A2UI">
+              <span class="a2ui-badge-icon">A2UI</span>
+            </div>
+          </div>
+          <!-- A2UI Developer Links -->
+          <div class="a2ui-links">
+            <a href="https://www.linkedin.com/in/enriquechan/" class="a2ui-link" target="_blank">
+              <span class="material-symbols-outlined">link</span>
+              LinkedIn
+            </a>
+            <a href="https://medium.com/@enriq" class="a2ui-link" target="_blank">
+              <span class="material-symbols-outlined">article</span>
+              Medium
+            </a>
+          </div>
+        </div>
+
+        <button class="new-chat-btn" id="new-chat-btn">
+          <span class="material-symbols-outlined">add</span>
+          New chat
+        </button>
+
+        <div class="sidebar-section">
+          <div class="sidebar-section-title">Recent</div>
+          <div class="sidebar-item active">
+            <span class="material-symbols-outlined">chat_bubble_outline</span>
+            <span>Olympic AI Chatbot</span>
+          </div>
+          <div class="sidebar-item">
+            <span class="material-symbols-outlined">chat_bubble_outline</span>
+            <span>Agentic Workflows</span>
+          </div>
+          <div class="sidebar-item">
+            <span class="material-symbols-outlined">chat_bubble_outline</span>
+            <span>Massive Scale AI</span>
+          </div>
+        </div>
+
+        <div class="sidebar-section">
+          <div class="sidebar-section-title">Gems</div>
+          <div class="sidebar-item" id="gem-historian" style="cursor: pointer;">
+            <span class="material-symbols-outlined">history_edu</span>
+            <span>Career Historian</span>
+          </div>
+          <div class="sidebar-item" id="gem-matcher" style="cursor: pointer;">
+            <span class="material-symbols-outlined">target</span>
+            <span>Skill Matcher</span>
+          </div>
+          <div class="sidebar-item" id="gem-analyzer" style="cursor: pointer;">
+            <span class="material-symbols-outlined">analytics</span>
+            <span>Fit Analyzer</span>
+          </div>
+          <div class="sidebar-item" id="gem-media" style="cursor: pointer;">
+            <span class="material-symbols-outlined">play_circle</span>
+            <span>Media Hub</span>
+          </div>
+          <div class="sidebar-item" id="gem-blogs" style="cursor: pointer;">
+            <span class="material-symbols-outlined">article</span>
+            <span>Blog Reader</span>
+          </div>
+          <div class="sidebar-item" id="gem-awards" style="cursor: pointer;">
+            <span class="material-symbols-outlined">emoji_events</span>
+            <span>Awards</span>
+          </div>
+          <div class="sidebar-item" id="gem-certs" style="cursor: pointer;">
+            <span class="material-symbols-outlined">verified</span>
+            <span>Certifications</span>
+          </div>
+          <div class="sidebar-item" id="gem-speaker" style="cursor: pointer;">
+            <span class="material-symbols-outlined">mic_external_on</span>
+            <span>Speaking</span>
+          </div>
+          <div class="sidebar-item" id="gem-testimonials" style="cursor: pointer;">
+            <span class="material-symbols-outlined">favorite</span>
+            <span>Testimonials</span>
+          </div>
+        </div>
+
+        <div class="sidebar-spacer"></div>
+
+
+        <div class="sidebar-footer">
+          <div class="user-profile">
+            <div class="user-avatar">E</div>
+            <div class="user-info">
+              <div class="user-name">Enrique K Chan</div>
+              <div class="user-email">Chat with my portfolio</div>
+            </div>
+            <span class="material-symbols-outlined">more_vert</span>
+          </div>
+        </div>
+      </aside>
+
+      <!-- Main Content -->
+      <main class="main-content">
+        <header class="main-header">
+          <div class="model-selector">
+            <span class="material-symbols-outlined">auto_awesome</span>
+            <span>Gemini 3 Flash</span>
+            <span class="material-symbols-outlined">expand_more</span>
+          </div>
+          <div class="header-actions">
+            <button id="theme-toggle" class="header-btn" title="Toggle Light/Dark Mode">
+              <span class="material-symbols-outlined">light_mode</span>
+            </button>
+            <button class="header-btn">
+              <span class="material-symbols-outlined">history</span>
+            </button>
+            <button class="header-btn">
+              <span class="material-symbols-outlined">more_vert</span>
+            </button>
+          </div>
+        </header>
+
+        <div class="chat-area" id="chatArea">
+          <div class="welcome-screen">
+            <div class="welcome-logo">
+              <span class="material-symbols-outlined">auto_awesome</span>
+            </div>
+            <h1 class="welcome-title">I'm Enrique's AI Agent</h1>
+            <p class="welcome-subtitle">
+              Helping you explore Enrique's career in AI, Cloud, and Data through interactive experiences.
+            </p>
+            <div class="suggestion-chips">
+              <div class="suggestion-chip" data-prompt="Show me Enrique's career highlights as a sequential timeline">
+                <span class="material-symbols-outlined">history_edu</span>
+                <span>Career Historian</span>
+              </div>
+              <div class="suggestion-chip" data-prompt="How do Enrique's skills match a Senior AI role?">
+                <span class="material-symbols-outlined">target</span>
+                <span>Skill Matcher</span>
+              </div>
+              <div class="suggestion-chip" data-prompt="Analyze Enrique's fit for an AI Lead role">
+                <span class="material-symbols-outlined">analytics</span>
+                <span>Fit Analyzer</span>
+              </div>
+              <div class="suggestion-chip" data-prompt="Show me his top YouTube videos">
+                <span class="material-symbols-outlined">play_circle</span>
+                <span>Media Hub</span>
+              </div>
+              <div class="suggestion-chip" data-prompt="Show me some of his Medium blog posts">
+                <span class="material-symbols-outlined">article</span>
+                <span>Blog Reader</span>
+              </div>
+              <div class="suggestion-chip" data-prompt="List Enrique's major awards and hackathon wins">
+                <span class="material-symbols-outlined">emoji_events</span>
+                <span>Awards</span>
+              </div>
+              <div class="suggestion-chip" data-prompt="Show Enrique's cloud certifications">
+                <span class="material-symbols-outlined">verified</span>
+                <span>Certifications</span>
+              </div>
+              <div class="suggestion-chip" data-prompt="Show Enrique's speaking engagements and keynotes">
+                <span class="material-symbols-outlined">mic_external_on</span>
+                <span>Speaking</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="input-area">
+          <div class="input-container">
+            <div class="input-wrapper">
+              <div class="input-actions-left">
+                <button class="input-btn">
+                  <span class="material-symbols-outlined">add_circle</span>
+                </button>
+              </div>
+              <textarea
+                class="chat-input"
+                id="chatInput"
+                placeholder="Message Gemini..."
+                rows="1"
+              ></textarea>
+              <button class="input-btn">
+                <span class="material-symbols-outlined">mic</span>
+              </button>
+              <button class="send-btn" id="sendBtn" disabled>
+                <span class="material-symbols-outlined">arrow_upward</span>
+              </button>
+            </div>
+            <div class="input-footer">
+              <span>Gemini may display inaccurate info, including about people, so double-check its responses.</span>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
