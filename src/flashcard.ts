@@ -109,6 +109,35 @@ export class Flashcard extends LitElement {
       transform: rotateY(180deg);
     }
 
+    /* Light Mode Overrides */
+    :host-context(.light-mode) .flashcard-face {
+      background: white;
+      border-color: rgba(0, 0, 0, 0.1);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+      color: #1a1a1b;
+    }
+
+    :host-context(.light-mode) .flashcard-front {
+      background: linear-gradient(135deg, rgba(66, 133, 244, 0.05) 0%, rgba(139, 92, 246, 0.05) 100%);
+      border-top: 4px solid #4285F4;
+    }
+
+    :host-context(.light-mode) .flashcard-back {
+      background: linear-gradient(135deg, rgba(52, 168, 83, 0.05) 0%, rgba(16, 185, 129, 0.05) 100%);
+      border-top: 4px solid #34A853;
+    }
+
+    :host-context(.light-mode) .flashcard-content,
+    :host-context(.light-mode) .flashcard-hint {
+      color: #3c4043;
+    }
+
+    :host-context(.light-mode) .label-front,
+    :host-context(.light-mode) .label-back {
+      background: rgba(0, 0, 0, 0.05);
+      color: #5f6368;
+    }
+
     .flashcard-category {
       font-size: 11px;
       font-weight: 700;

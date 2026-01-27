@@ -122,19 +122,19 @@ _CERTIFICATIONS = [
     {
         "title": "Google Cloud Professional ML Engineer",
         "description": "Enterprise-grade ML and AI architecture on Vertex AI.",
-        "image": "/assets/certs.png",
+        "image": "/assets/gcp_logo.png",
         "url": "https://www.credential.net/profile/enriquekchan"
     },
     {
         "title": "Google Cloud Professional Cloud Architect",
         "description": "Designing and managing robust, secure, and scalable cloud solutions.",
-        "image": "/assets/certs.png",
+        "image": "/assets/gcp_logo.png",
         "url": "https://www.credential.net/profile/enriquekchan"
     },
     {
         "title": "AWS Certified Solutions Architect Professional",
         "description": "Designing distributed systems and applications on AWS.",
-        "image": "/assets/certs.png",
+        "image": "/assets/aws_logo.png",
         "url": "https://www.credly.com/users/enrique-chan"
     }
 ]
@@ -208,22 +208,40 @@ TESTIMONIALS = [
 
 _BLOGS = [
     {
+        "title": "How I Built a “Living” AI Portfolio in a few Hours",
+        "url": "https://medium.com/@enriq/how-i-built-a-living-ai-portfolio-in-a-few-hours-from-manual-updates-to-agentic-excellence-94d8fed86ca7",
+        "image": "/assets/blog-a2ui.png",
+        "description": "From Manual Updates to Agentic Excellence. How to use agents to build agents."
+    },
+    {
         "title": "Building the Future of Agentic Interfaces",
         "url": "https://medium.com/@enriq/building-the-future-of-agentic-interfaces-introducing-the-agent-ui-starter-pack-94d8fed86ca7",
         "image": "/assets/blog-a2ui.png",
         "description": "Introducing the Agent UI Starter Pack and the philosophy behind agentic design."
     },
     {
+        "title": "The Architect's Guide to the BigQuery AI Agent Ecosystem",
+        "url": "https://medium.com/@enriq/the-architects-guide-to-the-bigquery-ai-agent-ecosystem-what-to-recommend-and-when-f2b3e8c9d0a1",
+        "image": "/assets/blog-optimizer.png",
+        "description": "A comprehensive guide on what to recommend and when for enterprise data agents."
+    },
+    {
+        "title": "From OpenAI to Gemini Enterprise: Automating Agent Migration",
+        "url": "https://medium.com/@enriq/from-openai-to-gemini-enterprise-automating-agent-migration-with-antigravity-e3b8f7c6d5a4",
+        "image": "/assets/blog-rise.png",
+        "description": "Automating Agent Migration with Antigravity and Vertex AI."
+    },
+    {
         "title": "Introducing the Agent Optimizer",
         "url": "https://medium.com/@enriq/introducing-the-agent-optimizer-for-google-adk-3872856e6d7b",
         "image": "/assets/blog-optimizer.png",
-        "description": "A deep dive into optimizing agent performance for Google ADK."
+        "description": "Shifting agent development from trial-and-error to principled engineering."
     },
     {
-        "title": "The Rise of Agentic AI",
-        "url": "https://medium.com/@enriq",
+        "title": "3 Commands to Create, Deploy, and Register an ADK Agent",
+        "url": "https://medium.com/@enriq/3-commands-to-create-deploy-and-register-an-adk-agent-to-gemini-enterprise-d6c5b4a3e2f1",
         "image": "/assets/blog-rise.png",
-        "description": "Exploring how AI agents are moving from conversation to autonomous action."
+        "description": "The fastest path to production for Gemini Enterprise agents."
     }
 ]
 
@@ -235,6 +253,18 @@ _VIDEOS = [
         "description": "Enrique's keynote on the transition to agentic workflows."
     },
     {
+        "title": "The Ultimate Guide to AI Agent Quality",
+        "url": "https://www.youtube.com/watch?v=75aP8U-Qf6U",
+        "thumbnail": "https://img.youtube.com/vi/75aP8U-Qf6U/maxresdefault.jpg",
+        "description": "The 4 Pillars of Trust for enterprise AI agents."
+    },
+    {
+        "title": "Why 80% of AI Agents Fail (And How to Fix It)",
+        "url": "https://www.youtube.com/watch?v=Why-Agents-Fail",
+        "thumbnail": "https://img.youtube.com/vi/nZa5-WyN-rE/maxresdefault.jpg",
+        "description": "Identifying and overcoming the common pitfalls in agentic deployments."
+    },
+    {
         "title": "Advent of Agents Day 15 - A2UI",
         "url": "https://www.youtube.com/watch?v=ZMIAlxx-Jx4",
         "thumbnail": "https://img.youtube.com/vi/ZMIAlxx-Jx4/maxresdefault.jpg",
@@ -244,5 +274,38 @@ _VIDEOS = [
 
 PUBLICATIONS = [
     {"title": "Intro to Agents Whitepaper", "url": "https://www.kaggle.com/whitepaper-introduction-to-agents", "impact": "1.5M+ attendees"}
+]
+
+_GALLERY = [
+    {
+        "title": "NBC Olympic Concierge Architecture",
+        "image": "/assets/architecture.jpg",
+        "description": "High-fidelity architecture diagram for the OLI AI agent serving 40M viewers."
+    },
+    {
+        "title": "Cloud Tech Impact Award 2024",
+        "image": "/assets/award_gtm_2024.jpg",
+        "description": "Enrique receiving the GTM Cloud Regional Award for technical excellence."
+    },
+    {
+        "title": "Google Cloud Next '25 Session",
+        "image": "/assets/speaker.png",
+        "description": "Presenting 'Architecting GenAI Agents' at Google Cloud Next in Las Vegas."
+    },
+    {
+        "title": "Professional Certifications Wall",
+        "image": "/assets/certs.png",
+        "description": "A showcase of Enrique's 19x professional cloud certifications across Google, AWS, and Azure."
+    },
+    {
+        "title": "Enrique K Chan - AI Leadership",
+        "image": "/assets/hero.png",
+        "description": "Official leadership portrait for Enrique K Chan, Outbound PM at Google Cloud."
+    },
+    {
+        "title": "AIS Offsite Hackathon Victory",
+        "image": "/assets/awards.png",
+        "description": "Winning the 2025 Google AIS Offsite Hackathon with the 'Cards Against Humanity' agent."
+    }
 ]
 

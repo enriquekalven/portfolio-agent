@@ -18,10 +18,10 @@ from google import genai
 from google.genai import types
 
 # Import portfolio data
-from portfolio_data import PROFILE, EXPERIENCE, PROJECTS, SKILLS, CERTIFICATIONS, _CERTIFICATIONS, AWARDS, _AWARDS, PUBLICATIONS, _BLOGS, _VIDEOS, TESTIMONIALS, _SPEAKING
+from .portfolio_data import PROFILE, EXPERIENCE, PROJECTS, SKILLS, CERTIFICATIONS, _CERTIFICATIONS, AWARDS, _AWARDS, PUBLICATIONS, _BLOGS, _VIDEOS, TESTIMONIALS, _SPEAKING, _GALLERY
 
 # Import A2UI templates
-from a2ui_templates import get_system_prompt, SURFACE_ID
+from .a2ui_templates import get_system_prompt, SURFACE_ID
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
@@ -31,7 +31,7 @@ class LearningMaterialAgent:
     
     SUPPORTED_FORMATS = [
         "flashcards", "quiz", "podcast", "video", "image", "timeline", 
-        "video_cards", "blog_cards", "awards", "certs", "speaker", "testimonials"
+        "video_cards", "blog_cards", "awards", "certs", "speaker", "testimonials", "gallery"
     ]
     
     def __init__(self, model_id: str = "gemini-2.5-flash"):
@@ -89,7 +89,7 @@ CURRENT_TIMESTAMP: {time.time()}
         
         is_json_format = format_type in [
             "flashcards", "quiz", "image", "video", "timeline", 
-            "video_cards", "blog_cards", "awards", "certs", "speaker", "testimonials"
+            "video_cards", "blog_cards", "awards", "certs", "speaker", "testimonials", "gallery"
         ]
         
         # Simple non-streaming call for the tool-like behavior

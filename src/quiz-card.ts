@@ -75,6 +75,39 @@ export class QuizCard extends LitElement {
       backdrop-filter: blur(10px);
     }
 
+    /* Light Mode Overrides */
+    :host-context(.light-mode) .quiz-card {
+      background: white;
+      color: #1a1a1b;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+      border-color: rgba(0, 0, 0, 0.1);
+    }
+
+    :host-context(.light-mode) .option {
+      background: #f8f9fa;
+      border-color: #dadce0;
+      color: #3c4043;
+    }
+
+    :host-context(.light-mode) .option:hover:not(.disabled) {
+      background: #f1f3f4;
+      border-color: #bdc1c6;
+    }
+
+    :host-context(.light-mode) .option.selected {
+      background: rgba(66, 133, 244, 0.08);
+      border-color: #4285F4;
+    }
+
+    :host-context(.light-mode) .option-marker {
+      border-color: #dadce0;
+      color: #5f6368;
+    }
+
+    :host-context(.light-mode) .explanation {
+      color: #1a1a1b;
+    }
+
     .category {
       font-size: 11px;
       font-weight: 700;

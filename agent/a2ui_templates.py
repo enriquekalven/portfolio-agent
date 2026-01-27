@@ -147,8 +147,8 @@ TIMELINE_EXAMPLE = f"""
           }}
         }},
         {{
-          "id": "header",
-          "component": {{"Text": {{"text": {{"literalString": "Sequential Career Timeline"}}, "usageHint": "h2"}}}}
+            "id": "header",
+            "component": {{"Text": {{"text": {{"literalString": "Career Historian 📜"}}, "usageHint": "h2"}}}}
         }},
         {{
           "id": "exp1",
@@ -190,7 +190,7 @@ VIDEO_CARDS_EXAMPLE = f"""
         }},
         {{
             "id": "header",
-            "component": {{"Text": {{"text": {{"literalString": "Watch My AI Sessions"}}, "usageHint": "h2"}}}}
+            "component": {{"Text": {{"text": {{"literalString": "Cinema Hub 🎬"}}, "usageHint": "h2"}}}}
         }},
         {{
           "id": "videoGrid",
@@ -252,7 +252,7 @@ BLOG_CARDS_EXAMPLE = f"""
         }},
         {{
           "id": "header",
-          "component": {{"Text": {{"text": {{"literalString": "In Enrique's Stream: Medium"}}, "usageHint": "h2"}}}}
+          "component": {{"Text": {{"text": {{"literalString": "Insight Stream ✍️"}}, "usageHint": "h2"}}}}
         }},
         {{
           "id": "blogGrid",
@@ -326,7 +326,7 @@ AWARDS_CARDS_EXAMPLE = f"""
         }},
         {{
             "id": "header",
-            "component": {{"Text": {{"text": {{"literalString": "Key Industry Awards"}}, "usageHint": "h2"}}}}
+            "component": {{"Text": {{"text": {{"literalString": "Trophy Room 🏆"}}, "usageHint": "h2"}}}}
         }},
         {{
           "id": "awardGrid",
@@ -368,6 +368,56 @@ AWARDS_CARDS_EXAMPLE = f"""
 ]
 """
 
+# Gallery A2UI template
+GALLERY_CARDS_EXAMPLE = f"""
+[
+  {{"beginRendering": {{"surfaceId": "{SURFACE_ID}", "root": "mainColumn"}}}},
+  {{
+    "surfaceUpdate": {{
+      "surfaceId": "{SURFACE_ID}",
+      "components": [
+        {{
+          "id": "mainColumn",
+          "component": {{
+            "Column": {{
+              "children": {{"explicitList": ["header", "galleryGrid"]}},
+              "distribution": "start",
+              "alignment": "stretch"
+            }}
+          }}
+        }},
+        {{
+            "id": "header",
+            "component": {{"Text": {{"text": {{"literalString": "Hall of Mastery 🖼️"}}, "usageHint": "h2"}}}}
+        }},
+        {{
+          "id": "galleryGrid",
+          "component": {{
+            "Row": {{
+              "children": {{"explicitList": ["g1", "g2", "g3"]}},
+              "distribution": "start",
+              "alignment": "stretch"
+            }}
+          }}
+        }},
+        {{
+          "id": "g1",
+          "component": {{
+            "PortfolioCard": {{
+              "type": "project",
+              "title": "[IMAGE_TITLE]",
+              "description": "[IMAGE_DESCRIPTION]",
+              "image": "[IMAGE_PATH]"
+            }}
+          }}
+        }}
+        // Add g2, g3 pattern
+      ]
+    }}
+  }}
+]
+"""
+
 # Certifications A2UI template
 CERT_CARDS_EXAMPLE = f"""
 [
@@ -388,7 +438,7 @@ CERT_CARDS_EXAMPLE = f"""
         }},
         {{
             "id": "header",
-            "component": {{"Text": {{"text": {{"literalString": "Professional Certifications"}}, "usageHint": "h2"}}}}
+            "component": {{"Text": {{"text": {{"literalString": "Cloud Badge Wall ☁️"}}, "usageHint": "h2"}}}}
         }},
         {{
           "id": "certGrid",
@@ -450,7 +500,7 @@ SPEAKER_CARDS_EXAMPLE = f"""
         }},
         {{
             "id": "header",
-            "component": {{"Text": {{"text": {{"literalString": "Global Speaking Engagements"}}, "usageHint": "h2"}}}}
+            "component": {{"Text": {{"text": {{"literalString": "Stage Presence 🎤"}}, "usageHint": "h2"}}}}
         }},
         {{
           "id": "speakerGrid",
@@ -508,7 +558,7 @@ TESTIMONIALS_EXAMPLE = f"""
         }},
         {{
             "id": "header",
-            "component": {{"Text": {{"text": {{"literalString": "What People Say About Enrique"}}, "usageHint": "h2"}}}}
+            "component": {{"Text": {{"text": {{"literalString": "Googler Vibes ✨"}}, "usageHint": "h2"}}}}
         }},
         {{
           "id": "tGrid",
@@ -553,6 +603,7 @@ def get_system_prompt(format_type: str, portfolio_data: str, topic: str = "") ->
         "certs": CERT_CARDS_EXAMPLE,
         "speaker": SPEAKER_CARDS_EXAMPLE,
         "testimonials": TESTIMONIALS_EXAMPLE,
+        "gallery": GALLERY_CARDS_EXAMPLE,
     }
 
     example = examples.get(format_type.lower(), FLASHCARD_EXAMPLE)
@@ -791,6 +842,23 @@ Return A2UI JSON using 'Flashcard' components in a Row.
 
 A2UI JSON Template Example:
 {FLASHCARD_EXAMPLE}
+"""
+
+    if format_type.lower() == "gallery":
+        return f"""You are Enrique K Chan's Portfolio Agent.
+The user wants to see a visual gallery of Enrique's work, achievements, and events.
+
+## Enrique's Gallery Data
+{portfolio_data}
+
+## Your Task
+Return A2UI JSON with a Row of PortfolioCards.
+- Use type 'project' for these cards.
+- Each card should feature a title and a descriptive caption from the data.
+- Ensure you include high-signal visuals like the 'NBC Olympic Architecture' and 'Cloud Tech Impact Award'.
+
+A2UI JSON Template Example:
+{GALLERY_CARDS_EXAMPLE}
 """
 
     return f"""You are Enrique K Chan's Portfolio Agent.
