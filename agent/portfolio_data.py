@@ -309,3 +309,44 @@ _GALLERY = [
     }
 ]
 
+MATRIX = {
+    "title": "Strategic Integration Matrix: Agentic workflows",
+    "cells": [
+        {
+            "id": "cell1",
+            "phase": "Discovery Phase",
+            "role": "Context Injection",
+            "highlights": ["LLM Grounding", "Retrieval Augmented Generation (RAG)"],
+            "impact": "Foundational baseline for all enterprise agents.",
+            "color": "#4285F4",
+            "logo": "search"
+        },
+        {
+            "id": "cell2",
+            "phase": "Reasoning Phase",
+            "role": "Thought Chains",
+            "highlights": ["Self-Correction", "Multi-step Planning"],
+            "impact": "Enables agents to solve complex, non-linear problems.",
+            "color": "#34A853",
+            "logo": "psychology"
+        },
+        {
+            "id": "cell3",
+            "phase": "Action Phase",
+            "role": "Tool Execution",
+            "highlights": ["API Integration", "State Mutation"],
+            "impact": "Transition from 'talking' AI to 'doing' AI.",
+            "color": "#FBBC04",
+            "logo": "bolt"
+        },
+        {
+            "id": "cell4",
+            "phase": "Governance Phase",
+            "role": "Policy Guardrails",
+            "highlights": ["Verification", "Traceability"],
+            "impact": "Ensures safety and alignment at global scale.",
+            "color": "#EA4335",
+            "logo": "shield"
+        }
+    ]
+}

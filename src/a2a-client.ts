@@ -879,6 +879,128 @@ export class A2AClient {
           ],
         };
 
+      case "creative":
+        return {
+          format: "creative",
+          surfaceId,
+          a2ui: [
+            { beginRendering: { surfaceId, root: "matrixContainer" } },
+            {
+              surfaceUpdate: {
+                surfaceId,
+                components: [
+                  { id: "matrixContainer", component: { Card: { child: "matrixContent" } } },
+                  {
+                    id: "matrixContent",
+                    component: {
+                      Column: {
+                        children: { explicitList: ["matrixHeader", "matrixGrid"] },
+                        distribution: "start",
+                        alignment: "stretch",
+                      },
+                    },
+                  },
+                  {
+                    id: "matrixHeader",
+                    component: {
+                      Text: {
+                        text: { literalString: "Strategic Integration Matrix: Agentic workflows" },
+                        usageHint: "h2",
+                      },
+                    },
+                  },
+                  {
+                    id: "matrixGrid",
+                    component: {
+                      Column: {
+                        children: { explicitList: ["row1", "row2"] },
+                        distribution: "start",
+                        alignment: "stretch",
+                      },
+                    },
+                  },
+                  {
+                    id: "row1",
+                    component: {
+                      Row: {
+                        children: { explicitList: ["cell1", "cell2"] },
+                        distribution: "start",
+                        alignment: "stretch",
+                      },
+                    },
+                  },
+                  {
+                    id: "row2",
+                    component: {
+                      Row: {
+                        children: { explicitList: ["cell3", "cell4"] },
+                        distribution: "start",
+                        alignment: "stretch",
+                      },
+                    },
+                  },
+                  {
+                    id: "cell1",
+                    component: {
+                      ExperienceCard: {
+                        company: "Discovery Phase",
+                        role: "Context Injection",
+                        period: "High Signal",
+                        highlights: ["LLM Grounding", "Retrieval Augmented Generation (RAG)"],
+                        impact: "Foundational baseline for all enterprise agents.",
+                        color: "#4285F4",
+                        logo: "search"
+                      },
+                    },
+                  },
+                  {
+                    id: "cell2",
+                    component: {
+                      ExperienceCard: {
+                        company: "Reasoning Phase",
+                        role: "Thought Chains",
+                        period: "Active Logic",
+                        highlights: ["Self-Correction", "Multi-step Planning"],
+                        impact: "Enables agents to solve complex, non-linear problems.",
+                        color: "#34A853",
+                        logo: "psychology"
+                      },
+                    },
+                  },
+                  {
+                    id: "cell3",
+                    component: {
+                      ExperienceCard: {
+                        company: "Action Phase",
+                        role: "Tool Execution",
+                        period: "Real-world Impact",
+                        highlights: ["API Integration", "State Mutation"],
+                        impact: "Transition from 'talking' AI to 'doing' AI.",
+                        color: "#FBBC04",
+                        logo: "bolt"
+                      },
+                    },
+                  },
+                  {
+                    id: "cell4",
+                    component: {
+                      ExperienceCard: {
+                        company: "Governance Phase",
+                        role: "Policy Guardrails",
+                        period: "Enterprise Scale",
+                        highlights: ["Verification", "Traceability"],
+                        impact: "Ensures safety and alignment at global scale.",
+                        color: "#EA4335",
+                        logo: "shield"
+                      },
+                    },
+                  },
+                ],
+              },
+            },
+          ],
+        };
+
       case "video":
         return {
           format: "video",

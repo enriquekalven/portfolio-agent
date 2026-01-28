@@ -21,6 +21,7 @@ import { execSync } from "child_process";
 import { writeFileSync, readFileSync, existsSync } from "fs";
 import { join } from "path";
 import { config } from "dotenv";
+import { GoogleAuth } from "google-auth-library";
 
 // Load environment variables
 config();
@@ -73,6 +74,10 @@ const PROJECT = process.env.GOOGLE_CLOUD_PROJECT;
 const LOCATION = process.env.GOOGLE_CLOUD_LOCATION || "us-central1";
 const MODEL = process.env.GENAI_MODEL || "gemini-2.5-flash";
 
+const auth = new GoogleAuth({
+  scopes: "https://www.googleapis.com/auth/cloud-platform",
+});
+
 // Validate required environment variables
 if (!PROJECT) {
   console.error("ERROR: GOOGLE_CLOUD_PROJECT environment variable is required");
@@ -108,6 +113,8 @@ const PORTFOLIO_SECTIONS: Record<string, { slug: string; title: string }> = {
   "video": { slug: "#publications", title: "Cinema Hub (YouTube Keynotes)" },
   "award": { slug: "#honors", title: "Trophy Room" },
   "timeline": { slug: "#experience", title: "Career Journey" },
+  "matrix": { slug: "#publications", title: "Agentic Strategy Framework" },
+  "creative": { slug: "#publications", title: "Strategic Integration Matrix" },
   "default": { slug: "", title: "Enrique K Chan Portfolio" },
 };
 
@@ -169,45 +176,61 @@ let cachedAccessToken: { token: string; expiresAt: number } | null = null;
 async function getAccessToken(): Promise<string> {
   // Check cache first
   const now = Date.now();
-  if (cachedAccessToken && cachedAccessToken.expiresAt > now + 60000) {
-    // Return cached token if it has more than 1 minute of validity
+  if (cachedAccessToken && cachedAccessToken.expiresAt > now) {
     return cachedAccessToken.token;
   }
 
-  // Try metadata server first (Cloud Run environment)
+  // Try Google Auth library (ADC) - works in Cloud Run, GCE, etc.
+  try {
+    const client = await auth.getClient();
+    const tokenResponse = await client.getAccessToken();
+    const token = tokenResponse.token;
+
+    if (token) {
+      // Cache the token (typical expiry is 1 hour, we use 50 minutes to be safe)
+      cachedAccessToken = {
+        token: token,
+        expiresAt: now + 3000000, // 50 minutes
+      };
+      console.log("[API Server] Obtained access token from Google Auth library");
+      return token;
+    }
+  } catch (err) {
+    console.log("[API Server] Google Auth library failed, trying metadata/CLI");
+  }
+
+  // Fallback 1: Metadata server (Cloud Run direct)
   try {
     const metadataUrl = "http://metadata.google.internal/computeMetadata/v1/instance/service-accounts/default/token";
     const response = await fetch(metadataUrl, {
       headers: { "Metadata-Flavor": "Google" },
     });
     if (response.ok) {
-      const data = await response.json();
-      // Cache the token (typical expiry is 1 hour, we use 58 minutes to be safe)
+      const data: any = await response.json();
       cachedAccessToken = {
         token: data.access_token,
         expiresAt: now + 3480000, // 58 minutes
       };
-      console.log("[API Server] Cached access token from metadata server");
+      console.log("[API Server] Obtained access token from metadata server");
       return data.access_token;
     }
   } catch {
-    // Not in Cloud Run, fall through to gcloud
+    // Not in Cloud Run
   }
 
-  // Fall back to gcloud CLI (local development)
+  // Fallback 2: gcloud CLI (local development)
   try {
     const token = execSync("gcloud auth print-access-token", {
       encoding: "utf-8",
     }).trim();
-    // Cache the token
     cachedAccessToken = {
       token: token,
       expiresAt: now + 3480000, // 58 minutes
     };
-    console.log("[API Server] Cached access token from gcloud CLI");
+    console.log("[API Server] Obtained access token from gcloud CLI");
     return token;
   } catch (error) {
-    console.error("[API Server] Failed to get access token:", error);
+    console.error("[API Server] All token methods failed:", error);
     throw new Error("Failed to get Google Cloud access token. Run: gcloud auth login");
   }
 }
@@ -748,7 +771,7 @@ async function main() {
     // CORS headers
     res.setHeader("Access-Control-Allow-Origin", "*");
     res.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
-    res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+    res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
 
     if (req.method === "OPTIONS") {
       res.writeHead(204);

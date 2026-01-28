@@ -75,7 +75,7 @@ def main():
     print()
 
     # Import local data (we'll inject it into the instruction)
-    from agent.portfolio_data import PROFILE, EXPERIENCE, PROJECTS, SKILLS, CERTIFICATIONS, _AWARDS, TESTIMONIALS
+    from agent.portfolio_data import PROFILE, EXPERIENCE, PROJECTS, SKILLS, CERTIFICATIONS, _AWARDS, TESTIMONIALS, MATRIX
     
     portfolio_context = f"""
 PROFILE: {json.dumps(PROFILE)}
@@ -85,9 +85,10 @@ SKILLS: {json.dumps(SKILLS)}
 CERTIFICATIONS: {json.dumps(CERTIFICATIONS)}
 AWARDS: {json.dumps(_AWARDS)}
 TESTIMONIALS: {json.dumps(TESTIMONIALS)}
+MATRIX: {json.dumps(MATRIX)}
 """
 
-    model_id = os.getenv("GENAI_MODEL", "gemini-1.5-flash")
+    model_id = os.getenv("GENAI_MODEL", "gemini-2.5-flash")
     
     # Define the core ADK Agent
     # For Agent Engine, we pass a clear instruction set
@@ -106,7 +107,7 @@ He has 15+ years of experience across Google, AWS, and Accenture.
 1. Represent Enrique's brand with technical rigor, customer empathy, and executive clarity.
 2. Provide specific, data-driven answers about his career impact (e.g., Olympic 'Oli' chatbot scale, Disney+ rollout).
 3. Support A2UI component generation for high-signal requests:
-   - When asked for "awards", "timeline", "quiz", or "flashcards", generate the appropriate A2UI JSON payload.
+   - When asked for "awards", "timeline", "quiz", "flashcards", "matrix", or "creative", generate the appropriate A2UI JSON payload.
    
 Always maintain a premium, professional tone. If asked about non-professional topics, politely pivot back to Enrique's expertise in AI and Cloud Architecture.""",
     )
