@@ -52,13 +52,11 @@ export class A2AClient {
   ): Promise<A2UIResponse> {
     console.log(`[A2AClient] Requesting ${format} content`);
 
-    // For audio/video, always use local fallback content.
-    // The deployed agent returns GCS URLs which won't work locally,
-    // and we only have one pre-built podcast/video anyway.
     const lowerFormat = format.toLowerCase();
+    const backendFormat = lowerFormat === "blog" ? "blog_cards" : (lowerFormat === "video" || lowerFormat === "video_cards") ? "video_cards" : (lowerFormat === "matrix" || lowerFormat === "framework") ? "matrix" : (lowerFormat === "charts" || lowerFormat === "radar") ? "charts" : lowerFormat;
 
-    const backendFormat = lowerFormat === "blog" ? "blog_cards" : (lowerFormat === "video" || lowerFormat === "video_cards") ? "video_cards" : lowerFormat;
-
+    // "Gems" are fixed-content modules that should always use local fallbacks for reliability and consistency.
+    // New questions or general queries will continue through to the remote Agent Engine.
     if (
       backendFormat === "podcast" ||
       backendFormat === "audio" ||
@@ -70,11 +68,22 @@ export class A2AClient {
       backendFormat === "speaker" ||
       backendFormat === "testimonials" ||
       backendFormat === "gallery" ||
-      backendFormat === "timeline"
+      backendFormat === "timeline" ||
+      backendFormat === "matrix" ||
+      backendFormat === "charts" ||
+      backendFormat === "flashcards" ||
+      backendFormat === "quiz" ||
+      backendFormat === "bubble" ||
+      backendFormat === "weather" ||
+      backendFormat === "stock" ||
+      backendFormat === "time" ||
+      backendFormat === "general"
     ) {
-      console.log(`[A2AClient] Using local fallback for ${format} (pre-built content)`);
+      console.log(`[A2AClient] Using local fallback for Gem: ${format}`);
       return this.getFallbackContent(backendFormat, context);
     }
+
+    console.log(`[A2AClient] Routing new query to Agent Engine for format: ${format}`);
 
     try {
       const response = await fetch(`${this.baseUrl}/a2a/query`, {
@@ -329,9 +338,9 @@ export class A2AClient {
                     id: `card${i + 1}`,
                     component: {
                       Flashcard: {
-                        front: { literalString: card.front },
-                        back: { literalString: card.back },
-                        category: { literalString: card.category },
+                        front: card.front,
+                        back: card.back,
+                        category: card.category,
                       },
                     },
                   })),
@@ -548,9 +557,9 @@ export class A2AClient {
                     id: `s${i}`,
                     component: {
                       Flashcard: {
-                        front: { literalString: s.title },
-                        back: { literalString: s.description },
-                        category: { literalString: "Public Speaking" }
+                        front: s.title,
+                        back: s.description,
+                        category: "Public Speaking"
                       }
                     },
                   })),
@@ -593,19 +602,19 @@ export class A2AClient {
                     id: "testimonialRow",
                     component: {
                       Row: {
-                        children: { explicitList: TESTIMONIALS.slice(0, 3).map((_, i) => `t${i}`) },
+                        children: { explicitList: TESTIMONIALS.map((_: any, i: number) => `t${i}`) },
                         distribution: "start",
                         alignment: "stretch",
                       },
                     },
                   },
-                  ...TESTIMONIALS.slice(0, 3).map((t: any, i: number) => ({
+                  ...TESTIMONIALS.map((t: any, i: number) => ({
                     id: `t${i}`,
                     component: {
                       Flashcard: {
-                        front: { literalString: t.author },
-                        back: { literalString: t.quote },
-                        category: { literalString: "Googler Feedback" },
+                        front: t.author,
+                        back: t.quote,
+                        category: "Googler Feedback",
                       },
                     },
                   })),
@@ -852,15 +861,15 @@ export class A2AClient {
                       },
                     },
                   },
-                  { id: "audioIcon", component: { Icon: { name: { literalString: "podcasts" } } } },
-                  { id: "audioTitle", component: { Text: { text: { literalString: "Portfolio Deep Dive" }, usageHint: "h3" } } },
+                  { id: "audioIcon", component: { Icon: { name: "podcasts" } } },
+                  { id: "audioTitle", component: { Text: { text: "Portfolio Deep Dive", usageHint: "h3" } } },
                   {
                     id: "audioPlayer",
                     component: {
                       AudioPlayer: {
-                        url: { literalString: "/assets/podcast.m4a" },
-                        audioTitle: { literalString: `${PROFILE.name}: Career & Vision` },
-                        audioDescription: { literalString: "A personalized audio overview of Enrique's journey." },
+                        url: "/assets/podcast.m4a",
+                        audioTitle: `${PROFILE.name}: Career & Vision`,
+                        audioDescription: "A personalized audio overview of Enrique's journey.",
                       },
                     },
                   },
@@ -868,7 +877,7 @@ export class A2AClient {
                     id: "audioDescription",
                     component: {
                       Text: {
-                        text: { literalString: "A deep dive into Enrique's background as an architect and his vision for agentic workflows." },
+                        text: "A deep dive into Enrique's background as an architect and his vision for agentic workflows.",
                         usageHint: "body",
                       },
                     },
@@ -879,122 +888,199 @@ export class A2AClient {
           ],
         };
 
+      case "matrix":
       case "creative":
         return {
-          format: "creative",
+          format: "matrix",
           surfaceId,
           a2ui: [
-            { beginRendering: { surfaceId, root: "matrixContainer" } },
+            { beginRendering: { surfaceId, root: "mainColumn" } },
             {
               surfaceUpdate: {
                 surfaceId,
                 components: [
-                  { id: "matrixContainer", component: { Card: { child: "matrixContent" } } },
                   {
-                    id: "matrixContent",
+                    id: "mainColumn",
+                    component: {
+                      StrategicMatrix: {
+                        title: "Strategic Integration Matrix: Agentic workflows",
+                        cells: [
+                          {
+                            id: "cell1",
+                            phase: "Discovery Phase",
+                            role: "Context Injection",
+                            highlights: ["LLM Grounding", "Retrieval Augmented Generation (RAG)"],
+                            impact: "Foundational baseline for all enterprise agents.",
+                            color: "#4285F4",
+                            logo: "search"
+                          },
+                          {
+                            id: "cell2",
+                            phase: "Reasoning Phase",
+                            role: "Thought Chains",
+                            highlights: ["Self-Correction", "Multi-step Planning"],
+                            impact: "Enables agents to solve complex, non-linear problems.",
+                            color: "#34A853",
+                            logo: "psychology"
+                          },
+                          {
+                            id: "cell3",
+                            phase: "Action Phase",
+                            role: "Tool Execution",
+                            highlights: ["API Integration", "State Mutation"],
+                            impact: "Transition from 'talking' AI to 'doing' AI.",
+                            color: "#FBBC04",
+                            logo: "bolt"
+                          },
+                          {
+                            id: "cell4",
+                            phase: "Governance Phase",
+                            role: "Policy Guardrails",
+                            highlights: ["Verification", "Traceability"],
+                            impact: "Ensures safety and alignment at global scale.",
+                            color: "#EA4335",
+                            logo: "shield"
+                          }
+                        ]
+                      }
+                    }
+                  }
+                ],
+              },
+            },
+          ],
+        };
+
+      case "charts":
+      case "radar":
+        return {
+          format: "charts",
+          surfaceId,
+          a2ui: [
+            { beginRendering: { surfaceId, root: "mainColumn" } },
+            {
+              surfaceUpdate: {
+                surfaceId,
+                components: [
+                  {
+                    id: "mainColumn",
+                    component: {
+                      SkillRadar: {
+                        title: "Technical Proficiency Radar",
+                        skills: [
+                          { subject: "AI/ML", value: 95 },
+                          { subject: "Cloud", value: 98 },
+                          { subject: "Data", value: 90 },
+                          { subject: "Strategy", value: 85 },
+                          { subject: "Product", value: 88 }
+                        ]
+                      }
+                    }
+                  }
+                ],
+              },
+            },
+          ],
+        };
+
+      case "quiz":
+        const lowerQuizContext = context.toLowerCase();
+        let quizTitle = "Portfolio Challenge: General Knowledge 🧠";
+        let quizQuestion = "How many professional cloud certifications does Enrique hold?";
+        let quizCategory = "Certification Mastery";
+        let quizOptions = [
+          { label: "10x", value: "10", isCorrect: false },
+          { label: "15x", value: "15", isCorrect: false },
+          { label: "19x", value: "19", isCorrect: true },
+          { label: "25x", value: "25", isCorrect: false }
+        ];
+        let quizExplanation = "Enrique holds 19x professional certifications across Google Cloud, AWS, and Azure, demonstrating top-tier multi-cloud expertise.";
+
+        if (lowerQuizContext.includes("google") || lowerQuizContext.includes("next") || lowerQuizContext.includes("cloud")) {
+          quizTitle = "Cloud Challenge: Google Cloud Experience ☁️";
+          quizQuestion = "Enrique served as a Lead AI Architect for which major event at Google?";
+          quizCategory = "Google Career";
+          quizOptions = [
+            { label: "Google I/O", value: "io", isCorrect: false },
+            { label: "Google Cloud Next '24", value: "next", isCorrect: true },
+            { label: "Google Marketing Live", value: "marketing", isCorrect: false },
+            { label: "Android Dev Summit", value: "android", isCorrect: false }
+          ];
+          quizExplanation = "Enrique was a Lead AI Architect for Google Cloud Next '24, where he architected high-visibility GenAI agent demos.";
+        } else if (lowerQuizContext.includes("aws") || lowerQuizContext.includes("amazon")) {
+          quizTitle = "Cloud Challenge: AWS Expertise 🟠";
+          quizQuestion = "What was Enrique's primary role during his tenure at AWS?";
+          quizCategory = "AWS Career";
+          quizOptions = [
+            { label: "Data Scientist", value: "ds", isCorrect: false },
+            { label: "Technical Account Manager", value: "tam", isCorrect: false },
+            { label: "Lead Solutions Architect", value: "sa", isCorrect: true },
+            { label: "Product Manager", value: "pm", isCorrect: false }
+          ];
+          quizExplanation = "At AWS, Enrique was a Lead Solutions Architect, designing complex cloud transformations for global enterprise clients.";
+        } else if (lowerQuizContext.includes("olympic") || lowerQuizContext.includes("oli") || lowerQuizContext.includes("game")) {
+          quizTitle = "Innovation Challenge: The Olympic Games 🏅";
+          quizQuestion = "What was the name of the AI agent Enrique architected for the Olympic Games?";
+          quizCategory = "Major Projects";
+          quizOptions = [
+            { label: "Alexa", value: "alexa", isCorrect: false },
+            { label: "Oli", value: "oli", isCorrect: true },
+            { label: "Aura", value: "aura", isCorrect: false },
+            { label: "Olympian", value: "olympian", isCorrect: false }
+          ];
+          quizExplanation = "Enrique architected 'Oli', a sophisticated AI agent that helped scale support and engagement for the Olympic Games.";
+        } else if (lowerQuizContext.includes("agent") || lowerQuizContext.includes("a2ui") || lowerQuizContext.includes("workflow")) {
+          quizTitle = "Future Challenge: Agentic AI ⚡";
+          quizQuestion = "Enrique's work focuses on moving AI from 'Chat' interfaces to what next evolution?";
+          quizCategory = "Thought Leadership";
+          quizOptions = [
+            { label: "Search Engine Optimization", value: "seo", isCorrect: false },
+            { label: "Predictive Analytics", value: "analytics", isCorrect: false },
+            { label: "Agentic Workflows (A2UI)", value: "a2ui", isCorrect: true },
+            { label: "Blockchain Integration", value: "blockchain", isCorrect: false }
+          ];
+          quizExplanation = "Enrique is a pioneer in Agentic Workflows and A2UI (Agent-to-User Interface), transforming how AI autonomously executes tasks.";
+        }
+
+        return {
+          format: "quiz",
+          surfaceId,
+          a2ui: [
+            { beginRendering: { surfaceId, root: "mainColumn" } },
+            {
+              surfaceUpdate: {
+                surfaceId,
+                components: [
+                  {
+                    id: "mainColumn",
                     component: {
                       Column: {
-                        children: { explicitList: ["matrixHeader", "matrixGrid"] },
+                        children: { explicitList: ["header", "q1"] },
                         distribution: "start",
                         alignment: "stretch",
                       },
                     },
                   },
                   {
-                    id: "matrixHeader",
+                    id: "header",
                     component: {
                       Text: {
-                        text: { literalString: "Strategic Integration Matrix: Agentic workflows" },
-                        usageHint: "h2",
+                        text: { literalString: quizTitle },
+                        usageHint: "h3",
                       },
                     },
                   },
                   {
-                    id: "matrixGrid",
+                    id: "q1",
                     component: {
-                      Column: {
-                        children: { explicitList: ["row1", "row2"] },
-                        distribution: "start",
-                        alignment: "stretch",
-                      },
-                    },
-                  },
-                  {
-                    id: "row1",
-                    component: {
-                      Row: {
-                        children: { explicitList: ["cell1", "cell2"] },
-                        distribution: "start",
-                        alignment: "stretch",
-                      },
-                    },
-                  },
-                  {
-                    id: "row2",
-                    component: {
-                      Row: {
-                        children: { explicitList: ["cell3", "cell4"] },
-                        distribution: "start",
-                        alignment: "stretch",
-                      },
-                    },
-                  },
-                  {
-                    id: "cell1",
-                    component: {
-                      ExperienceCard: {
-                        company: "Discovery Phase",
-                        role: "Context Injection",
-                        period: "High Signal",
-                        highlights: ["LLM Grounding", "Retrieval Augmented Generation (RAG)"],
-                        impact: "Foundational baseline for all enterprise agents.",
-                        color: "#4285F4",
-                        logo: "search"
-                      },
-                    },
-                  },
-                  {
-                    id: "cell2",
-                    component: {
-                      ExperienceCard: {
-                        company: "Reasoning Phase",
-                        role: "Thought Chains",
-                        period: "Active Logic",
-                        highlights: ["Self-Correction", "Multi-step Planning"],
-                        impact: "Enables agents to solve complex, non-linear problems.",
-                        color: "#34A853",
-                        logo: "psychology"
-                      },
-                    },
-                  },
-                  {
-                    id: "cell3",
-                    component: {
-                      ExperienceCard: {
-                        company: "Action Phase",
-                        role: "Tool Execution",
-                        period: "Real-world Impact",
-                        highlights: ["API Integration", "State Mutation"],
-                        impact: "Transition from 'talking' AI to 'doing' AI.",
-                        color: "#FBBC04",
-                        logo: "bolt"
-                      },
-                    },
-                  },
-                  {
-                    id: "cell4",
-                    component: {
-                      ExperienceCard: {
-                        company: "Governance Phase",
-                        role: "Policy Guardrails",
-                        period: "Enterprise Scale",
-                        highlights: ["Verification", "Traceability"],
-                        impact: "Ensures safety and alignment at global scale.",
-                        color: "#EA4335",
-                        logo: "shield"
-                      },
-                    },
-                  },
+                      QuizCard: {
+                        question: quizQuestion,
+                        category: quizCategory,
+                        options: quizOptions,
+                        explanation: quizExplanation
+                      }
+                    }
+                  }
                 ],
               },
             },
@@ -1022,9 +1108,319 @@ export class A2AClient {
                       },
                     },
                   },
-                  { id: "videoTitle", component: { Text: { text: { literalString: VIDEOS[0].title }, usageHint: "h3" } } },
-                  { id: "videoPlayer", component: { Video: { url: { literalString: VIDEOS[0].url } } } },
-                  { id: "videoDescription", component: { Text: { text: { literalString: VIDEOS[0].description }, usageHint: "body" } } },
+                  { id: "videoTitle", component: { Text: { text: VIDEOS[0].title, usageHint: "h3" } } },
+                  { id: "videoPlayer", component: { Video: { url: VIDEOS[0].url } } },
+                  { id: "videoDescription", component: { Text: { text: VIDEOS[0].description, usageHint: "body" } } },
+                ],
+              },
+            },
+          ],
+        };
+
+      case "image":
+      case "bubble":
+        const bubbleImages = ["/assets/bubble_head.png", "/assets/bubble_head_2.png"];
+        return {
+          format: "bubble",
+          surfaceId,
+          a2ui: [
+            { beginRendering: { surfaceId, root: "mainColumn" } },
+            {
+              surfaceUpdate: {
+                surfaceId,
+                components: [
+                  {
+                    id: "mainColumn",
+                    component: {
+                      Column: {
+                        children: { explicitList: ["header", "bubbleRow"] },
+                        distribution: "center",
+                        alignment: "center",
+                      }
+                    }
+                  },
+                  {
+                    id: "header",
+                    component: {
+                      Text: {
+                        text: { literalString: "Portfolio Highlights: Bubble Heads" },
+                        usageHint: "h3",
+                      }
+                    }
+                  },
+                  {
+                    id: "bubbleRow",
+                    component: {
+                      Row: {
+                        children: { explicitList: bubbleImages.map((_, i) => `b${i}`) },
+                        distribution: "center",
+                        alignment: "center",
+                      }
+                    }
+                  },
+                  ...bubbleImages.map((img: string, i: number) => ({
+                    id: `b${i}`,
+                    component: {
+                      ProfileBubble: {
+                        image: img,
+                        size: "220px"
+                      }
+                    }
+                  }))
+                ]
+              }
+            }
+          ]
+        };
+
+      case "weather":
+        return {
+          format: "weather",
+          surfaceId,
+          a2ui: [
+            { beginRendering: { surfaceId, root: "mainColumn" } },
+            {
+              surfaceUpdate: {
+                surfaceId,
+                components: [
+                  {
+                    id: "mainColumn",
+                    component: {
+                      Column: {
+                        children: { explicitList: ["header", "weatherCard"] },
+                        distribution: "start",
+                        alignment: "stretch",
+                      },
+                    },
+                  },
+                  {
+                    id: "header",
+                    component: {
+                      Text: {
+                        text: { literalString: "Local Conditions: Seattle, WA 🌧️ ☁️" },
+                        usageHint: "h3",
+                      },
+                    },
+                  },
+                  {
+                    id: "weatherCard",
+                    component: {
+                      StrategicMatrix: {
+                        title: "Current Weather: Seattle 📍",
+                        cells: [
+                          {
+                            id: "w1",
+                            phase: "Temperature",
+                            role: "52°F",
+                            highlights: ["Overcast", "Light Showers"],
+                            impact: "Typical Seattle atmosphere ☔.",
+                            color: "#4285F4",
+                            logo: "cloud"
+                          },
+                          {
+                            id: "w2",
+                            phase: "Humidity",
+                            role: "84%",
+                            highlights: ["High moisture", "Soft mist"],
+                            impact: "Coffee house weather ☕.",
+                            color: "#34A853",
+                            logo: "water_drop"
+                          }
+                        ]
+                      }
+                    }
+                  }
+                ],
+              },
+            },
+          ],
+        };
+
+      case "stock":
+        return {
+          format: "stock",
+          surfaceId,
+          a2ui: [
+            { beginRendering: { surfaceId, root: "mainColumn" } },
+            {
+              surfaceUpdate: {
+                surfaceId,
+                components: [
+                  {
+                    id: "mainColumn",
+                    component: {
+                      Column: {
+                        children: { explicitList: ["header", "stockCard"] },
+                        distribution: "start",
+                        alignment: "stretch",
+                      },
+                    },
+                  },
+                  {
+                    id: "header",
+                    component: {
+                      Text: {
+                        text: { literalString: "Market Flash: Alphabet Inc. (GOOGL) 📈" },
+                        usageHint: "h3",
+                      },
+                    },
+                  },
+                  {
+                    id: "stockCard",
+                    component: {
+                      StrategicMatrix: {
+                        title: "Live Market Data: Nasdaq 📊",
+                        cells: [
+                          {
+                            id: "s1",
+                            phase: "Price",
+                            role: "$192.45",
+                            highlights: ["+2.34 (1.23%)", "At current close"],
+                            impact: "Strong bullish momentum 🚀.",
+                            color: "#34A853",
+                            logo: "trending_up"
+                          },
+                          {
+                            id: "s2",
+                            phase: "Volume",
+                            role: "24.5M",
+                            highlights: ["High liquidity", "Institutional interest"],
+                            impact: "Active trading session ✅.",
+                            color: "#4285F4",
+                            logo: "bar_chart"
+                          }
+                        ]
+                      }
+                    }
+                  }
+                ],
+              },
+            },
+          ],
+        };
+
+      case "time":
+        const now = new Date();
+        const timeStr = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+        const dateStr = now.toLocaleDateString([], { weekday: 'long', month: 'long', day: 'numeric' });
+        return {
+          format: "time",
+          surfaceId,
+          a2ui: [
+            { beginRendering: { surfaceId, root: "mainColumn" } },
+            {
+              surfaceUpdate: {
+                surfaceId,
+                components: [
+                  {
+                    id: "mainColumn",
+                    component: {
+                      Column: {
+                        children: { explicitList: ["header", "timeCard"] },
+                        distribution: "start",
+                        alignment: "stretch",
+                      },
+                    },
+                  },
+                  {
+                    id: "header",
+                    component: {
+                  Text: {
+                    text: { literalString: "Real-time Temporal Context 🕒" },
+                    usageHint: "h3",
+                  },
+                },
+              },
+              {
+                id: "timeCard",
+                component: {
+                  StrategicMatrix: {
+                    title: "Current Time/Date",
+                    cells: [
+                      {
+                        id: "t1",
+                        phase: "Local Time",
+                        role: timeStr,
+                        highlights: ["Precision sync", "Region: Client Local"],
+                        impact: "Moment-to-moment productivity.",
+                        color: "#4285F4",
+                        logo: "schedule"
+                      },
+                      {
+                        id: "t2",
+                        phase: "Calendar",
+                        role: dateStr,
+                        highlights: ["Standard ISO alignment", "Gregorian calendar"],
+                        impact: "Day-level planning and context.",
+                        color: "#34A853",
+                        logo: "calendar_today"
+                      }
+                    ]
+                  }
+                }
+              }
+                ],
+              },
+            },
+          ],
+        };
+
+      case "general":
+        // Context-aware fallback for general queries
+        const lowerContext = context.toLowerCase();
+        if (lowerContext.includes("weather") || lowerContext.includes("temp") || lowerContext.includes("rain") || lowerContext.includes("seattle")) {
+          return this.getFallbackContent("weather", context);
+        }
+        if (lowerContext.includes("stock") || lowerContext.includes("market") || lowerContext.includes("price") || lowerContext.includes("googl")) {
+          return this.getFallbackContent("stock", context);
+        }
+        if (lowerContext.includes("time") || lowerContext.includes("date") || lowerContext.includes("clock") || lowerContext.includes("today")) {
+          return this.getFallbackContent("time", context);
+        }
+        if (lowerContext.includes("bubble")) {
+          return this.getFallbackContent("bubble", context);
+        }
+
+        return {
+          format: "general",
+          surfaceId,
+          a2ui: [
+            { beginRendering: { surfaceId, root: "mainColumn" } },
+            {
+              surfaceUpdate: {
+                surfaceId,
+                components: [
+                  {
+                    id: "mainColumn",
+                    component: {
+                      Column: {
+                        children: { explicitList: ["header", "summaryCard"] },
+                        distribution: "start",
+                        alignment: "stretch",
+                      },
+                    },
+                  },
+                  {
+                    id: "header",
+                    component: {
+                      Text: {
+                        text: { literalString: "Personal Data Intelligence: Enrique K Chan 🧠" },
+                        usageHint: "h3",
+                      },
+                    },
+                  },
+                  {
+                    id: "summaryCard",
+                    component: {
+                      PortfolioCard: {
+                        type: "project",
+                        title: PROFILE.name,
+                        description: PROFILE.summary,
+                        image: "/assets/hero.png",
+                        url: PROFILE.links.portfolio
+                      }
+                    }
+                  }
                 ],
               },
             },

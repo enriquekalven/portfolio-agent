@@ -35,12 +35,16 @@ import { QuizCard } from "./quiz-card";
 import { ExperienceCard } from "./experience-card";
 import { PortfolioCard } from "./portfolio-card";
 import { ProfileBubble } from "./profile-bubble";
+import { StrategicMatrix } from "./strategic-matrix";
+import { SkillRadar } from "./skill-radar";
 
 UI.componentRegistry.register("Flashcard", Flashcard as unknown as UI.CustomElementConstructorOf<HTMLElement>, "a2ui-flashcard");
 UI.componentRegistry.register("QuizCard", QuizCard as unknown as UI.CustomElementConstructorOf<HTMLElement>, "a2ui-quizcard");
 UI.componentRegistry.register("ExperienceCard", ExperienceCard as unknown as UI.CustomElementConstructorOf<HTMLElement>, "a2ui-experience-card");
 UI.componentRegistry.register("PortfolioCard", PortfolioCard as unknown as UI.CustomElementConstructorOf<HTMLElement>, "a2ui-portfolio-card");
 UI.componentRegistry.register("ProfileBubble", ProfileBubble as unknown as UI.CustomElementConstructorOf<HTMLElement>, "a2ui-profile-bubble");
+UI.componentRegistry.register("StrategicMatrix", StrategicMatrix as unknown as UI.CustomElementConstructorOf<HTMLElement>, "a2ui-strategic-matrix");
+UI.componentRegistry.register("SkillRadar", SkillRadar as unknown as UI.CustomElementConstructorOf<HTMLElement>, "a2ui-skill-radar");
 
 // Type alias for the processor - use the actual exported class name
 type A2UIModelProcessorInstance = InstanceType<typeof v0_8.Data.A2uiMessageProcessor>;

@@ -1,6 +1,6 @@
 # Enrique K Chan: The Portfolio Agent 🤖✨
 
-A high-fidelity demonstration of **Agentic AI** applied to professional branding. This project transcends static portfolios by leveraging the **A2UI (Agent-Driven User Interface)** protocol and **Gemini 2.x** to create a living, interactive career ambassador.
+A high-fidelity demonstration of **Agentic AI** applied to professional branding. This project transcends static portfolios by leveraging the **A2UI (Agent-Driven User Interface)** protocol and **Gemini 2.5 Flash** to create a living, interactive career ambassador.
 
 [![Visit Enrique's Site](https://img.shields.io/badge/Live-Portfolio-blue?style=for-the-badge&logo=google-chrome&logoColor=white)](https://enriquekchan.web.app/#about)
 [![View on GitHub](https://img.shields.io/badge/GitHub-Source-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/enriquekalven/portfolio-agent)
@@ -15,7 +15,7 @@ graph TD
     
     subgraph "Agent Engine (Remote)"
         AE[Vertex AI Agent Engine]
-        AE -->|Reasoning| GEM[Gemini 2.x]
+        AE -->|Reasoning| GEM[Gemini 2.5 Flash]
         AE -->|Data Source| DB[(portfolio_data.py)]
     end
     
@@ -35,20 +35,24 @@ Modern portfolios should be as dynamic as the careers they represent. This "Port
 - **Tailor the Narrative**: Dynamically synthesize Enrique's 15+ years of experience (Google, AWS, Disney) based on the user's specific interests.
 - **Render Intent**: Use the **A2UI Protocol** to automatically generate high-fidelity UI components (Timelines, Trophies, Quizzes) that match the conversational context.
 - **Establish Presence**: Provide a premium, "Gemini-inspired" experience that feels like chatting with an executive assistant.
+- **Always-A2UI Intelligence**: Almost every query—from cloudcerts to local weather—triggers a sleek visual dashboard instead of just text.
 
 ## ✨ The "Gems" (Interactive Capabilities)
-The agent features specialized modules (or "Gems") that provide deep-dives into Enrique's history:
+The agent features specialized modules (or "Gems") that provide deep-dives into Enrique's history and real-time utility context:
 
 - **📜 Career Historian**: A sequential journey through high-scale engineering and strategy.
 - **🎯 Skill Matcher**: Instant analysis of how Enrique's expertise applies to specific roles or problems.
 - **📊 Fit Analyzer**: A data-driven comparison of career highlights against enterprise requirements.
+- **🌦️ Weather Intel**: Real-time atmospheric conditions (specifically Emerald City vibes 🌧️).
+- **📈 Market Flash**: Live-look market data for Alphabet Inc. (GOOGL) and Nasdaq 📊.
+- **🕒 Temporal Context**: Precision-synced local time and Gregorian calendar data ⌚.
+- **🧠 Knowledge Challenge**: A **dynamic quiz system** that adapts questions based on the conversation topic (Google, AWS, Olympics, or AI Strategy).
 - **🎬 Cinema Hub**: Interactive access to keynote sessions and AI thought leadership videos.
 - **✍️ Insight Stream**: A curated feed of premium Medium articles on AI architecture and governance.
 - **🏆 Trophy Room**: A visual showcase of Google GTM awards and high-stakes hackathon wins.
 - **☁️ Cloud Badge Wall**: A full-fidelity rendering of 19x professional certifications (GCP, AWS, Azure).
-- **🎤 Stage Presence**: Highlights from global speaking engagements and developer summits.
-- **✨ Googler Vibes**: Real-world testimonials and peer feedback from Google leadership.
-- **🖼️ Hall of Mastery**: A premium visual gallery featuring architectural diagrams and career milestones.
+- **✨ Googler Vibes**: Real-world testimonials and peer feedback from Google leadership (scrollable carousel).
+- **🖼️ Hall of Mastery**: A premium visual gallery featuring architectural diagrams and career headshots.
 
 ## 🛠️ Advanced Features
 - **🎙️ Voice-to-UI**: Integrated Web Speech API for seamless voice-driven exploration.

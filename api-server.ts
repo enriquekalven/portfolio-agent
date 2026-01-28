@@ -650,7 +650,7 @@ You MUST respond with a valid JSON object.
 DO NOT use filler phrases like "That's a great question" or "Let me think".
 The format depends on the intent:
 
-For content-generating intents (awards, certs, speaker, testimonials, timeline, flashcards, blog_cards, video_cards, podcast, video, quiz):
+For content-generating intents (awards, certs, speaker, testimonials, timeline, flashcards, blog_cards, video_cards, podcast, video, quiz, weather, stock):
 {
   "intent": "<the detected intent>",
   "text": "<your conversational response summarizing the specific facts>",
@@ -677,17 +677,23 @@ Analyze the user's message and context to determine the most high-signal intent:
 - podcast: user wants audio content.
 - video: user wants a single video message.
 - quiz: user wants a quiz about Enrique.
+- bubble: user wants 'bubble head' photos, pictures in bubbles, or profile visuals.
+- weather: user asks about the weather, temperature, or conditions.
+- stock: user asks for stock market data, market price, or GOOGL info.
 - greeting: user is just saying hello/hi.
 
 ## RULES
-## EXAMPLES
-- "Show me his speaking history" → intent: "speaker", keywords: "Cloud Next, keynotes"
-- "What do people say about him?" → intent: "testimonials", keywords: "Thomas Kurian, feedback"
-- "Show me his cloud certs" → intent: "certs", keywords: "Google Cloud, AWS, Azure"
-- "Show me his career journey" → intent: "timeline", keywords: "Career highlights"
-- "Analyze his fit for this role" → intent: "flashcards", keywords: "Skill Matcher"
+1. **Never Refuse Utility Requests**: If the user asks about the weather, stocks, or other utility functions, DO NOT refuse or say you only handle portfolio questions. Classify as 'weather' or 'stock' intent. 
+2. **Strict Classification**: Utility requests (weather, stocks) MUST NEVER be classified as 'general'.
+3. **Be Direct**: Provide facts first. acknowledgment should be brief.
 
-Then provide an appropriate conversational response.`;
+## EXAMPLES
+- "What's the weather?" → intent: "weather", keywords: "seattle weather"
+- "What is Google's stock price?" → intent: "stock", keywords: "GOOGL stock"
+- "Show me bubble head photos" → intent: "bubble", keywords: "profile bubbles"
+- "Show me his cloud certs" → intent: "certs", keywords: "Google Cloud, AWS, Azure"
+
+Then provide an appropriate conversational response highlighting the utility integration as part of your agentic capabilities.`;
 
   // Convert messages to Gemini format
   const messagesList = messages || [];

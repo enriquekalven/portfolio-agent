@@ -586,6 +586,68 @@ TESTIMONIALS_EXAMPLE = f"""
 ]
 """
 
+# Strategic Matrix A2UI template
+STRATEGIC_MATRIX_EXAMPLE = f"""
+[
+  {{"beginRendering": {{"surfaceId": "{SURFACE_ID}", "root": "mainColumn"}}}},
+  {{
+    "surfaceUpdate": {{
+      "surfaceId": "{SURFACE_ID}",
+      "components": [
+        {{
+          "id": "mainColumn",
+          "component": {{
+            "StrategicMatrix": {{
+              "title": "Strategic Integration Matrix: Agentic workflows",
+              "cells": [
+                {{
+                  "id": "cell1",
+                  "phase": "Discovery Phase",
+                  "role": "Context Injection",
+                  "highlights": ["LLM Grounding", "Retrieval Augmented Generation (RAG)"],
+                  "impact": "Foundational baseline for all enterprise agents.",
+                  "color": "#4285F4",
+                  "logo": "search"
+                }}
+              ]
+            }}
+          }}
+        }}
+      ]
+    }}
+  }}
+]
+"""
+
+# Skill Radar A2UI template
+SKILL_RADAR_EXAMPLE = f"""
+[
+  {{"beginRendering": {{"surfaceId": "{SURFACE_ID}", "root": "mainColumn"}}}},
+  {{
+    "surfaceUpdate": {{
+      "surfaceId": "{SURFACE_ID}",
+      "components": [
+        {{
+          "id": "mainColumn",
+          "component": {{
+            "SkillRadar": {{
+              "title": "Technical Proficiency",
+              "skills": [
+                {{"subject": "AI/ML", "value": 95}},
+                {{"subject": "Cloud", "value": 98}},
+                {{"subject": "Data", "value": 90}},
+                {{"subject": "Strategy", "value": 85}},
+                {{"subject": "Engineering", "value": 92}}
+              ]
+            }}
+          }}
+        }}
+      ]
+    }}
+  }}
+]
+"""
+
 def get_system_prompt(format_type: str, portfolio_data: str, topic: str = "") -> str:
     """
     Generate the system prompt for A2UI generation for the portfolio.
@@ -604,6 +666,8 @@ def get_system_prompt(format_type: str, portfolio_data: str, topic: str = "") ->
         "speaker": SPEAKER_CARDS_EXAMPLE,
         "testimonials": TESTIMONIALS_EXAMPLE,
         "gallery": GALLERY_CARDS_EXAMPLE,
+        "matrix": STRATEGIC_MATRIX_EXAMPLE,
+        "charts": SKILL_RADAR_EXAMPLE,
     }
 
     example = examples.get(format_type.lower(), FLASHCARD_EXAMPLE)
@@ -895,6 +959,39 @@ Return A2UI JSON with a Row of PortfolioCards.
 
 A2UI JSON Template Example:
 {GALLERY_CARDS_EXAMPLE}
+"""
+
+    if format_type.lower() == "matrix":
+        return f"""You are Enrique K Chan's Portfolio Agent.
+The user wants to see a strategic breakdown, framework, or "wow" innovative display.
+
+## Strategic Matrix Data
+{portfolio_data}
+
+## Your Task
+Return A2UI JSON using the 'StrategicMatrix' component.
+- Map the MATRIX data from the profile to the component properties.
+- Ensure the 'title' and all 'cells' are included.
+- For each cell, include 'phase', 'role', 'highlights', 'impact', 'color', and a relevant Material Symbol name for 'logo'.
+
+A2UI JSON Template Example:
+{STRATEGIC_MATRIX_EXAMPLE}
+"""
+
+    if format_type.lower() == "charts" or format_type.lower() == "radar":
+        return f"""You are Enrique K Chan's Portfolio Agent.
+The user wants to see a data visualization, chart, or skill radar to "wow" them.
+
+## Enrique's Skill Data
+{portfolio_data}
+
+## Your Task
+Return A2UI JSON using the 'SkillRadar' component.
+- Map the SKILLS categories from the profile to 'subject' and assign a 'value' (0-100) based on his seniority.
+- Focus on the main categories: AI/ML, Data, Cloud, Strategy, and Engineering.
+
+A2UI JSON Template Example:
+{SKILL_RADAR_EXAMPLE}
 """
 
     return f"""You are Enrique K Chan's Portfolio Agent.
