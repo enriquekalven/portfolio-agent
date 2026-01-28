@@ -3,9 +3,9 @@
     "name": "Enrique K Chan",
     "role": "Outbound Product Manager, Cloud AI at Google",
     "location": "Seattle, WA",
-    "summary": "Husband. Father. Real Estate Investor. Architect of high-scale AI systems. Leading the transition from RAG to Agentic Workflows at Google Cloud.",
-    "narrative": "Combining Ali Abdaal visual clarity with Google Cloud AI technical rigor. Specializing in high-signal AI deployments for the world's largest enterprises.",
-    "hero_subtitle": "Husband, father of 3 👨‍👩‍👧‍👦, and Real Estate Investor 🏠 based in Seattle, WA 📍. With 15+ years of experience across Google, AWS, and Accenture, I am passionate about scaling transformational technologies—from Disney's MagicBands and Disney+ worldwide to the future of agentic AI. Fluent in English, Spanish, and Cantonese, with a working knowledge of Mandarin.",
+    "summary": "Husband. Father. Real Estate Investor. Seattle resident. Fluent in English, Spanish, Cantonese, and Mandarin. Architect of high-scale AI systems. Leading the transition from RAG to Agentic Workflows at Google Cloud.",
+    "narrative": "Based in Seattle, WA. Multilingual (Spanish, English, Cantonese, Mandarin). Combining Ali Abdaal visual clarity with Google Cloud AI technical rigor. Specializing in high-signal AI deployments for the world's largest enterprises.",
+    "hero_subtitle": "Husband, father of 3 👨‍👩‍👧‍👦, and Real Estate Investor 🏠 based in Seattle, WA 📍. Multilingual (ES/EN/ZH). With 15+ years of experience across Google, AWS, and Accenture, I am passionate about scaling transformational technologies—from Disney's MagicBands to the future of agentic AI.",
     "profile_pic": "/assets/hero.png",
     "languages": [
       "English (Native)",
@@ -18,7 +18,8 @@
       "medium": "https://medium.com/@enriq",
       "portfolio": "https://enriquekchan-concierge.web.app",
       "github": "https://github.com/enriquekalven",
-      "youtube": "https://www.youtube.com/@enriquekchan"
+      "youtube": "https://www.youtube.com/@enriquekchan",
+      "pypi": "https://pypi.org/project/agentops-cockpit/"
     }
   },
   "EXPERIENCE": [
@@ -31,7 +32,8 @@
       "highlights": [
         "Leading vision and strategy for the AI Agents Enablement Center of Excellence.",
         "Co-authored global 'Intro to Agents' whitepaper (1.5M+ attendees).",
-        "Drove adoption of the 'Build Agentic Workflows' offer on go/sell-services."
+        "Drove adoption of the 'Build Agentic Workflows' offer on go/sell-services.",
+        "Released AgentOps Cockpit v0.3.0 to PyPI: A portable auditing & governance toolset for AI Agents."
       ],
       "impact": "Scaled Agentic AI enablement to 1.5M+ developers and secured multi-million dollar commitments for Gemini throughput.",
       "skills": [
@@ -93,6 +95,12 @@
     }
   ],
   "PROJECTS": [
+    {
+      "title": "AgentOps Cockpit v0.3.0 🚀",
+      "url": "https://pypi.org/project/agentops-cockpit/",
+      "description": "Portable auditing toolset for AI Agents. Features automated architecture reviews, prompt red-teaming, and governance reporting. Refactored into a native Python package in v0.3.0.",
+      "image": "/assets/blog-optimizer.png"
+    },
     {
       "title": "NBC Olympic Concierge (Oli AI) 🏅",
       "url": "https://www.google.com/search?q=nbc+olympics+oli+ai",
