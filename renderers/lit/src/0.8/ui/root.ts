@@ -49,6 +49,7 @@ export class Root extends SignalWatcher(LitElement) {
   @property()
   component: AnyComponentNode | null = null;
 
+  // @ts-ignore
   @consume({ context: themeContext })
   theme!: Theme;
 

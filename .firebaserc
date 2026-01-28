@@ -1,12 +1,12 @@
 {
   "projects": {
-    "default": "project-maui"
+    "default": "enriquekchan-b646b"
   },
   "targets": {
-    "project-maui": {
+    "enriquekchan-b646b": {
       "hosting": {
-        "agent-ui": [
-          "enriquekchan-agent"
+        "portfolio": [
+          "enriquekchan-concierge"
         ]
       }
     }

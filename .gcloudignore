@@ -1,0 +1,9 @@
+# Include dist and necessary artifacts
+.git
+node_modules
+venv
+.env
+# Keep dist!
+# renderers # vite bundled this into dist
+agent/venv
+# Dockerfile and api-server.ts are already in root

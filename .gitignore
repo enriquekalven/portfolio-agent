@@ -13,3 +13,18 @@ api_server.log
 full_app.log
 frontend.log
 agent_server.log
+
+# Firebase/Cloud temporary files
+.firebase/
+.runtimeconfig.json
+firebase-debug.log*
+.firebaserc.bak
+
+# Sensitive keys
+*-key.json
+maui_policy.json
+
+# Local artifacts
+package.json.bak
+temp-test/
+.wireit/

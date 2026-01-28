@@ -400,10 +400,6 @@ Examples:
         intentGuidance =
           "The user wants to listen to the podcast. Respond with a SHORT (1-2 sentences) introduction. DO NOT write out the podcast transcript or script - the audio player will be rendered separately below your message. Just say something brief like 'Here's a personalized podcast about ATP!' or 'I've got a podcast that explains this with gym analogies you'll love.'";
         break;
-      case "video_cards":
-        intentGuidance =
-          "The user wants to see your videos. Respond with a SHORT (1-2 sentences) introduction. Mention the 'Cinema Hub'. Just say something like 'Welcome to the Cinema Hub! Here are some of my top talks and keynotes.'";
-        break;
       case "blog":
         intentGuidance =
           "The user wants to read your articles. Respond with a SHORT (1-2 sentences) introduction. Mention the 'Insight Stream'. Just say something like 'Here is the Insight Stream, featuring my latest whitepapers and technical blogs.'";

@@ -1,43 +1,27 @@
 {
+  "functions": {
+    "source": "functions"
+  },
   "hosting": {
+    "target": "portfolio",
     "public": "dist",
     "ignore": [
       "firebase.json",
       "**/.*",
       "**/node_modules/**"
     ],
-    "headers": [
-      {
-        "source": "**/*.html",
-        "headers": [
-          {
-            "key": "Content-Type",
-            "value": "text/html"
-          }
-        ]
-      },
-      {
-        "source": "/",
-        "headers": [
-          {
-            "key": "Content-Type",
-            "value": "text/html"
-          }
-        ]
-      }
-    ],
     "rewrites": [
       {
         "source": "/api/**",
-        "run": {
-          "serviceId": "enriq-portfolio-agent",
+        "function": {
+          "functionId": "chat",
           "region": "us-central1"
         }
       },
       {
         "source": "/a2ui-agent/**",
-        "run": {
-          "serviceId": "enriq-portfolio-agent",
+        "function": {
+          "functionId": "chat",
           "region": "us-central1"
         }
       },
