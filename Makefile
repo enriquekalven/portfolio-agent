@@ -1,7 +1,7 @@
 # --- Enrique K Chan Portfolio Agent Unified Makefile ---
 
 # Project Variables
-PROJECT_ID ?= $(shell gcloud config get-value project)
+PROJECT_ID ?= enriquekchan-b646b
 REGION ?= us-central1
 SERVICE_NAME = enriq-portfolio-agent
 IMAGE_TAG = $(REGION)-docker.pkg.dev/$(PROJECT_ID)/agent-repo/$(SERVICE_NAME):latest
@@ -46,7 +46,7 @@ deploy-backend:
 deploy-frontend: build
 	@echo "📦 Deploying UI Bridge to Cloud Run..."
 	gcloud run deploy $(SERVICE_NAME) --source . --region $(REGION) --allow-unauthenticated --memory 1Gi \
-		--set-env-vars GOOGLE_CLOUD_PROJECT=$(PROJECT_ID),AGENT_ENGINE_RESOURCE_ID=2034955229966893056,AGENT_ENGINE_PROJECT_NUMBER=697625214430,USE_LOCAL_AGENT=FALSE,GENAI_MODEL=gemini-2.5-flash
+		--set-env-vars GOOGLE_CLOUD_PROJECT=$(PROJECT_ID),AGENT_ENGINE_RESOURCE_ID=8056830881714667520,AGENT_ENGINE_PROJECT_NUMBER=1069572400509,USE_LOCAL_AGENT=FALSE,GENAI_MODEL=gemini-2.5-flash
 	@echo "🔥 Deploying static assets to Firebase Hosting..."
 	firebase deploy --only hosting --project $(PROJECT_ID)
 

@@ -1,10 +1,7 @@
 {
-  "functions": {
-    "source": "functions"
-  },
   "hosting": {
-    "target": "portfolio",
-    "public": "dist",
+    "site": "enriquekchan-concierge",
+    "public": "public",
     "ignore": [
       "firebase.json",
       "**/.*",
@@ -12,22 +9,11 @@
     ],
     "rewrites": [
       {
-        "source": "/api/**",
-        "function": {
-          "functionId": "chat",
-          "region": "us-central1"
-        }
-      },
-      {
-        "source": "/a2ui-agent/**",
-        "function": {
-          "functionId": "chat",
-          "region": "us-central1"
-        }
-      },
-      {
         "source": "**",
-        "destination": "/index.html"
+        "run": {
+          "serviceId": "enriq-portfolio-agent",
+          "region": "us-central1"
+        }
       }
     ]
   }

@@ -2,7 +2,7 @@
 
 A high-fidelity demonstration of **Agentic AI** applied to professional branding. This project transcends static portfolios by leveraging the **A2UI (Agent-Driven User Interface)** protocol and **Gemini 2.5 Flash** to create a living, interactive career ambassador.
 
-[![Visit Enrique's Site](https://img.shields.io/badge/Live-Portfolio-blue?style=for-the-badge&logo=google-chrome&logoColor=white)](https://enriquekchan.web.app/#about)
+[![Visit Enrique's Site](https://img.shields.io/badge/Live-Portfolio-blue?style=for-the-badge&logo=google-chrome&logoColor=white)](https://enriquekchan-concierge.web.app/#about)
 [![View on GitHub](https://img.shields.io/badge/GitHub-Source-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/enriquekalven/portfolio-agent)
 
 ## 🏗️ System Architecture
@@ -82,4 +82,4 @@ For more granular control, see the [Deployment Workflow](.agent/workflows/quick-
 
 ---
 **Crafted with ❤️ by [Enrique K Chan](https://www.linkedin.com/in/enriquechan/)**  
-*Building the future of Agentic Interfaces.*
+*Building the future of Agentic Interfaces at [enriquekchan-concierge.web.app](https://enriquekchan-concierge.web.app)*
