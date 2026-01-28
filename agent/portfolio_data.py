@@ -6,8 +6,9 @@ PROFILE = {
     "location": "Seattle, WA",
     "summary": "Husband. Father. Real Estate Investor. Architect of high-scale AI systems. Leading the transition from RAG to Agentic Workflows at Google Cloud.",
     "narrative": "Combining Ali Abdaal visual clarity with Google Cloud AI technical rigor. Specializing in high-signal AI deployments for the world's largest enterprises.",
-    "hero_subtitle": "Husband, father of 3 👨‍👩‍👧‍👦, and Real Estate Investor 🏠 based in Seattle, WA 📍. With 15+ years of experience across Google, AWS, and Accenture, I am passionate about scaling transformational technologies—from Disney's MagicBands and Disney+ worldwide to the future of agentic AI.",
+    "hero_subtitle": "Husband, father of 3 👨‍👩‍👧‍👦, and Real Estate Investor 🏠 based in Seattle, WA 📍. With 15+ years of experience across Google, AWS, and Accenture, I am passionate about scaling transformational technologies—from Disney's MagicBands and Disney+ worldwide to the future of agentic AI. Fluent in English, Spanish, and Cantonese, with a working knowledge of Mandarin.",
     "profile_pic": "/assets/hero.png",
+    "languages": ["English (Native)", "Spanish (Fluent)", "Cantonese (Fluent)", "Mandarin (Basic)"],
     "links": {
         "linkedin": "https://www.linkedin.com/in/enriquechan/",
         "medium": "https://medium.com/@enriq",
