@@ -650,7 +650,7 @@ You MUST respond with a valid JSON object.
 DO NOT use filler phrases like "That's a great question" or "Let me think".
 The format depends on the intent:
 
-For content-generating intents (awards, certs, speaker, testimonials, timeline, flashcards, blog_cards, video_cards, podcast, video, quiz, weather, stock):
+For content-generating intents (awards, certs, speaker, testimonials, timeline, flashcards, blog_cards, video_cards, podcast, video, quiz, weather, stock, time):
 {
   "intent": "<the detected intent>",
   "text": "<your conversational response summarizing the specific facts>",
@@ -680,16 +680,18 @@ Analyze the user's message and context to determine the most high-signal intent:
 - bubble: user wants 'bubble head' photos, pictures in bubbles, or profile visuals.
 - weather: user asks about the weather, temperature, or conditions.
 - stock: user asks for stock market data, market price, or GOOGL info.
+- time: user asks for the current time, date, or clock status.
 - greeting: user is just saying hello/hi.
 
 ## RULES
-1. **Never Refuse Utility Requests**: If the user asks about the weather, stocks, or other utility functions, DO NOT refuse or say you only handle portfolio questions. Classify as 'weather' or 'stock' intent. 
-2. **Strict Classification**: Utility requests (weather, stocks) MUST NEVER be classified as 'general'.
+1. **Never Refuse Utility Requests**: If the user asks about the weather, stocks, time, or other utility functions, DO NOT refuse or say you only handle portfolio questions. Classify as 'weather', 'stock', or 'time'. 
+2. **Strict Classification**: Utility requests (weather, stocks, time) MUST NEVER be classified as 'general'.
 3. **Be Direct**: Provide facts first. acknowledgment should be brief.
 
 ## EXAMPLES
 - "What's the weather?" → intent: "weather", keywords: "seattle weather"
 - "What is Google's stock price?" → intent: "stock", keywords: "GOOGL stock"
+- "What time is it?" → intent: "time", keywords: "current time"
 - "Show me bubble head photos" → intent: "bubble", keywords: "profile bubbles"
 - "Show me his cloud certs" → intent: "certs", keywords: "Google Cloud, AWS, Azure"
 
