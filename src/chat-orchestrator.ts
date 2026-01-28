@@ -394,7 +394,7 @@ Examples:
     if (lower.match(/weather|temperature|forecast/i)) {
       return "weather";
     }
-    if (lower.match(/stock|market|price|googl|shares/i)) {
+    if (lower.match(/stock price|nasdaq|ticker|shares/i)) {
       return "stock";
     }
     return "general";

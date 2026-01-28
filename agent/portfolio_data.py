@@ -11,7 +11,7 @@ PROFILE = {
     "links": {
         "linkedin": "https://www.linkedin.com/in/enriquechan/",
         "medium": "https://medium.com/@enriq",
-        "portfolio": "https://enriquekchan.com",
+        "portfolio": "https://enriquekchan-concierge.web.app",
         "github": "https://github.com/enriquekalven",
         "youtube": "https://www.youtube.com/@enriquekchan"
     }

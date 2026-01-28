@@ -101,7 +101,7 @@ if (!AGENT_ENGINE_CONFIG.projectNumber || !AGENT_ENGINE_CONFIG.resourceId) {
 // =============================================================================
 // Portfolio Source Attribution - Maps topics to specific portfolio sections
 // =============================================================================
-const PORTFOLIO_BASE = "https://enriquekchan.com/";
+const PORTFOLIO_BASE = "https://enriquekchan-concierge.web.app/";
 
 const PORTFOLIO_SECTIONS: Record<string, { slug: string; title: string }> = {
   "olympics": { slug: "#projects", title: "Olympic 'Oli' Chatbot" },
@@ -690,7 +690,10 @@ Analyze the user's message and context to determine the most high-signal intent:
 
 ## EXAMPLES
 - "What's the weather?" → intent: "weather", keywords: "seattle weather"
+- "How do his skills match a Senior AI role?" → intent: "flashcards", keywords: "Skill Matcher"
+- "Analyze his fit for an AI Lead role" → intent: "flashcards", keywords: "Fit Analyzer"
 - "What is Google's stock price?" → intent: "stock", keywords: "GOOGL stock"
+- "What's the weather in Seattle?" → intent: "weather", keywords: "Seattle"
 - "What time is it?" → intent: "time", keywords: "current time"
 - "Show me bubble head photos" → intent: "bubble", keywords: "profile bubbles"
 - "Show me his cloud certs" → intent: "certs", keywords: "Google Cloud, AWS, Azure"
