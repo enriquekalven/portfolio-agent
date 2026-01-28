@@ -1,15 +1,5 @@
 {
   "projects": {
     "default": "enriquekchan-b646b"
-  },
-  "targets": {
-    "enriquekchan-b646b": {
-      "hosting": {
-        "portfolio": [
-          "enriquekchan-concierge"
-        ]
-      }
-    }
-  },
-  "etags": {}
+  }
 }
