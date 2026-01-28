@@ -21,7 +21,9 @@ dev:
 	npm run start:all
 
 build:
-	python3 scripts/sync_data.py
+	@echo "📦 Preparing A2UI library..."
+	rm -rf a2ui-web-lib
+	cp -r renderers/lit a2ui-web-lib
 	npm run build
 
 # 🚀 Backend: Vertex AI Agent Engine
