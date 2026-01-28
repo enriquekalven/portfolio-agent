@@ -178,6 +178,15 @@ function setupUI(orchestrator: ChatOrchestrator, uiManager: UIManager) {
     });
   }
 
+  const gemComics = document.getElementById("gem-comics");
+  if (gemComics) {
+    gemComics.addEventListener("click", () => {
+      chatInput.value = "Show me the Agentic Adventures comics";
+      chatInput.dispatchEvent(new Event("input"));
+      handleSend(orchestrator, chatInput, chatArea, uiManager);
+    });
+  }
+
   // Theme Toggle
   const themeToggle = document.getElementById("theme-toggle");
   if (themeToggle) {
@@ -276,6 +285,13 @@ function triggerEasterEgg(
   // Auto-send the secret command
   input.value = "unlock:comics";
   input.dispatchEvent(new Event("input"));
+
+  // Reveal hidden sidebar gem
+  const gemComics = document.getElementById("gem-comics");
+  if (gemComics) {
+    gemComics.style.display = "flex";
+  }
+
   // @ts-ignore
   handleSend(orchestrator, input, chatArea, uiManager);
 }
