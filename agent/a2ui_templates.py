@@ -480,6 +480,56 @@ CERT_CARDS_EXAMPLE = f"""
 ]
 """
 
+# Comics A2UI template
+COMIC_CARDS_EXAMPLE = f"""
+[
+  {{"beginRendering": {{"surfaceId": "{SURFACE_ID}", "root": "mainColumn"}}}},
+  {{
+    "surfaceUpdate": {{
+      "surfaceId": "{SURFACE_ID}",
+      "components": [
+        {{
+          "id": "mainColumn",
+          "component": {{
+            "Column": {{
+              "children": {{"explicitList": ["header", "comicGrid"]}},
+              "distribution": "start",
+              "alignment": "stretch"
+            }}
+          }}
+        }},
+        {{
+            "id": "header",
+            "component": {{"Text": {{"text": {{"literalString": "The Agentic Adventures 📂"}}, "usageHint": "h2"}}}}
+        }},
+        {{
+          "id": "comicGrid",
+          "component": {{
+            "Row": {{
+              "children": {{"explicitList": ["c1", "c2", "c3"]}},
+              "distribution": "start",
+              "alignment": "stretch"
+            }}
+          }}
+        }},
+        {{
+          "id": "c1",
+          "component": {{
+            "PortfolioCard": {{
+              "type": "project",
+              "title": "Business Leaders Edition",
+              "description": "The Architect's Secret Files: Unlocking the future of AI for leaders.",
+              "image": "/assets/agent_comic.png",
+              "url": "https://enriquekchan.web.app/agent_adventures_business_leaders.pdf"
+            }}
+          }}
+        }}
+      ]
+    }}
+  }}
+]
+"""
+
 # Speaker A2UI template
 SPEAKER_CARDS_EXAMPLE = f"""
 [
@@ -668,6 +718,7 @@ def get_system_prompt(format_type: str, portfolio_data: str, topic: str = "") ->
         "gallery": GALLERY_CARDS_EXAMPLE,
         "matrix": STRATEGIC_MATRIX_EXAMPLE,
         "charts": SKILL_RADAR_EXAMPLE,
+        "comics": COMIC_CARDS_EXAMPLE,
     }
 
     example = examples.get(format_type.lower(), FLASHCARD_EXAMPLE)
@@ -887,13 +938,38 @@ A2UI JSON Template:
 
     if format_type.lower() == "quiz":
         return f"""You are Enrique K Chan's Portfolio Agent.
-Create a quiz about Enrique's background based on the data provided.
+Create a HIGH-QUALITY, DYNAMIC quiz about Enrique's background based on the data provided.
 
 ## Enrique's Data
 {portfolio_data}
 
-A2UI JSON Template:
+## Your Task
+Return A2UI JSON using the 'QuizCard' component.
+- **VARIETY RULE**: DO NOT repeat the same questions. Generate a DIFFERENT set of questions every time (e.g., about his certifications, his specific Olympic metrics, his tenure at Accenture, or his Seattle location).
+- Provide 3-4 options per question with 1 correct answer.
+- Include a technical explanation for the answer.
+- Tone: Engaging and professional.
+
+A2UI JSON Template (Blueprint):
 {QUIZ_EXAMPLE}
+"""
+
+    if format_type.lower() == "comics":
+        return f"""You are Enrique K Chan's Portfolio Agent.
+The user has unlocked the ARCHITECT'S SECRET FILES (The Agent Adventures Comics).
+
+## Comic Data
+{portfolio_data}
+
+## Your Task
+Return A2UI JSON featuring the comics as interactive PortfolioCards.
+- List all available comic issues/editions from the COMICS data.
+- Use 'PortfolioCard' component with type 'project'.
+- Use the provided URLs for the PDF assets.
+- Ensure the header is "The Agentic Adventures 📂".
+
+A2UI JSON Template Example:
+{COMIC_CARDS_EXAMPLE}
 """
 
     if format_type.lower() == "creative":

@@ -189,6 +189,95 @@ function setupUI(orchestrator: ChatOrchestrator, uiManager: UIManager) {
       }
     });
   }
+
+  // Konami Code Easter Egg
+  setupKonamiCode(orchestrator, chatInput, chatArea, uiManager);
+}
+
+function setupKonamiCode(
+  orchestrator: ChatOrchestrator,
+  input: HTMLTextAreaElement,
+  chatArea: HTMLDivElement,
+  uiManager: UIManager
+) {
+  const konamiPattern = [
+    "ArrowUp", "ArrowUp", "ArrowDown", "ArrowDown",
+    "ArrowLeft", "ArrowRight", "ArrowLeft", "ArrowRight",
+    "b", "a"
+  ];
+  let konamiIndex = 0;
+
+  window.addEventListener("keydown", (e) => {
+    if (e.key === konamiPattern[konamiIndex]) {
+      konamiIndex++;
+      if (konamiIndex === konamiPattern.length) {
+        konamiIndex = 0;
+        triggerEasterEgg(orchestrator, input, chatArea, uiManager);
+      }
+    } else {
+      konamiIndex = 0;
+    }
+  });
+
+  // Triple tap on logo secret
+  const logo = document.querySelector(".sidebar-logo");
+  if (logo) {
+    let tapCount = 0;
+    let lastTap = 0;
+    logo.addEventListener("click", () => {
+      const now = Date.now();
+      if (now - lastTap < 500) {
+        tapCount++;
+        if (tapCount === 3) {
+          triggerEasterEgg(orchestrator, input, chatArea, uiManager);
+          tapCount = 0;
+        }
+      } else {
+        tapCount = 1;
+      }
+      lastTap = now;
+    });
+  }
+}
+
+function triggerEasterEgg(
+  orchestrator: ChatOrchestrator,
+  input: HTMLTextAreaElement,
+  chatArea: HTMLDivElement,
+  uiManager: UIManager
+) {
+  console.log("CLASSIFIED ACCESS GRANTED: Unlocking The Agentic Adventures...");
+
+  // Visual feedback (CSS Confetti)
+  const container = document.body;
+  for (let i = 0; i < 50; i++) {
+    const confetti = document.createElement("div");
+    confetti.style.position = "fixed";
+    confetti.style.width = "10px";
+    confetti.style.height = "10px";
+    confetti.style.backgroundColor = ["#4285F4", "#34A853", "#FBBC05", "#EA4335"][Math.floor(Math.random() * 4)];
+    confetti.style.left = Math.random() * 100 + "vw";
+    confetti.style.top = "-10px";
+    confetti.style.zIndex = "1000";
+    confetti.style.borderRadius = "2px";
+    container.appendChild(confetti);
+
+    const animation = confetti.animate([
+      { transform: `translate3d(0, 0, 0) rotate(0deg)`, opacity: 1 },
+      { transform: `translate3d(${(Math.random() - 0.5) * 200}px, 100vh, 0) rotate(${Math.random() * 360}deg)`, opacity: 0 }
+    ], {
+      duration: 2000 + Math.random() * 3000,
+      easing: "cubic-bezier(0, .9, .57, 1)"
+    });
+
+    animation.onfinish = () => confetti.remove();
+  }
+
+  // Auto-send the secret command
+  input.value = "unlock:comics";
+  input.dispatchEvent(new Event("input"));
+  // @ts-ignore
+  handleSend(orchestrator, input, chatArea, uiManager);
 }
 
 async function handleSend(
