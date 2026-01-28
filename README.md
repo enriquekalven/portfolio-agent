@@ -38,7 +38,7 @@ Modern portfolios should be as dynamic as the careers they represent. This "Port
 - **Always-A2UI Intelligence**: Almost every query—from cloudcerts to local weather—triggers a sleek visual dashboard instead of just text.
 
 ## ✨ The "Gems" (Interactive Capabilities)
-The agent features specialized modules (or "Gems") that provide deep-dives into Enrique's history and real-time utility context:
+The agent features specialized modules (or "Gems") that provide deep-dives into Enrique's history and real-time utility context. For a full list of sample questions and interaction patterns, see the **[Portfolio Interaction Guide](PORTFOLIO_GUIDE.md)**.
 
 - **📜 Career Historian**: A sequential journey through high-scale engineering and strategy.
 - **🎯 Skill Matcher**: Instant analysis of how Enrique's expertise applies to specific roles or problems.
