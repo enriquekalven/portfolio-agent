@@ -64,12 +64,8 @@
         height: 100vh;
         overflow: hidden;
         -webkit-font-smoothing: antialiased;
-      }
-
-      .app-container {
         display: flex;
-        height: 100vh;
-        position: relative;
+        flex-direction: column;
       }
 
       /* Sidebar */
@@ -254,6 +250,7 @@
         flex-direction: column;
         background: var(--main-bg);
         position: relative;
+        min-height: 0;
       }
 
       /* Animated background gradient or subtle effect */
@@ -340,12 +337,12 @@
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        height: 100%;
+        min-height: 100%;
         text-align: center;
         gap: 24px;
         max-width: 800px;
         margin: 0 auto;
-        padding-bottom: 60px;
+        padding: 40px 20px;
       }
 
       .welcome-logo {
@@ -601,6 +598,60 @@
         to {
           transform: rotate(360deg);
         }
+      }
+
+      /* Prompt Ticker */
+      .prompt-ticker-container {
+        padding: 0 12px;
+        margin-top: 32px;
+        margin-bottom: 12px;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+      }
+
+      .prompt-ticker {
+        background: linear-gradient(135deg, rgba(66, 133, 244, 0.1), rgba(161, 0, 255, 0.1));
+        border: 1px solid rgba(138, 180, 248, 0.2);
+        border-radius: 16px;
+        padding: 16px 24px;
+        cursor: pointer;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+        animation: pulse-glow 3s infinite ease-in-out;
+        width: 100%;
+        max-width: 450px;
+        text-align: center;
+      }
+
+      .prompt-ticker:hover {
+        background: rgba(138, 180, 248, 0.15);
+        border-color: var(--accent-blue);
+        transform: translateY(-2px);
+      }
+
+      .prompt-ticker-label {
+        font-size: 10px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        color: var(--accent-blue);
+        opacity: 0.8;
+      }
+
+      .prompt-ticker-text {
+        font-size: 13px;
+        font-weight: 500;
+        color: var(--sidebar-text);
+        line-height: 1.4;
+      }
+
+      @keyframes pulse-glow {
+        0% { box-shadow: 0 0 5px rgba(66, 133, 244, 0.1); }
+        50% { box-shadow: 0 0 15px rgba(66, 133, 244, 0.3); border-color: rgba(66, 133, 244, 0.4); }
+        100% { box-shadow: 0 0 5px rgba(66, 133, 244, 0.1); }
       }
 
       .processing-card .text {
@@ -1100,17 +1151,84 @@
       #sign-out-btn:hover {
         background: var(--sidebar-hover);
       }
+
+      /* Announcement Banner */
+      .announcement-banner {
+        background: var(--gemini-gradient);
+        color: white;
+        padding: 10px 24px;
+        font-size: 14px;
+        font-weight: 500;
+        text-align: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+        position: relative;
+        z-index: 1000;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+      }
+
+      .announcement-banner .material-symbols-outlined {
+        font-size: 20px;
+        animation: pulse 2s infinite ease-in-out;
+      }
+
+      @keyframes pulse {
+        0% { transform: scale(1); opacity: 0.8; }
+        50% { transform: scale(1.2); opacity: 1; }
+        100% { transform: scale(1); opacity: 0.8; }
+      }
+
+      /* Adjust app container for banner */
+      .app-container {
+        display: flex;
+        flex: 1;
+        position: relative;
+        overflow: hidden;
+        min-height: 0;
+      }
+      
+      .sidebar {
+        overflow-y: auto;
+        overflow-x: hidden;
+      }
+      
+      /* Webkit scrollbar for sidebar */
+      .sidebar::-webkit-scrollbar {
+        width: 4px;
+      }
+      .sidebar::-webkit-scrollbar-track {
+        background: transparent;
+      }
+      .sidebar::-webkit-scrollbar-thumb {
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 4px;
+      }
+      .sidebar:hover::-webkit-scrollbar-thumb {
+        background: rgba(255, 255, 255, 0.2);
+      }
     </style>
   </head>
   <body>
-    <div class="app-container" id="app-container" style="display: flex;">
+    <!-- Announcement Banner -->
+    <div class="announcement-banner">
+      <span class="material-symbols-outlined">event</span>
+      <span>
+        <strong>Cloud Next '26:</strong> Enrique will be presenting at Cloud Next '26, April 22-24 at Mandalay Bay, Las
+        Vegas!
+        Solution Talk: <em>Architecting AI Agents at Scale</em>. See you there! 🎲
+      </span>
+    </div>
+    
+    <div class="app-container" id="app-container">
       <!-- Sidebar -->
       <aside class="sidebar">
         <div class="sidebar-header">
           <div class="sidebar-header-row">
             <div class="sidebar-logo">
               <span class="material-symbols-outlined gemini-icon" style="color: var(--accent-blue);">auto_awesome</span>
-              <span>Enriq K Chan</span>
+              <span>Enrique K Chan</span>
             </div>
           </div>
           <!-- Professional Links -->
@@ -1220,7 +1338,7 @@
         <header class="main-header">
           <div class="model-selector">
             <span class="material-symbols-outlined">auto_awesome</span>
-            <span>Gemini 3 Flash</span>
+            <span>Gemini 2.5 Flash</span>
             <span class="material-symbols-outlined">expand_more</span>
           </div>
           <div class="header-actions">
@@ -1283,6 +1401,13 @@
                 <span>Hall of Mastery 🖼️</span>
               </div>
             </div>
+<!-- Prompt Ticker -->
+<div class="prompt-ticker-container">
+  <div class="prompt-ticker" id="prompt-ticker">
+    <div class="prompt-ticker-label">Ask me about...</div>
+    <div class="prompt-ticker-text" id="prompt-ticker-text">Show me photos in bubble heads</div>
+  </div>
+</div>
           </div>
         </div>
 

@@ -47,6 +47,27 @@ export class Row extends Root {
         flex-direction: row;
         width: 100%;
         min-height: 100%;
+        overflow-x: auto;
+        scroll-behavior: smooth;
+        gap: 16px;
+        padding-bottom: 8px; /* Space for scrollbar if it appears or to avoid clipping shadows */
+      }
+
+      section::-webkit-scrollbar {
+        height: 6px;
+      }
+
+      section::-webkit-scrollbar-track {
+        background: transparent;
+      }
+
+      section::-webkit-scrollbar-thumb {
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 10px;
+      }
+
+      section:hover::-webkit-scrollbar-thumb {
+        background: rgba(255, 255, 255, 0.2);
       }
 
       :host([alignment="start"]) section {
@@ -87,6 +108,9 @@ export class Row extends Root {
 
       :host([distribution="spaceEvenly"]) section {
         justify-content: space-evenly;
+      }
+      section ::slotted(*) {
+        flex-shrink: 0;
       }
     `,
   ];

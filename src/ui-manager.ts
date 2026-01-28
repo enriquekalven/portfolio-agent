@@ -8,9 +8,11 @@ export class UIManager {
   private recentContainer: HTMLDivElement | null;
   private placeholders = [
     "Ask about Enrique's AI journey...",
-    "Show me his Cloud Tech Impact award 🏆",
-    "What's his vision for Agentic AI? 🤖",
-    "Analyze his fit for an AI Lead role...",
+    "Show me photos in bubble heads",
+    "Test me on your career highlights",
+    "Give me some quiz questions",
+    "Show me the Strategic Integration Matrix",
+    "How do your skills match a Senior AI role?",
     "Show me the Hall of Mastery 🖼️",
     "What do Googlers say about him? ✨"
   ];
@@ -24,6 +26,7 @@ export class UIManager {
     this.initSpeechRecognition();
     this.initHistoryAndActions();
     this.renderRecentChats();
+    this.initPromptTicker();
   }
 
   /**
@@ -36,6 +39,58 @@ export class UIManager {
       this.currentPlaceholderIndex = (this.currentPlaceholderIndex + 1) % this.placeholders.length;
       this.chatInput.placeholder = `Message Enrique's Agent... (Try: "${this.placeholders[this.currentPlaceholderIndex]}")`;
     }, 4000);
+  }
+
+  /**
+   * Initializes the flashing high-fidelity prompt ticker.
+   */
+  private initPromptTicker() {
+    const tickerContainer = document.getElementById("prompt-ticker");
+    const tickerText = document.getElementById("prompt-ticker-text");
+
+    if (!tickerContainer || !tickerText || !this.chatInput) return;
+
+    const prompts = [
+      "Show me photos in bubble heads",
+      "Test me on your career highlights",
+      "Give me some quiz questions",
+      "How do your skills match a Senior AI role?",
+      "Show me the Strategic Integration Matrix",
+      "Walk me through your career journey",
+      "Show me your technical proficiency radar",
+      "Listen to your vision in a podcast deep dive",
+      "Show me your stage presence at Google Cloud Next",
+      "What awards have you won at Google?"
+    ];
+
+    let currentPromptIndex = 0;
+
+    // Click to send prompt
+    tickerContainer.addEventListener("click", () => {
+      if (this.chatInput) {
+        this.chatInput.value = prompts[currentPromptIndex];
+        this.chatInput.dispatchEvent(new Event("input"));
+
+        // Find and click the send button
+        const sendBtn = document.getElementById("sendBtn") as HTMLButtonElement;
+        if (sendBtn) {
+          sendBtn.click();
+        }
+      }
+    });
+
+    // Rotate prompts with a fade effect
+    setInterval(() => {
+      tickerContainer.style.opacity = "0";
+      tickerContainer.style.transform = "translateY(10px)";
+
+      setTimeout(() => {
+        currentPromptIndex = (currentPromptIndex + 1) % prompts.length;
+        tickerText.textContent = prompts[currentPromptIndex];
+        tickerContainer.style.opacity = "1";
+        tickerContainer.style.transform = "translateY(0)";
+      }, 500);
+    }, 5000);
   }
 
   /**

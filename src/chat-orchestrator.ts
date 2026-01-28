@@ -40,6 +40,7 @@ type Intent =
   | "blog"
   | "image"
   | "quiz"
+  | "bubble"
   | "awards"
   | "certs"
   | "speaker"
@@ -49,6 +50,10 @@ type Intent =
   | "blog_cards"
   | "video_cards"
   | "creative"
+  | "charts"
+  | "radar"
+  | "weather"
+  | "stock"
   | "general"
   | "greeting";
 
@@ -107,7 +112,9 @@ ${EXPERIENCE.map((e: any) => `- **${e.company} (${e.period})**: ${e.role}.\n  - 
 - If asked about certs: Mention the ${CERTIFICATIONS.length}x cloud certifications and the **Cloud Badge Wall ☁️**. The grid will render below.
 - If asked about speaking: Mention Google Cloud Next and his **Stage Presence 🎤**. The cards will render below.
 - If asked about testimonials: Mention feedback from Thomas Kurian and the **Googler Vibes ✨**. The cards will render below.
-- If asked for a "gallery" or "pictures of work": Mention the **Hall of Mastery 🖼️** and highlights like the Olympics architecture. The gallery will render below.`;
+- If asked for a "gallery" or "pictures of work": Mention the **Hall of Mastery 🖼️** and highlights like the Olympics architecture. The gallery will render below.
+- If asked for "bubble head" photos or unique headshots: Mention the **Hall of Mastery 🖼️** and the unique visual presentation. Provide a brief professional acknowledge.
+- If asked about the weather: Briefly acknowledge the current conditions in Seattle. This showcases your capability to integrate real-time (mocked for demo) utility data into a personalized agent experience.`;
   }
 
   /**
@@ -155,7 +162,7 @@ ${EXPERIENCE.map((e: any) => `- **${e.company} (${e.period})**: ${e.role}.\n  - 
     this.setMessageText(messageElement, responseText);
 
     // If we need A2UI content, fetch and render it
-    if (intent !== "general" && intent !== "greeting") {
+    if (intent !== "greeting") {
       // Add processing placeholder
       const placeholder = this.addProcessingPlaceholder(
         messageElement,
@@ -265,7 +272,7 @@ ${EXPERIENCE.map((e: any) => `- **${e.company} (${e.period})**: ${e.role}.\n  - 
 IMPORTANT: Consider the CONVERSATION CONTEXT. If the user previously discussed flashcards/podcasts/videos and says things like "yes", "sure", "do it", "render them", "show me", "ya that works" - they are CONFIRMING a previous offer.
 
 Return ONLY ONE of these exact words (nothing else):
-- flashcards - if user wants study cards, review cards, flashcards, or is confirming a flashcard offer
+- flashcards - if user wants study cards, review cards, flashcards, 'skill matcher', 'fit analyzer', or is confirming a flashcard offer
 - image - if user asks for a picture, photo, headshot, or visual representation
 - video - if user wants to watch something or see a video
 - podcast - if user wants audio content, podcast, or to listen to something
@@ -276,7 +283,11 @@ Return ONLY ONE of these exact words (nothing else):
 - testimonials - if user asks for what people say or feedback
 - timeline - if user asks for career history, journey, timeline, or sequential experience
 - gallery - if user asks for a picture gallery, work samples, or visual portfolio
-- creative - if user asks for a 'matrix', 'comparison', 'dashboard', 'framework', or 'visual breakdown'
+- creative - if user asks for a 'matrix', 'comparison', 'dashboard', 'framework', 'strategic breakdown', or 'visual breakdown'
+- bubble - if user asks for bubble head photos, pictures in bubbles, or unique profile visualizations
+- charts - if user asks for a 'radar', 'spider chart', 'skill breakdown', 'technical proficiency', or 'skill chart'
+- weather - if user asks about the weather, temperature, or conditions (e.g. 'What's the weather?')
+- stock - if user asks for stock price, market data, or GOOGL/Nasdaq info
 - greeting - if user is just saying hello/hi
 - general - for questions, explanations, or general conversation
 
@@ -313,6 +324,8 @@ Examples:
       if (intentText.includes("timeline") || intentText.includes("journey")) return "timeline";
       if (intentText.includes("gallery")) return "gallery";
       if (intentText.includes("greeting")) return "greeting";
+      if (intentText.includes("weather")) return "weather";
+      if (intentText.includes("stock") || intentText.includes("market")) return "stock";
 
       return "general";
     } catch (error) {
@@ -366,11 +379,23 @@ Examples:
     if (lower.match(/podcast|audio|listen/i)) {
       return "podcast";
     }
-    if (lower.match(/image|photo|picture|pic|headshot|avatar|bubble/i)) {
+    if (lower.match(/bubble/i)) {
+      return "bubble";
+    }
+    if (lower.match(/image|photo|picture|pic|headshot|avatar/i)) {
       return "image";
     }
     if (lower.match(/matrix|dashboard|framework|comparison|visual breakdown/i)) {
       return "creative";
+    }
+    if (lower.match(/radar|skill breakdown|skill chart|proficiency/i)) {
+      return "charts";
+    }
+    if (lower.match(/weather|temperature|forecast/i)) {
+      return "weather";
+    }
+    if (lower.match(/stock|market|price|googl|shares/i)) {
+      return "stock";
     }
     return "general";
   }
@@ -406,8 +431,9 @@ Examples:
         break;
       case "video":
       case "image":
+      case "bubble":
         intentGuidance =
-          "The user wants to see a picture. Respond with a SHORT (1-2 sentences) acknowledgment. The image will be rendered separately as an A2UI component below. Just say something like 'Sure, here's a look at that!' or 'I've pulled up the visual for you.'";
+          "The user wants to see a picture or your bubble head. Respond with a SHORT (1-2 sentences) acknowledgment. The visual component will be rendered separately below. Just say something like 'Sure, here's a look at that!' or 'I've pulled up the visual for you.'";
         break;
       case "quiz":
         intentGuidance =
@@ -448,6 +474,19 @@ Examples:
       case "creative":
         intentGuidance =
           "The user wants a creative visual breakdown or framework. Provide a SHORT (1 sentence) acknowledgment. The custom high-fidelity dashboard/matrix will be rendered below. Just say something like 'Let me synthesize a unique visual framework for you.'";
+        break;
+      case "charts":
+      case "radar":
+        intentGuidance =
+          "The user wants to see a radar chart or skill breakdown. Provide a SHORT (1 sentence) acknowledgment. The SkillRadar component will be rendered below. Just say something like 'Here is a visual radar of my technical proficiency across core domains.'";
+        break;
+      case "weather":
+        intentGuidance =
+          "The user is asking about the weather. Provide a SHORT (1 sentence) professional acknowledgment. The weather card will be rendered below. Just say 'I have pulled up the local conditions for you.'";
+        break;
+      case "stock":
+        intentGuidance =
+          "The user is asking for stock market data. Provide a SHORT (1 sentence) professional acknowledgment. The real-time market dashboard will be rendered below. Just say 'I've pulled up the live market data for you.'";
         break;
       case "greeting":
         intentGuidance =
@@ -685,6 +724,10 @@ Examples:
         return "Preparing Stage Presence... 🎤";
       case "testimonials":
         return "Gathering Googler Vibes... ✨";
+      case "weather":
+        return "Checking weather conditions... 🌧️";
+      case "stock":
+        return "Retrieving real-time market data... 📈";
       default:
         return "Processing... ⚡";
     }
