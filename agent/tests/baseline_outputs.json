@@ -33,13 +33,13 @@
               "component": {
                 "Flashcard": {
                   "front": {
-                    "literalString": "How have you applied MLOps principles to enhance AI agent reliability at scale?"
+                    "literalString": "How do you ensure high availability and sub-second latency for enterprise-grade AI models processing millions of queries?"
                   },
                   "back": {
-                    "literalString": "At Google Cloud, I ensured 99.99% availability for the NBC Olympics Concierge, serving 40M viewers. This involved implementing robust CI/CD pipelines and proactive monitoring on Vertex AI to maintain sub-second latency for 90M+ queries."
+                    "literalString": "As the technical lead for NBC Olympic Concierge, I architected a GenAI solution on Vertex AI that served 40M viewers, handling 90M+ queries with 99.99% availability and sub-second latency. This involved leveraging Vertex AI Provisioned Throughput and robust MLOps practices for peak performance."
                   },
                   "category": {
-                    "literalString": "Scalable MLOps"
+                    "literalString": "Enterprise MLOps & Scale"
                   }
                 }
               }
@@ -49,13 +49,13 @@
               "component": {
                 "Flashcard": {
                   "front": {
-                    "literalString": "Can you describe a situation where you used Vertex AI to solve a complex business problem?"
+                    "literalString": "What is your approach to establishing best practices and ensuring the reliable deployment of AI agents across a large enterprise?"
                   },
                   "back": {
-                    "literalString": "I led technical delivery for Wayfair's Agentspace, integrating 10+ connectors via Vertex AI to create advanced agentic workflows. This improved data accessibility and streamlined decision-making processes across various business units."
+                    "literalString": "I lead the vision and strategy for Google Cloud's AI Agents Enablement Center of Excellence, co-authoring the 'Intro to Agents' whitepaper (1.5M+ attendees) and developing frameworks for agent governance. My work directly impacts the reliable and scalable adoption of agentic workflows by enterprises."
                   },
                   "category": {
-                    "literalString": "Vertex AI Solutions"
+                    "literalString": "AI Agent Governance"
                   }
                 }
               }
@@ -65,13 +65,13 @@
               "component": {
                 "Flashcard": {
                   "front": {
-                    "literalString": "How do you approach Agent Governance in large enterprise AI deployments?"
+                    "literalString": "How do you guide enterprises in migrating and optimizing their Generative AI solutions for performance and cost efficiency on Vertex AI?"
                   },
                   "back": {
-                    "literalString": "As the lead for Google Cloud's AI Agents Enablement Center of Excellence, I co-authored the global 'Intro to Agents' whitepaper (1.5M+ attendees) and drove adoption of the 'Build Agentic Workflows' offer on go/sell-services, focusing on responsible AI practices and robust governance frameworks."
+                    "literalString": "I actively developed strategies and tools for automating agent migration from platforms like OpenAI to Gemini Enterprise on Vertex AI, detailed in my blog 'From OpenAI to Gemini Enterprise: Automating Agent Migration'. This expertise enables enterprises to leverage Vertex AI's advanced capabilities and cost advantages effectively."
                   },
                   "category": {
-                    "literalString": "Agent Governance Leadership"
+                    "literalString": "Advanced GenAI Solutions on Vertex AI"
                   }
                 }
               }
@@ -83,12 +83,95 @@
     "surfaceId": "portfolioContent",
     "source": {
       "provider": "Enrique K Chan",
-      "url": "https://enriquekchan.com"
+      "url": "https://enriquekchan-concierge.web.app"
     }
   },
   "flashcards:how does your experience fit a senior AI lead role?": {
-    "error": "Failed to generate UI components",
-    "raw": "[\n  {\"beginRendering\": {\"surfaceId\": \"portfolioContent\", \"root\": \"mainColumn\"}},\n  {\n    \"surfaceUpdate\": {\n      \"surfaceId\": \"portfolioContent\",\n      \"components\": [\n        {\n          \"id\": \"mainColumn\",\n          \"component\": {\n            \"Column\": {\n              \"children\": {\"explicitList\": [\"card1\", \"card2\", \"card3\", \"card4\"]},\n              \"distribution\": \"start\",\n              \"alignment\": \"stretch\"\n            }\n          }\n        },\n        {\n          \"id\": \"card1\",\n          \"component\": {\n            \"Flashcard\": {\n              \"front\": {\"literalString\": \"How does your experience ensure responsible AI practices at scale?\"},\n              \"back\": {\"literalString\": \"Co-authored the global 'Intro to Agents' whitepaper (1.5M+ attendees) that included sections on governance, risk, and compliance. Currently leading the AI Agents Enablement Center of Excellence at Google Cloud, ensuring responsible AI adoption.\", \"category\": {\"literalString\": \"AI Governance\"}\n            }\n          }\n        },\n        {\n          \"id\": \"card2\",\n          \"component\": {\n            \"Flashcard\": {\n              \"front\": {\"literalString\": \"How have you managed complex AI projects involving multiple stakeholders?\"},\n              \"back\": {\"literalString\": \"Led technical delivery for Wayfair Agentspace (Project Bozeman) integrating 10+ connectors, and for NBC Olympic Concierge serving 40M viewers. These projects required alignment across product, engineering, and executive teams.\", \"category\": {\"literalString\": \"Stakeholder Management\"}\n            }\n          }\n        },\n        {\n          \"id\": \"card3\",\n          \"component\": {\n            \"Flashcard\": {\n              \"front\": {\"literalString\": \"Can you describe your experience in building and scaling AI infrastructure?\"},\n              \"back\": {\"literalString\": \"Delivered sub-second latency for 90M+ Olympic queries using Vertex AI Provisioned Throughput. Deep experience in Enterprise MLOps and deploying AI models at scale.\", \"category\": {\"literalString\": \"Scalable AI Infrastructure\"}\n            }\n          }\n        },\n        {\n          \"id\": \"card4\",\n          \"component\": {\n            \"Flashcard\": {\n              \"front\": {\"literalString\": \"How does your product management experience help drive adoption of cutting-edge AI?\"},\n              \"back\": {\"literalString\": \"Drove adoption of the 'Build Agentic Workflows' offer on go/sell-services. Strong narrative skills, as demonstrated by significant public speaking and writing across diverse Google Cloud AI topics.\", \"category\": {\"literalString\": \"AI Product Adoption\"}\n            }\n          }\n        }\n      ]\n    }\n  }\n]"
+    "format": "flashcards",
+    "a2ui": [
+      {
+        "beginRendering": {
+          "surfaceId": "portfolioContent",
+          "root": "mainColumn"
+        }
+      },
+      {
+        "surfaceUpdate": {
+          "surfaceId": "portfolioContent",
+          "components": [
+            {
+              "id": "mainColumn",
+              "component": {
+                "Column": {
+                  "children": {
+                    "explicitList": [
+                      "card1",
+                      "card2",
+                      "card3"
+                    ]
+                  },
+                  "distribution": "start",
+                  "alignment": "stretch"
+                }
+              }
+            },
+            {
+              "id": "card1",
+              "component": {
+                "Flashcard": {
+                  "front": {
+                    "literalString": "How does Enrique demonstrate leadership in defining and executing AI strategy for large enterprises?"
+                  },
+                  "back": {
+                    "literalString": "As Outbound Product Manager, he led the vision and strategy for Google Cloud's AI Agents Enablement Center of Excellence, co-authoring a global 'Intro to Agents' whitepaper (1.5M+ attendees). At Accenture, he led Cloud Strategy & Data Analytics for 10 years, selling $10M+ in delivery work and managing 5 direct reports."
+                  },
+                  "category": {
+                    "literalString": "Strategic AI Leadership"
+                  }
+                }
+              }
+            },
+            {
+              "id": "card2",
+              "component": {
+                "Flashcard": {
+                  "front": {
+                    "literalString": "Can Enrique deliver high-performance, high-impact AI solutions for critical enterprise use cases at scale?"
+                  },
+                  "back": {
+                    "literalString": "Absolutely. For NBC Olympic Concierge, he delivered a GenAI solution serving 40M viewers with sub-second latency for 90M+ queries, securing $1.3M in Vertex AI revenue. He also scaled Agentic AI enablement to 1.5M+ developers and secured multi-million dollar commitments for Gemini throughput."
+                  },
+                  "category": {
+                    "literalString": "High-Impact AI Delivery"
+                  }
+                }
+              }
+            },
+            {
+              "id": "card3",
+              "component": {
+                "Flashcard": {
+                  "front": {
+                    "literalString": "What is Enrique's experience with building and modernizing AI-ready infrastructure across diverse cloud environments?"
+                  },
+                  "back": {
+                    "literalString": "With over 15 years across Google Cloud, AWS, and Accenture, Enrique has designed and deployed large-scale cloud architectures for Fortune 500 clients. He modernized legacy infrastructures into highly available AWS architectures and holds extensive certifications across GCP, AWS, and Azure, including ML and Solutions Architect Professional."
+                  },
+                  "category": {
+                    "literalString": "Multi-Cloud AI Architecture"
+                  }
+                }
+              }
+            }
+          ]
+        }
+      }
+    ],
+    "surfaceId": "portfolioContent",
+    "source": {
+      "provider": "Enrique K Chan",
+      "url": "https://enriquekchan-concierge.web.app"
+    }
   },
   "timeline:career progression": {
     "format": "timeline",
@@ -126,7 +209,7 @@
               "component": {
                 "Text": {
                   "text": {
-                    "literalString": "Career Historian \ud83d\udcdc"
+                    "literalString": "Career History \ud83d\udcdc"
                   },
                   "usageHint": "h2"
                 }
@@ -211,7 +294,7 @@
     "surfaceId": "portfolioContent",
     "source": {
       "provider": "Portfolio",
-      "url": "https://enriquekchan.com",
+      "url": "https://enriquekchan-concierge.web.app",
       "title": "Career History"
     }
   },
@@ -293,10 +376,13 @@
                 "PortfolioCard": {
                   "type": "blog",
                   "title": "Intro to Agents Whitepaper",
-                  "description": "The definitive Kaggle guide to the future of AI agents.",
+                  "description": "Co-authored global 'Intro to Agents' whitepaper (1.5M+ attendees).",
                   "image": "/assets/blog-a2ui.png",
-                  "url": "https://www.kaggle.com/whitepaper-introduction-to-agents",
-                  "onAction": "https://www.kaggle.com/whitepaper-introduction-to-agents"
+                  "onAction": {
+                    "link": {
+                      "url": "https://www.kaggle.com/whitepaper-introduction-to-agents"
+                    }
+                  }
                 }
               }
             },
@@ -306,10 +392,13 @@
                 "PortfolioCard": {
                   "type": "blog",
                   "title": "Advent of Agents",
-                  "description": "A 25-day journey into building and deploying agentic workflows.",
+                  "description": "A holiday-themed developer enablement campaign featuring agentic 'Katas' (deployable skills).",
                   "image": "/assets/blog-optimizer.png",
-                  "url": "https://adventofagents.com/",
-                  "onAction": "https://adventofagents.com/"
+                  "onAction": {
+                    "link": {
+                      "url": "https://adventofagents.com/"
+                    }
+                  }
                 }
               }
             },
@@ -321,8 +410,11 @@
                   "title": "How I Built a \u201cLiving\u201d AI Portfolio in a few Hours",
                   "description": "From Manual Updates to Agentic Excellence. How to use agents to build agents.",
                   "image": "/assets/blog-a2ui.png",
-                  "url": "https://medium.com/@enriq/how-i-built-a-living-ai-portfolio-in-a-few-hours-from-manual-updates-to-agentic-excellence-94d8fed86ca7",
-                  "onAction": "https://medium.com/@enriq/how-i-built-a-living-ai-portfolio-in-a-few-hours-from-manual-updates-to-agentic-excellence-94d8fed86ca7"
+                  "onAction": {
+                    "link": {
+                      "url": "https://medium.com/@enriq/how-i-built-a-living-ai-portfolio-in-a-few-hours-from-manual-updates-to-agentic-excellence-94d8fed86ca7"
+                    }
+                  }
                 }
               }
             },
@@ -334,8 +426,11 @@
                   "title": "Building the Future of Agentic Interfaces",
                   "description": "Introducing the Agent UI Starter Pack and the philosophy behind agentic design.",
                   "image": "/assets/blog-a2ui.png",
-                  "url": "https://medium.com/@enriq/building-the-future-of-agentic-interfaces-introducing-the-agent-ui-starter-pack-94d8fed86ca7",
-                  "onAction": "https://medium.com/@enriq/building-the-future-of-agentic-interfaces-introducing-the-agent-ui-starter-pack-94d8fed86ca7"
+                  "onAction": {
+                    "link": {
+                      "url": "https://medium.com/@enriq/building-the-future-of-agentic-interfaces-introducing-the-agent-ui-starter-pack-94d8fed86ca7"
+                    }
+                  }
                 }
               }
             },
@@ -347,8 +442,11 @@
                   "title": "The Architect's Guide to the BigQuery AI Agent Ecosystem",
                   "description": "A comprehensive guide on what to recommend and when for enterprise data agents.",
                   "image": "/assets/blog-optimizer.png",
-                  "url": "https://medium.com/@enriq/the-architects-guide-to-the-bigquery-ai-agent-ecosystem-what-to-recommend-and-when-f2b3e8c9d0a1",
-                  "onAction": "https://medium.com/@enriq/the-architects-guide-to-the-bigquery-ai-agent-ecosystem-what-to-recommend-and-when-f2b3e8c9d0a1"
+                  "onAction": {
+                    "link": {
+                      "url": "https://medium.com/@enriq/the-architects-guide-to-the-bigquery-ai-agent-ecosystem-what-to-recommend-and-when-f2b3e8c9d0a1"
+                    }
+                  }
                 }
               }
             },
@@ -360,8 +458,11 @@
                   "title": "From OpenAI to Gemini Enterprise: Automating Agent Migration",
                   "description": "Automating Agent Migration with Antigravity and Vertex AI.",
                   "image": "/assets/blog-rise.png",
-                  "url": "https://medium.com/@enriq/from-openai-to-gemini-enterprise-automating-agent-migration-with-antigravity-e3b8f7c6d5a4",
-                  "onAction": "https://medium.com/@enriq/from-openai-to-gemini-enterprise-automating-agent-migration-with-antigravity-e3b8f7c6d5a4"
+                  "onAction": {
+                    "link": {
+                      "url": "https://medium.com/@enriq/from-openai-to-gemini-enterprise-automating-agent-migration-with-antigravity-e3b8f2d6d5a4"
+                    }
+                  }
                 }
               }
             }
@@ -409,7 +510,7 @@
               "component": {
                 "Text": {
                   "text": {
-                    "literalString": "Keynotes & Talks \ud83c\udfa4"
+                    "literalString": "Keynotes & Talks \ud83c\udf99\ufe0f"
                   },
                   "usageHint": "h2"
                 }
@@ -536,9 +637,10 @@
                 "Row": {
                   "children": {
                     "explicitList": [
-                      "a1",
-                      "a2",
-                      "a3"
+                      "award_0",
+                      "award_1",
+                      "award_2",
+                      "award_3"
                     ]
                   },
                   "distribution": "start",
@@ -547,36 +649,48 @@
               }
             },
             {
-              "id": "a1",
+              "id": "award_0",
               "component": {
                 "PortfolioCard": {
                   "type": "project",
-                  "title": "Cloud Tech Impact Award 2024 (Trophy) \ud83c\udfc6",
-                  "description": "Awarded for the NBCU Olympic Chatbot serving 40M viewers with sub-second latency.",
+                  "title": "Cloud Tech Impact Award 2024",
+                  "description": "Awarded for the exceptional development and successful deployment of the NBCU OLI Paris Olympic Chatbot, a high-fidelity agentic AI solution serving 40 million viewers and handling over 90 million queries with sub-second latency.",
                   "image": "/assets/award_gtm_2024.jpg",
                   "url": "https://www.google.com/search?q=nbcu+oli+paris+olympics+chatbot"
                 }
               }
             },
             {
-              "id": "a2",
+              "id": "award_1",
               "component": {
                 "PortfolioCard": {
                   "type": "project",
-                  "title": "Accenture Technology Delivery Wizard",
-                  "description": "Ranked #1 out of 97 globally for technical delivery performance.",
+                  "title": "Accenture Seattle Core Value Hero (2020)",
+                  "description": "Recognized for exemplary leadership and embodying Accenture's core values, significantly contributing to client success and fostering a collaborative team environment in the Seattle office.",
                   "image": "/assets/awards.png",
                   "url": "https://www.linkedin.com/in/enriquechan/details/honors/"
                 }
               }
             },
             {
-              "id": "a3",
+              "id": "award_2",
+              "component": {
+                "PortfolioCard": {
+                  "type": "project",
+                  "title": "Accenture Technology Delivery Wizard",
+                  "description": "Ranked #1 out of 97 global consultants for outstanding technical delivery performance in FY18 Q2, demonstrating unparalleled expertise in driving large-scale technology transformations.",
+                  "image": "/assets/awards.png",
+                  "url": "https://www.linkedin.com/in/enriquechan/details/honors/"
+                }
+              }
+            },
+            {
+              "id": "award_3",
               "component": {
                 "PortfolioCard": {
                   "type": "project",
                   "title": "Accenture @ Disney Tenzing Award",
-                  "description": "Quarterly recognition for outstanding technical contributions to the Disney account.",
+                  "description": "Quarterly recognition for outstanding technical contributions to the Disney account, instrumental in scaling transformational technologies such as Disney+ worldwide.",
                   "image": "/assets/awards.png",
                   "url": "https://www.linkedin.com/in/enriquechan/details/honors/"
                 }
@@ -641,11 +755,23 @@
                       "c1",
                       "c2",
                       "c3",
-                      "c4"
+                      "c4",
+                      "c5",
+                      "c6",
+                      "c7",
+                      "c8",
+                      "c9",
+                      "c10",
+                      "c11",
+                      "c12",
+                      "c13",
+                      "c14",
+                      "c15"
                     ]
                   },
                   "distribution": "start",
-                  "alignment": "stretch"
+                  "alignment": "stretch",
+                  "wrap": true
                 }
               }
             },
@@ -655,7 +781,7 @@
                 "PortfolioCard": {
                   "type": "project",
                   "title": "Google Cloud Professional Machine Learning Engineer",
-                  "description": "Google Cloud Professional Machine Learning Engineer",
+                  "description": "Enterprise-grade ML and AI architecture on Vertex AI.",
                   "image": "/assets/certs.png",
                   "url": "https://www.credential.net/profile/enriquekchan"
                 }
@@ -667,7 +793,7 @@
                 "PortfolioCard": {
                   "type": "project",
                   "title": "Google Cloud Professional Cloud Architect",
-                  "description": "Google Cloud Professional Cloud Architect",
+                  "description": "Designing and managing robust, secure, and scalable cloud solutions.",
                   "image": "/assets/certs.png",
                   "url": "https://www.credential.net/profile/enriquekchan"
                 }
@@ -679,7 +805,7 @@
                 "PortfolioCard": {
                   "type": "project",
                   "title": "Google Cloud Professional Data Engineer",
-                  "description": "Google Cloud Professional Data Engineer",
+                  "description": "Demonstrates expertise in architecting and implementing solutions on Google Cloud Platform.",
                   "image": "/assets/certs.png",
                   "url": "https://www.credential.net/profile/enriquekchan"
                 }
@@ -691,26 +817,9 @@
                 "PortfolioCard": {
                   "type": "project",
                   "title": "Google Cloud Professional Cloud Developer",
-                  "description": "Google Cloud Professional Cloud Developer",
+                  "description": "Demonstrates expertise in architecting and implementing solutions on Google Cloud Platform.",
                   "image": "/assets/certs.png",
                   "url": "https://www.credential.net/profile/enriquekchan"
-                }
-              }
-            },
-            {
-              "id": "certGrid2",
-              "component": {
-                "Row": {
-                  "children": {
-                    "explicitList": [
-                      "c5",
-                      "c6",
-                      "c7",
-                      "c8"
-                    ]
-                  },
-                  "distribution": "start",
-                  "alignment": "stretch"
                 }
               }
             },
@@ -720,7 +829,7 @@
                 "PortfolioCard": {
                   "type": "project",
                   "title": "Google Cloud Professional Cloud Security Engineer",
-                  "description": "Google Cloud Professional Cloud Security Engineer",
+                  "description": "Demonstrates expertise in architecting and implementing solutions on Google Cloud Platform.",
                   "image": "/assets/certs.png",
                   "url": "https://www.credential.net/profile/enriquekchan"
                 }
@@ -732,7 +841,7 @@
                 "PortfolioCard": {
                   "type": "project",
                   "title": "Google Cloud Professional Cloud Network Engineer",
-                  "description": "Google Cloud Professional Cloud Network Engineer",
+                  "description": "Demonstrates expertise in architecting and implementing solutions on Google Cloud Platform.",
                   "image": "/assets/certs.png",
                   "url": "https://www.credential.net/profile/enriquekchan"
                 }
@@ -744,7 +853,7 @@
                 "PortfolioCard": {
                   "type": "project",
                   "title": "Google Cloud Professional Collaboration Engineer",
-                  "description": "Google Cloud Professional Collaboration Engineer",
+                  "description": "Demonstrates expertise in architecting and implementing solutions on Google Cloud Platform.",
                   "image": "/assets/certs.png",
                   "url": "https://www.credential.net/profile/enriquekchan"
                 }
@@ -756,26 +865,9 @@
                 "PortfolioCard": {
                   "type": "project",
                   "title": "Google Cloud Professional Cloud DevOps Engineer",
-                  "description": "Google Cloud Professional Cloud DevOps Engineer",
+                  "description": "Demonstrates expertise in architecting and implementing solutions on Google Cloud Platform.",
                   "image": "/assets/certs.png",
                   "url": "https://www.credential.net/profile/enriquekchan"
-                }
-              }
-            },
-            {
-              "id": "certGrid3",
-              "component": {
-                "Row": {
-                  "children": {
-                    "explicitList": [
-                      "c9",
-                      "c10",
-                      "c11",
-                      "c12"
-                    ]
-                  },
-                  "distribution": "start",
-                  "alignment": "stretch"
                 }
               }
             },
@@ -785,7 +877,7 @@
                 "PortfolioCard": {
                   "type": "project",
                   "title": "AWS Certified Solutions Architect \u2013 Professional",
-                  "description": "AWS Certified Solutions Architect \u2013 Professional",
+                  "description": "Designing distributed systems and applications on AWS.",
                   "image": "/assets/certs.png",
                   "url": "https://www.credly.com/users/enrique-chan"
                 }
@@ -797,7 +889,7 @@
                 "PortfolioCard": {
                   "type": "project",
                   "title": "AWS Certified DevOps Engineer \u2013 Professional",
-                  "description": "AWS Certified DevOps Engineer \u2013 Professional",
+                  "description": "Demonstrates expertise in designing and deploying scalable, highly available, and fault-tolerant systems on AWS.",
                   "image": "/assets/certs.png",
                   "url": "https://www.credly.com/users/enrique-chan"
                 }
@@ -809,7 +901,7 @@
                 "PortfolioCard": {
                   "type": "project",
                   "title": "AWS Certified Security \u2013 Specialty",
-                  "description": "AWS Certified Security \u2013 Specialty",
+                  "description": "Demonstrates expertise in designing and deploying scalable, highly available, and fault-tolerant systems on AWS.",
                   "image": "/assets/certs.png",
                   "url": "https://www.credly.com/users/enrique-chan"
                 }
@@ -821,26 +913,9 @@
                 "PortfolioCard": {
                   "type": "project",
                   "title": "AWS Certified Data Analytics \u2013 Specialty",
-                  "description": "AWS Certified Data Analytics \u2013 Specialty",
+                  "description": "Demonstrates expertise in designing and deploying scalable, highly available, and fault-tolerant systems on AWS.",
                   "image": "/assets/certs.png",
                   "url": "https://www.credly.com/users/enrique-chan"
-                }
-              }
-            },
-            {
-              "id": "certGrid4",
-              "component": {
-                "Row": {
-                  "children": {
-                    "explicitList": [
-                      "c13",
-                      "c14",
-                      "c15",
-                      "c16"
-                    ]
-                  },
-                  "distribution": "start",
-                  "alignment": "stretch"
                 }
               }
             },
@@ -850,7 +925,7 @@
                 "PortfolioCard": {
                   "type": "project",
                   "title": "AWS Certified Machine Learning \u2013 Specialty",
-                  "description": "AWS Certified Machine Learning \u2013 Specialty",
+                  "description": "Demonstrates expertise in designing and deploying scalable, highly available, and fault-tolerant systems on AWS.",
                   "image": "/assets/certs.png",
                   "url": "https://www.credly.com/users/enrique-chan"
                 }
@@ -862,9 +937,9 @@
                 "PortfolioCard": {
                   "type": "project",
                   "title": "Microsoft Certified: Azure Solutions Architect Expert",
-                  "description": "Microsoft Certified: Azure Solutions Architect Expert",
+                  "description": "Demonstrates expertise in designing and implementing solutions on Microsoft Azure.",
                   "image": "/assets/certs.png",
-                  "url": "https://www.microsoft.com/en-us/learning/azure-solutions-architect.aspx"
+                  "url": "https://learn.microsoft.com/en-us/certifications/"
                 }
               }
             },
@@ -874,21 +949,9 @@
                 "PortfolioCard": {
                   "type": "project",
                   "title": "Microsoft Certified: Azure AI Engineer Associate",
-                  "description": "Microsoft Certified: Azure AI Engineer Associate",
+                  "description": "Demonstrates expertise in designing and implementing solutions on Microsoft Azure.",
                   "image": "/assets/certs.png",
-                  "url": "https://www.microsoft.com/en-us/learning/azure-ai-engineer.aspx"
-                }
-              }
-            },
-            {
-              "id": "c16",
-              "component": {
-                "PortfolioCard": {
-                  "type": "project",
-                  "title": "AWS Certified Solutions Architect Professional",
-                  "description": "Designing distributed systems and applications on AWS.",
-                  "image": "/assets/certs.png",
-                  "url": "https://www.credly.com/users/enrique-chan"
+                  "url": "https://learn.microsoft.com/en-us/certifications/"
                 }
               }
             }
@@ -936,7 +999,7 @@
               "component": {
                 "Text": {
                   "text": {
-                    "literalString": "Googler Vibes \u2728"
+                    "literalString": "What Googlers Say \u2728"
                   },
                   "usageHint": "h2"
                 }
@@ -986,7 +1049,7 @@
                     "literalString": "Congratulations on being awarded a GTM Cloud Regional Award for your technical impact."
                   },
                   "category": {
-                    "literalString": "Technical Rigor"
+                    "literalString": "Impact"
                   }
                 }
               }
@@ -1018,7 +1081,7 @@
                     "literalString": "Enrique doesn't just talk about agents; he builds the substrate they run on."
                   },
                   "category": {
-                    "literalString": "Innovation"
+                    "literalString": "Technical Rigor"
                   }
                 }
               }
@@ -1030,7 +1093,7 @@
     "surfaceId": "portfolioContent",
     "source": {
       "provider": "Enrique K Chan",
-      "url": "https://enriquekchan.com"
+      "url": "https://enriquekchan-concierge.web.app"
     }
   },
   "speaker:speaking events": {
@@ -1078,8 +1141,10 @@
                 "Row": {
                   "children": {
                     "explicitList": [
-                      "gcnext25a",
-                      "gcnext25b"
+                      "s1",
+                      "s2",
+                      "s3",
+                      "s4"
                     ]
                   },
                   "distribution": "start",
@@ -1088,80 +1153,65 @@
               }
             },
             {
-              "id": "gcnext25a",
+              "id": "s1",
               "component": {
                 "Flashcard": {
                   "front": {
-                    "literalString": "Google Cloud Next '25\nLas Vegas, NV"
+                    "literalString": "Google Cloud Next '25, Las Vegas"
                   },
                   "back": {
-                    "literalString": "Solutions Talk: Architecting GenAI Agents\nEnd-to-end lifecycle of agentic systems.\nImpacted LLMOps and production strategies."
+                    "literalString": "Solutions Talk: Architecting GenAI Agents. Focus: End-to-end lifecycle of agentic systems, from LLMOps to production-grade deployment. Impact: Empowering enterprises to design and scale robust GenAI agents."
                   },
                   "category": {
-                    "literalString": "Keynote"
+                    "literalString": "Solutions Talk"
                   }
                 }
               }
             },
             {
-              "id": "gcnext25b",
+              "id": "s2",
               "component": {
                 "Flashcard": {
                   "front": {
-                    "literalString": "Google Cloud Next '25\nLas Vegas, NV"
+                    "literalString": "Google Cloud Next '25, Las Vegas"
                   },
                   "back": {
-                    "literalString": "Booth Lead: AI Agents\n1:1 coaching and agentic demos.\nEngaged 1,000+ partners and attendees."
+                    "literalString": "Interactive Session: AI Agents Deep Dive. Focus: Personalized coaching and demonstrations of advanced agentic capabilities. Impact: Directly engaging 1,000+ partners and attendees, accelerating their AI agent adoption."
                   },
                   "category": {
-                    "literalString": "Booth"
+                    "literalString": "Interactive Session"
                   }
                 }
               }
             },
             {
-              "id": "speakerGrid2",
-              "component": {
-                "Row": {
-                  "children": {
-                    "explicitList": [
-                      "gadk",
-                      "aoa"
-                    ]
-                  },
-                  "distribution": "start",
-                  "alignment": "stretch"
-                }
-              }
-            },
-            {
-              "id": "gadk",
+              "id": "s3",
               "component": {
                 "Flashcard": {
                   "front": {
-                    "literalString": "Google ADK Summit\nInternal Event at Google"
+                    "literalString": "Google ADK Summit"
                   },
                   "back": {
-                    "literalString": "Agentic Design Frameworks\nFrameworks and ADK integrations.\nAdvancing internal Google agentic efforts."
+                    "literalString": "Keynote: Agentic Design Frameworks. Focus: Proprietary design principles and ADK integration strategies for internal agent development. Impact: Standardizing best practices for scalable and secure agent architectures within Google."
                   },
                   "category": {
-                    "literalString": "Summit"
+                    "literalString": "Internal Keynote"
                   }
                 }
               }
             },
             {
-              "id": "aoa",
+              "id": "s4",
               "component": {
                 "Flashcard": {
                   "front": {
-                    "literalString": "Advent of Agents\nOnline Event"
+                    "literalString": "Advent of Agents"
                   },
                   "back": {
-                    "literalString": "Why 80% of AI Agents Fail\nCloud API Registry and ADK Integration.\nFocusing on reliable agentic workflows."
+                    "literalString": "Technical Deep Dive: Overcoming Agent Failure. Focus: Best practices for reliable agentic workflows, leveraging Cloud API Registry and ADK Integration. Impact: Equipping developers with critical insights to build resilient AI agents."
                   },
                   "category": {
-                    "literalString": "Webinar"
+                    "literalString": "Developer Session"
                   }
                 }
               }
@@ -1210,7 +1260,7 @@
               "component": {
                 "Text": {
                   "text": {
-                    "literalString": "Hall of Mastery \ud83d\uddbc\ufe0f"
+                    "literalString": "Visual Gallery \ud83d\uddbc\ufe0f"
                   },
                   "usageHint": "h2"
                 }
@@ -1239,7 +1289,8 @@
                   "type": "project",
                   "title": "NBC Olympic Concierge (Oli AI) \ud83c\udfc5",
                   "description": "Served 40M viewers with sub-second latency via Vertex AI Provisioned Throughput. Handled 90M+ queries with 99.99% availability.",
-                  "image": "/assets/architecture.jpg"
+                  "image": "/assets/architecture.jpg",
+                  "url": "https://www.google.com/search?q=nbc+olympics+oli+ai"
                 }
               }
             },
@@ -1250,7 +1301,8 @@
                   "type": "project",
                   "title": "Cloud Tech Impact Award 2024 (Trophy) \ud83c\udfc6",
                   "description": "Awarded for the exceptional development of the NBCU OLI Paris Olympic Chatbot using high-fidelity agentic AI.",
-                  "image": "/assets/award_gtm_2024.jpg"
+                  "image": "/assets/award_gtm_2024.jpg",
+                  "url": "https://www.google.com/search?q=nbcu+oli+paris+olympics+chatbot"
                 }
               }
             },
@@ -1259,9 +1311,10 @@
               "component": {
                 "PortfolioCard": {
                   "type": "project",
-                  "title": "Disney+ Global Scaling \ud83c\udff0",
-                  "description": "Marquee project scaling the digital future of entertainment through the worldwide rollout of Disney+.",
-                  "image": "/assets/architecture.jpg"
+                  "title": "How I Built a \u201cLiving\u201d AI Portfolio in a few Hours",
+                  "description": "From Manual Updates to Agentic Excellence. How to use agents to build agents.",
+                  "image": "/assets/blog-a2ui.png",
+                  "url": "https://medium.com/@enriq/how-i-built-a-living-ai-portfolio-in-a-few-hours-from-manual-updates-to-agentic-excellence-94d8fed86ca7"
                 }
               }
             }
@@ -1272,7 +1325,7 @@
     "surfaceId": "portfolioContent",
     "source": {
       "provider": "Enrique K Chan",
-      "url": "https://enriquekchan.com"
+      "url": "https://enriquekchan-concierge.web.app"
     }
   }
 }

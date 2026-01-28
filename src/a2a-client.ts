@@ -1371,7 +1371,7 @@ export class A2AClient {
         if (lowerContext.includes("weather") || lowerContext.includes("temp") || lowerContext.includes("rain") || lowerContext.includes("seattle")) {
           return this.getFallbackContent("weather", context);
         }
-        if (lowerContext.includes("stock") || lowerContext.includes("market") || lowerContext.includes("price") || lowerContext.includes("googl")) {
+        if (lowerContext.includes("stock price") || (lowerContext.includes("market") && lowerContext.includes("data"))) {
           return this.getFallbackContent("stock", context);
         }
         if (lowerContext.includes("time") || lowerContext.includes("date") || lowerContext.includes("clock") || lowerContext.includes("today")) {
