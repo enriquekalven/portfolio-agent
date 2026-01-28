@@ -359,3 +359,31 @@ MATRIX = {
         }
     ]
 }
+
+COMICS = [
+    {
+        "title": "Business Leaders Edition",
+        "image": "/assets/agent_comic.png",
+        "url": "https://enriquekchan.web.app/agent_adventures_business_leaders.pdf"
+    },
+    {
+        "title": "Issue #1: Origin",
+        "image": "/assets/agent_comic.png",
+        "url": "https://enriquekchan.web.app/agent_adventures_part_1.pdf"
+    },
+    {
+        "title": "Issue #2: Core",
+        "image": "/assets/agent_comic.png",
+        "url": "https://enriquekchan.web.app/agent_adventures_part_2.pdf"
+    },
+    {
+        "title": "Issue #3: Evolution",
+        "image": "/assets/agent_comic.png",
+        "url": "https://enriquekchan.web.app/agent_adventures_part_3.pdf"
+    },
+    {
+        "title": "Issue #4: Horizon",
+        "image": "/assets/agent_comic.png",
+        "url": "https://enriquekchan.web.app/agent_adventures_part_4.pdf"
+    }
+]

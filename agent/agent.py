@@ -19,9 +19,9 @@ from google.genai import types
 
 # Import portfolio data
 try:
-    from agent.portfolio_data import PROFILE, EXPERIENCE, PROJECTS, SKILLS, CERTIFICATIONS, _CERTIFICATIONS, AWARDS, _AWARDS, PUBLICATIONS, _BLOGS, _VIDEOS, TESTIMONIALS, _SPEAKING, _GALLERY
+    from agent.portfolio_data import PROFILE, EXPERIENCE, PROJECTS, SKILLS, CERTIFICATIONS, _CERTIFICATIONS, AWARDS, _AWARDS, PUBLICATIONS, _BLOGS, _VIDEOS, TESTIMONIALS, _SPEAKING, _GALLERY, COMICS
 except ImportError:
-    from portfolio_data import PROFILE, EXPERIENCE, PROJECTS, SKILLS, CERTIFICATIONS, _CERTIFICATIONS, AWARDS, _AWARDS, PUBLICATIONS, _BLOGS, _VIDEOS, TESTIMONIALS, _SPEAKING, _GALLERY
+    from portfolio_data import PROFILE, EXPERIENCE, PROJECTS, SKILLS, CERTIFICATIONS, _CERTIFICATIONS, AWARDS, _AWARDS, PUBLICATIONS, _BLOGS, _VIDEOS, TESTIMONIALS, _SPEAKING, _GALLERY, COMICS
 
 # Import A2UI templates
 try:
@@ -37,7 +37,7 @@ class LearningMaterialAgent:
     
     SUPPORTED_FORMATS = [
         "flashcards", "quiz", "podcast", "video", "image", "timeline", 
-        "video_cards", "blog_cards", "awards", "certs", "speaker", "testimonials", "gallery", "creative"
+        "video_cards", "blog_cards", "awards", "certs", "speaker", "testimonials", "gallery", "creative", "comics"
     ]
     
     def __init__(self, model_id: str = "gemini-1.5-flash"):
@@ -74,6 +74,7 @@ BLOGS: {_BLOGS}
 VIDEOS: {_VIDEOS}
 SPEAKING: {_SPEAKING}
 TESTIMONIALS: {TESTIMONIALS}
+COMICS: {COMICS}
 
 CURRENT_TIMESTAMP: {time.time()}
 """
@@ -113,9 +114,13 @@ CURRENT_TIMESTAMP: {time.time()}
             config_args["system_instruction"] = system_prompt
 
         # Simple non-streaming call for the tool-like behavior
+        # VARIETY FIX: Use a random seed/timestamp in the user message 
+        # to prevent cached-result repetition for generic "Generate" requests.
+        user_message = f"Generate {format_type} for topic: {context_topic}. [Random Seed: {time.time()}]"
+
         response = client.models.generate_content(
             model=self.model_id,
-            contents=[types.Content(role="user", parts=[types.Part.from_text(text="Generate")])],
+            contents=[types.Content(role="user", parts=[types.Part.from_text(text=user_message)])],
             config=types.GenerateContentConfig(**config_args)
         )
 
@@ -228,6 +233,8 @@ CURRENT_TIMESTAMP: {time.time()}
                 format_type = "gallery"
             elif "skill match" in message_lower or "analyze fit" in message_lower or "role fit" in message_lower:
                 format_type = "flashcards"
+            elif "comic" in message_lower or "secret file" in message_lower or "unlocked" in message_lower:
+                format_type = "comics"
 
         if format_type in self.SUPPORTED_FORMATS:
             result = await self.generate_content(format_type, context)
