@@ -98,15 +98,63 @@ CURRENT_TIMESTAMP: {time.time()}
             "video_cards", "blog_cards", "awards", "certs", "speaker", "testimonials", "gallery", "creative"
         ]
         
+        # Context Caching Optimization (AgentOps Audit: High Impact)
+        # Reduces redundant token processing for large static instructions
+        cache_name = self._get_cache_name(system_prompt)
+        
+        config_args = {
+            "response_mime_type": "application/json" if is_json_format else "text/plain"
+        }
+        
+        # If cache created successfully, use it; otherwise fallback to system_instruction
+        if cache_name:
+            config_args["cached_content"] = cache_name
+        else:
+            config_args["system_instruction"] = system_prompt
+
         # Simple non-streaming call for the tool-like behavior
         response = client.models.generate_content(
             model=self.model_id,
             contents=[types.Content(role="user", parts=[types.Part.from_text(text="Generate")])],
-            config=types.GenerateContentConfig(
-                system_instruction=system_prompt,
-                response_mime_type="application/json" if is_json_format else "text/plain"
-            )
+            config=types.GenerateContentConfig(**config_args)
         )
+
+    def _get_cache_name(self, system_instruction: str) -> Optional[str]:
+        """Get or create a context cache for the given instruction."""
+        # Minimum token requirement for caching is often ~32k, but Vertex/GenAI SDK
+        # handles the logic. We implement it to follow audit best practices.
+        client = self._get_client()
+        
+        if not hasattr(self, '_cache_map'):
+            self._cache_map = {}
+            
+        inst_hash = hash(system_instruction)
+        if inst_hash in self._cache_map:
+            return self._cache_map[inst_hash]
+            
+        try:
+            # Context caching provides a 90% cost reduction on reuse
+            logger.info("Initializing Context Cache for high-signal system prompt...")
+            
+            # Caching often requires specific model versions (e.g. -001)
+            model_name = self.model_id
+            if 'flash' in model_name and '001' not in model_name and '002' not in model_name:
+                model_name = 'gemini-1.5-flash-001'
+
+            cached_content = client.caches.create(
+                model=model_name,
+                config=types.CachedContentConfig(
+                    system_instruction=system_instruction,
+                    ttl='3600s',
+                )
+            )
+            self._cache_map[inst_hash] = cached_content.name
+            logger.info(f"Context Cache active: {cached_content.name}")
+            return cached_content.name
+        except Exception as e:
+            # Fallback gracefully if caching is not supported for this model/size
+            logger.debug(f"Context caching skipped: {e}")
+            return None
 
         
         try:
@@ -185,18 +233,23 @@ CURRENT_TIMESTAMP: {time.time()}
             result = await self.generate_content(format_type, context)
             yield result
         else:
-            # General chat fallback
+            # General chat fallback with Context Caching
             full_context = self._get_combined_context(context)
             client = self._get_client()
             
             instruction = f"You are Enrique K Chan's Portfolio Agent. {full_context}"
             
+            cache_name = self._get_cache_name(instruction)
+            config_args = {}
+            if cache_name:
+                config_args["cached_content"] = cache_name
+            else:
+                config_args["system_instruction"] = instruction
+
             response = client.models.generate_content(
                 model=self.model_id,
                 contents=[types.Content(role="user", parts=[types.Part.from_text(text=message)])],
-                config=types.GenerateContentConfig(
-                    system_instruction=instruction,
-                )
+                config=types.GenerateContentConfig(**config_args)
             )
             yield {"text": response.text}
 
