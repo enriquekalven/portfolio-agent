@@ -34,7 +34,7 @@ deploy-backend:
 	@echo "📦 Deploying Portfolio Agent to Vertex AI Agent Engine..."
 	# Export requirements for Agent Engine
 	# Note: We use the existing agent directory as the source package
-	./venv/bin/python3 -m agent.app_utils.deploy \
+	./agent/venv/bin/python -m agent.app_utils.deploy \
 		--project $(PROJECT_ID) \
 		--location $(REGION) \
 		--source-packages=./agent \
@@ -47,7 +47,7 @@ deploy-backend:
 # Using the Agent UI Starter Pack deployment pattern
 deploy-frontend: build
 	@echo "📦 Deploying UI Bridge to Cloud Run..."
-	gcloud run deploy $(SERVICE_NAME) --source . --region $(REGION) --allow-unauthenticated --memory 1Gi \
+	gcloud run deploy $(SERVICE_NAME) --project $(PROJECT_ID) --source . --region $(REGION) --allow-unauthenticated --memory 1Gi \
 		--set-env-vars GOOGLE_CLOUD_PROJECT=$(PROJECT_ID),AGENT_ENGINE_RESOURCE_ID=8056830881714667520,AGENT_ENGINE_PROJECT_NUMBER=1069572400509,USE_LOCAL_AGENT=FALSE,GENAI_MODEL=gemini-2.5-flash
 	@echo "🔥 Deploying static assets to Firebase Hosting..."
 	firebase deploy --only hosting --project $(PROJECT_ID)
