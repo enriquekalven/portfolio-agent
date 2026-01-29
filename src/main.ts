@@ -199,6 +199,23 @@ function setupUI(orchestrator: ChatOrchestrator, uiManager: UIManager) {
     });
   }
 
+  // Easter Egg Hint
+  const hint = document.getElementById("easter-egg-hint");
+  if (hint) {
+    hint.addEventListener("click", () => {
+      console.log("Looking for a secret? Maybe an old school code (↑↑↓↓←→←→BA) or a triple-tap on the logo...");
+      // Add a little shake animation
+      hint.animate([
+        { transform: 'translateX(0)' },
+        { transform: 'translateX(-5px)' },
+        { transform: 'translateX(5px)' },
+        { transform: 'translateX(-5px)' },
+        { transform: 'translateX(5px)' },
+        { transform: 'translateX(0)' }
+      ], { duration: 500 });
+    });
+  }
+
   // Konami Code Easter Egg
   setupKonamiCode(orchestrator, chatInput, chatArea, uiManager);
 }
