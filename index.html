@@ -1208,6 +1208,11 @@
       .sidebar:hover::-webkit-scrollbar-thumb {
         background: rgba(255, 255, 255, 0.2);
       }
+      @keyframes pulse {
+        0% { transform: scale(1); }
+        50% { transform: scale(1.1); }
+        100% { transform: scale(1); }
+      }
     </style>
   </head>
   <body>
@@ -1443,6 +1448,11 @@
           </div>
         </div>
       </main>
+    </div>
+    <div id="easter-egg-hint"
+      style="position: fixed; bottom: 30px; right: 30px; cursor: pointer; font-size: 32px; z-index: 1000; filter: drop-shadow(0 4px 12px rgba(0,0,0,0.3)); transition: transform 0.3s; animation: pulse 2s infinite ease-in-out;"
+      title="Looking for a secret? Try the old school code or a triple-tap!">
+      🎁
     </div>
 
     <script type="module" src="/src/main.ts"></script>

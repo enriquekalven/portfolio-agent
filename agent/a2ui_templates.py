@@ -207,10 +207,10 @@ VIDEO_CARDS_EXAMPLE = f"""
           "component": {{
             "PortfolioCard": {{
               "type": "video",
-              "title": "Rise of Agentic AI",
-              "description": "Enrique's keynote on the transition to autonomous AI agents.",
-              "image": "https://img.youtube.com/vi/nZa5-WyN-rE/maxresdefault.jpg",
-              "url": "https://www.youtube.com/watch?v=nZa5-WyN-rE"
+              "title": {{"literalString": "Rise of Agentic AI"}},
+              "description": {{"literalString": "Enrique's keynote on the transition to autonomous AI agents."}},
+              "image": {{"literalString": "https://img.youtube.com/vi/nZa5-WyN-rE/maxresdefault.jpg"}},
+              "url": {{"literalString": "https://www.youtube.com/watch?v=nZa5-WyN-rE"}}
             }}
           }}
         }},
@@ -219,10 +219,10 @@ VIDEO_CARDS_EXAMPLE = f"""
           "component": {{
             "PortfolioCard": {{
               "type": "video",
-              "title": "A2UI & Agentic Interfaces",
-              "description": "A deep dive into high-fidelity Agentic User Interfaces.",
-              "image": "https://img.youtube.com/vi/ZMIAlxx-Jx4/maxresdefault.jpg",
-              "url": "https://www.youtube.com/watch?v=ZMIAlxx-Jx4"
+              "title": {{"literalString": "A2UI & Agentic Interfaces"}},
+              "description": {{"literalString": "A deep dive into high-fidelity Agentic User Interfaces."}},
+              "image": {{"literalString": "https://img.youtube.com/vi/ZMIAlxx-Jx4/maxresdefault.jpg"}},
+              "url": {{"literalString": "https://www.youtube.com/watch?v=ZMIAlxx-Jx4"}}
             }}
           }}
         }}
@@ -280,10 +280,10 @@ BLOG_CARDS_EXAMPLE = f"""
           "component": {{
             "PortfolioCard": {{
               "type": "blog",
-              "title": "Intro to Agents Whitepaper",
-              "description": "The definitive Kaggle guide to the future of AI agents.",
-              "image": "/assets/blog-a2ui.png",
-              "url": "https://www.kaggle.com/whitepaper-introduction-to-agents"
+              "title": {{"literalString": "Intro to Agents Whitepaper"}},
+              "description": {{"literalString": "The definitive Kaggle guide to the future of AI agents."}},
+              "image": {{"literalString": "/assets/blog-a2ui.png"}},
+              "url": {{"literalString": "https://www.kaggle.com/whitepaper-introduction-to-agents"}}
             }}
           }}
         }},
@@ -292,10 +292,10 @@ BLOG_CARDS_EXAMPLE = f"""
           "component": {{
             "PortfolioCard": {{
               "type": "blog",
-              "title": "Advent of Agents",
-              "description": "A 25-day journey into building and deploying agentic workflows.",
-              "image": "/assets/blog-optimizer.png",
-              "url": "https://adventofagents.com/"
+              "title": {{"literalString": "Advent of Agents"}},
+              "description": {{"literalString": "A 25-day journey into building and deploying agentic workflows."}},
+              "image": {{"literalString": "/assets/blog-optimizer.png"}},
+              "url": {{"literalString": "https://adventofagents.com/"}}
             }}
           }}
         }}
@@ -343,10 +343,10 @@ AWARDS_CARDS_EXAMPLE = f"""
           "component": {{
             "PortfolioCard": {{
               "type": "project",
-              "title": "GTM Cloud Tech Impact Award",
-              "description": "Recognized for the massive scale impact of the Olympic 'Oli' chatbot.",
-              "image": "/assets/award_gtm_2024.jpg",
-              "url": "https://www.google.com/search?q=nbc+olympics+oli+ai"
+              "title": {{"literalString": "GTM Cloud Tech Impact Award"}},
+              "description": {{"literalString": "Recognized for the massive scale impact of the Olympic 'Oli' chatbot."}},
+              "image": {{"literalString": "/assets/award_gtm_2024.jpg"}},
+              "url": {{"literalString": "https://www.google.com/search?q=nbc+olympics+oli+ai"}}
             }}
           }}
         }},
@@ -355,10 +355,10 @@ AWARDS_CARDS_EXAMPLE = f"""
           "component": {{
             "PortfolioCard": {{
               "type": "project",
-              "title": "AIS Offsite Hackathon Winner",
-              "description": "Won 1st place for the 'Cards Against Humanity Agent' at the 2025 Google AIS Offsite.",
-              "image": "/assets/awards.png",
-              "url": "https://www.linkedin.com/feed/update/urn:li:activity:7265882565578702848/"
+              "title": {{"literalString": "AIS Offsite Hackathon Winner"}},
+              "description": {{"literalString": "Won 1st place for the 'Cards Against Humanity Agent' at the 2025 Google AIS Offsite."}},
+              "image": {{"literalString": "/assets/awards.png"}},
+              "url": {{"literalString": "https://www.linkedin.com/feed/update/urn:li:activity:7265882565578702848/"}}
             }}
           }}
         }}
@@ -405,9 +405,9 @@ GALLERY_CARDS_EXAMPLE = f"""
           "component": {{
             "PortfolioCard": {{
               "type": "project",
-              "title": "[IMAGE_TITLE]",
-              "description": "[IMAGE_DESCRIPTION]",
-              "image": "[IMAGE_PATH]"
+              "title": {{"literalString": "[IMAGE_TITLE]"}},
+              "description": {{"literalString": "[IMAGE_DESCRIPTION]"}},
+              "image": {{"literalString": "[IMAGE_PATH]"}}
             }}
           }}
         }}
@@ -455,10 +455,10 @@ CERT_CARDS_EXAMPLE = f"""
           "component": {{
             "PortfolioCard": {{
               "type": "project",
-              "title": "Google Cloud Professional ML Engineer",
-              "description": "10x Google Cloud Certified, specializing in enterprise ML and AI architecture.",
-              "image": "/assets/certs.png",
-              "url": "https://www.credential.net/profile/enriquekchan"
+              "title": {{"literalString": "Google Cloud Professional ML Engineer"}},
+              "description": {{"literalString": "10x Google Cloud Certified, specializing in enterprise ML and AI architecture."}},
+              "image": {{"literalString": "/assets/certs.png"}},
+              "url": {{"literalString": "https://www.credential.net/profile/enriquekchan"}}
             }}
           }}
         }},
@@ -467,10 +467,10 @@ CERT_CARDS_EXAMPLE = f"""
           "component": {{
             "PortfolioCard": {{
               "type": "project",
-              "title": "AWS Solutions Architect Professional",
-              "description": "7x AWS Certified with deep expertise in high-scale cloud systems.",
-              "image": "/assets/certs.png",
-              "url": "https://www.credly.com/users/enrique-chan"
+              "title": {{"literalString": "AWS Solutions Architect Professional"}},
+              "description": {{"literalString": "7x AWS Certified with deep expertise in high-scale cloud systems."}},
+              "image": {{"literalString": "/assets/certs.png"}},
+              "url": {{"literalString": "https://www.credly.com/users/enrique-chan"}}
             }}
           }}
         }}
@@ -517,10 +517,10 @@ COMIC_CARDS_EXAMPLE = f"""
           "component": {{
             "PortfolioCard": {{
               "type": "project",
-              "title": "Business Leaders Edition",
-              "description": "The Architect's Secret Files: Unlocking the future of AI for leaders.",
-              "image": "/assets/agent_comic.png",
-              "url": "https://enriquekchan.web.app/agent_adventures_business_leaders.pdf"
+              "title": {{"literalString": "Business Leaders Edition"}},
+              "description": {{"literalString": "The Architect's Secret Files: Unlocking the future of AI for leaders."}},
+              "image": {{"literalString": "/assets/agent_comic.png"}},
+              "url": {{"literalString": "https://enriquekchan.web.app/agent_adventures_business_leaders.pdf"}}
             }}
           }}
         }}
