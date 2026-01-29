@@ -181,9 +181,7 @@ function setupUI(orchestrator: ChatOrchestrator, uiManager: UIManager) {
   const gemComics = document.getElementById("gem-comics");
   if (gemComics) {
     gemComics.addEventListener("click", () => {
-      chatInput.value = "Show me the Agentic Adventures comics";
-      chatInput.dispatchEvent(new Event("input"));
-      handleSend(orchestrator, chatInput, chatArea, uiManager);
+      showComicModal();
     });
   }
 
@@ -299,18 +297,73 @@ function triggerEasterEgg(
     animation.onfinish = () => confetti.remove();
   }
 
-  // Auto-send the secret command
-  input.value = "unlock:comics";
-  input.dispatchEvent(new Event("input"));
-
   // Reveal hidden sidebar gem
   const gemComics = document.getElementById("gem-comics");
   if (gemComics) {
     gemComics.style.display = "flex";
   }
 
-  // @ts-ignore
-  handleSend(orchestrator, input, chatArea, uiManager);
+  // Show the modal
+  showComicModal();
+}
+
+const COMICS_DATA = [
+  {
+    title: "Business Leaders Edition",
+    image: "/assets/agent_comic.png",
+    url: "https://enriquekchan.web.app/agent_adventures_business_leaders.pdf"
+  },
+  {
+    title: "Issue #1: Origin",
+    image: "/assets/agent_comic.png",
+    url: "https://enriquekchan.web.app/agent_adventures_part_1.pdf"
+  },
+  {
+    title: "Issue #2: Core",
+    image: "/assets/agent_comic.png",
+    url: "https://enriquekchan.web.app/agent_adventures_part_2.pdf"
+  },
+  {
+    title: "Issue #3: Evolution",
+    image: "/assets/agent_comic.png",
+    url: "https://enriquekchan.web.app/agent_adventures_part_3.pdf"
+  },
+  {
+    title: "Issue #4: Horizon",
+    image: "/assets/agent_comic.png",
+    url: "https://enriquekchan.web.app/agent_adventures_part_4.pdf"
+  }
+];
+
+function showComicModal() {
+  const modal = document.getElementById("comic-modal");
+  const closeBtn = document.getElementById("modal-close");
+  const list = document.getElementById("comic-list");
+
+  if (!modal || !list) return;
+
+  // Populate list
+  list.innerHTML = COMICS_DATA.map(comic => `
+    <div class="comic-item" onclick="window.open('${comic.url}', '_blank')">
+      <img src="${comic.image}" class="comic-thumb" alt="${comic.title}">
+      <div class="comic-title">${comic.title}</div>
+    </div>
+  `).join("");
+
+  // Show modal
+  modal.style.display = "flex";
+  setTimeout(() => modal.classList.add("active"), 10);
+
+  // Close logic
+  const close = () => {
+    modal.classList.remove("active");
+    setTimeout(() => modal.style.display = "none", 300);
+  };
+
+  if (closeBtn) closeBtn.onclick = close;
+  modal.onclick = (e) => {
+    if (e.target === modal) close();
+  };
 }
 
 async function handleSend(
