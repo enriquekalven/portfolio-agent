@@ -19,7 +19,8 @@
       "portfolio": "https://enriquekchan-concierge.web.app",
       "github": "https://github.com/enriquekalven",
       "youtube": "https://www.youtube.com/@enriquekchan",
-      "pypi": "https://pypi.org/project/agentops-cockpit/"
+      "pypi": "https://pypi.org/project/agentops-cockpit/",
+      "cockpit": "https://agent-cockpit.web.app/"
     }
   },
   "EXPERIENCE": [
@@ -33,7 +34,7 @@
         "Leading vision and strategy for the AI Agents Enablement Center of Excellence.",
         "Co-authored global 'Intro to Agents' whitepaper (1.5M+ attendees).",
         "Drove adoption of the 'Build Agentic Workflows' offer on go/sell-services.",
-        "Released AgentOps Cockpit v0.3.0 to PyPI: A portable auditing & governance toolset for AI Agents."
+        "Released AgentOps Cockpit v2.0.2 to PyPI: A production-grade auditing & governance toolkit for AI Agents."
       ],
       "impact": "Scaled Agentic AI enablement to 1.5M+ developers and secured multi-million dollar commitments for Gemini throughput.",
       "skills": [
@@ -96,9 +97,9 @@
   ],
   "PROJECTS": [
     {
-      "title": "AgentOps Cockpit v0.3.0 🚀",
-      "url": "https://pypi.org/project/agentops-cockpit/",
-      "description": "Portable auditing toolset for AI Agents. Features automated architecture reviews, prompt red-teaming, and governance reporting. Refactored into a native Python package in v0.3.0.",
+      "title": "AgentOps Cockpit v2.0.2 🚀",
+      "url": "https://agent-cockpit.web.app/",
+      "description": "Production-grade auditing and governance toolkit for AI Agents. Features automated architecture reviews, prompt red-teaming, and governance reporting. Refactored into a native Python package and deployed as a sovereign agent cockpit.",
       "image": "/assets/blog-optimizer.png"
     },
     {
@@ -142,6 +143,20 @@
       "Kubernetes"
     ]
   },
+  "REPOSITORIES": [
+    {
+      "name": "agent-cockpit",
+      "url": "https://github.com/enriquekalven/agent-cockpit",
+      "description": "Official repository for the AgentOps Cockpit, a governance-as-code toolkit for AI Agents.",
+      "language": "Python"
+    },
+    {
+      "name": "portfolio-agent",
+      "url": "https://github.com/enriquekalven/portfolio-agent",
+      "description": "High-fidelity A2UI demonstration of an agentic career ambassador.",
+      "language": "TypeScript"
+    }
+  ],
   "CERTIFICATIONS": [
     {
       "title": "Google Cloud Professional ML Engineer",

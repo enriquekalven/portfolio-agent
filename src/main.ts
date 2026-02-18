@@ -102,6 +102,7 @@ function setupUI(orchestrator: ChatOrchestrator, uiManager: UIManager) {
   const gemAwards = document.getElementById("gem-awards");
   const gemCerts = document.getElementById("gem-certs");
   const gemSpeaker = document.getElementById("gem-speaker");
+  const gemRepos = document.getElementById("gem-repos");
 
   if (gemHistorian) {
     gemHistorian.addEventListener("click", () => {
@@ -173,6 +174,14 @@ function setupUI(orchestrator: ChatOrchestrator, uiManager: UIManager) {
   if (gemGallery) {
     gemGallery.addEventListener("click", () => {
       chatInput.value = "Show me a gallery of your work and highlights";
+      chatInput.dispatchEvent(new Event("input"));
+      handleSend(orchestrator, chatInput, chatArea, uiManager);
+    });
+  }
+
+  if (gemRepos) {
+    gemRepos.addEventListener("click", () => {
+      chatInput.value = "Show me your featured open source repositories";
       chatInput.dispatchEvent(new Event("input"));
       handleSend(orchestrator, chatInput, chatArea, uiManager);
     });

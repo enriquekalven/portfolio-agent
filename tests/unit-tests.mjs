@@ -1,5 +1,5 @@
 /**
- * Unit Tests for Personalized Learning Demo
+ * Unit Tests for Portfolio Agent
  *
  * Tests the core functionality of the A2A client, chat orchestrator logic,
  * and A2UI rendering without requiring external services.
@@ -8,7 +8,7 @@
 import { strict as assert } from 'assert';
 
 console.log("=".repeat(60));
-console.log("Personalized Learning Demo - Unit Tests");
+console.log("Personalized Portfolio Agent - Unit Tests");
 console.log("=".repeat(60));
 
 let passed = 0;
@@ -61,7 +61,7 @@ function getFallbackContent(format) {
                   id: "headerText",
                   component: {
                     Text: {
-                      text: { literalString: "Study Flashcards: ATP & Bond Energy" },
+                      text: { literalString: "Career Highlights & Insights: Enrique K Chan" },
                       usageHint: "h3",
                     },
                   },
@@ -80,9 +80,9 @@ function getFallbackContent(format) {
                   id: "card1",
                   component: {
                     Flashcard: {
-                      front: { literalString: "Why does ATP hydrolysis release energy?" },
-                      back: { literalString: "Because the products (ADP + Pi) are MORE STABLE than ATP due to reduced electrostatic repulsion and better resonance stabilization." },
-                      category: { literalString: "Biochemistry" },
+                      front: { literalString: "What is his unique edge in Agentic workflows?" },
+                      back: { literalString: "Specializes in transition from RAG to autonomous agents. Leads AI Agents Enablement COE at Google Cloud." },
+                      category: { literalString: "Skill Matcher" },
                     },
                   },
                 },
@@ -157,7 +157,7 @@ function getFallbackContent(format) {
                   id: "audioTitle",
                   component: {
                     Text: {
-                      text: { literalString: "ATP & Chemical Stability: Correcting the Misconception" },
+                      text: { literalString: "Deep Dive: From RAG to Agentic Workflows" },
                       usageHint: "h3",
                     },
                   },
@@ -167,7 +167,7 @@ function getFallbackContent(format) {
                   component: {
                     Audio: {
                       src: { literalString: "/assets/podcast.m4a" },
-                      title: { literalString: "Understanding ATP Energy Release" },
+                      title: { literalString: "The Future of AI Agents" },
                     },
                   },
                 },
@@ -175,7 +175,7 @@ function getFallbackContent(format) {
                   id: "audioDescription",
                   component: {
                     Text: {
-                      text: { literalString: "This personalized podcast uses gym analogies to explain why 'energy stored in bonds' is a misconception. Perfect for your MCAT prep!" },
+                      text: { literalString: "Enrique discusses the strategic transition from simple chat retrieval to autonomous agentic systems." },
                       usageHint: "body",
                     },
                   },
@@ -196,47 +196,39 @@ function getFallbackContent(format) {
             surfaceUpdate: {
               surfaceId,
               components: [
-                {
-                  id: "videoCard",
-                  component: { Card: { child: "videoContent" } },
-                },
+                { id: "videoCard", component: { Card: { child: "videoContent" } } },
                 {
                   id: "videoContent",
                   component: {
                     Column: {
-                      children: { explicitList: ["videoTitle", "videoPlayer", "videoDescription"] },
+                      children: { explicitList: ["videoTitle", "videoPlayer"] },
                       distribution: "start",
                       alignment: "stretch",
                     },
                   },
                 },
-                {
-                  id: "videoTitle",
-                  component: {
-                    Text: {
-                      text: { literalString: "Visual Guide: ATP Energy & Stability" },
-                      usageHint: "h3",
-                    },
-                  },
-                },
-                {
-                  id: "videoPlayer",
-                  component: {
-                    Video: {
-                      src: { literalString: "/assets/video.mp4" },
-                      title: { literalString: "ATP Hydrolysis Explained" },
-                    },
-                  },
-                },
-                {
-                  id: "videoDescription",
-                  component: {
-                    Text: {
-                      text: { literalString: "Watch the compressed spring analogy in action to understand why ATP releases energy through stability differences." },
-                      usageHint: "body",
-                    },
-                  },
-                },
+                { id: "videoTitle", component: { Text: { text: { literalString: "Video Preview" }, usageHint: "h3" } } },
+                { id: "videoPlayer", component: { Video: { src: { literalString: "/assets/video.mp4" } } } },
+              ],
+            },
+          },
+        ],
+      };
+
+    case "repositories":
+      return {
+        format: "repositories",
+        surfaceId,
+        a2ui: [
+          { beginRendering: { surfaceId, root: "mainColumn" } },
+          {
+            surfaceUpdate: {
+              surfaceId,
+              components: [
+                { id: "mainColumn", component: { Column: { children: { explicitList: ["header", "repoRow"] } } } },
+                { id: "header", component: { Text: { text: { literalString: "Featured Open Source Repositories 🚀" }, usageHint: "h2" } } },
+                { id: "repoRow", component: { Row: { children: { explicitList: ["r0"] } } } },
+                { id: "r0", component: { PortfolioCard: { type: "project", title: "agent-cockpit", description: "Official repository for the AgentOps Cockpit", image: "/assets/blog-optimizer.png", url: "https://github.com/enriquekalven/agent-cockpit" } } }
               ],
             },
           },
@@ -281,6 +273,12 @@ test("getFallbackContent returns valid video structure", () => {
   assert.ok(result.a2ui[0].beginRendering);
 });
 
+test("getFallbackContent returns valid repositories structure", () => {
+  const result = getFallbackContent("repositories");
+  assert.equal(result.format, "repositories");
+  assert.ok(result.a2ui[0].beginRendering);
+});
+
 test("getFallbackContent returns error for unknown format", () => {
   const result = getFallbackContent("unknown");
   assert.equal(result.format, "error");
@@ -305,12 +303,12 @@ function detectIntent(message) {
     return "podcast";
   }
 
-  if (lower.includes("video") || lower.includes("watch") || lower.includes("show me")) {
-    return "video";
+  if (lower.includes("repository") || lower.includes("repo") || lower.includes("open source")) {
+    return "repositories";
   }
 
-  if (lower.includes("quiz") || lower.includes("test me") || lower.includes("practice question")) {
-    return "quiz";
+  if (lower.includes("video") || lower.includes("watch") || lower.includes("show me")) {
+    return "video";
   }
 
   if (lower.match(/^(hi|hello|hey|good morning|good afternoon|good evening)/i)) {
@@ -318,9 +316,8 @@ function detectIntent(message) {
   }
 
   if (lower.includes("help me understand") || lower.includes("explain") ||
-      lower.includes("teach me") || lower.includes("learn about") ||
-      (lower.includes("atp") && (lower.includes("energy") || lower.includes("bond"))) ||
-      lower.includes("misconception")) {
+    lower.includes("career") || lower.includes("experience") ||
+    lower.includes("enrique")) {
     return "flashcards";
   }
 
@@ -345,23 +342,18 @@ test("detectIntent identifies video requests", () => {
   assert.equal(detectIntent("Can you show me the explanation?"), "video");
 });
 
-test("detectIntent identifies quiz requests", () => {
-  assert.equal(detectIntent("Quiz me on this"), "quiz");
-  assert.equal(detectIntent("Test me please"), "quiz");
-  assert.equal(detectIntent("Give me a practice question"), "quiz");
+test("detectIntent identifies repository requests", () => {
+  assert.equal(detectIntent("Show me your github repos"), "repositories");
+  assert.equal(detectIntent("What open source projects do you have?"), "repositories");
 });
 
 test("detectIntent identifies greetings", () => {
   assert.equal(detectIntent("Hi there!"), "greeting");
-  assert.equal(detectIntent("Hello"), "greeting");
-  assert.equal(detectIntent("Hey, how are you?"), "greeting");
-  assert.equal(detectIntent("Good morning"), "greeting");
 });
 
-test("detectIntent defaults to flashcards for learning requests", () => {
-  assert.equal(detectIntent("Help me understand ATP"), "flashcards");
-  assert.equal(detectIntent("Explain bond energy to me"), "flashcards");
-  assert.equal(detectIntent("I have a misconception about this"), "flashcards");
+test("detectIntent defaults to flashcards for learning/career requests", () => {
+  assert.equal(detectIntent("Help me understand Enrique's background"), "flashcards");
+  assert.equal(detectIntent("Explain his role at Google"), "flashcards");
 });
 
 test("detectIntent returns general for unrecognized messages", () => {

@@ -54,6 +54,7 @@ type Intent =
   | "radar"
   | "weather"
   | "stock"
+  | "repositories"
   | "general"
   | "greeting";
 
@@ -72,7 +73,7 @@ export class ChatOrchestrator {
   }
 
   private generateSystemPrompt(): string {
-    const { PROFILE, EXPERIENCE, PROJECTS, CERTIFICATIONS, AWARDS } = portfolioData;
+    const { PROFILE, EXPERIENCE, PROJECTS, REPOSITORIES, CERTIFICATIONS, AWARDS } = portfolioData as any;
 
     return `You are ${PROFILE.name}'s Portfolio Agent, a premium AI assistant for recruiters and hiring managers.
 Your goal is to provide deep, high-signal insights into ${PROFILE.name}'s experience across Google, AWS, and Accenture.
@@ -89,6 +90,7 @@ ${EXPERIENCE.map((e: any) => `- **${e.company} (${e.period})**: ${e.role}.\n  - 
 - **Role**: ${PROFILE.role}.
 - **Experience**: 15+ years total.
 - **Top Projects**: ${PROJECTS.map((p: any) => p.title).join(", ")}.
+- **Open Source Repositories**: ${REPOSITORIES.map((r: any) => `${r.name} (${r.url})`).join(", ")}.
 - **Certifications**: ${CERTIFICATIONS.length}x combined across Google, AWS, and Azure.
 - **Major Awards**: ${AWARDS.join(", ")}.
 - **Location**: ${PROFILE.location}.
@@ -98,6 +100,7 @@ ${EXPERIENCE.map((e: any) => `- **${e.company} (${e.period})**: ${e.role}.\n  - 
   - Medium: ${PROFILE.links.medium}
   - GitHub: ${PROFILE.links.github}
   - YouTube: ${PROFILE.links.youtube}
+  - Cockpit Web App: ${PROFILE.links.cockpit}
   - PyPI (Cockpit): ${PROFILE.links.pypi || "https://pypi.org/project/agentops-cockpit/"}
 
 ## VISUAL ASSETS (FOR CONTEXT)
@@ -302,6 +305,8 @@ Examples:
 - "what awards have you won?" → awards
 - "show me your trophies" → awards
 - "show me your certifications" → certs
+- "what open source projects do you have?" → repositories
+- "show me your github repos" → repositories
 - "explain ATP" → general
 - "hi there" → greeting`,
           intentGuidance: "",
@@ -332,6 +337,7 @@ Examples:
       if (intentText.includes("greeting")) return "greeting";
       if (intentText.includes("weather")) return "weather";
       if (intentText.includes("stock") || intentText.includes("market")) return "stock";
+      if (intentText.includes("repository") || intentText.includes("repo") || intentText.includes("open source")) return "repositories";
 
       return "general";
     } catch (error) {
@@ -402,6 +408,9 @@ Examples:
     }
     if (lower.match(/stock price|nasdaq|ticker|shares/i)) {
       return "stock";
+    }
+    if (lower.match(/repository|repo|open source|github/i)) {
+      return "repositories";
     }
     return "general";
   }
@@ -493,6 +502,10 @@ Examples:
       case "stock":
         intentGuidance =
           "The user is asking for stock market data. Provide a SHORT (1 sentence) professional acknowledgment. The real-time market dashboard will be rendered below. Just say 'I've pulled up the live market data for you.'";
+        break;
+      case "repositories":
+        intentGuidance =
+          "The user wants to see your open source repositories. Provide a SHORT (1 sentence) professional acknowledgment. The repository cards will be rendered separately below. Just say 'Here are some of my featured open source repositories on GitHub.'";
         break;
       case "greeting":
         intentGuidance =

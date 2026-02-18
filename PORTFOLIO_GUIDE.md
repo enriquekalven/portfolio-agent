@@ -18,6 +18,7 @@ This guide outlines the specialized high-fidelity visual modules and interaction
 | **timeline** | **Career Historian**: A sequential, downward timeline tracking 15+ years of professional evolution and impact. | "Walk me through your career journey," "Show me your professional timeline." |
 | **charts** | **Skill Radar**: A futuristic SVG-rendered radar chart visualizing proficiency in AI, Cloud, Data, and Strategy. | "What is your technical proficiency?", "Show me a radar chart of your skills." |
 | **matrix** | **Strategic Matrix**: A premium breakdown of your "Strategic Integration Matrix: Agentic workflows" framework. | "Show me your AI framework," "Can you display the Strategic Integration Matrix?" |
+| **repositories** | **Repo Scout**: Interactive cards showcasing your high-impact open-source projects on GitHub. | "Show me your open source projects," "What github repos do you have?" |
 
 ### 🌍 Real-Time Intelligence & Utilities
 | Type | Description | Sample Questions |

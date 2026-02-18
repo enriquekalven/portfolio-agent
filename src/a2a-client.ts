@@ -77,6 +77,7 @@ export class A2AClient {
       backendFormat === "weather" ||
       backendFormat === "stock" ||
       backendFormat === "time" ||
+      backendFormat === "repositories" ||
       backendFormat === "general"
     ) {
       console.log(`[A2AClient] Using local fallback for Gem: ${format}`);
@@ -216,7 +217,7 @@ export class A2AClient {
    */
   private getFallbackContent(format: string, context: string = ""): A2UIResponse {
     const surfaceId = "learningContent";
-    const { PROFILE, EXPERIENCE, CERTIFICATIONS, AWARDS, TESTIMONIALS, BLOGS, VIDEOS, SPEAKING, GALLERY } = portfolioData;
+    const { PROFILE, EXPERIENCE, PROJECTS, REPOSITORIES, CERTIFICATIONS, AWARDS, TESTIMONIALS, BLOGS, VIDEOS, SPEAKING, GALLERY } = portfolioData as any;
 
     switch (format.toLowerCase()) {
       case "flashcards":
@@ -364,7 +365,7 @@ export class A2AClient {
                     id: "mainColumn",
                     component: {
                       Column: {
-                        children: { explicitList: ["header", ...EXPERIENCE.map((_, i) => `exp${i}`)] },
+                        children: { explicitList: ["header", ...EXPERIENCE.map((_: any, i: number) => `exp${i}`)] },
                         distribution: "start",
                         alignment: "stretch",
                       },
@@ -432,7 +433,7 @@ export class A2AClient {
                     id: "awardRow",
                     component: {
                       Row: {
-                        children: { explicitList: AWARDS.slice(0, 3).map((_, i) => `a${i}`) },
+                        children: { explicitList: AWARDS.slice(0, 3).map((_: any, i: number) => `a${i}`) },
                         distribution: "start",
                         alignment: "stretch",
                       },
@@ -490,7 +491,7 @@ export class A2AClient {
                     id: "certRow",
                     component: {
                       Row: {
-                        children: { explicitList: CERTIFICATIONS.slice(0, 3).map((_, i) => `c${i}`) },
+                        children: { explicitList: CERTIFICATIONS.slice(0, 3).map((_: any, i: number) => `c${i}`) },
                         distribution: "start",
                         alignment: "stretch",
                       },
@@ -547,7 +548,7 @@ export class A2AClient {
                     id: "speakerRow",
                     component: {
                       Row: {
-                        children: { explicitList: SPEAKING.slice(0, 2).map((_, i) => `s${i}`) },
+                        children: { explicitList: SPEAKING.slice(0, 2).map((_: any, i: number) => `s${i}`) },
                         distribution: "start",
                         alignment: "stretch",
                       },
@@ -805,7 +806,7 @@ export class A2AClient {
                     id: "galleryRow",
                     component: {
                       Row: {
-                        children: { explicitList: (GALLERY || []).slice(0, 3).map((_, i) => `g${i}`) },
+                        children: { explicitList: (GALLERY || []).slice(0, 3).map((_: any, i: number) => `g${i}`) },
                         distribution: "start",
                         alignment: "stretch",
                       },
@@ -1359,6 +1360,64 @@ export class A2AClient {
                   }
                 }
               }
+                ],
+              },
+            },
+          ],
+        };
+
+      case "repositories":
+        return {
+          format: "repositories",
+          surfaceId,
+          source: { provider: "GitHub", url: PROFILE.links.github, title: "Open Source Repositories" },
+          a2ui: [
+            { beginRendering: { surfaceId, root: "mainColumn" } },
+            {
+              surfaceUpdate: {
+                surfaceId,
+                components: [
+                  {
+                    id: "mainColumn",
+                    component: {
+                      Column: {
+                        children: { explicitList: ["header", "repoRow"] },
+                        distribution: "start",
+                        alignment: "stretch",
+                      },
+                    },
+                  },
+                  {
+                    id: "header",
+                    component: {
+                      Text: {
+                        text: { literalString: "Featured Open Source Repositories 🚀" },
+                        usageHint: "h2",
+                      },
+                    },
+                  },
+                  {
+                    id: "repoRow",
+                    component: {
+                      Row: {
+                        children: { explicitList: REPOSITORIES.map((_: any, i: number) => `r${i}`) },
+                        distribution: "start",
+                        alignment: "stretch",
+                      },
+                    },
+                  },
+                  ...REPOSITORIES.map((repo: any, i: number) => ({
+                    id: `r${i}`,
+                    component: {
+                      PortfolioCard: {
+                        type: "project",
+                        title: repo.name,
+                        description: repo.description,
+                        image: "/assets/blog-optimizer.png",
+                        url: repo.url
+                      }
+                    },
+                  })),
                 ],
               },
             },

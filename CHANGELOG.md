@@ -2,7 +2,23 @@
 
 All notable changes to the Enrique K Chan Portfolio Agent will be documented in this file.
 
-## [1.1.0] - 2026-01-27
+## [1.2.0] - 2026-02-18
+
+### Added
+- **Repo Scout Gem 🚀**: A new interactive capability to showcase featured open-source repositories from GitHub.
+- **Repositories Detection**: Orchestrator now detects intents related to "github", "repos", and "open source" using both keyword and LLM classification.
+- **Source Repository Section**: Added `REPOSITORIES` to the core portfolio data schema, covering the AgentOps Cockpit and Portfolio Agent codebases.
+- **A2UI Repository Cards**: Implemented high-fidelity fallback rendering for repositories using `PortfolioCard` components with sub-second latency.
+
+### Improved
+- **AgentOps Cockpit Upgrade**: Updated career highlights and project entries to reflect **Cockpit v2.0.2** (Production-Grade Audit & Governance Toolkit).
+- **Test Coverage**: Expanded unit and integration tests to verify theme consistency and repository intent handling.
+- **Sidebar Navigation**: Added the "Repo Scout" module to the persistent sidebar for instant repository exploration.
+
+### Updated
+- **Portfolio Data**: Refreshed Enrique's Google Cloud highlights to emphasize the adoption of the "Build Agentic Workflows" offer and the v2.0.2 release.
+
+---
 
 ### Added
 - **Real-Time Utility Intents**: 
