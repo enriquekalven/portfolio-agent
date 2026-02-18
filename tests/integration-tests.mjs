@@ -1,5 +1,5 @@
 /**
- * Integration Tests for Personalized Learning Demo
+ * Integration Tests for Portfolio Agent
  *
  * Tests cross-module integration without requiring external services.
  * API-dependent tests are skipped but documented for manual verification.
@@ -8,7 +8,7 @@
 import { strict as assert } from 'assert';
 
 console.log("=".repeat(60));
-console.log("Personalized Learning Demo - Integration Tests");
+console.log("Personalized Portfolio Agent - Integration Tests");
 console.log("=".repeat(60));
 
 let passed = 0;
@@ -48,14 +48,15 @@ function simulateChatFlow(userMessage) {
   else if (lower.includes("podcast") || lower.includes("audio")) format = "audio";
   else if (lower.includes("video")) format = "video";
   else if (lower.includes("quiz")) format = "quiz";
+  else if (lower.includes("repository") || lower.includes("repo")) format = "repositories";
   else if (lower.match(/^(hi|hello|hey)/i)) format = "greeting";
-  else if (lower.includes("explain") || lower.includes("atp")) format = "flashcards";
+  else if (lower.includes("explain") || lower.includes("enrique")) format = "flashcards";
 
   // Step 2: Get content (simulated)
   let content;
   if (format === "greeting") {
     content = { format: "greeting", response: "Hello! How can I help you?" };
-  } else if (["flashcards", "audio", "video"].includes(format)) {
+  } else if (["flashcards", "audio", "video", "repositories"].includes(format)) {
     content = getFallbackContent(format);
   } else {
     content = { format: "general", response: "I understand. Let me help you." };
@@ -131,6 +132,23 @@ function getFallbackContent(format) {
         },
       ],
     },
+    repositories: {
+      format: "repositories",
+      surfaceId,
+      a2ui: [
+        { beginRendering: { surfaceId, root: "mainColumn" } },
+        {
+          surfaceUpdate: {
+            surfaceId,
+            components: [
+              { id: "mainColumn", component: { Column: { children: { explicitList: ["repoRow"] } } } },
+              { id: "repoRow", component: { Row: { children: { explicitList: ["r1"] } } } },
+              { id: "r1", component: { PortfolioCard: { type: "project", title: "agent-cockpit" } } },
+            ],
+          },
+        },
+      ],
+    },
   };
 
   return contents[format] || { format: "unknown", a2ui: [] };
@@ -163,6 +181,13 @@ test("chat flow handles greeting without A2UI", () => {
   assert.equal(result.detectedFormat, "greeting");
   assert.ok(!result.hasA2UI);
   assert.equal(result.contentType, "greeting");
+});
+
+test("chat flow handles repository request end-to-end", () => {
+  const result = simulateChatFlow("Show me your github repos");
+  assert.equal(result.detectedFormat, "repositories");
+  assert.ok(result.hasA2UI);
+  assert.equal(result.contentType, "repositories");
 });
 
 test("chat flow handles general question", () => {

@@ -53,6 +53,7 @@ The agent features specialized modules (or "Gems") that provide deep-dives into 
 - **☁️ Cloud Badge Wall**: A full-fidelity rendering of 19x professional certifications (GCP, AWS, Azure).
 - **✨ Googler Vibes**: Real-world testimonials and peer feedback from Google leadership (scrollable carousel).
 - **🖼️ Hall of Mastery**: A premium visual gallery featuring architectural diagrams and career headshots.
+- **🚀 Repo Scout**: Direct access to featured open-source repositories and AI governance toolkits.
 
 ## 🛠️ Advanced Features
 - **🎙️ Voice-to-UI**: Integrated Web Speech API for seamless voice-driven exploration.

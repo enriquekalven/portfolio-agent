@@ -1,6 +1,5 @@
 {
   "hosting": {
-    "site": "enriquekchan-concierge",
     "public": "public",
     "ignore": [
       "firebase.json",

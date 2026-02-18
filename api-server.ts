@@ -797,6 +797,22 @@ async function main() {
       return;
     }
 
+    // Warmup endpoint - triggers Agent Engine to prevent cold starts
+    if (req.url === "/warmup" && req.method === "GET") {
+      try {
+        console.log("[API Server] Warmup triggered...");
+        // Call Agent Engine with a simple request to wake it up
+        const result = await queryAgentEngine("flashcards", "warmup");
+        res.writeHead(200, { "Content-Type": "application/json" });
+        res.end(JSON.stringify({ status: "warm", engineResponse: "active" }));
+      } catch (error: any) {
+        console.error("[API Server] Warmup failed:", error);
+        res.writeHead(500, { "Content-Type": "application/json" });
+        res.end(JSON.stringify({ status: "error", error: error.message }));
+      }
+      return;
+    }
+
     // Endpoints removed
 
     // A2A Agent Engine endpoint

@@ -20,6 +20,11 @@ help:
 dev:
 	npm run start:all
 
+# 🌡️ Warmup: Prevent Cold Starts
+warmup:
+	@echo "🌡️  Waking up Agent Engine..."
+	curl -s "https://$(PROJECT_ID).web.app/warmup" | json_pp || curl -s "https://$(PROJECT_ID).web.app/warmup"
+
 build:
 	@echo "📦 Preparing A2UI library..."
 	rm -rf a2ui-web-lib
