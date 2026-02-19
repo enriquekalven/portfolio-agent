@@ -26,6 +26,9 @@ import { structuralStyles } from "./styles";
 @customElement("a2ui-video")
 export class Video extends Root {
   @property()
+  surfaceId: string | null = null;
+
+  @property()
   url: Primitives.StringValue | null = null;
 
   static styles = [

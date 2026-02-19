@@ -36,6 +36,8 @@ interface MatrixCell {
 @customElement("a2ui-strategic-matrix")
 export class StrategicMatrix extends LitElement {
   @property({ type: String })
+  surfaceId = "";
+  @property({ type: String })
   title: string = "";
 
   @property({ type: Array })

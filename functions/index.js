@@ -40,7 +40,7 @@ async function getAccessToken() {
   return null;
 }
 
-const PORTFOLIO_BASE = "https://enriquekchan.web.app/";
+const PORTFOLIO_BASE = "https://enriquekchan-concierge.web.app/";
 const PORTFOLIO_SECTIONS = {
   "olympics": { slug: "#projects", title: "Olympic 'Oli' Chatbot" },
   "google": { slug: "#experience", title: "Google Cloud Career" },

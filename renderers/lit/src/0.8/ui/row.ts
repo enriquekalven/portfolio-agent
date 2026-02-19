@@ -24,6 +24,8 @@ import { structuralStyles } from "./styles";
 
 @customElement("a2ui-row")
 export class Row extends Root {
+  @property()
+  surfaceId: string | null = null;
   @property({ reflect: true, type: String })
   alignment: Types.ResolvedRow["alignment"] = "stretch";
 

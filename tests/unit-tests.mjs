@@ -90,9 +90,9 @@ function getFallbackContent(format) {
                   id: "card2",
                   component: {
                     Flashcard: {
-                      front: { literalString: "Does breaking a bond release energy?" },
-                      back: { literalString: "NO! Breaking ANY bond REQUIRES energy input. Energy is released when new, more stable bonds FORM." },
-                      category: { literalString: "Chemistry" },
+                      front: { literalString: "What was his impact on the NBC Olympics?" },
+                      back: { literalString: "Lead technical consultant for 'Oli' AI, serving 40M viewers with sub-second latency via Vertex AI." },
+                      category: { literalString: "Project: Olympics" },
                     },
                   },
                 },
@@ -100,9 +100,9 @@ function getFallbackContent(format) {
                   id: "card3",
                   component: {
                     Flashcard: {
-                      front: { literalString: "Think of ATP like... (gym analogy)" },
-                      back: { literalString: "A compressed spring or holding a plank position! It's in a high-energy, unstable state. Releasing to a relaxed state (ADP + Pi) releases that stored potential energy." },
-                      category: { literalString: "MCAT Analogy" },
+                      front: { literalString: "How many cloud certs does he hold?" },
+                      back: { literalString: "19x Professional Cloud Certifications across Google Cloud, AWS, and Microsoft Azure." },
+                      category: { literalString: "Credentialing" },
                     },
                   },
                 },

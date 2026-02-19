@@ -2,7 +2,7 @@
 # Keep-alive script for Portfolio Agent
 # This hits the warmup endpoint every 5 minutes to prevent cold starts.
 
-PROJECT_ID="${1:-enriquekchan-b646b}"
+PROJECT_ID="${1:-enriquekchan-concierge}"
 URL="https://${PROJECT_ID}.web.app/warmup"
 
 echo "Starting keep-alive for $URL"
@@ -19,5 +19,5 @@ do
   else
     echo "  ❌ Failed or still starting: $RESPONSE"
   fi
-  sleep 300
+  sleep 1800
 done

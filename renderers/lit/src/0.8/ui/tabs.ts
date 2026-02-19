@@ -28,6 +28,9 @@ import { Styles } from "../index.js";
 @customElement("a2ui-tabs")
 export class Tabs extends Root {
   @property()
+  surfaceId: string | null = null;
+
+  @property()
   titles: Primitives.StringValue[] | null = null;
 
   @property()

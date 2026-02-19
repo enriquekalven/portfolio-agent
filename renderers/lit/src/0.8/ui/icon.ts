@@ -26,6 +26,9 @@ import { structuralStyles } from "./styles";
 @customElement("a2ui-icon")
 export class Icon extends Root {
   @property()
+  surfaceId: string | null = null;
+
+  @property()
   name: Primitives.StringValue | null = null;
 
   static styles = [

@@ -155,7 +155,7 @@ function getFallbackContent(format) {
 }
 
 test("chat flow handles flashcard request end-to-end", () => {
-  const result = simulateChatFlow("Create some flashcards about ATP");
+  const result = simulateChatFlow("Create some flashcards about AI Agents");
   assert.equal(result.detectedFormat, "flashcards");
   assert.ok(result.hasA2UI);
   assert.equal(result.contentType, "flashcards");

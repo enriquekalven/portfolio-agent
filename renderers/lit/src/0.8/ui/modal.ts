@@ -15,7 +15,7 @@
  */
 
 import { html, css, nothing } from "lit";
-import { customElement, query, state } from "lit/decorators.js";
+import { customElement, property, query, state } from "lit/decorators.js";
 import { Root } from "./root";
 import { classMap } from "lit/directives/class-map.js";
 import { styleMap } from "lit/directives/style-map.js";
@@ -24,6 +24,8 @@ import { ref } from "lit/directives/ref.js";
 
 @customElement("a2ui-modal")
 export class Modal extends Root {
+  @property()
+  surfaceId: string | null = null;
   static styles = [
     structuralStyles,
     css`

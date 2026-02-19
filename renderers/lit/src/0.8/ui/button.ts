@@ -26,6 +26,9 @@ import { structuralStyles } from "./styles";
 @customElement("a2ui-button")
 export class Button extends Root {
   @property()
+  surfaceId: string | null = null;
+
+  @property()
   action: Types.Action | null = null;
 
   static styles = [

@@ -23,6 +23,8 @@ import { structuralStyles } from "./styles";
 
 @customElement("a2ui-list")
 export class List extends Root {
+  @property()
+  surfaceId: string | null = null;
   @property({ reflect: true, type: String })
   direction: "vertical" | "horizontal" = "vertical";
 

@@ -25,6 +25,8 @@ import { customElement, property } from "lit/decorators.js";
 @customElement("a2ui-experience-card")
 export class ExperienceCard extends LitElement {
   @property({ type: String })
+  surfaceId = "";
+  @property({ type: String })
   company: string = "";
 
   @property({ type: String })

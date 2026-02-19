@@ -28,6 +28,9 @@ import { Styles } from "../index.js";
 @customElement("a2ui-image")
 export class Image extends Root {
   @property()
+  surfaceId: string | null = null;
+
+  @property()
   url: Primitives.StringValue | null = null;
 
   @property()

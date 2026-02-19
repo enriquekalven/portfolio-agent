@@ -40,6 +40,9 @@ export class PortfolioCard extends LitElement {
   @property({ type: String })
   type: 'blog' | 'video' | 'project' = 'project';
 
+  @property({ type: String })
+  surfaceId = "";
+
   @state()
   private isPlaying = false;
 

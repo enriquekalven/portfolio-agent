@@ -39,6 +39,9 @@ interface HintedStyles {
 @customElement("a2ui-text")
 export class Text extends Root {
   @property()
+  surfaceId: string | null = null;
+
+  @property()
   text: Primitives.StringValue | null = null;
 
   @property({ reflect: true, attribute: "usage-hint" })

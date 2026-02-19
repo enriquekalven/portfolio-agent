@@ -33,6 +33,8 @@ type A2UIModelProcessorInstance = InstanceType<
 
 @customElement("a2ui-flashcard")
 export class Flashcard extends LitElement {
+  @property({ type: String })
+  surfaceId = "";
   @property({ attribute: false })
   front: StringValue | null = null;
 
@@ -47,9 +49,6 @@ export class Flashcard extends LitElement {
 
   @property({ attribute: false })
   component: v0_8.Types.AnyComponentNode | null = null;
-
-  @property({ attribute: false })
-  surfaceId: string | null = null;
 
   @state()
   private _flipped = false;

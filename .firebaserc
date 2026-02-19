@@ -1,5 +1,14 @@
 {
   "projects": {
     "default": "enriquekchan-b646b"
+  },
+  "targets": {
+    "enriquekchan-b646b": {
+      "hosting": {
+        "enriquekchan-concierge": [
+          "enriquekchan-concierge"
+        ]
+      }
+    }
   }
 }

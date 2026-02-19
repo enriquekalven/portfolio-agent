@@ -31,6 +31,8 @@ interface SkillEntry {
 @customElement("a2ui-skill-radar")
 export class SkillRadar extends LitElement {
   @property({ type: String })
+  surfaceId = "";
+  @property({ type: String })
   title: string = "Technical Proficiency";
 
   @property({ type: Array })

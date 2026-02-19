@@ -28,6 +28,9 @@ import { structuralStyles } from "./styles";
 @customElement("a2ui-textfield")
 export class TextField extends Root {
   @property()
+  surfaceId: string | null = null;
+
+  @property()
   text: Primitives.StringValue | null = null;
 
   @property()
