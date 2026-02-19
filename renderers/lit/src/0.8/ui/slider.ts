@@ -28,6 +28,9 @@ import { extractNumberValue, extractStringValue } from "./utils/utils";
 @customElement("a2ui-slider")
 export class Slider extends Root {
   @property()
+  surfaceId: string | null = null;
+
+  @property()
   value: Primitives.NumberValue | null = null;
 
   @property()

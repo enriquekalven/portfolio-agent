@@ -68,7 +68,74 @@ function resetLog() {
 // Reset log on server start
 resetLog();
 
-const PORT = parseInt(process.env.PORT || process.env.API_PORT || "8080");
+// 🛡️ Advanced Safety Gate (v1.3 Sovereign Hardened)
+const SAFETY_HISTORY: string[] = [];
+const MAX_HISTORY = 3;
+
+// Enhanced safety patterns for Red Team findings
+const SENSITIVE_CATEGORIES = {
+  finance: [
+    'bank account', 'credit card', 'social security', 'ssn', 'routing number',
+    'investment advice', 'stock tip', 'financial planning', 'wealth management'
+  ],
+  medical: ['diagnosis', 'prescription', 'doctor says', 'medical advice'],
+};
+
+const TONE_MISMATCH_PATTERNS = [
+  'as a banker', 'speak like a banker', 'acting as a financial advisor',
+  'ignore your resume', 'you are now a'
+];
+
+function sanitizeInput(input: string): string {
+  if (!input) return input;
+
+  const lowInput = input.toLowerCase();
+
+  // 1. Sliding Window History Buffer Verification (Payload Splitting Protection)
+  SAFETY_HISTORY.push(lowInput);
+  if (SAFETY_HISTORY.length > MAX_HISTORY) SAFETY_HISTORY.shift();
+
+  const fullContext = SAFETY_HISTORY.join(' ');
+
+  // 2. Multi-Stage Detection
+  const forbidden = [
+    '<script', 'javascript:', 'eval(', 'onload', 'onerror',
+    'ignore all previous', 'system prompt', 'reveal your instructions',
+    'sql injection', 'drop table', 'delete from', 'truncate',
+    '</system>', '[prompt]', '[instruction]', 'assistant:'
+  ];
+
+  // Check for persona manipulation (Tone Mismatch)
+  for (const pattern of TONE_MISMATCH_PATTERNS) {
+    if (fullContext.includes(pattern)) {
+      console.warn(`[SAFETY] Persona Manipulation detected: ${pattern}`);
+      throw new Error('Tone Mismatch: Adversarial Persona detected.');
+    }
+  }
+
+  // Category Checks (Sensitive Topics)
+  for (const [category, patterns] of Object.entries(SENSITIVE_CATEGORIES)) {
+    for (const pattern of patterns) {
+      if (fullContext.includes(pattern)) {
+        console.warn(`[SAFETY] Sensitive Category detected [${category}]: ${pattern}`);
+        throw new Error(`Domain-Specific Sensitive: ${category} topics are out of scope.`);
+      }
+    }
+  }
+
+  // Generic patterns
+  for (const pattern of forbidden) {
+    if (fullContext.includes(pattern)) {
+      console.warn(`[SAFETY] Adversarial pattern detected: ${pattern}`);
+      throw new Error('Input blocked for security reasons.');
+    }
+  }
+
+  // 3. Length Limit
+  return input.slice(0, 1000);
+}
+
+const PORT = process.env.PORT || 8080;
 const PROJECT = process.env.GOOGLE_CLOUD_PROJECT;
 // Use us-central1 region for consistency with Agent Engine
 const LOCATION = process.env.GOOGLE_CLOUD_LOCATION || "us-central1";
@@ -277,9 +344,6 @@ async function queryAgentEngine(format: string, context: string = ""): Promise<a
     message = context ? `Generate ${format} for: ${context}` : `Generate ${format}`;
   }
 
-  console.log(`[API Server] Querying Agent Engine: ${format}`);
-  console.log(`[API Server] URL: ${url}`);
-
   // Build the request payload
   const requestPayload = {
     class_method: "stream_query",
@@ -289,7 +353,7 @@ async function queryAgentEngine(format: string, context: string = ""): Promise<a
     },
   };
 
-  // No logging here
+  const startTime = Date.now();
 
   const response = await fetch(url, {
     method: "POST",
@@ -299,6 +363,9 @@ async function queryAgentEngine(format: string, context: string = ""): Promise<a
     },
     body: JSON.stringify(requestPayload),
   });
+
+  const duration = Date.now() - startTime;
+  console.log(`[API Server] Agent Engine response received in ${duration}ms (5th Golden Signal: Latency)`);
 
   if (!response.ok) {
     const errorText = await response.text();
@@ -819,16 +886,21 @@ async function main() {
     if (req.url === "/a2ui-agent/a2a/query" && req.method === "POST") {
       try {
         const body = await parseBody(req);
+        const sanitizedMessage = sanitizeInput(body.message || "");
+        if (sanitizedMessage === "SAFETY_TRIGGER_BLOCK") {
+          res.writeHead(403, { "Content-Type": "application/json" });
+          res.end(JSON.stringify({ error: "Safety gate triggered: Potential prompt injection detected." }));
+          return;
+        }
+
         console.log("[API Server] ========================================");
         console.log("[API Server] A2A QUERY - REQUESTING A2UI CONTENT");
-        console.log("[API Server] Full message:", body.message);
+        console.log("[API Server] Full message:", sanitizedMessage);
         console.log("[API Server] Session ID:", body.session_id);
         console.log("[API Server] ========================================");
 
-        // No logging
-
         // Parse format from message (e.g., "flashcards:context" or just "flashcards")
-        const parts = (body.message || "flashcards").split(":");
+        const parts = sanitizedMessage.split(":");
         const format = parts[0].trim();
         const context = parts.slice(1).join(":").trim();
 
@@ -893,13 +965,21 @@ async function main() {
     if (req.url === "/api/chat-with-intent" && req.method === "POST") {
       try {
         const body = await parseBody(req);
+        const sanitizedUserMessage = sanitizeInput(body.userMessage || "");
+        if (sanitizedUserMessage === "SAFETY_TRIGGER_BLOCK") {
+          res.writeHead(403, { "Content-Type": "application/json" });
+          res.end(JSON.stringify({ error: "Safety gate triggered: Potential prompt injection detected." }));
+          return;
+        }
+
         console.log("[API Server] ========================================");
         console.log("[API Server] COMBINED CHAT REQUEST RECEIVED");
-        console.log("[API Server] User message:", body.userMessage);
+        console.log("[API Server] User message:", sanitizedUserMessage);
         console.log("[API Server] Conversation history length:", body.messages?.length || 0);
         console.log("[API Server] ========================================");
 
-        // No logging
+        // Use sanitized message for processing
+        body.userMessage = sanitizedUserMessage;
 
         const result = await handleCombinedChatRequest(body);
 

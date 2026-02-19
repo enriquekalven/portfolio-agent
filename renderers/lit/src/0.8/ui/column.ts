@@ -24,6 +24,8 @@ import { structuralStyles } from "./styles";
 
 @customElement("a2ui-column")
 export class Column extends Root {
+  @property()
+  surfaceId: string | null = null;
   @property({ reflect: true, type: String })
   alignment: Types.ResolvedColumn["alignment"] = "stretch";
 

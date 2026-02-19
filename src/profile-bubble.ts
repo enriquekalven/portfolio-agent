@@ -24,6 +24,8 @@ import { customElement, property } from "lit/decorators.js";
  */
 @customElement("a2ui-profile-bubble")
 export class ProfileBubble extends LitElement {
+  @property({ type: String })
+  surfaceId = "";
   @property({ attribute: false })
   image: any = "/assets/hero.png";
 

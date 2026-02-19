@@ -34,6 +34,8 @@ interface QuizOption {
 
 @customElement("a2ui-quizcard")
 export class QuizCard extends LitElement {
+  @property({ type: String })
+  surfaceId = "";
   @property({ attribute: false })
   question: StringValue | null = null;
 

@@ -26,6 +26,9 @@ import { structuralStyles } from "./styles";
 @customElement("a2ui-checkbox")
 export class Checkbox extends Root {
   @property()
+  surfaceId: string | null = null;
+
+  @property()
   value: Primitives.BooleanValue | null = null;
 
   @property()

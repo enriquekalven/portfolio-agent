@@ -15,7 +15,7 @@
  */
 
 import { html, css, nothing } from "lit";
-import { customElement } from "lit/decorators.js";
+import { customElement, property } from "lit/decorators.js";
 import { Root } from "./root";
 import { styleMap } from "lit/directives/style-map.js";
 import { classMap } from "lit/directives/class-map.js";
@@ -23,6 +23,8 @@ import { structuralStyles } from "./styles";
 
 @customElement("a2ui-divider")
 export class Divider extends Root {
+  @property()
+  surfaceId: string | null = null;
   static styles = [
     structuralStyles,
     css`

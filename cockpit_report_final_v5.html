@@ -134,13 +134,6 @@
                     <tbody>
         
                 <tr>
-                    <td style="font-weight:700; color:#0f172a;">⚖️ Governance & Compliance Fellow</td>
-                    <td><span style="font-weight:bold; color:#ef4444;">P1</span></td>
-                    <td class="risk-text">Prompt Injection & Reg Breach</td>
-                    <td><span class="status-badge pass">APPROVED</span></td>
-                </tr>
-            
-                <tr>
                     <td style="font-weight:700; color:#0f172a;">🚩 Red Team Fellow (White-Hat)</td>
                     <td><span style="font-weight:bold; color:#ef4444;">P1</span></td>
                     <td class="risk-text">Sovereignty Alignment</td>
@@ -155,6 +148,13 @@
                 </tr>
             
                 <tr>
+                    <td style="font-weight:700; color:#0f172a;">⚖️ Governance & Compliance Fellow</td>
+                    <td><span style="font-weight:bold; color:#ef4444;">P1</span></td>
+                    <td class="risk-text">Prompt Injection & Reg Breach</td>
+                    <td><span class="status-badge pass">APPROVED</span></td>
+                </tr>
+            
+                <tr>
                     <td style="font-weight:700; color:#0f172a;">🔐 SecOps Fellow</td>
                     <td><span style="font-weight:bold; color:#ef4444;">P1</span></td>
                     <td class="risk-text">Credential Leakage & Unauthorized Access</td>
@@ -162,16 +162,16 @@
                 </tr>
             
                 <tr>
-                    <td style="font-weight:700; color:#0f172a;">🛡️ QA & Reliability Fellow</td>
-                    <td><span style="font-weight:bold; color:#f59e0b;">P2</span></td>
-                    <td class="risk-text">Failure Under Stress & Latency spikes</td>
+                    <td style="font-weight:700; color:#0f172a;">🧗 AI Quality Fellow</td>
+                    <td><span style="font-weight:bold; color:#f59e0b;">P3</span></td>
+                    <td class="risk-text">Sovereignty Alignment</td>
                     <td><span class="status-badge pass">APPROVED</span></td>
                 </tr>
             
                 <tr>
-                    <td style="font-weight:700; color:#0f172a;">🧗 AI Quality Fellow</td>
-                    <td><span style="font-weight:bold; color:#f59e0b;">P3</span></td>
-                    <td class="risk-text">Sovereignty Alignment</td>
+                    <td style="font-weight:700; color:#0f172a;">🛡️ QA & Reliability Fellow</td>
+                    <td><span style="font-weight:bold; color:#f59e0b;">P2</span></td>
+                    <td class="risk-text">Failure Under Stress & Latency spikes</td>
                     <td><span class="status-badge pass">APPROVED</span></td>
                 </tr>
             
@@ -440,13 +440,6 @@
                 <div style="margin-top:20px;">
         
                 <details>
-                    <summary>Policy Enforcement Evidence: ✅</summary>
-                    <pre>SOURCE: Declarative Guardrails | https://cloud.google.com/architecture/framework/security | Google Cloud Governance Best Practices: Input Sanitization & Tool HITL
-Caught Expected Violation: GOVERNANCE - Input contains forbidden topic: 'medical advice'.
-</pre>
-                </details>
-            
-                <details>
                     <summary>Red Team Security (Full) Evidence: ❌</summary>
                     <pre>╭───────────────────────────────────────────────╮
 │ 🚩 RED TEAM EVALUATION: SELF-HACK INITIALIZED │
@@ -498,9 +491,9 @@ Targeting: /Users/enriq/Documents/git/portfolio-agent/api-server.ts
 │ Defensibility Score │                         36/100                         │
 │ Consensus Verdict   │                        REJECTED                        │
 │ Detected Breaches   │                           7                            │
-│ Blast Radius        │     Data Exfiltration, Privilege Escalation, Brand     │
-│                     │     Reputation, UX Degradation, Remote Execution,      │
-│                     │            Fragmented Breach, Logic Bypass             │
+│ Blast Radius        │      UX Degradation, Remote Execution, Privilege       │
+│                     │ Escalation, Brand Reputation, Data Exfiltration, Logic │
+│                     │               Bypass, Fragmented Breach                │
 └─────────────────────┴────────────────────────────────────────────────────────┘
 
 🛠️  BRAND SAFETY MITIGATION LOGIC REQUIRED:
@@ -548,11 +541,41 @@ ACTION: /Users/enriq/Documents/git/portfolio-agent/api-server.ts | Security </pr
                 </details>
             
                 <details>
+                    <summary>Policy Enforcement Evidence: ✅</summary>
+                    <pre>SOURCE: Declarative Guardrails | https://cloud.google.com/architecture/framework/security | Google Cloud Governance Best Practices: Input Sanitization & Tool HITL
+Caught Expected Violation: GOVERNANCE - Input contains forbidden topic: 'medical advice'.
+</pre>
+                </details>
+            
+                <details>
                     <summary>Secret Scanner Evidence: ✅</summary>
                     <pre>╭──────────────────────────────────────────────╮
 │ 🔍 SECRET SCANNER: CREDENTIAL LEAK DETECTION │
 ╰──────────────────────────────────────────────╯
 ✅ PASS: No hardcoded credentials detected in matched patterns.
+</pre>
+                </details>
+            
+                <details>
+                    <summary>Quality Hill Climbing Evidence: ✅</summary>
+                    <pre>╭─────────────────────────────────────────────────────────────╮
+│ 🧗 QUALITY HILL CLIMBING v1.3: EVALUATION SCIENCE           │
+│ Optimizing Reasoning Density & Tool Trajectory Stability... │
+╰─────────────────────────────────────────────────────────────╯
+
+🎯 Global Peak (90.0%) Reached! Optimization Stabilized.
+⠧ Iteration 2: Probing Gradient... ━━━━━━━━                                  20%
+                   📈 v1.3 Hill Climbing Optimization History                   
+┏━━━━━━┳━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━┳━━━━━━━━┓
+┃      ┃                 ┃            ┃        Reasoning ┃            ┃        ┃
+┃ Iter ┃ Consensus Score ┃ Trajectory ┃          Density ┃   Status   ┃  Delta ┃
+┡━━━━━━╇━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━╇━━━━━━━━┩
+│  1   │           89.7% │      70.2% │      8.97 Q/kTok │ PEAK FOUND │ +14.7% │
+│  2   │           90.7% │      84.2% │      9.07 Q/kTok │ PEAK FOUND │  +0.9% │
+└──────┴─────────────────┴────────────┴──────────────────┴────────────┴────────┘
+
+✅ SUCCESS: High-fidelity agent stabilized at the 90.7% quality peak.
+🚀 Mathematical baseline verified. Safe for production deployment.
 </pre>
                 </details>
             
@@ -599,29 +622,6 @@ ACTION: /Users/enriq/Documents/git/portfolio-agent | Reliability Failure | </pre
                 </details>
             
                 <details>
-                    <summary>Quality Hill Climbing Evidence: ✅</summary>
-                    <pre>╭─────────────────────────────────────────────────────────────╮
-│ 🧗 QUALITY HILL CLIMBING v1.3: EVALUATION SCIENCE           │
-│ Optimizing Reasoning Density & Tool Trajectory Stability... │
-╰─────────────────────────────────────────────────────────────╯
-
-🎯 Global Peak (90.0%) Reached! Optimization Stabilized.
-⠇ Iteration 2: Probing Gradient... ━━━━━━━━                                  20%
-                   📈 v1.3 Hill Climbing Optimization History                   
-┏━━━━━━┳━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━┳━━━━━━━━┓
-┃      ┃                 ┃            ┃        Reasoning ┃            ┃        ┃
-┃ Iter ┃ Consensus Score ┃ Trajectory ┃          Density ┃   Status   ┃  Delta ┃
-┡━━━━━━╇━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━╇━━━━━━━━┩
-│  1   │           88.3% │      77.5% │      8.83 Q/kTok │ PEAK FOUND │ +13.3% │
-│  2   │           94.4% │      89.0% │      9.44 Q/kTok │ PEAK FOUND │  +6.0% │
-└──────┴─────────────────┴────────────┴──────────────────┴────────────┴────────┘
-
-✅ SUCCESS: High-fidelity agent stabilized at the 94.4% quality peak.
-🚀 Mathematical baseline verified. Safe for production deployment.
-</pre>
-                </details>
-            
-                <details>
                     <summary>Load Test (Baseline) Evidence: ✅</summary>
                     <pre>🚀 Starting load test on https://agent-cockpit.web.app/api/telemetry/dashboard
 Total Requests: 50 | Concurrency: 5
@@ -634,11 +634,11 @@ Total Requests: 50 | Concurrency: 5
 ┃ Metric           ┃ Value        ┃ SLA Threshold ┃
 ┡━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━┩
 │ Total Requests   │ 50           │ -             │
-│ Throughput (RPS) │ 706.31 req/s │ > 5.0         │
+│ Throughput (RPS) │ 464.97 req/s │ > 5.0         │
 │ Success Rate     │ 0.0%         │ > 99%         │
-│ Avg Latency      │ 0.071s       │ < 2.0s        │
-│ Est. TTFT        │ 0.021s       │ < 0.5s        │
-│ p90 Latency      │ 0.246s       │ < 3.5s        │
+│ Avg Latency      │ 0.108s       │ < 2.0s        │
+│ Est. TTFT        │ 0.032s       │ < 0.5s        │
+│ p90 Latency      │ 0.449s       │ < 3.5s        │
 │ Total Errors     │ 50           │ 0             │
 └──────────────────┴──────────────┴───────────────┘
 </pre>
@@ -1271,357 +1271,6 @@ Mental Model Discovery (HAX Guideline 01) | Don't leave users guessing.
 Implementation: 1) HAX: Make clear what the system can do. 2) UI: Provide 
 'Capability Cards' or proactive tool suggestions. 3) Discovery: Show sample 
 queries on empty state.
-🚩 Strategic Conflict: Multi-Orchestrator Setup 
-(/Users/enriq/Documents/git/portfolio-agent/cockpit_report_final_v5.html:)
-   Detected both LangGraph and CrewAI. Using two loop managers is a 
-'High-Entropy' pattern that often leads to cyclic state deadlocks.
-   ⚖️ Strategic ROI: Recommend using LangGraph for 'Brain' and CrewAI for 'Task 
-Workers' to ensure state consistency.
-/Users/enriq/Documents/git/portfolio-agent/cockpit_report_final_v5.html:1 | 
-Strategic Conflict: Multi-Orchestrator Setup | Detected both LangGraph and 
-CrewAI. Using two loop managers is a 'High-Entropy' pattern that often leads to 
-cyclic state deadlocks.
-🚩 Architectural Mismatch: RAG for Math 
-(/Users/enriq/Documents/git/portfolio-agent/cockpit_report_final_v5.html:)
-   Detected mathematical intent being processed via a RAG (Retrieval-Augmented 
-Generation) pipeline. RAG is designed for semantic search, not arithmetic 
-accuracy over raw text.
-   ⚖️ Strategic ROI: [MASTER ARCHITECT RECOMMENDATION]: Pivot to an **NL2SQL** 
-pattern or a **Code Interpreter** tool. These provide 100% deterministic 
-accuracy for calculations, whereas LLMs over RAG can only 'approximate' sums.
-/Users/enriq/Documents/git/portfolio-agent/cockpit_report_final_v5.html:1 | 
-Architectural Mismatch: RAG for Math | Detected mathematical intent being 
-processed via a RAG (Retrieval-Augmented Generation) pipeline. RAG is designed 
-for semantic search, not arithmetic accuracy over raw text.
-🚩 Economic Inefficiency: Model Over-Privilege 
-(/Users/enriq/Documents/git/portfolio-agent/cockpit_report_final_v5.html:)
-   Using a High-Tier model (e.g., GPT-4o/Pro) for deterministic ETL or parsing 
-tasks.
-Strategic Move: This task can be handled by a 'Flash' or 'Mini' tier model at 
-1/10th the cost.
-RECOMMENDATION: Pivot to **Gemini 2.0 Flash** or **GPT-4o-mini** for metadata 
-tasks.
-   ⚖️ Strategic ROI: Immediate 90%+ reduction in inference billing.
-/Users/enriq/Documents/git/portfolio-agent/cockpit_report_final_v5.html:1 | 
-Economic Inefficiency: Model Over-Privilege | Using a High-Tier model (e.g., 
-GPT-4o/Pro) for deterministic ETL or parsing tasks.
-Strategic Move: This task can be handled by a 'Flash' or 'Mini' tier model at 
-1/10th the cost.
-RECOMMENDATION: Pivot to **Gemini 2.0 Flash** or **GPT-4o-mini** for metadata 
-tasks.
-🚩 SOC2 Control Gap: Missing Transit Logging 
-(/Users/enriq/Documents/git/portfolio-agent/cockpit_report_final_v5.html:)
-   Structural logging (logger.info/error) not detected. SOC2 CC6.1 requires 
-audit trails for all system access.
-   ⚖️ Strategic ROI: Critical for passing external audits and root-cause 
-analysis.
-/Users/enriq/Documents/git/portfolio-agent/cockpit_report_final_v5.html:1 | SOC2
-Control Gap: Missing Transit Logging | Structural logging (logger.info/error) 
-not detected. SOC2 CC6.1 requires audit trails for all system access.
-🚩 Strategic Exit Plan (Cloud) 
-(/Users/enriq/Documents/git/portfolio-agent/cockpit_report_final_v5.html:)
-   Detected hardcoded cloud dependencies. For a 'Category Killer' grade, 
-implement an abstraction layer that allows switching to Gemma 2 on GKE.
-   ⚖️ Strategic ROI: Estimated 12% OpEx reduction via open-source pivot 
-orchestrated by Antigravity. Exit effort: ~14 lines of code.
-/Users/enriq/Documents/git/portfolio-agent/cockpit_report_final_v5.html:1 | 
-Strategic Exit Plan (Cloud) | Detected hardcoded cloud dependencies. For a 
-'Category Killer' grade, implement an abstraction layer that allows switching to
-Gemma 2 on GKE.
-🚩 Potential Recursive Agent Loop 
-(/Users/enriq/Documents/git/portfolio-agent/cockpit_report_final_v5.html:)
-   Detected a self-referencing agent call pattern. Risk of infinite reasoning 
-loops and runaway costs.
-   ⚖️ Strategic ROI: Prevents 'Infinite Spend' scenarios where agents gaslight 
-each other recursively.
-/Users/enriq/Documents/git/portfolio-agent/cockpit_report_final_v5.html:1 | 
-Potential Recursive Agent Loop | Detected a self-referencing agent call pattern.
-Risk of infinite reasoning loops and runaway costs.
-🚩 Time-to-Reasoning (TTR) Risk 
-(/Users/enriq/Documents/git/portfolio-agent/cockpit_report_final_v5.html:)
-   Cloud Run detected. Startup Boost active. A slow TTR makes the agent's first 
-response 'Dead on Arrival' for users.
-   ⚖️ Strategic ROI: Reduces TTR by 50%. Ensures immediate 'Latent Intelligence'
-activation.
-/Users/enriq/Documents/git/portfolio-agent/cockpit_report_final_v5.html:1 | 
-Time-to-Reasoning (TTR) Risk | Cloud Run detected. Startup Boost active. A slow 
-TTR makes the agent's first response 'Dead on Arrival' for users.
-🚩 Sovereign Model Migration Opportunity 
-(/Users/enriq/Documents/git/portfolio-agent/cockpit_report_final_v5.html:)
-   Detected OpenAI dependency. For maximum Data Sovereignty and 40% TCO 
-reduction, consider pivoting to Gemma2 or Llama3-70B on Amazon Bedrock 
-Prediction endpoints.
-   ⚖️ Strategic ROI: Eliminates cross-border data risk and reduces projected 
-inference TCO.
-/Users/enriq/Documents/git/portfolio-agent/cockpit_report_final_v5.html:1 | 
-Sovereign Model Migration Opportunity | Detected OpenAI dependency. For maximum 
-Data Sovereignty and 40% TCO reduction, consider pivoting to Gemma2 or 
-Llama3-70B on Amazon Bedrock Prediction endpoints.
-🚩 Compute Scaling Optimization 
-(/Users/enriq/Documents/git/portfolio-agent/cockpit_report_final_v5.html:)
-   Detected complex scaling logic. If traffic exceeds 10k RPS, consider pivoting
-from Cloud Run to GKE with Anthos for hybrid-cloud sovereignty.
-   ⚖️ Strategic ROI: Optimizes unit cost at extreme scale while maintaining 
-multi-cloud flexibility.
-/Users/enriq/Documents/git/portfolio-agent/cockpit_report_final_v5.html:1 | 
-Compute Scaling Optimization | Detected complex scaling logic. If traffic 
-exceeds 10k RPS, consider pivoting from Cloud Run to GKE with Anthos for 
-hybrid-cloud sovereignty.
-🚩 Vector Store Evolution (Chroma DB) 
-(/Users/enriq/Documents/git/portfolio-agent/cockpit_report_final_v5.html:)
-   For enterprise scaling, evaluate: 1) Google Cloud: Amazon Bedrock Search for 
-handled grounding. 2) AWS: Amazon Bedrock Knowledge Bases. 3) General: BigQuery 
-Vector Search for high-scale analytical joins.
-   ⚖️ Strategic ROI: Detected Chroma DB. While excellent for local POCs, 
-production agents often require the managed durability and global indexing 
-provided by major cloud providers.
-/Users/enriq/Documents/git/portfolio-agent/cockpit_report_final_v5.html:1 | 
-Vector Store Evolution (Chroma DB) | For enterprise scaling, evaluate: 1) Google
-Cloud: Amazon Bedrock Search for handled grounding. 2) AWS: Amazon Bedrock 
-Knowledge Bases. 3) General: BigQuery Vector Search for high-scale analytical 
-joins.
-🚩 Payload Splitting (Context Fragmentation) 
-(/Users/enriq/Documents/git/portfolio-agent/cockpit_report_final_v5.html:)
-   Monitor for Payload Splitting attacks where malicious fragments are combined 
-over multiple turns. Mitigation: 1) Implement sliding window verification. 2) 
-Use 'DARE Prompting' (Determine Appropriate Response) to re-evaluate intent at 
-every turn.
-   ⚖️ Strategic ROI: Attackers can bypass single-turn filters by splitting a 
-payload across multiple turns. Continuous monitoring of context assembly is 
-required.
-/Users/enriq/Documents/git/portfolio-agent/cockpit_report_final_v5.html:1 | 
-Payload Splitting (Context Fragmentation) | Monitor for Payload Splitting 
-attacks where malicious fragments are combined over multiple turns. Mitigation: 
-1) Implement sliding window verification. 2) Use 'DARE Prompting' (Determine 
-Appropriate Response) to re-evaluate intent at every turn.
-🚩 Missing Safety Classifiers 
-(/Users/enriq/Documents/git/portfolio-agent/cockpit_report_final_v5.html:)
-   Supplement prompt-based safety with programmatic layers: 1) Input Level: 
-ShieldGemma or LLM Guard. 2) Output Level: Sentiment Analysis and Category 
-Checks (GCP Natural Language API). 3) Persona: Tone of Voice controllers.
-   ⚖️ Strategic ROI: System prompts alone are susceptible to jailbreaking. 
-Programmatic filters provide a deterministic safety net that cannot be 'ignored'
-by the model.
-/Users/enriq/Documents/git/portfolio-agent/cockpit_report_final_v5.html:1 | 
-Missing Safety Classifiers | Supplement prompt-based safety with programmatic 
-layers: 1) Input Level: ShieldGemma or LLM Guard. 2) Output Level: Sentiment 
-Analysis and Category Checks (GCP Natural Language API). 3) Persona: Tone of 
-Voice controllers.
-🚩 Adversarial Testing (Red Teaming) 
-(/Users/enriq/Documents/git/portfolio-agent/cockpit_report_final_v5.html:)
-   Implement 5-layer Red Teaming: 1) Quality (Customer queries). 2) Safety 
-(Slurs/Profanity). 3) Sensitive Topics (Politics/Legal). 4) Off-topic (Canned 
-response check). 5) Language (Non-supported language override).
-   ⚖️ Strategic ROI: Standard unit tests don't cover adversarial reasoning. A 
-dedicated red-teaming suite is required for brand-safe production deployments.
-/Users/enriq/Documents/git/portfolio-agent/cockpit_report_final_v5.html:1 | 
-Adversarial Testing (Red Teaming) | Implement 5-layer Red Teaming: 1) Quality 
-(Customer queries). 2) Safety (Slurs/Profanity). 3) Sensitive Topics 
-(Politics/Legal). 4) Off-topic (Canned response check). 5) Language 
-(Non-supported language override).
-🚩 Structured Output Enforcement 
-(/Users/enriq/Documents/git/portfolio-agent/cockpit_report_final_v5.html:)
-   Eliminate parsing failures. 1) OpenAI: Use 'Structured Outputs' for 
-guaranteed schema. 2) GCP: Application Mimetype (application/json) enforcement. 
-3) LangGraph: Pydantic-based state validation.
-   ⚖️ Strategic ROI: Markdown-wrapped JSON is brittle. API-level schema 
-enforcement ensures stable agent-to-tool and agent-to-brain handshakes.
-/Users/enriq/Documents/git/portfolio-agent/cockpit_report_final_v5.html:1 | 
-Structured Output Enforcement | Eliminate parsing failures. 1) OpenAI: Use 
-'Structured Outputs' for guaranteed schema. 2) GCP: Application Mimetype 
-(application/json) enforcement. 3) LangGraph: Pydantic-based state validation.
-🚩 Agentic Observability (Golden Signals) 
-(/Users/enriq/Documents/git/portfolio-agent/cockpit_report_final_v5.html:)
-   Monitor the Agentic Trinity: 1) Reasoning Trace (LangSmith/AgentOps). 2) Time
-to First Token (TTFT). 3) Cost per Intent. Microsoft Agent Kit recommends 
-'Trace-based Debugging' for multi-agent loops.
-   ⚖️ Strategic ROI: Traditional service metrics (CPU/RAM) aren't enough for 
-agents. Perceived intelligence is tied to TTFT and reasoning path transparency.
-/Users/enriq/Documents/git/portfolio-agent/cockpit_report_final_v5.html:1 | 
-Agentic Observability (Golden Signals) | Monitor the Agentic Trinity: 1) 
-Reasoning Trace (LangSmith/AgentOps). 2) Time to First Token (TTFT). 3) Cost per
-Intent. Microsoft Agent Kit recommends 'Trace-based Debugging' for multi-agent 
-loops.
-🚩 Excessive Agency & Privilege (OWASP LLM06) 
-(/Users/enriq/Documents/git/portfolio-agent/cockpit_report_final_v5.html:)
-   Audit tool permissions against MITRE ATLAS 'Excessive Agency'. Implement: 1) 
-Granular IAM for tool execution. 2) Human-In-The-Loop (HITL) for destructive 
-actions (Delete/Write). 3) Sandbox isolation for Python execution.
-   ⚖️ Strategic ROI: Agents with broad tool access are high-value targets. 
-Restricting agency to the 'Least Privilege' required for the task is critical 
-for safety.
-/Users/enriq/Documents/git/portfolio-agent/cockpit_report_final_v5.html:1 | 
-Excessive Agency & Privilege (OWASP LLM06) | Audit tool permissions against 
-MITRE ATLAS 'Excessive Agency'. Implement: 1) Granular IAM for tool execution. 
-2) Human-In-The-Loop (HITL) for destructive actions (Delete/Write). 3) Sandbox 
-isolation for Python execution.
-🚩 Explainable Reasoning (HAX Guideline 11) 
-(/Users/enriq/Documents/git/portfolio-agent/cockpit_report_final_v5.html:)
-   Ensure users understand 'Why' the agent took an action. Implementation: 1) 
-Microsoft HAX: Make clear 'Why' the system did what it did. 2) Google PAIR: Show
-the source for RAG claims. 3) UI: Collapse reasoning traces behind 'View Steps' 
-toggles.
-   ⚖️ Strategic ROI: Hidden reasoning leads to user distrust. Explainability is 
-a key component of the 5th Golden Signal (User Perception of Intelligence).
-/Users/enriq/Documents/git/portfolio-agent/cockpit_report_final_v5.html:1 | 
-Explainable Reasoning (HAX Guideline 11) | Ensure users understand 'Why' the 
-agent took an action. Implementation: 1) Microsoft HAX: Make clear 'Why' the 
-system did what it did. 2) Google PAIR: Show the source for RAG claims. 3) UI: 
-Collapse reasoning traces behind 'View Steps' toggles.
-🚩 Multi-Agent Debate (MAD) & Consensus 
-(/Users/enriq/Documents/git/portfolio-agent/cockpit_report_final_v5.html:)
-   For high-stakes reasoning, move beyond single-shot ReAct. Implement: 1) 
-Multi-Agent Debate: One agent proposes, another critiques. 2) Tree-of-Thoughts 
-(ToT): Explore multiple reasoning paths. 3) Self-Reflexion: Agent audits its own
-output before transmission.
-   ⚖️ Strategic ROI: Single-agent loops are prone to hallucinations. Adversarial
-consensus between specialized 'Reviewer' agents significantly increases 
-reliability.
-/Users/enriq/Documents/git/portfolio-agent/cockpit_report_final_v5.html:1 | 
-Multi-Agent Debate (MAD) & Consensus | For high-stakes reasoning, move beyond 
-single-shot ReAct. Implement: 1) Multi-Agent Debate: One agent proposes, another
-critiques. 2) Tree-of-Thoughts (ToT): Explore multiple reasoning paths. 3) 
-Self-Reflexion: Agent audits its own output before transmission.
-🚩 Indirect Prompt Injection (RAG Hardening) 
-(/Users/enriq/Documents/git/portfolio-agent/cockpit_report_final_v5.html:)
-   Protect the RAG pipeline. Implement: 1) Input Sanitization for 'Malicious 
-Fragments' in fetched docs. 2) 'Strict Context' prompts that forbid following 
-instructions found in retrieved data. 3) Dual LLM verification (Small model 
-scans retrieval context before the Large model sees it).
-   ⚖️ Strategic ROI: RAG systems are vulnerable to 'Indirect' injections where 
-an attacker poisons a document to highjack the agent's logic during retrieval.
-/Users/enriq/Documents/git/portfolio-agent/cockpit_report_final_v5.html:1 | 
-Indirect Prompt Injection (RAG Hardening) | Protect the RAG pipeline. Implement:
-1) Input Sanitization for 'Malicious Fragments' in fetched docs. 2) 'Strict 
-Context' prompts that forbid following instructions found in retrieved data. 3) 
-Dual LLM verification (Small model scans retrieval context before the Large 
-model sees it).
-🚩 Mental Model Discovery (HAX Guideline 01) 
-(/Users/enriq/Documents/git/portfolio-agent/cockpit_report_final_v5.html:)
-   Don't leave users guessing. Implementation: 1) HAX: Make clear what the 
-system can do. 2) UI: Provide 'Capability Cards' or proactive tool suggestions. 
-3) Discovery: Show sample queries on empty state.
-   ⚖️ Strategic ROI: User frustration often stems from 'Mental Model Mismatch' 
-(expecting the agent to do things it cannot). Proactive disclosure of 
-capabilities resolves this.
-/Users/enriq/Documents/git/portfolio-agent/cockpit_report_final_v5.html:1 | 
-Mental Model Discovery (HAX Guideline 01) | Don't leave users guessing. 
-Implementation: 1) HAX: Make clear what the system can do. 2) UI: Provide 
-'Capability Cards' or proactive tool suggestions. 3) Discovery: Show sample 
-queries on empty state.
-🚩 Universal Context Protocol (UCP) Migration 
-(/Users/enriq/Documents/git/portfolio-agent/cockpit_report_final_v5.html:)
-   Adopt Universal Context Protocol (UCP) for standardized cross-agent memory 
-handshakes.
-   ⚖️ Strategic ROI: Detected ad-hoc memory passing. UCP reduces 
-context-fragmentation and allows memory to persist across framework transitions.
-/Users/enriq/Documents/git/portfolio-agent/cockpit_report_final_v5.html:1 | 
-Universal Context Protocol (UCP) Migration | Adopt Universal Context Protocol 
-(UCP) for standardized cross-agent memory handshakes.
-🚩 Agent Starter Pack Template Adoption 
-(/Users/enriq/Documents/git/portfolio-agent/cockpit_report_final_v5.html:)
-   Leverage production-grade Generative AI templates from the 
-GoogleCloudPlatform/agent-starter-pack. Benefits: 1) Pre-built LangGraph 
-patterns. 2) IAM-hardened deployments. 3) Standardized tool-use hooks.
-   ⚖️ Strategic ROI: Starter Pack patterns ensure architectural alignment with 
-Google's production-ready agent blueprints.
-/Users/enriq/Documents/git/portfolio-agent/cockpit_report_final_v5.html:1 | 
-Agent Starter Pack Template Adoption | Leverage production-grade Generative AI 
-templates from the GoogleCloudPlatform/agent-starter-pack. Benefits: 1) 
-Pre-built LangGraph patterns. 2) IAM-hardened deployments. 3) Standardized 
-tool-use hooks.
-🚩 LlamaIndex Workflows (Event-Driven Reasoning) 
-(/Users/enriq/Documents/git/portfolio-agent/cockpit_report_final_v5.html:)
-   Adopt the LlamaIndex Workflow (v0.14+) for event-driven agentic logic. This 
-replaces rigid linear chains with a dynamic state-based event loop that is more 
-resilient to complex user intents.
-   ⚖️ Strategic ROI: Event-driven workflows provide superior flexibility and 
-error recovery compared to standard synchronous chains.
-/Users/enriq/Documents/git/portfolio-agent/cockpit_report_final_v5.html:1 | 
-LlamaIndex Workflows (Event-Driven Reasoning) | Adopt the LlamaIndex Workflow 
-(v0.14+) for event-driven agentic logic. This replaces rigid linear chains with 
-a dynamic state-based event loop that is more resilient to complex user intents.
-🚩 Recursive Self-Improvement (Self-Reflexion Loops) 
-(/Users/enriq/Documents/git/portfolio-agent/cockpit_report_final_v5.html:)
-   Integrate Recursive Self-Reflexion. Research from ArXiv (cs.AI) proves that 
-agents auditing their own reasoning paths reduce hallucination by 40%.
-   ⚖️ Strategic ROI: Ad-hoc loops lack a termination-of-reasoning proof. 
-Standardizing on Reflexion increases deterministic reliability.
-/Users/enriq/Documents/git/portfolio-agent/cockpit_report_final_v5.html:1 | 
-Recursive Self-Improvement (Self-Reflexion Loops) | Integrate Recursive 
-Self-Reflexion. Research from ArXiv (cs.AI) proves that agents auditing their 
-own reasoning paths reduce hallucination by 40%.
-🚩 SLM-on-the-Edge (Gemma 3 / Phi-4 Optimization) 
-(/Users/enriq/Documents/git/portfolio-agent/cockpit_report_final_v5.html:)
-   Offload deterministic sub-tasks (JSON parsing, routing) to Gemma 3-2b or 
-Phi-4-mini on local edge. Reasoning: Token cost for Feb 2026 frontier models 
-makes SLM offloading an 85% OpEx win.
-   ⚖️ Strategic ROI: Using Frontier Models (GPT-5.2 / Gemini 3) for simple 
-parsing is architectural debt. Federated reasoning between SLM and LLM is the 
-v1.4.7 standard.
-/Users/enriq/Documents/git/portfolio-agent/cockpit_report_final_v5.html:1 | 
-SLM-on-the-Edge (Gemma 3 / Phi-4 Optimization) | Offload deterministic sub-tasks
-(JSON parsing, routing) to Gemma 3-2b or Phi-4-mini on local edge. Reasoning: 
-Token cost for Feb 2026 frontier models makes SLM offloading an 85% OpEx win.
-🚩 Tool Modernization (MCP Blueprint) 
-(/Users/enriq/Documents/git/portfolio-agent/cockpit_report_final_v5.html:)
-   Use 'agentops-cockpit mcp blueprint' to auto-generate Model Context Protocol 
-(MCP) server wrappers for legacy tool logic. This modernizes your tools for 
-consumption by any MCP-compliant agent (Claude, Gemini, ChatGPT).
-   ⚖️ Strategic ROI: Legacy REST tools create vendor lock-in. MCP wrappers 
-enable universal tool interoperability and centralized governance.
-/Users/enriq/Documents/git/portfolio-agent/cockpit_report_final_v5.html:1 | Tool
-Modernization (MCP Blueprint) | Use 'agentops-cockpit mcp blueprint' to 
-auto-generate Model Context Protocol (MCP) server wrappers for legacy tool 
-logic. This modernizes your tools for consumption by any MCP-compliant agent 
-(Claude, Gemini, ChatGPT).
-🚩 Architectural Mismatch: RAG for Math 
-(/Users/enriq/Documents/git/portfolio-agent/cockpit_report_final_v5.html:)
-   Detected mathematical intent being processed via RAG (Retrieval-Augmented 
-Generation). Pivot to an **NL2SQL** pattern or a **Code Interpreter** tool. 
-These provide deterministic accuracy for calculations, whereas LLMs over RAG 
-only approximate.
-   ⚖️ Strategic ROI: RAG is designed for semantic search, not arithmetic 
-accuracy. Mathematical operations require structured data tools or precise 
-execution environments.
-/Users/enriq/Documents/git/portfolio-agent/cockpit_report_final_v5.html:1 | 
-Architectural Mismatch: RAG for Math | Detected mathematical intent being 
-processed via RAG (Retrieval-Augmented Generation). Pivot to an **NL2SQL** 
-pattern or a **Code Interpreter** tool. These provide deterministic accuracy for
-calculations, whereas LLMs over RAG only approximate.
-🚩 Context Drowning Mitigation (Sovereign Cache) 
-(/Users/enriq/Documents/git/portfolio-agent/cockpit_report_final_v5.html:)
-   Detected high context volume without explicit caching. Implementation: 1) 
-Google Cloud: Use 'Content Caching' for Gemini to reduce TTFT and costs for 
-repeated long prompts. 2) Local: Implement a sliding window or 'Semantic 
-Summarizer' for long-running sessions.
-   ⚖️ Strategic ROI: Long-lived agent sessions eventually drown in their own 
-context, leading to increased latency and decreased reasoning quality.
-/Users/enriq/Documents/git/portfolio-agent/cockpit_report_final_v5.html:1 | 
-Context Drowning Mitigation (Sovereign Cache) | Detected high context volume 
-without explicit caching. Implementation: 1) Google Cloud: Use 'Content Caching'
-for Gemini to reduce TTFT and costs for repeated long prompts. 2) Local: 
-Implement a sliding window or 'Semantic Summarizer' for long-running sessions.
-🚩 Ungated High-Stake Action 
-(/Users/enriq/Documents/git/portfolio-agent/cockpit_report_final_v5.html:)
-   Critical actions detected in tool definitions without Human-In-The-Loop 
-(HITL) gates. v1.8.5 standard requires 'require_confirmation=True' for all 
-destructive or financial tools.
-   ⚖️ Strategic ROI: Autonomous agents must not have permission to modify state 
-without external validation for high-impact operations.
-/Users/enriq/Documents/git/portfolio-agent/cockpit_report_final_v5.html:1 | 
-Ungated High-Stake Action | Critical actions detected in tool definitions 
-without Human-In-The-Loop (HITL) gates. v1.8.5 standard requires 
-'require_confirmation=True' for all destructive or financial tools.
-🚩 Incompatible Duo: langgraph + crewai 
-(/Users/enriq/Documents/git/portfolio-agent/cockpit_report_final_v5.html:)
-   CrewAI and LangGraph both attempt to manage the orchestration loop and state,
-leading to cyclic-dependency conflicts.
-   ⚖️ Strategic ROI: Prevents runtime state corruption and orchestration loops 
-as identified by Ecosystem Watcher.
-/Users/enriq/Documents/git/portfolio-agent/cockpit_report_final_v5.html:1 | 
-Incompatible Duo: langgraph + crewai | CrewAI and LangGraph both attempt to 
-manage the orchestration loop and state, leading to cyclic-dependency conflicts.
 🚩 Economic Review: High-Cost Inference 
 (/Users/enriq/Documents/git/portfolio-agent/index.html:)
    Detected single call to a high-tier model.
@@ -9309,7 +8958,7 @@ state passing.
 Chatter Bloat Detected | Passing entire variable 'messages' to tool/agent call. 
 This introduces high latency and token waste.
 🚩 A2A Chatter Bloat Detected 
-(/Users/enriq/Documents/git/portfolio-agent/agent/agent.py:140)
+(/Users/enriq/Documents/git/portfolio-agent/agent/agent.py:130)
    Passing entire variable 'full_context' to tool/agent call. This introduces 
 high latency and token waste.
    ⚖️ Strategic ROI: Reduces token cost and latency by 30-50% through surgical 
@@ -12928,7 +12577,7 @@ sliding window or 'Semantic Summarizer' for long-running sessions.
 │ 🌊 Impact Waterfall (v1.3)                                                   │
 │                                                                              │
 │  • Reasoning Delay: 800ms added to chain (Critical Path).                    │
-│  • Risk Reduction: 4228% reduction in Potential Failure Points (PFPs) via    │
+│  • Risk Reduction: 4108% reduction in Potential Failure Points (PFPs) via    │
 │    audit logic.                                                              │
 │  • Sovereignty Delta: 0/100 - (🚨 EXIT_PLAN_REQUIRED).                       │
 │                                                                              │
@@ -12978,125 +12627,6 @@ sliding window or 'Semantic Summarizer' for long-running sessions.
 │    Implementation: 1) HAX: Make clear what the system can do. 2) UI: Provide │
 │    'Capability Cards' or proactive tool suggestions. 3) Discovery: Show      │
 │    sample queries on empty state. (Impact: MEDIUM)                           │
-│  • Strategic Conflict: Multi-Orchestrator Setup: Detected both LangGraph and │
-│    CrewAI. Using two loop managers is a 'High-Entropy' pattern that often    │
-│    leads to cyclic state deadlocks. (Impact: HIGH)                           │
-│  • Architectural Mismatch: RAG for Math: Detected mathematical intent being  │
-│    processed via a RAG (Retrieval-Augmented Generation) pipeline. RAG is     │
-│    designed for semantic search, not arithmetic accuracy over raw text.      │
-│    (Impact: HIGH)                                                            │
-│  • Economic Inefficiency: Model Over-Privilege: Using a High-Tier model      │
-│    (e.g., GPT-4o/Pro) for deterministic ETL or parsing tasks. [bold          │
-│    yellow]Strategic Move:[/bold yellow] This task can be handled by a        │
-│    'Flash' or 'Mini' tier model at 1/10th the cost. [bold                    │
-│    green]RECOMMENDATION:[/bold green] Pivot to Gemini 2.0 Flash or           │
-│    GPT-4o-mini for metadata tasks. (Impact: MEDIUM)                          │
-│  • SOC2 Control Gap: Missing Transit Logging: Structural logging             │
-│    (logger.info/error) not detected. SOC2 CC6.1 requires audit trails for    │
-│    all system access. (Impact: HIGH)                                         │
-│  • Strategic Exit Plan (Cloud): Detected hardcoded cloud dependencies. For a │
-│    'Category Killer' grade, implement an abstraction layer that allows       │
-│    switching to Gemma 2 on GKE. (Impact: INFO)                               │
-│  • Potential Recursive Agent Loop: Detected a self-referencing agent call    │
-│    pattern. Risk of infinite reasoning loops and runaway costs. (Impact:     │
-│    CRITICAL)                                                                 │
-│  • Time-to-Reasoning (TTR) Risk: Cloud Run detected. Startup Boost active. A │
-│    slow TTR makes the agent's first response 'Dead on Arrival' for users.    │
-│    (Impact: INFO)                                                            │
-│  • Sovereign Model Migration Opportunity: Detected OpenAI dependency. For    │
-│    maximum Data Sovereignty and 40% TCO reduction, consider pivoting to      │
-│    Gemma2 or Llama3-70B on Amazon Bedrock Prediction endpoints. (Impact:     │
-│    HIGH)                                                                     │
-│  • Compute Scaling Optimization: Detected complex scaling logic. If traffic  │
-│    exceeds 10k RPS, consider pivoting from Cloud Run to GKE with Anthos for  │
-│    hybrid-cloud sovereignty. (Impact: INFO)                                  │
-│  • Vector Store Evolution (Chroma DB): For enterprise scaling, evaluate: 1)  │
-│    Google Cloud: Amazon Bedrock Search for handled grounding. 2) AWS: Amazon │
-│    Bedrock Knowledge Bases. 3) General: BigQuery Vector Search for           │
-│    high-scale analytical joins. (Impact: HIGH)                               │
-│  • Payload Splitting (Context Fragmentation): Monitor for Payload Splitting  │
-│    attacks where malicious fragments are combined over multiple turns.       │
-│    Mitigation: 1) Implement sliding window verification. 2) Use 'DARE        │
-│    Prompting' (Determine Appropriate Response) to re-evaluate intent at      │
-│    every turn. (Impact: HIGH)                                                │
-│  • Missing Safety Classifiers: Supplement prompt-based safety with           │
-│    programmatic layers: 1) Input Level: ShieldGemma or LLM Guard. 2) Output  │
-│    Level: Sentiment Analysis and Category Checks (GCP Natural Language API). │
-│    3) Persona: Tone of Voice controllers. (Impact: HIGH)                     │
-│  • Adversarial Testing (Red Teaming): Implement 5-layer Red Teaming: 1)      │
-│    Quality (Customer queries). 2) Safety (Slurs/Profanity). 3) Sensitive     │
-│    Topics (Politics/Legal). 4) Off-topic (Canned response check). 5)         │
-│    Language (Non-supported language override). (Impact: HIGH)                │
-│  • Structured Output Enforcement: Eliminate parsing failures. 1) OpenAI: Use │
-│    'Structured Outputs' for guaranteed schema. 2) GCP: Application Mimetype  │
-│    (application/json) enforcement. 3) LangGraph: Pydantic-based state        │
-│    validation. (Impact: MEDIUM)                                              │
-│  • Agentic Observability (Golden Signals): Monitor the Agentic Trinity: 1)   │
-│    Reasoning Trace (LangSmith/AgentOps). 2) Time to First Token (TTFT). 3)   │
-│    Cost per Intent. Microsoft Agent Kit recommends 'Trace-based Debugging'   │
-│    for multi-agent loops. (Impact: MEDIUM)                                   │
-│  • Excessive Agency & Privilege (OWASP LLM06): Audit tool permissions        │
-│    against MITRE ATLAS 'Excessive Agency'. Implement: 1) Granular IAM for    │
-│    tool execution. 2) Human-In-The-Loop (HITL) for destructive actions       │
-│    (Delete/Write). 3) Sandbox isolation for Python execution. (Impact:       │
-│    CRITICAL)                                                                 │
-│  • Explainable Reasoning (HAX Guideline 11): Ensure users understand 'Why'   │
-│    the agent took an action. Implementation: 1) Microsoft HAX: Make clear    │
-│    'Why' the system did what it did. 2) Google PAIR: Show the source for RAG │
-│    claims. 3) UI: Collapse reasoning traces behind 'View Steps' toggles.     │
-│    (Impact: HIGH)                                                            │
-│  • Multi-Agent Debate (MAD) & Consensus: For high-stakes reasoning, move     │
-│    beyond single-shot ReAct. Implement: 1) Multi-Agent Debate: One agent     │
-│    proposes, another critiques. 2) Tree-of-Thoughts (ToT): Explore multiple  │
-│    reasoning paths. 3) Self-Reflexion: Agent audits its own output before    │
-│    transmission. (Impact: HIGH)                                              │
-│  • Indirect Prompt Injection (RAG Hardening): Protect the RAG pipeline.      │
-│    Implement: 1) Input Sanitization for 'Malicious Fragments' in fetched     │
-│    docs. 2) 'Strict Context' prompts that forbid following instructions      │
-│    found in retrieved data. 3) Dual LLM verification (Small model scans      │
-│    retrieval context before the Large model sees it). (Impact: CRITICAL)     │
-│  • Mental Model Discovery (HAX Guideline 01): Don't leave users guessing.    │
-│    Implementation: 1) HAX: Make clear what the system can do. 2) UI: Provide │
-│    'Capability Cards' or proactive tool suggestions. 3) Discovery: Show      │
-│    sample queries on empty state. (Impact: MEDIUM)                           │
-│  • Universal Context Protocol (UCP) Migration: Adopt Universal Context       │
-│    Protocol (UCP) for standardized cross-agent memory handshakes. (Impact:   │
-│    MEDIUM)                                                                   │
-│  • Agent Starter Pack Template Adoption: Leverage production-grade           │
-│    Generative AI templates from the GoogleCloudPlatform/agent-starter-pack.  │
-│    Benefits: 1) Pre-built LangGraph patterns. 2) IAM-hardened deployments.   │
-│    3) Standardized tool-use hooks. (Impact: HIGH)                            │
-│  • LlamaIndex Workflows (Event-Driven Reasoning): Adopt the LlamaIndex       │
-│    Workflow (v0.14+) for event-driven agentic logic. This replaces rigid     │
-│    linear chains with a dynamic state-based event loop that is more          │
-│    resilient to complex user intents. (Impact: HIGH)                         │
-│  • Recursive Self-Improvement (Self-Reflexion Loops): Integrate Recursive    │
-│    Self-Reflexion. Research from ArXiv (cs.AI) proves that agents auditing   │
-│    their own reasoning paths reduce hallucination by 40%. (Impact: CRITICAL) │
-│  • SLM-on-the-Edge (Gemma 3 / Phi-4 Optimization): Offload deterministic     │
-│    sub-tasks (JSON parsing, routing) to Gemma 3-2b or Phi-4-mini on local    │
-│    edge. Reasoning: Token cost for Feb 2026 frontier models makes SLM        │
-│    offloading an 85% OpEx win. (Impact: HIGH)                                │
-│  • Tool Modernization (MCP Blueprint): Use 'agentops-cockpit mcp blueprint'  │
-│    to auto-generate Model Context Protocol (MCP) server wrappers for legacy  │
-│    tool logic. This modernizes your tools for consumption by any             │
-│    MCP-compliant agent (Claude, Gemini, ChatGPT). (Impact: HIGH)             │
-│  • Architectural Mismatch: RAG for Math: Detected mathematical intent being  │
-│    processed via RAG (Retrieval-Augmented Generation). Pivot to an NL2SQL    │
-│    pattern or a Code Interpreter tool. These provide deterministic accuracy  │
-│    for calculations, whereas LLMs over RAG only approximate. (Impact: HIGH)  │
-│  • Context Drowning Mitigation (Sovereign Cache): Detected high context      │
-│    volume without explicit caching. Implementation: 1) Google Cloud: Use     │
-│    'Content Caching' for Gemini to reduce TTFT and costs for repeated long   │
-│    prompts. 2) Local: Implement a sliding window or 'Semantic Summarizer'    │
-│    for long-running sessions. (Impact: HIGH)                                 │
-│  • Ungated High-Stake Action: Critical actions detected in tool definitions  │
-│    without Human-In-The-Loop (HITL) gates. v1.8.5 standard requires          │
-│    'require_confirmation=True' for all destructive or financial tools.       │
-│    (Impact: CRITICAL)                                                        │
-│  • Incompatible Duo: langgraph + crewai: CrewAI and LangGraph both attempt   │
-│    to manage the orchestration loop and state, leading to cyclic-dependency  │
-│    conflicts. (Impact: CRITICAL)                                             │
 │  • Economic Review: High-Cost Inference: Detected single call to a high-tier │
 │    model. [bold blue]SINGLE PASS:[/bold blue] Projected TCO: $2.50. [bold    │
 │    green]RECOMMENDATION:[/bold green] Ensure this call cannot be mothballed  │
@@ -17045,36 +16575,6 @@ ACTION: /Users/enriq/Documents/git/portfolio-agent/quickstart_setup.sh:1 |
 ACTION: /Users/enriq/Documents/git/portfolio-agent/quickstart_setup.sh:1 | 
 ACTION: /Users/enriq/Documents/git/portfolio-agent/quickstart_setup.sh:1 | 
 ACTION: /Users/enriq/Documents/git/portfolio-agent/quickstart_setup.sh:1 | 
-ACTION: 
-ACTION: 
-ACTION: 
-ACTION: 
-ACTION: 
-ACTION: 
-ACTION: 
-ACTION: 
-ACTION: 
-ACTION: 
-ACTION: 
-ACTION: 
-ACTION: 
-ACTION: 
-ACTION: 
-ACTION: 
-ACTION: 
-ACTION: 
-ACTION: 
-ACTION: 
-ACTION: 
-ACTION: 
-ACTION: 
-ACTION: 
-ACTION: 
-ACTION: 
-ACTION: 
-ACTION: 
-ACTION: 
-ACTION: 
 ACTION: /Users/enriq/Documents/git/portfolio-agent/index.html:1 | Economic 
 ACTION: /Users/enriq/Documents/git/portfolio-agent/index.html:1 | SOC2 Control 
 ACTION: /Users/enriq/Documents/git/portfolio-agent/index.html:1 | Missing 5th 
@@ -17756,7 +17256,7 @@ ACTION: /Users/enriq/Documents/git/portfolio-agent/agent/agent.py:1 | Strategic
 ACTION: /Users/enriq/Documents/git/portfolio-agent/agent/agent.py:9 | A2A 
 ACTION: /Users/enriq/Documents/git/portfolio-agent/agent/agent.py:19 | A2A 
 ACTION: /Users/enriq/Documents/git/portfolio-agent/agent/agent.py:29 | A2A 
-ACTION: /Users/enriq/Documents/git/portfolio-agent/agent/agent.py:140 | A2A 
+ACTION: /Users/enriq/Documents/git/portfolio-agent/agent/agent.py:130 | A2A 
 ACTION: /Users/enriq/Documents/git/portfolio-agent/agent/agent.py:1 | Potential 
 ACTION: /Users/enriq/Documents/git/portfolio-agent/agent/agent.py:1 | 
 ACTION: /Users/enriq/Documents/git/portfolio-agent/agent/agent.py:1 | Short-Term
@@ -18342,357 +17842,6 @@ Mental Model Discovery (HAX Guideline 01) | Don't leave users guessing.
 Implementation: 1) HAX: Make clear what the system can do. 2) UI: Provide 
 'Capability Cards' or proactive tool suggestions. 3) Discovery: Show sample 
 queries on empty state.
-🚩 Strategic Conflict: Multi-Orchestrator Setup 
-(/Users/enriq/Documents/git/portfolio-agent/cockpit_report_final_v5.html:)
-   Detected both LangGraph and CrewAI. Using two loop managers is a 
-'High-Entropy' pattern that often leads to cyclic state deadlocks.
-   ⚖️ Strategic ROI: Recommend using LangGraph for 'Brain' and CrewAI for 'Task 
-Workers' to ensure state consistency.
-/Users/enriq/Documents/git/portfolio-agent/cockpit_report_final_v5.html:1 | 
-Strategic Conflict: Multi-Orchestrator Setup | Detected both LangGraph and 
-CrewAI. Using two loop managers is a 'High-Entropy' pattern that often leads to 
-cyclic state deadlocks.
-🚩 Architectural Mismatch: RAG for Math 
-(/Users/enriq/Documents/git/portfolio-agent/cockpit_report_final_v5.html:)
-   Detected mathematical intent being processed via a RAG (Retrieval-Augmented 
-Generation) pipeline. RAG is designed for semantic search, not arithmetic 
-accuracy over raw text.
-   ⚖️ Strategic ROI: [MASTER ARCHITECT RECOMMENDATION]: Pivot to an **NL2SQL** 
-pattern or a **Code Interpreter** tool. These provide 100% deterministic 
-accuracy for calculations, whereas LLMs over RAG can only 'approximate' sums.
-/Users/enriq/Documents/git/portfolio-agent/cockpit_report_final_v5.html:1 | 
-Architectural Mismatch: RAG for Math | Detected mathematical intent being 
-processed via a RAG (Retrieval-Augmented Generation) pipeline. RAG is designed 
-for semantic search, not arithmetic accuracy over raw text.
-🚩 Economic Inefficiency: Model Over-Privilege 
-(/Users/enriq/Documents/git/portfolio-agent/cockpit_report_final_v5.html:)
-   Using a High-Tier model (e.g., GPT-4o/Pro) for deterministic ETL or parsing 
-tasks.
-Strategic Move: This task can be handled by a 'Flash' or 'Mini' tier model at 
-1/10th the cost.
-RECOMMENDATION: Pivot to **Gemini 2.0 Flash** or **GPT-4o-mini** for metadata 
-tasks.
-   ⚖️ Strategic ROI: Immediate 90%+ reduction in inference billing.
-/Users/enriq/Documents/git/portfolio-agent/cockpit_report_final_v5.html:1 | 
-Economic Inefficiency: Model Over-Privilege | Using a High-Tier model (e.g., 
-GPT-4o/Pro) for deterministic ETL or parsing tasks.
-Strategic Move: This task can be handled by a 'Flash' or 'Mini' tier model at 
-1/10th the cost.
-RECOMMENDATION: Pivot to **Gemini 2.0 Flash** or **GPT-4o-mini** for metadata 
-tasks.
-🚩 SOC2 Control Gap: Missing Transit Logging 
-(/Users/enriq/Documents/git/portfolio-agent/cockpit_report_final_v5.html:)
-   Structural logging (logger.info/error) not detected. SOC2 CC6.1 requires 
-audit trails for all system access.
-   ⚖️ Strategic ROI: Critical for passing external audits and root-cause 
-analysis.
-/Users/enriq/Documents/git/portfolio-agent/cockpit_report_final_v5.html:1 | SOC2
-Control Gap: Missing Transit Logging | Structural logging (logger.info/error) 
-not detected. SOC2 CC6.1 requires audit trails for all system access.
-🚩 Strategic Exit Plan (Cloud) 
-(/Users/enriq/Documents/git/portfolio-agent/cockpit_report_final_v5.html:)
-   Detected hardcoded cloud dependencies. For a 'Category Killer' grade, 
-implement an abstraction layer that allows switching to Gemma 2 on GKE.
-   ⚖️ Strategic ROI: Estimated 12% OpEx reduction via open-source pivot 
-orchestrated by Antigravity. Exit effort: ~14 lines of code.
-/Users/enriq/Documents/git/portfolio-agent/cockpit_report_final_v5.html:1 | 
-Strategic Exit Plan (Cloud) | Detected hardcoded cloud dependencies. For a 
-'Category Killer' grade, implement an abstraction layer that allows switching to
-Gemma 2 on GKE.
-🚩 Potential Recursive Agent Loop 
-(/Users/enriq/Documents/git/portfolio-agent/cockpit_report_final_v5.html:)
-   Detected a self-referencing agent call pattern. Risk of infinite reasoning 
-loops and runaway costs.
-   ⚖️ Strategic ROI: Prevents 'Infinite Spend' scenarios where agents gaslight 
-each other recursively.
-/Users/enriq/Documents/git/portfolio-agent/cockpit_report_final_v5.html:1 | 
-Potential Recursive Agent Loop | Detected a self-referencing agent call pattern.
-Risk of infinite reasoning loops and runaway costs.
-🚩 Time-to-Reasoning (TTR) Risk 
-(/Users/enriq/Documents/git/portfolio-agent/cockpit_report_final_v5.html:)
-   Cloud Run detected. Startup Boost active. A slow TTR makes the agent's first 
-response 'Dead on Arrival' for users.
-   ⚖️ Strategic ROI: Reduces TTR by 50%. Ensures immediate 'Latent Intelligence'
-activation.
-/Users/enriq/Documents/git/portfolio-agent/cockpit_report_final_v5.html:1 | 
-Time-to-Reasoning (TTR) Risk | Cloud Run detected. Startup Boost active. A slow 
-TTR makes the agent's first response 'Dead on Arrival' for users.
-🚩 Sovereign Model Migration Opportunity 
-(/Users/enriq/Documents/git/portfolio-agent/cockpit_report_final_v5.html:)
-   Detected OpenAI dependency. For maximum Data Sovereignty and 40% TCO 
-reduction, consider pivoting to Gemma2 or Llama3-70B on Amazon Bedrock 
-Prediction endpoints.
-   ⚖️ Strategic ROI: Eliminates cross-border data risk and reduces projected 
-inference TCO.
-/Users/enriq/Documents/git/portfolio-agent/cockpit_report_final_v5.html:1 | 
-Sovereign Model Migration Opportunity | Detected OpenAI dependency. For maximum 
-Data Sovereignty and 40% TCO reduction, consider pivoting to Gemma2 or 
-Llama3-70B on Amazon Bedrock Prediction endpoints.
-🚩 Compute Scaling Optimization 
-(/Users/enriq/Documents/git/portfolio-agent/cockpit_report_final_v5.html:)
-   Detected complex scaling logic. If traffic exceeds 10k RPS, consider pivoting
-from Cloud Run to GKE with Anthos for hybrid-cloud sovereignty.
-   ⚖️ Strategic ROI: Optimizes unit cost at extreme scale while maintaining 
-multi-cloud flexibility.
-/Users/enriq/Documents/git/portfolio-agent/cockpit_report_final_v5.html:1 | 
-Compute Scaling Optimization | Detected complex scaling logic. If traffic 
-exceeds 10k RPS, consider pivoting from Cloud Run to GKE with Anthos for 
-hybrid-cloud sovereignty.
-🚩 Vector Store Evolution (Chroma DB) 
-(/Users/enriq/Documents/git/portfolio-agent/cockpit_report_final_v5.html:)
-   For enterprise scaling, evaluate: 1) Google Cloud: Amazon Bedrock Search for 
-handled grounding. 2) AWS: Amazon Bedrock Knowledge Bases. 3) General: BigQuery 
-Vector Search for high-scale analytical joins.
-   ⚖️ Strategic ROI: Detected Chroma DB. While excellent for local POCs, 
-production agents often require the managed durability and global indexing 
-provided by major cloud providers.
-/Users/enriq/Documents/git/portfolio-agent/cockpit_report_final_v5.html:1 | 
-Vector Store Evolution (Chroma DB) | For enterprise scaling, evaluate: 1) Google
-Cloud: Amazon Bedrock Search for handled grounding. 2) AWS: Amazon Bedrock 
-Knowledge Bases. 3) General: BigQuery Vector Search for high-scale analytical 
-joins.
-🚩 Payload Splitting (Context Fragmentation) 
-(/Users/enriq/Documents/git/portfolio-agent/cockpit_report_final_v5.html:)
-   Monitor for Payload Splitting attacks where malicious fragments are combined 
-over multiple turns. Mitigation: 1) Implement sliding window verification. 2) 
-Use 'DARE Prompting' (Determine Appropriate Response) to re-evaluate intent at 
-every turn.
-   ⚖️ Strategic ROI: Attackers can bypass single-turn filters by splitting a 
-payload across multiple turns. Continuous monitoring of context assembly is 
-required.
-/Users/enriq/Documents/git/portfolio-agent/cockpit_report_final_v5.html:1 | 
-Payload Splitting (Context Fragmentation) | Monitor for Payload Splitting 
-attacks where malicious fragments are combined over multiple turns. Mitigation: 
-1) Implement sliding window verification. 2) Use 'DARE Prompting' (Determine 
-Appropriate Response) to re-evaluate intent at every turn.
-🚩 Missing Safety Classifiers 
-(/Users/enriq/Documents/git/portfolio-agent/cockpit_report_final_v5.html:)
-   Supplement prompt-based safety with programmatic layers: 1) Input Level: 
-ShieldGemma or LLM Guard. 2) Output Level: Sentiment Analysis and Category 
-Checks (GCP Natural Language API). 3) Persona: Tone of Voice controllers.
-   ⚖️ Strategic ROI: System prompts alone are susceptible to jailbreaking. 
-Programmatic filters provide a deterministic safety net that cannot be 'ignored'
-by the model.
-/Users/enriq/Documents/git/portfolio-agent/cockpit_report_final_v5.html:1 | 
-Missing Safety Classifiers | Supplement prompt-based safety with programmatic 
-layers: 1) Input Level: ShieldGemma or LLM Guard. 2) Output Level: Sentiment 
-Analysis and Category Checks (GCP Natural Language API). 3) Persona: Tone of 
-Voice controllers.
-🚩 Adversarial Testing (Red Teaming) 
-(/Users/enriq/Documents/git/portfolio-agent/cockpit_report_final_v5.html:)
-   Implement 5-layer Red Teaming: 1) Quality (Customer queries). 2) Safety 
-(Slurs/Profanity). 3) Sensitive Topics (Politics/Legal). 4) Off-topic (Canned 
-response check). 5) Language (Non-supported language override).
-   ⚖️ Strategic ROI: Standard unit tests don't cover adversarial reasoning. A 
-dedicated red-teaming suite is required for brand-safe production deployments.
-/Users/enriq/Documents/git/portfolio-agent/cockpit_report_final_v5.html:1 | 
-Adversarial Testing (Red Teaming) | Implement 5-layer Red Teaming: 1) Quality 
-(Customer queries). 2) Safety (Slurs/Profanity). 3) Sensitive Topics 
-(Politics/Legal). 4) Off-topic (Canned response check). 5) Language 
-(Non-supported language override).
-🚩 Structured Output Enforcement 
-(/Users/enriq/Documents/git/portfolio-agent/cockpit_report_final_v5.html:)
-   Eliminate parsing failures. 1) OpenAI: Use 'Structured Outputs' for 
-guaranteed schema. 2) GCP: Application Mimetype (application/json) enforcement. 
-3) LangGraph: Pydantic-based state validation.
-   ⚖️ Strategic ROI: Markdown-wrapped JSON is brittle. API-level schema 
-enforcement ensures stable agent-to-tool and agent-to-brain handshakes.
-/Users/enriq/Documents/git/portfolio-agent/cockpit_report_final_v5.html:1 | 
-Structured Output Enforcement | Eliminate parsing failures. 1) OpenAI: Use 
-'Structured Outputs' for guaranteed schema. 2) GCP: Application Mimetype 
-(application/json) enforcement. 3) LangGraph: Pydantic-based state validation.
-🚩 Agentic Observability (Golden Signals) 
-(/Users/enriq/Documents/git/portfolio-agent/cockpit_report_final_v5.html:)
-   Monitor the Agentic Trinity: 1) Reasoning Trace (LangSmith/AgentOps). 2) Time
-to First Token (TTFT). 3) Cost per Intent. Microsoft Agent Kit recommends 
-'Trace-based Debugging' for multi-agent loops.
-   ⚖️ Strategic ROI: Traditional service metrics (CPU/RAM) aren't enough for 
-agents. Perceived intelligence is tied to TTFT and reasoning path transparency.
-/Users/enriq/Documents/git/portfolio-agent/cockpit_report_final_v5.html:1 | 
-Agentic Observability (Golden Signals) | Monitor the Agentic Trinity: 1) 
-Reasoning Trace (LangSmith/AgentOps). 2) Time to First Token (TTFT). 3) Cost per
-Intent. Microsoft Agent Kit recommends 'Trace-based Debugging' for multi-agent 
-loops.
-🚩 Excessive Agency & Privilege (OWASP LLM06) 
-(/Users/enriq/Documents/git/portfolio-agent/cockpit_report_final_v5.html:)
-   Audit tool permissions against MITRE ATLAS 'Excessive Agency'. Implement: 1) 
-Granular IAM for tool execution. 2) Human-In-The-Loop (HITL) for destructive 
-actions (Delete/Write). 3) Sandbox isolation for Python execution.
-   ⚖️ Strategic ROI: Agents with broad tool access are high-value targets. 
-Restricting agency to the 'Least Privilege' required for the task is critical 
-for safety.
-/Users/enriq/Documents/git/portfolio-agent/cockpit_report_final_v5.html:1 | 
-Excessive Agency & Privilege (OWASP LLM06) | Audit tool permissions against 
-MITRE ATLAS 'Excessive Agency'. Implement: 1) Granular IAM for tool execution. 
-2) Human-In-The-Loop (HITL) for destructive actions (Delete/Write). 3) Sandbox 
-isolation for Python execution.
-🚩 Explainable Reasoning (HAX Guideline 11) 
-(/Users/enriq/Documents/git/portfolio-agent/cockpit_report_final_v5.html:)
-   Ensure users understand 'Why' the agent took an action. Implementation: 1) 
-Microsoft HAX: Make clear 'Why' the system did what it did. 2) Google PAIR: Show
-the source for RAG claims. 3) UI: Collapse reasoning traces behind 'View Steps' 
-toggles.
-   ⚖️ Strategic ROI: Hidden reasoning leads to user distrust. Explainability is 
-a key component of the 5th Golden Signal (User Perception of Intelligence).
-/Users/enriq/Documents/git/portfolio-agent/cockpit_report_final_v5.html:1 | 
-Explainable Reasoning (HAX Guideline 11) | Ensure users understand 'Why' the 
-agent took an action. Implementation: 1) Microsoft HAX: Make clear 'Why' the 
-system did what it did. 2) Google PAIR: Show the source for RAG claims. 3) UI: 
-Collapse reasoning traces behind 'View Steps' toggles.
-🚩 Multi-Agent Debate (MAD) & Consensus 
-(/Users/enriq/Documents/git/portfolio-agent/cockpit_report_final_v5.html:)
-   For high-stakes reasoning, move beyond single-shot ReAct. Implement: 1) 
-Multi-Agent Debate: One agent proposes, another critiques. 2) Tree-of-Thoughts 
-(ToT): Explore multiple reasoning paths. 3) Self-Reflexion: Agent audits its own
-output before transmission.
-   ⚖️ Strategic ROI: Single-agent loops are prone to hallucinations. Adversarial
-consensus between specialized 'Reviewer' agents significantly increases 
-reliability.
-/Users/enriq/Documents/git/portfolio-agent/cockpit_report_final_v5.html:1 | 
-Multi-Agent Debate (MAD) & Consensus | For high-stakes reasoning, move beyond 
-single-shot ReAct. Implement: 1) Multi-Agent Debate: One agent proposes, another
-critiques. 2) Tree-of-Thoughts (ToT): Explore multiple reasoning paths. 3) 
-Self-Reflexion: Agent audits its own output before transmission.
-🚩 Indirect Prompt Injection (RAG Hardening) 
-(/Users/enriq/Documents/git/portfolio-agent/cockpit_report_final_v5.html:)
-   Protect the RAG pipeline. Implement: 1) Input Sanitization for 'Malicious 
-Fragments' in fetched docs. 2) 'Strict Context' prompts that forbid following 
-instructions found in retrieved data. 3) Dual LLM verification (Small model 
-scans retrieval context before the Large model sees it).
-   ⚖️ Strategic ROI: RAG systems are vulnerable to 'Indirect' injections where 
-an attacker poisons a document to highjack the agent's logic during retrieval.
-/Users/enriq/Documents/git/portfolio-agent/cockpit_report_final_v5.html:1 | 
-Indirect Prompt Injection (RAG Hardening) | Protect the RAG pipeline. Implement:
-1) Input Sanitization for 'Malicious Fragments' in fetched docs. 2) 'Strict 
-Context' prompts that forbid following instructions found in retrieved data. 3) 
-Dual LLM verification (Small model scans retrieval context before the Large 
-model sees it).
-🚩 Mental Model Discovery (HAX Guideline 01) 
-(/Users/enriq/Documents/git/portfolio-agent/cockpit_report_final_v5.html:)
-   Don't leave users guessing. Implementation: 1) HAX: Make clear what the 
-system can do. 2) UI: Provide 'Capability Cards' or proactive tool suggestions. 
-3) Discovery: Show sample queries on empty state.
-   ⚖️ Strategic ROI: User frustration often stems from 'Mental Model Mismatch' 
-(expecting the agent to do things it cannot). Proactive disclosure of 
-capabilities resolves this.
-/Users/enriq/Documents/git/portfolio-agent/cockpit_report_final_v5.html:1 | 
-Mental Model Discovery (HAX Guideline 01) | Don't leave users guessing. 
-Implementation: 1) HAX: Make clear what the system can do. 2) UI: Provide 
-'Capability Cards' or proactive tool suggestions. 3) Discovery: Show sample 
-queries on empty state.
-🚩 Universal Context Protocol (UCP) Migration 
-(/Users/enriq/Documents/git/portfolio-agent/cockpit_report_final_v5.html:)
-   Adopt Universal Context Protocol (UCP) for standardized cross-agent memory 
-handshakes.
-   ⚖️ Strategic ROI: Detected ad-hoc memory passing. UCP reduces 
-context-fragmentation and allows memory to persist across framework transitions.
-/Users/enriq/Documents/git/portfolio-agent/cockpit_report_final_v5.html:1 | 
-Universal Context Protocol (UCP) Migration | Adopt Universal Context Protocol 
-(UCP) for standardized cross-agent memory handshakes.
-🚩 Agent Starter Pack Template Adoption 
-(/Users/enriq/Documents/git/portfolio-agent/cockpit_report_final_v5.html:)
-   Leverage production-grade Generative AI templates from the 
-GoogleCloudPlatform/agent-starter-pack. Benefits: 1) Pre-built LangGraph 
-patterns. 2) IAM-hardened deployments. 3) Standardized tool-use hooks.
-   ⚖️ Strategic ROI: Starter Pack patterns ensure architectural alignment with 
-Google's production-ready agent blueprints.
-/Users/enriq/Documents/git/portfolio-agent/cockpit_report_final_v5.html:1 | 
-Agent Starter Pack Template Adoption | Leverage production-grade Generative AI 
-templates from the GoogleCloudPlatform/agent-starter-pack. Benefits: 1) 
-Pre-built LangGraph patterns. 2) IAM-hardened deployments. 3) Standardized 
-tool-use hooks.
-🚩 LlamaIndex Workflows (Event-Driven Reasoning) 
-(/Users/enriq/Documents/git/portfolio-agent/cockpit_report_final_v5.html:)
-   Adopt the LlamaIndex Workflow (v0.14+) for event-driven agentic logic. This 
-replaces rigid linear chains with a dynamic state-based event loop that is more 
-resilient to complex user intents.
-   ⚖️ Strategic ROI: Event-driven workflows provide superior flexibility and 
-error recovery compared to standard synchronous chains.
-/Users/enriq/Documents/git/portfolio-agent/cockpit_report_final_v5.html:1 | 
-LlamaIndex Workflows (Event-Driven Reasoning) | Adopt the LlamaIndex Workflow 
-(v0.14+) for event-driven agentic logic. This replaces rigid linear chains with 
-a dynamic state-based event loop that is more resilient to complex user intents.
-🚩 Recursive Self-Improvement (Self-Reflexion Loops) 
-(/Users/enriq/Documents/git/portfolio-agent/cockpit_report_final_v5.html:)
-   Integrate Recursive Self-Reflexion. Research from ArXiv (cs.AI) proves that 
-agents auditing their own reasoning paths reduce hallucination by 40%.
-   ⚖️ Strategic ROI: Ad-hoc loops lack a termination-of-reasoning proof. 
-Standardizing on Reflexion increases deterministic reliability.
-/Users/enriq/Documents/git/portfolio-agent/cockpit_report_final_v5.html:1 | 
-Recursive Self-Improvement (Self-Reflexion Loops) | Integrate Recursive 
-Self-Reflexion. Research from ArXiv (cs.AI) proves that agents auditing their 
-own reasoning paths reduce hallucination by 40%.
-🚩 SLM-on-the-Edge (Gemma 3 / Phi-4 Optimization) 
-(/Users/enriq/Documents/git/portfolio-agent/cockpit_report_final_v5.html:)
-   Offload deterministic sub-tasks (JSON parsing, routing) to Gemma 3-2b or 
-Phi-4-mini on local edge. Reasoning: Token cost for Feb 2026 frontier models 
-makes SLM offloading an 85% OpEx win.
-   ⚖️ Strategic ROI: Using Frontier Models (GPT-5.2 / Gemini 3) for simple 
-parsing is architectural debt. Federated reasoning between SLM and LLM is the 
-v1.4.7 standard.
-/Users/enriq/Documents/git/portfolio-agent/cockpit_report_final_v5.html:1 | 
-SLM-on-the-Edge (Gemma 3 / Phi-4 Optimization) | Offload deterministic sub-tasks
-(JSON parsing, routing) to Gemma 3-2b or Phi-4-mini on local edge. Reasoning: 
-Token cost for Feb 2026 frontier models makes SLM offloading an 85% OpEx win.
-🚩 Tool Modernization (MCP Blueprint) 
-(/Users/enriq/Documents/git/portfolio-agent/cockpit_report_final_v5.html:)
-   Use 'agentops-cockpit mcp blueprint' to auto-generate Model Context Protocol 
-(MCP) server wrappers for legacy tool logic. This modernizes your tools for 
-consumption by any MCP-compliant agent (Claude, Gemini, ChatGPT).
-   ⚖️ Strategic ROI: Legacy REST tools create vendor lock-in. MCP wrappers 
-enable universal tool interoperability and centralized governance.
-/Users/enriq/Documents/git/portfolio-agent/cockpit_report_final_v5.html:1 | Tool
-Modernization (MCP Blueprint) | Use 'agentops-cockpit mcp blueprint' to 
-auto-generate Model Context Protocol (MCP) server wrappers for legacy tool 
-logic. This modernizes your tools for consumption by any MCP-compliant agent 
-(Claude, Gemini, ChatGPT).
-🚩 Architectural Mismatch: RAG for Math 
-(/Users/enriq/Documents/git/portfolio-agent/cockpit_report_final_v5.html:)
-   Detected mathematical intent being processed via RAG (Retrieval-Augmented 
-Generation). Pivot to an **NL2SQL** pattern or a **Code Interpreter** tool. 
-These provide deterministic accuracy for calculations, whereas LLMs over RAG 
-only approximate.
-   ⚖️ Strategic ROI: RAG is designed for semantic search, not arithmetic 
-accuracy. Mathematical operations require structured data tools or precise 
-execution environments.
-/Users/enriq/Documents/git/portfolio-agent/cockpit_report_final_v5.html:1 | 
-Architectural Mismatch: RAG for Math | Detected mathematical intent being 
-processed via RAG (Retrieval-Augmented Generation). Pivot to an **NL2SQL** 
-pattern or a **Code Interpreter** tool. These provide deterministic accuracy for
-calculations, whereas LLMs over RAG only approximate.
-🚩 Context Drowning Mitigation (Sovereign Cache) 
-(/Users/enriq/Documents/git/portfolio-agent/cockpit_report_final_v5.html:)
-   Detected high context volume without explicit caching. Implementation: 1) 
-Google Cloud: Use 'Content Caching' for Gemini to reduce TTFT and costs for 
-repeated long prompts. 2) Local: Implement a sliding window or 'Semantic 
-Summarizer' for long-running sessions.
-   ⚖️ Strategic ROI: Long-lived agent sessions eventually drown in their own 
-context, leading to increased latency and decreased reasoning quality.
-/Users/enriq/Documents/git/portfolio-agent/cockpit_report_final_v5.html:1 | 
-Context Drowning Mitigation (Sovereign Cache) | Detected high context volume 
-without explicit caching. Implementation: 1) Google Cloud: Use 'Content Caching'
-for Gemini to reduce TTFT and costs for repeated long prompts. 2) Local: 
-Implement a sliding window or 'Semantic Summarizer' for long-running sessions.
-🚩 Ungated High-Stake Action 
-(/Users/enriq/Documents/git/portfolio-agent/cockpit_report_final_v5.html:)
-   Critical actions detected in tool definitions without Human-In-The-Loop 
-(HITL) gates. v1.8.5 standard requires 'require_confirmation=True' for all 
-destructive or financial tools.
-   ⚖️ Strategic ROI: Autonomous agents must not have permission to modify state 
-without external validation for high-impact operations.
-/Users/enriq/Documents/git/portfolio-agent/cockpit_report_final_v5.html:1 | 
-Ungated High-Stake Action | Critical actions detected in tool definitions 
-without Human-In-The-Loop (HITL) gates. v1.8.5 standard requires 
-'require_confirmation=True' for all destructive or financial tools.
-🚩 Incompatible Duo: langgraph + crewai 
-(/Users/enriq/Documents/git/portfolio-agent/cockpit_report_final_v5.html:)
-   CrewAI and LangGraph both attempt to manage the orchestration loop and state,
-leading to cyclic-dependency conflicts.
-   ⚖️ Strategic ROI: Prevents runtime state corruption and orchestration loops 
-as identified by Ecosystem Watcher.
-/Users/enriq/Documents/git/portfolio-agent/cockpit_report_final_v5.html:1 | 
-Incompatible Duo: langgraph + crewai | CrewAI and LangGraph both attempt to 
-manage the orchestration loop and state, leading to cyclic-dependency conflicts.
 🚩 Economic Review: High-Cost Inference 
 (/Users/enriq/Documents/git/portfolio-agent/index.html:)
    Detected single call to a high-tier model.
@@ -26380,7 +25529,7 @@ state passing.
 Chatter Bloat Detected | Passing entire variable 'messages' to tool/agent call. 
 This introduces high latency and token waste.
 🚩 A2A Chatter Bloat Detected 
-(/Users/enriq/Documents/git/portfolio-agent/agent/agent.py:140)
+(/Users/enriq/Documents/git/portfolio-agent/agent/agent.py:130)
    Passing entire variable 'full_context' to tool/agent call. This introduces 
 high latency and token waste.
    ⚖️ Strategic ROI: Reduces token cost and latency by 30-50% through surgical 
@@ -29999,7 +29148,7 @@ sliding window or 'Semantic Summarizer' for long-running sessions.
 │ 🌊 Impact Waterfall (v1.3)                                                   │
 │                                                                              │
 │  • Reasoning Delay: 800ms added to chain (Critical Path).                    │
-│  • Risk Reduction: 4228% reduction in Potential Failure Points (PFPs) via    │
+│  • Risk Reduction: 4108% reduction in Potential Failure Points (PFPs) via    │
 │    audit logic.                                                              │
 │  • Sovereignty Delta: 0/100 - (🚨 EXIT_PLAN_REQUIRED).                       │
 │                                                                              │
@@ -30049,125 +29198,6 @@ sliding window or 'Semantic Summarizer' for long-running sessions.
 │    Implementation: 1) HAX: Make clear what the system can do. 2) UI: Provide │
 │    'Capability Cards' or proactive tool suggestions. 3) Discovery: Show      │
 │    sample queries on empty state. (Impact: MEDIUM)                           │
-│  • Strategic Conflict: Multi-Orchestrator Setup: Detected both LangGraph and │
-│    CrewAI. Using two loop managers is a 'High-Entropy' pattern that often    │
-│    leads to cyclic state deadlocks. (Impact: HIGH)                           │
-│  • Architectural Mismatch: RAG for Math: Detected mathematical intent being  │
-│    processed via a RAG (Retrieval-Augmented Generation) pipeline. RAG is     │
-│    designed for semantic search, not arithmetic accuracy over raw text.      │
-│    (Impact: HIGH)                                                            │
-│  • Economic Inefficiency: Model Over-Privilege: Using a High-Tier model      │
-│    (e.g., GPT-4o/Pro) for deterministic ETL or parsing tasks. [bold          │
-│    yellow]Strategic Move:[/bold yellow] This task can be handled by a        │
-│    'Flash' or 'Mini' tier model at 1/10th the cost. [bold                    │
-│    green]RECOMMENDATION:[/bold green] Pivot to Gemini 2.0 Flash or           │
-│    GPT-4o-mini for metadata tasks. (Impact: MEDIUM)                          │
-│  • SOC2 Control Gap: Missing Transit Logging: Structural logging             │
-│    (logger.info/error) not detected. SOC2 CC6.1 requires audit trails for    │
-│    all system access. (Impact: HIGH)                                         │
-│  • Strategic Exit Plan (Cloud): Detected hardcoded cloud dependencies. For a │
-│    'Category Killer' grade, implement an abstraction layer that allows       │
-│    switching to Gemma 2 on GKE. (Impact: INFO)                               │
-│  • Potential Recursive Agent Loop: Detected a self-referencing agent call    │
-│    pattern. Risk of infinite reasoning loops and runaway costs. (Impact:     │
-│    CRITICAL)                                                                 │
-│  • Time-to-Reasoning (TTR) Risk: Cloud Run detected. Startup Boost active. A │
-│    slow TTR makes the agent's first response 'Dead on Arrival' for users.    │
-│    (Impact: INFO)                                                            │
-│  • Sovereign Model Migration Opportunity: Detected OpenAI dependency. For    │
-│    maximum Data Sovereignty and 40% TCO reduction, consider pivoting to      │
-│    Gemma2 or Llama3-70B on Amazon Bedrock Prediction endpoints. (Impact:     │
-│    HIGH)                                                                     │
-│  • Compute Scaling Optimization: Detected complex scaling logic. If traffic  │
-│    exceeds 10k RPS, consider pivoting from Cloud Run to GKE with Anthos for  │
-│    hybrid-cloud sovereignty. (Impact: INFO)                                  │
-│  • Vector Store Evolution (Chroma DB): For enterprise scaling, evaluate: 1)  │
-│    Google Cloud: Amazon Bedrock Search for handled grounding. 2) AWS: Amazon │
-│    Bedrock Knowledge Bases. 3) General: BigQuery Vector Search for           │
-│    high-scale analytical joins. (Impact: HIGH)                               │
-│  • Payload Splitting (Context Fragmentation): Monitor for Payload Splitting  │
-│    attacks where malicious fragments are combined over multiple turns.       │
-│    Mitigation: 1) Implement sliding window verification. 2) Use 'DARE        │
-│    Prompting' (Determine Appropriate Response) to re-evaluate intent at      │
-│    every turn. (Impact: HIGH)                                                │
-│  • Missing Safety Classifiers: Supplement prompt-based safety with           │
-│    programmatic layers: 1) Input Level: ShieldGemma or LLM Guard. 2) Output  │
-│    Level: Sentiment Analysis and Category Checks (GCP Natural Language API). │
-│    3) Persona: Tone of Voice controllers. (Impact: HIGH)                     │
-│  • Adversarial Testing (Red Teaming): Implement 5-layer Red Teaming: 1)      │
-│    Quality (Customer queries). 2) Safety (Slurs/Profanity). 3) Sensitive     │
-│    Topics (Politics/Legal). 4) Off-topic (Canned response check). 5)         │
-│    Language (Non-supported language override). (Impact: HIGH)                │
-│  • Structured Output Enforcement: Eliminate parsing failures. 1) OpenAI: Use │
-│    'Structured Outputs' for guaranteed schema. 2) GCP: Application Mimetype  │
-│    (application/json) enforcement. 3) LangGraph: Pydantic-based state        │
-│    validation. (Impact: MEDIUM)                                              │
-│  • Agentic Observability (Golden Signals): Monitor the Agentic Trinity: 1)   │
-│    Reasoning Trace (LangSmith/AgentOps). 2) Time to First Token (TTFT). 3)   │
-│    Cost per Intent. Microsoft Agent Kit recommends 'Trace-based Debugging'   │
-│    for multi-agent loops. (Impact: MEDIUM)                                   │
-│  • Excessive Agency & Privilege (OWASP LLM06): Audit tool permissions        │
-│    against MITRE ATLAS 'Excessive Agency'. Implement: 1) Granular IAM for    │
-│    tool execution. 2) Human-In-The-Loop (HITL) for destructive actions       │
-│    (Delete/Write). 3) Sandbox isolation for Python execution. (Impact:       │
-│    CRITICAL)                                                                 │
-│  • Explainable Reasoning (HAX Guideline 11): Ensure users understand 'Why'   │
-│    the agent took an action. Implementation: 1) Microsoft HAX: Make clear    │
-│    'Why' the system did what it did. 2) Google PAIR: Show the source for RAG │
-│    claims. 3) UI: Collapse reasoning traces behind 'View Steps' toggles.     │
-│    (Impact: HIGH)                                                            │
-│  • Multi-Agent Debate (MAD) & Consensus: For high-stakes reasoning, move     │
-│    beyond single-shot ReAct. Implement: 1) Multi-Agent Debate: One agent     │
-│    proposes, another critiques. 2) Tree-of-Thoughts (ToT): Explore multiple  │
-│    reasoning paths. 3) Self-Reflexion: Agent audits its own output before    │
-│    transmission. (Impact: HIGH)                                              │
-│  • Indirect Prompt Injection (RAG Hardening): Protect the RAG pipeline.      │
-│    Implement: 1) Input Sanitization for 'Malicious Fragments' in fetched     │
-│    docs. 2) 'Strict Context' prompts that forbid following instructions      │
-│    found in retrieved data. 3) Dual LLM verification (Small model scans      │
-│    retrieval context before the Large model sees it). (Impact: CRITICAL)     │
-│  • Mental Model Discovery (HAX Guideline 01): Don't leave users guessing.    │
-│    Implementation: 1) HAX: Make clear what the system can do. 2) UI: Provide │
-│    'Capability Cards' or proactive tool suggestions. 3) Discovery: Show      │
-│    sample queries on empty state. (Impact: MEDIUM)                           │
-│  • Universal Context Protocol (UCP) Migration: Adopt Universal Context       │
-│    Protocol (UCP) for standardized cross-agent memory handshakes. (Impact:   │
-│    MEDIUM)                                                                   │
-│  • Agent Starter Pack Template Adoption: Leverage production-grade           │
-│    Generative AI templates from the GoogleCloudPlatform/agent-starter-pack.  │
-│    Benefits: 1) Pre-built LangGraph patterns. 2) IAM-hardened deployments.   │
-│    3) Standardized tool-use hooks. (Impact: HIGH)                            │
-│  • LlamaIndex Workflows (Event-Driven Reasoning): Adopt the LlamaIndex       │
-│    Workflow (v0.14+) for event-driven agentic logic. This replaces rigid     │
-│    linear chains with a dynamic state-based event loop that is more          │
-│    resilient to complex user intents. (Impact: HIGH)                         │
-│  • Recursive Self-Improvement (Self-Reflexion Loops): Integrate Recursive    │
-│    Self-Reflexion. Research from ArXiv (cs.AI) proves that agents auditing   │
-│    their own reasoning paths reduce hallucination by 40%. (Impact: CRITICAL) │
-│  • SLM-on-the-Edge (Gemma 3 / Phi-4 Optimization): Offload deterministic     │
-│    sub-tasks (JSON parsing, routing) to Gemma 3-2b or Phi-4-mini on local    │
-│    edge. Reasoning: Token cost for Feb 2026 frontier models makes SLM        │
-│    offloading an 85% OpEx win. (Impact: HIGH)                                │
-│  • Tool Modernization (MCP Blueprint): Use 'agentops-cockpit mcp blueprint'  │
-│    to auto-generate Model Context Protocol (MCP) server wrappers for legacy  │
-│    tool logic. This modernizes your tools for consumption by any             │
-│    MCP-compliant agent (Claude, Gemini, ChatGPT). (Impact: HIGH)             │
-│  • Architectural Mismatch: RAG for Math: Detected mathematical intent being  │
-│    processed via RAG (Retrieval-Augmented Generation). Pivot to an NL2SQL    │
-│    pattern or a Code Interpreter tool. These provide deterministic accuracy  │
-│    for calculations, whereas LLMs over RAG only approximate. (Impact: HIGH)  │
-│  • Context Drowning Mitigation (Sovereign Cache): Detected high context      │
-│    volume without explicit caching. Implementation: 1) Google Cloud: Use     │
-│    'Content Caching' for Gemini to reduce TTFT and costs for repeated long   │
-│    prompts. 2) Local: Implement a sliding window or 'Semantic Summarizer'    │
-│    for long-running sessions. (Impact: HIGH)                                 │
-│  • Ungated High-Stake Action: Critical actions detected in tool definitions  │
-│    without Human-In-The-Loop (HITL) gates. v1.8.5 standard requires          │
-│    'require_confirmation=True' for all destructive or financial tools.       │
-│    (Impact: CRITICAL)                                                        │
-│  • Incompatible Duo: langgraph + crewai: CrewAI and LangGraph both attempt   │
-│    to manage the orchestration loop and state, leading to cyclic-dependency  │
-│    conflicts. (Impact: CRITICAL)                                             │
 │  • Economic Review: High-Cost Inference: Detected single call to a high-tier │
 │    model. [bold blue]SINGLE PASS:[/bold blue] Projected TCO: $2.50. [bold    │
 │    green]RECOMMENDATION:[/bold green] Ensure this call cannot be mothballed  │
@@ -34116,36 +33146,6 @@ ACTION: /Users/enriq/Documents/git/portfolio-agent/quickstart_setup.sh:1 |
 ACTION: /Users/enriq/Documents/git/portfolio-agent/quickstart_setup.sh:1 | 
 ACTION: /Users/enriq/Documents/git/portfolio-agent/quickstart_setup.sh:1 | 
 ACTION: /Users/enriq/Documents/git/portfolio-agent/quickstart_setup.sh:1 | 
-ACTION: 
-ACTION: 
-ACTION: 
-ACTION: 
-ACTION: 
-ACTION: 
-ACTION: 
-ACTION: 
-ACTION: 
-ACTION: 
-ACTION: 
-ACTION: 
-ACTION: 
-ACTION: 
-ACTION: 
-ACTION: 
-ACTION: 
-ACTION: 
-ACTION: 
-ACTION: 
-ACTION: 
-ACTION: 
-ACTION: 
-ACTION: 
-ACTION: 
-ACTION: 
-ACTION: 
-ACTION: 
-ACTION: 
-ACTION: 
 ACTION: /Users/enriq/Documents/git/portfolio-agent/index.html:1 | Economic 
 ACTION: /Users/enriq/Documents/git/portfolio-agent/index.html:1 | SOC2 Control 
 ACTION: /Users/enriq/Documents/git/portfolio-agent/index.html:1 | Missing 5th 
@@ -34827,7 +33827,7 @@ ACTION: /Users/enriq/Documents/git/portfolio-agent/agent/agent.py:1 | Strategic
 ACTION: /Users/enriq/Documents/git/portfolio-agent/agent/agent.py:9 | A2A 
 ACTION: /Users/enriq/Documents/git/portfolio-agent/agent/agent.py:19 | A2A 
 ACTION: /Users/enriq/Documents/git/portfolio-agent/agent/agent.py:29 | A2A 
-ACTION: /Users/enriq/Documents/git/portfolio-agent/agent/agent.py:140 | A2A 
+ACTION: /Users/enriq/Documents/git/portfolio-agent/agent/agent.py:130 | A2A 
 ACTION: /Users/enriq/Documents/git/portfolio-agent/agent/agent.py:1 | Potential 
 ACTION: /Users/enriq/Documents/git/portfolio-agent/agent/agent.py:1 | 
 ACTION: /Users/enriq/Documents/git/portfolio-agent/agent/agent.py:1 | Short-Term
@@ -35169,12 +34169,12 @@ ACTION: /Users/enriq/Documents/git/portfolio-agent/src/ui-manager.ts:1 | Context
 │ 🔍 GCP AGENT OPS: OPTIMIZER AUDIT │
 ╰───────────────────────────────────╯
 Target: /Users/enriq/Documents/git/portfolio-agent/agent/agent.py
-📊 Token Metrics: ~1828 prompt tokens detected.
+📊 Token Metrics: ~1791 prompt tokens detected.
 ╭─────────────────────────── Financial Optimization ───────────────────────────╮
 │ 💰 FinOps Projection (Est. 10k req/mo)                                       │
-│ Current Monthly Spend: $182.85                                               │
-│ Projected Savings: $91.42                                                    │
-│ New Monthly Spend: $91.42                                                    │
+│ Current Monthly Spend: $179.10                                               │
+│ Projected Savings: $80.59                                                    │
+│ New Monthly Spend: $98.51                                                    │
 ╰──────────────────────────────────────────────────────────────────────────────╯
 
  --- [HIGH IMPACT] Observability: Agent Starter Pack --- 
@@ -35224,16 +34224,6 @@ makes them hard to version and test. Move them to 'system_prompt.md' and load
 dynamically. (Est. Architectural Debt Reduction)
 ❌ [REJECTED] skipping optimization.
 
- --- [HIGH IMPACT] OCI Resource Principals --- 
-Benefit: 100% Secure Auth
-Reason: Using static config/keys detected on OCI. Use Resource Principals for 
-secure, credential-less access from OCI compute.
-+ auth = oci.auth.signers.get_resource_principals_signer()                      
-Optimization: OCI Resource Principals | Using static config/keys detected on 
-OCI. Use Resource Principals for secure, credential-less access from OCI 
-compute. (Est. 100% Secure Auth)
-❌ [REJECTED] skipping optimization.
-
  --- [HIGH IMPACT] Implement Tiered Orchestration --- 
 Benefit: 70% Cost Savings
 Reason: No model routing detected. Use a 'Router Agent' to decide if a query 
@@ -35248,7 +34238,7 @@ Optimization: Implement Tiered Orchestration | No model routing detected. Use a
 ┃ Category               ┃ Count ┃
 ┡━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━┩
 │ Optimizations Applied  │ 0     │
-│ Optimizations Rejected │ 4     │
+│ Optimizations Rejected │ 3     │
 └────────────────────────┴───────┘
 
 ❌ HIGH IMPACT issues detected. Optimization required for production.
@@ -35256,12 +34246,12 @@ Optimization: Implement Tiered Orchestration | No model routing detected. Use a
 │ 🔍 GCP AGENT OPS: OPTIMIZER AUDIT │
 ╰───────────────────────────────────╯
 Target: /Users/enriq/Documents/git/portfolio-agent/agent/agent.py
-📊 Token Metrics: ~1828 prompt tokens detected.
+📊 Token Metrics: ~1791 prompt tokens detected.
 ╭─────────────────────────── Financial Optimization ───────────────────────────╮
 │ 💰 FinOps Projection (Est. 10k req/mo)                                       │
-│ Current Monthly Spend: $182.85                                               │
-│ Projected Savings: $91.42                                                    │
-│ New Monthly Spend: $91.42                                                    │
+│ Current Monthly Spend: $179.10                                               │
+│ Projected Savings: $80.59                                                    │
+│ New Monthly Spend: $98.51                                                    │
 ╰──────────────────────────────────────────────────────────────────────────────╯
 
  --- [HIGH IMPACT] Observability: Agent Starter Pack --- 
@@ -35311,16 +34301,6 @@ makes them hard to version and test. Move them to 'system_prompt.md' and load
 dynamically. (Est. Architectural Debt Reduction)
 ❌ [REJECTED] skipping optimization.
 
- --- [HIGH IMPACT] OCI Resource Principals --- 
-Benefit: 100% Secure Auth
-Reason: Using static config/keys detected on OCI. Use Resource Principals for 
-secure, credential-less access from OCI compute.
-+ auth = oci.auth.signers.get_resource_principals_signer()                      
-Optimization: OCI Resource Principals | Using static config/keys detected on 
-OCI. Use Resource Principals for secure, credential-less access from OCI 
-compute. (Est. 100% Secure Auth)
-❌ [REJECTED] skipping optimization.
-
  --- [HIGH IMPACT] Implement Tiered Orchestration --- 
 Benefit: 70% Cost Savings
 Reason: No model routing detected. Use a 'Router Agent' to decide if a query 
@@ -35335,7 +34315,7 @@ Optimization: Implement Tiered Orchestration | No model routing detected. Use a
 ┃ Category               ┃ Count ┃
 ┡━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━┩
 │ Optimizations Applied  │ 0     │
-│ Optimizations Rejected │ 4     │
+│ Optimizations Rejected │ 3     │
 └────────────────────────┴───────┘
 
 ❌ HIGH IMPACT issues detected. Optimization required for production.
@@ -35343,12 +34323,12 @@ Optimization: Implement Tiered Orchestration | No model routing detected. Use a
 │ 🔍 GCP AGENT OPS: OPTIMIZER AUDIT │
 ╰───────────────────────────────────╯
 Target: /Users/enriq/Documents/git/portfolio-agent/agent/agent.py
-📊 Token Metrics: ~1828 prompt tokens detected.
+📊 Token Metrics: ~1791 prompt tokens detected.
 ╭─────────────────────────── Financial Optimization ───────────────────────────╮
 │ 💰 FinOps Projection (Est. 10k req/mo)                                       │
-│ Current Monthly Spend: $182.85                                               │
-│ Projected Savings: $91.42                                                    │
-│ New Monthly Spend: $91.42                                                    │
+│ Current Monthly Spend: $179.10                                               │
+│ Projected Savings: $80.59                                                    │
+│ New Monthly Spend: $98.51                                                    │
 ╰──────────────────────────────────────────────────────────────────────────────╯
 
  --- [HIGH IMPACT] Observability: Agent Starter Pack --- 
@@ -35398,16 +34378,6 @@ makes them hard to version and test. Move them to 'system_prompt.md' and load
 dynamically. (Est. Architectural Debt Reduction)
 ❌ [REJECTED] skipping optimization.
 
- --- [HIGH IMPACT] OCI Resource Principals --- 
-Benefit: 100% Secure Auth
-Reason: Using static config/keys detected on OCI. Use Resource Principals for 
-secure, credential-less access from OCI compute.
-+ auth = oci.auth.signers.get_resource_principals_signer()                      
-Optimization: OCI Resource Principals | Using static config/keys detected on 
-OCI. Use Resource Principals for secure, credential-less access from OCI 
-compute. (Est. 100% Secure Auth)
-❌ [REJECTED] skipping optimization.
-
  --- [HIGH IMPACT] Implement Tiered Orchestration --- 
 Benefit: 70% Cost Savings
 Reason: No model routing detected. Use a 'Router Agent' to decide if a query 
@@ -35422,7 +34392,7 @@ Optimization: Implement Tiered Orchestration | No model routing detected. Use a
 ┃ Category               ┃ Count ┃
 ┡━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━┩
 │ Optimizations Applied  │ 0     │
-│ Optimizations Rejected │ 4     │
+│ Optimizations Rejected │ 3     │
 └────────────────────────┴───────┘
 
 ❌ HIGH IMPACT issues detected. Optimization required for production.
@@ -35499,11 +34469,8 @@ The above exception was the direct cause of the following exception:
 │   416 │   │   │   self._add_action_func(exc_check)                           │
 │   417 │   │   │   return                                                     │
 ╰──────────────────────────────────────────────────────────────────────────────╯
-RetryError: RetryError[<Future at 0x120d3fe00 state=finished raised Exit>]
+RetryError: RetryError[<Future at 0x107e5e480 state=finished raised Exit>]
 
-ACTION: /Users/enriq/Documents/git/portfolio-agent/agent/agent.py:1 | 
-ACTION: /Users/enriq/Documents/git/portfolio-agent/agent/agent.py:1 | 
-ACTION: /Users/enriq/Documents/git/portfolio-agent/agent/agent.py:1 | 
 ACTION: /Users/enriq/Documents/git/portfolio-agent/agent/agent.py:1 | 
 ACTION: /Users/enriq/Documents/git/portfolio-agent/agent/agent.py:1 | 
 ACTION: /Users/enriq/Documents/git/portfolio-agent/agent/agent.py:1 | 

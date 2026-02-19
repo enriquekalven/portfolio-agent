@@ -9,114 +9,39 @@
       },
       "results": [
         {
-          "ruleId": "reliability_failure",
+          "ruleId": "missing_genui_surface_mapping",
           "message": {
-            "text": "Resolve falling unit tests to ensure"
+            "text": "Impacts 46 files: ACTION, ACTION, ACTION..."
           },
           "locations": [
             {
               "physicalLocation": {
                 "artifactLocation": {
-                  "uri": "/Users/enriq/Documents/git/portfolio-agent"
+                  "uri": "Architecture"
                 }
               }
             }
           ]
         },
         {
-          "ruleId": "prompt_bloat_warning",
+          "ruleId": "policy_blindness:_implicit_governance",
           "message": {
-            "text": "Implement Vertex AI Context Caching via Antigravity to reduce repeated prefix costs by 90%."
+            "text": "Centralizes alignment and simplifies regulatory updates."
           },
           "locations": [
             {
               "physicalLocation": {
                 "artifactLocation": {
-                  "uri": "/Users/enriq/Documents/git/portfolio-agent/agent/a2ui_templates.py"
+                  "uri": "/Users/enriq/Documents/git/portfolio-agent/agent/a2ui_templates.py:1"
                 }
               }
             }
           ]
         },
         {
-          "ruleId": "prompt_bloat_warning",
+          "ruleId": "policy_blindness:_implicit_governance",
           "message": {
-            "text": "Implement Vertex AI Context Caching via Antigravity to reduce repeated prefix costs by 90%."
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "/Users/enriq/Documents/git/portfolio-agent/agent/app.py"
-                }
-              }
-            }
-          ]
-        },
-        {
-          "ruleId": "prompt_bloat_warning",
-          "message": {
-            "text": "Implement Vertex AI Context Caching via Antigravity to reduce repeated prefix costs by 90%."
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "/Users/enriq/Documents/git/portfolio-agent/agent/deploy_ae.py"
-                }
-              }
-            }
-          ]
-        },
-        {
-          "ruleId": "architectural_prompt_bloat",
-          "message": {
-            "text": "Massive"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "/Users/enriq/Documents/git/portfolio-agent/deploy_hosting.py:1"
-                }
-              }
-            }
-          ]
-        },
-        {
-          "ruleId": "architectural_prompt_bloat",
-          "message": {
-            "text": "Massive static"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "/Users/enriq/Documents/git/portfolio-agent/deploy.py:1"
-                }
-              }
-            }
-          ]
-        },
-        {
-          "ruleId": "prompt_bloat_warning",
-          "message": {
-            "text": "Large instructional logic detected without CachingConfig."
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": ":1"
-                }
-              }
-            }
-          ]
-        },
-        {
-          "ruleId": "architectural_prompt_bloat",
-          "message": {
-            "text": "Massive"
+            "text": "Centralizes alignment and simplifies regulatory updates."
           },
           "locations": [
             {
@@ -129,489 +54,24 @@
           ]
         },
         {
-          "ruleId": "a2a_chatter_bloat_detected",
+          "ruleId": "policy_blindness:_implicit_governance",
           "message": {
-            "text": "Passing"
+            "text": "Centralizes alignment and simplifies regulatory updates."
           },
           "locations": [
             {
               "physicalLocation": {
                 "artifactLocation": {
-                  "uri": "/Users/enriq/Documents/git/portfolio-agent/agent/agent.py:9"
+                  "uri": "/Users/enriq/Documents/git/portfolio-agent/agent/a2ui_templates.py:1"
                 }
               }
             }
           ]
         },
         {
-          "ruleId": "a2a_chatter_bloat_detected",
+          "ruleId": "policy_blindness:_implicit_governance",
           "message": {
-            "text": "Passing"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "/Users/enriq/Documents/git/portfolio-agent/agent/agent.py:19"
-                }
-              }
-            }
-          ]
-        },
-        {
-          "ruleId": "a2a_chatter_bloat_detected",
-          "message": {
-            "text": "Passing"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "/Users/enriq/Documents/git/portfolio-agent/agent/agent.py:29"
-                }
-              }
-            }
-          ]
-        },
-        {
-          "ruleId": "a2a_chatter_bloat_detected",
-          "message": {
-            "text": "Passing"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "/Users/enriq/Documents/git/portfolio-agent/agent/agent.py:88"
-                }
-              }
-            }
-          ]
-        },
-        {
-          "ruleId": "prompt_bloat_warning",
-          "message": {
-            "text": "Large instructional logic detected without CachingConfig."
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": ":1"
-                }
-              }
-            }
-          ]
-        },
-        {
-          "ruleId": "prompt_bloat_warning",
-          "message": {
-            "text": "Large instructional logic detected without CachingConfig."
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": ":1"
-                }
-              }
-            }
-          ]
-        },
-        {
-          "ruleId": "prompt_injection",
-          "message": {
-            "text": "Use 'Input"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "/Users/enriq/Documents/git/portfolio-agent/deploy_hosting.py"
-                }
-              }
-            }
-          ]
-        },
-        {
-          "ruleId": "pii_exfiltration",
-          "message": {
-            "text": "Integrate Cloud DLP"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "/Users/enriq/Documents/git/portfolio-agent/deploy_hosting.py"
-                }
-              }
-            }
-          ]
-        },
-        {
-          "ruleId": "payload_splitting",
-          "message": {
-            "text": "Implement sliding"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "/Users/enriq/Documents/git/portfolio-agent/deploy_hosting.py"
-                }
-              }
-            }
-          ]
-        },
-        {
-          "ruleId": "domain_sensitive",
-          "message": {
-            "text": "Implement 'Category"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "/Users/enriq/Documents/git/portfolio-agent/deploy_hosting.py"
-                }
-              }
-            }
-          ]
-        },
-        {
-          "ruleId": "tone_mismatch",
-          "message": {
-            "text": "Add a 'Sentiment"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "/Users/enriq/Documents/git/portfolio-agent/deploy_hosting.py"
-                }
-              }
-            }
-          ]
-        },
-        {
-          "ruleId": "prompt_injection",
-          "message": {
-            "text": "Use 'Input"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "/Users/enriq/Documents/git/portfolio-agent/deploy_hosting.py"
-                }
-              }
-            }
-          ]
-        },
-        {
-          "ruleId": "inference_cost_projection_(gemini-3-flash)",
-          "message": {
-            "text": "Pivot to Gemini 3 Flash via Antigravity/Cursor to reduce projected cost to $0.10."
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "/Users/enriq/Documents/git/portfolio-agent/agent/openstax_content.py"
-                }
-              }
-            }
-          ]
-        },
-        {
-          "ruleId": "time-to-reasoning_(ttr)_risk",
-          "message": {
-            "text": "Cloud"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "/Users/enriq/Documents/git/portfolio-agent/deploy_hosting.py:1"
-                }
-              }
-            }
-          ]
-        },
-        {
-          "ruleId": "short-term_memory_(stm)_at_risk",
-          "message": {
-            "text": "Agent"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "/Users/enriq/Documents/git/portfolio-agent/deploy_hosting.py:1"
-                }
-              }
-            }
-          ]
-        },
-        {
-          "ruleId": "high_hallucination_risk",
-          "message": {
-            "text": "System prompt lacks"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "/Users/enriq/Documents/git/portfolio-agent/deploy.py:118"
-                }
-              }
-            }
-          ]
-        },
-        {
-          "ruleId": "direct_vendor_sdk_exposure",
-          "message": {
-            "text": "Directly importing"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "/Users/enriq/Documents/git/portfolio-agent/deploy.py:1"
-                }
-              }
-            }
-          ]
-        },
-        {
-          "ruleId": "strategic_exit_plan_(cloud)",
-          "message": {
-            "text": "Detected"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "/Users/enriq/Documents/git/portfolio-agent/deploy.py:1"
-                }
-              }
-            }
-          ]
-        },
-        {
-          "ruleId": "potential_recursive_agent_loop",
-          "message": {
-            "text": "Detected a"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "/Users/enriq/Documents/git/portfolio-agent/deploy.py:1"
-                }
-              }
-            }
-          ]
-        },
-        {
-          "ruleId": "proprietary_context_handshake_(non-ap2)",
-          "message": {
-            "text": "Agent"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "/Users/enriq/Documents/git/portfolio-agent/deploy.py:1"
-                }
-              }
-            }
-          ]
-        },
-        {
-          "ruleId": "missing_safety_classifiers",
-          "message": {
-            "text": "Supplement"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "/Users/enriq/Documents/git/portfolio-agent/deploy.py:1"
-                }
-              }
-            }
-          ]
-        },
-        {
-          "ruleId": "structured_output_enforcement",
-          "message": {
-            "text": "Eliminate"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "/Users/enriq/Documents/git/portfolio-agent/deploy.py:1"
-                }
-              }
-            }
-          ]
-        },
-        {
-          "ruleId": "multi-agent_debate_(mad)_&_consensus",
-          "message": {
-            "text": "For"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "/Users/enriq/Documents/git/portfolio-agent/deploy.py:1"
-                }
-              }
-            }
-          ]
-        },
-        {
-          "ruleId": "multi-agent_debate_(mad)_&_consensus",
-          "message": {
-            "text": "For"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "/Users/enriq/Documents/git/portfolio-agent/fix_imports.py:1"
-                }
-              }
-            }
-          ]
-        },
-        {
-          "ruleId": "high_hallucination_risk",
-          "message": {
-            "text": "System"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "/Users/enriq/Documents/git/portfolio-agent/test_topic_matching.py:34"
-                }
-              }
-            }
-          ]
-        },
-        {
-          "ruleId": "direct_vendor_sdk_exposure",
-          "message": {
-            "text": "Directly"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "/Users/enriq/Documents/git/portfolio-agent/test_ae_query.py:1"
-                }
-              }
-            }
-          ]
-        },
-        {
-          "ruleId": "strategic_exit_plan_(cloud)",
-          "message": {
-            "text": "Detected"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "/Users/enriq/Documents/git/portfolio-agent/test_ae_query.py:1"
-                }
-              }
-            }
-          ]
-        },
-        {
-          "ruleId": "direct_vendor_sdk_exposure",
-          "message": {
-            "text": "Directly"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "/Users/enriq/Documents/git/portfolio-agent/check_engines.py:1"
-                }
-              }
-            }
-          ]
-        },
-        {
-          "ruleId": "strategic_exit_plan_(cloud)",
-          "message": {
-            "text": "Detected"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "/Users/enriq/Documents/git/portfolio-agent/check_engines.py:1"
-                }
-              }
-            }
-          ]
-        },
-        {
-          "ruleId": "potential_recursive_agent_loop",
-          "message": {
-            "text": "Detected"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "/Users/enriq/Documents/git/portfolio-agent/agent/server.py:1"
-                }
-              }
-            }
-          ]
-        },
-        {
-          "ruleId": "inference_cost_projection_(gemini-3-flash)",
-          "message": {
-            "text": "Detected gemini-3-flash usage (SINGLE PASS). Projected"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": ":1"
-                }
-              }
-            }
-          ]
-        },
-        {
-          "ruleId": "high_hallucination_risk",
-          "message": {
-            "text": "System prompt"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "/Users/enriq/Documents/git/portfolio-agent/agent/agent.py:185"
-                }
-              }
-            }
-          ]
-        },
-        {
-          "ruleId": "strategic_exit_plan_(cloud)",
-          "message": {
-            "text": "Detected"
+            "text": "Centralizes alignment and simplifies regulatory updates."
           },
           "locations": [
             {
@@ -624,9 +84,114 @@
           ]
         },
         {
-          "ruleId": "potential_recursive_agent_loop",
+          "ruleId": "reflection_blindness:_brittle_intelligence",
           "message": {
-            "text": "Detected"
+            "text": "Significantly reduces reasoning hallucinations and logic errors."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/Users/enriq/Documents/git/portfolio-agent/agent/portfolio_data.py:1"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "reflection_blindness:_brittle_intelligence",
+          "message": {
+            "text": "Significantly reduces reasoning hallucinations and logic errors."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/Users/enriq/Documents/git/portfolio-agent/agent/openstax_content.py:1"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "pattern_mismatch:_structured_data_stuffing",
+          "message": {
+            "text": "Reduces token burn and hallucination risk."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/Users/enriq/Documents/git/portfolio-agent/agent/openstax_content.py:350"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "passive_retrieval:_context_drowning",
+          "message": {
+            "text": "Reduces context window waste and improves reasoning focus."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/Users/enriq/Documents/git/portfolio-agent/agent/openstax_content.py:1"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "token_burning:_llm_for_deterministic_ops",
+          "message": {
+            "text": "Reduces token billing for non-probabilistic tasks."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/Users/enriq/Documents/git/portfolio-agent/agent/a2ui_templates.py:1"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "looming_latency:_blocking_inference",
+          "message": {
+            "text": "Improves perceived latency and retention."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/Users/enriq/Documents/git/portfolio-agent/agent/a2ui_templates.py:1"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "passive_retrieval:_context_drowning",
+          "message": {
+            "text": "Reduces context window waste and improves reasoning focus."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "/Users/enriq/Documents/git/portfolio-agent/agent/a2ui_templates.py:1"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "ruleId": "reflection_blindness:_brittle_intelligence",
+          "message": {
+            "text": "Significantly reduces reasoning hallucinations and logic errors."
           },
           "locations": [
             {
@@ -639,69 +204,9 @@
           ]
         },
         {
-          "ruleId": "short-term_memory_(stm)_at_risk",
+          "ruleId": "reflection_blindness:_brittle_intelligence",
           "message": {
-            "text": "Agent is"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "/Users/enriq/Documents/git/portfolio-agent/agent/agent.py:1"
-                }
-              }
-            }
-          ]
-        },
-        {
-          "ruleId": "model_resilience_&_fallbacks",
-          "message": {
-            "text": "Implement"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "/Users/enriq/Documents/git/portfolio-agent/agent/agent.py:1"
-                }
-              }
-            }
-          ]
-        },
-        {
-          "ruleId": "missing_safety_classifiers",
-          "message": {
-            "text": "Supplement"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "/Users/enriq/Documents/git/portfolio-agent/agent/agent.py:1"
-                }
-              }
-            }
-          ]
-        },
-        {
-          "ruleId": "structured_output_enforcement",
-          "message": {
-            "text": "Eliminate"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "/Users/enriq/Documents/git/portfolio-agent/agent/agent.py:1"
-                }
-              }
-            }
-          ]
-        },
-        {
-          "ruleId": "missing_safety_classifiers",
-          "message": {
-            "text": "Supplement"
+            "text": "Significantly reduces reasoning hallucinations and logic errors."
           },
           "locations": [
             {
@@ -714,39 +219,9 @@
           ]
         },
         {
-          "ruleId": "direct_vendor_sdk_exposure",
+          "ruleId": "ungated_high-stake_action",
           "message": {
-            "text": "Directly"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "/Users/enriq/Documents/git/portfolio-agent/agent/deploy_ae.py:1"
-                }
-              }
-            }
-          ]
-        },
-        {
-          "ruleId": "strategic_exit_plan_(cloud)",
-          "message": {
-            "text": "Detected"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "/Users/enriq/Documents/git/portfolio-agent/agent/deploy_ae.py:1"
-                }
-              }
-            }
-          ]
-        },
-        {
-          "ruleId": "legacy_rest_vs_mcp",
-          "message": {
-            "text": "Pivot to"
+            "text": "Protects enterprise sovereignty and prevents accidents."
           },
           "locations": [
             {
@@ -759,585 +234,180 @@
           ]
         },
         {
-          "ruleId": "missing_'surfaceid'_mapping",
+          "ruleId": "reflection_blindness:_brittle_intelligence",
           "message": {
-            "text": "Add 'surfaceId' prop to the root"
+            "text": "Significantly reduces reasoning hallucinations and logic errors."
           },
           "locations": [
             {
               "physicalLocation": {
                 "artifactLocation": {
-                  "uri": "renderers/lit/src/0.8/core.ts:1"
+                  "uri": "/Users/enriq/Documents/git/portfolio-agent/agent/app_utils/telemetry.py:1"
                 }
               }
             }
           ]
         },
         {
-          "ruleId": "missing_'surfaceid'_mapping",
+          "ruleId": "reflection_blindness:_brittle_intelligence",
           "message": {
-            "text": "Add 'surfaceId' prop to the root"
+            "text": "Significantly reduces reasoning hallucinations and logic errors."
           },
           "locations": [
             {
               "physicalLocation": {
                 "artifactLocation": {
-                  "uri": "renderers/lit/src/0.8/ui/column.ts:1"
+                  "uri": "/Users/enriq/Documents/git/portfolio-agent/agent/portfolio_data.py:1"
                 }
               }
             }
           ]
         },
         {
-          "ruleId": "missing_'surfaceid'_mapping",
+          "ruleId": "reflection_blindness:_brittle_intelligence",
           "message": {
-            "text": "Add 'surfaceId' prop to the root"
+            "text": "Significantly reduces reasoning hallucinations and logic errors."
           },
           "locations": [
             {
               "physicalLocation": {
                 "artifactLocation": {
-                  "uri": "renderers/lit/src/0.8/ui/row.ts:1"
+                  "uri": "/Users/enriq/Documents/git/portfolio-agent/agent/openstax_content.py:1"
                 }
               }
             }
           ]
         },
         {
-          "ruleId": "missing_'surfaceid'_mapping",
+          "ruleId": "pattern_mismatch:_structured_data_stuffing",
           "message": {
-            "text": "Add 'surfaceId' prop to"
+            "text": "Reduces token burn and hallucination risk."
           },
           "locations": [
             {
               "physicalLocation": {
                 "artifactLocation": {
-                  "uri": "renderers/lit/src/0.8/ui/component-registry.ts:1"
+                  "uri": "/Users/enriq/Documents/git/portfolio-agent/agent/openstax_content.py:350"
                 }
               }
             }
           ]
         },
         {
-          "ruleId": "missing_'surfaceid'_mapping",
+          "ruleId": "passive_retrieval:_context_drowning",
           "message": {
-            "text": "Add 'surfaceId' prop to the root"
+            "text": "Reduces context window waste and improves reasoning focus."
           },
           "locations": [
             {
               "physicalLocation": {
                 "artifactLocation": {
-                  "uri": "renderers/lit/src/0.8/ui/modal.ts:1"
+                  "uri": "/Users/enriq/Documents/git/portfolio-agent/agent/openstax_content.py:1"
                 }
               }
             }
           ]
         },
         {
-          "ruleId": "missing_'surfaceid'_mapping",
+          "ruleId": "token_burning:_llm_for_deterministic_ops",
           "message": {
-            "text": "Add 'surfaceId' prop to the root"
+            "text": "Reduces token billing for non-probabilistic tasks."
           },
           "locations": [
             {
               "physicalLocation": {
                 "artifactLocation": {
-                  "uri": "renderers/lit/src/0.8/ui/styles.ts:1"
+                  "uri": "/Users/enriq/Documents/git/portfolio-agent/agent/a2ui_templates.py:1"
                 }
               }
             }
           ]
         },
         {
-          "ruleId": "missing_'surfaceid'_mapping",
+          "ruleId": "looming_latency:_blocking_inference",
           "message": {
-            "text": "Add 'surfaceId' prop to the root"
+            "text": "Improves perceived latency and retention."
           },
           "locations": [
             {
               "physicalLocation": {
                 "artifactLocation": {
-                  "uri": "renderers/lit/src/0.8/ui/button.ts:1"
+                  "uri": "/Users/enriq/Documents/git/portfolio-agent/agent/a2ui_templates.py:1"
                 }
               }
             }
           ]
         },
         {
-          "ruleId": "missing_'surfaceid'_mapping",
+          "ruleId": "passive_retrieval:_context_drowning",
           "message": {
-            "text": "Add 'surfaceId' prop to the root"
+            "text": "Reduces context window waste and improves reasoning focus."
           },
           "locations": [
             {
               "physicalLocation": {
                 "artifactLocation": {
-                  "uri": "renderers/lit/src/0.8/ui/divider.ts:1"
+                  "uri": "/Users/enriq/Documents/git/portfolio-agent/agent/a2ui_templates.py:1"
                 }
               }
             }
           ]
         },
         {
-          "ruleId": "missing_'surfaceid'_mapping",
+          "ruleId": "reflection_blindness:_brittle_intelligence",
           "message": {
-            "text": "Add 'surfaceId' prop to the root"
+            "text": "Significantly reduces reasoning hallucinations and logic errors."
           },
           "locations": [
             {
               "physicalLocation": {
                 "artifactLocation": {
-                  "uri": "renderers/lit/src/0.8/ui/ui.ts:1"
+                  "uri": "/Users/enriq/Documents/git/portfolio-agent/agent/agent.py:1"
                 }
               }
             }
           ]
         },
         {
-          "ruleId": "missing_'surfaceid'_mapping",
+          "ruleId": "reflection_blindness:_brittle_intelligence",
           "message": {
-            "text": "Add 'surfaceId' prop to the root"
+            "text": "Significantly reduces reasoning hallucinations and logic errors."
           },
           "locations": [
             {
               "physicalLocation": {
                 "artifactLocation": {
-                  "uri": "renderers/lit/src/0.8/ui/list.ts:1"
+                  "uri": "/Users/enriq/Documents/git/portfolio-agent/agent/app.py:1"
                 }
               }
             }
           ]
         },
         {
-          "ruleId": "missing_'surfaceid'_mapping",
+          "ruleId": "ungated_high-stake_action",
           "message": {
-            "text": "Add 'surfaceId' prop"
+            "text": "Protects enterprise sovereignty and prevents accidents."
           },
           "locations": [
             {
               "physicalLocation": {
                 "artifactLocation": {
-                  "uri": "renderers/lit/src/0.8/ui/directives/markdown.ts:1"
+                  "uri": "/Users/enriq/Documents/git/portfolio-agent/agent/app_utils/deploy.py:1"
                 }
               }
             }
           ]
         },
         {
-          "ruleId": "missing_'surfaceid'_mapping",
+          "ruleId": "reflection_blindness:_brittle_intelligence",
           "message": {
-            "text": "Add 'surfaceId' prop"
+            "text": "Significantly reduces reasoning hallucinations and logic errors."
           },
           "locations": [
             {
               "physicalLocation": {
                 "artifactLocation": {
-                  "uri": "renderers/lit/src/0.8/ui/directives/directives.ts:1"
-                }
-              }
-            }
-          ]
-        },
-        {
-          "ruleId": "missing_'surfaceid'_mapping",
-          "message": {
-            "text": "Add 'surfaceId' prop"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "renderers/lit/src/0.8/ui/directives/sanitizer.ts:1"
-                }
-              }
-            }
-          ]
-        },
-        {
-          "ruleId": "missing_'surfaceid'_mapping",
-          "message": {
-            "text": "Add 'surfaceId' prop to the"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "renderers/lit/src/0.8/ui/context/theme.ts:1"
-                }
-              }
-            }
-          ]
-        },
-        {
-          "ruleId": "missing_'surfaceid'_mapping",
-          "message": {
-            "text": "Add 'surfaceId' prop to the"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "renderers/lit/src/0.8/ui/utils/youtube.ts:1"
-                }
-              }
-            }
-          ]
-        },
-        {
-          "ruleId": "missing_'surfaceid'_mapping",
-          "message": {
-            "text": "Add 'surfaceId' prop to the root"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "renderers/lit/src/0.8/events/base.ts:1"
-                }
-              }
-            }
-          ]
-        },
-        {
-          "ruleId": "missing_'surfaceid'_mapping",
-          "message": {
-            "text": "Add 'surfaceId' prop to the root"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "renderers/lit/src/0.8/events/a2ui.ts:1"
-                }
-              }
-            }
-          ]
-        },
-        {
-          "ruleId": "missing_'surfaceid'_mapping",
-          "message": {
-            "text": "Add 'surfaceId' prop to the"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "renderers/lit/src/0.8/events/events.ts:1"
-                }
-              }
-            }
-          ]
-        },
-        {
-          "ruleId": "missing_'surfaceid'_mapping",
-          "message": {
-            "text": "Add 'surfaceId'"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "renderers/lit/src/0.8/data/signal-model-processor.ts:1"
-                }
-              }
-            }
-          ]
-        },
-        {
-          "ruleId": "missing_'surfaceid'_mapping",
-          "message": {
-            "text": "Add 'surfaceId' prop to"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "renderers/web_core/src/v0_8/types/colors.ts:1"
-                }
-              }
-            }
-          ]
-        },
-        {
-          "ruleId": "missing_'surfaceid'_mapping",
-          "message": {
-            "text": "Add 'surfaceId' prop"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "renderers/web_core/src/v0_8/types/components.ts:1"
-                }
-              }
-            }
-          ]
-        },
-        {
-          "ruleId": "missing_'surfaceid'_mapping",
-          "message": {
-            "text": "Add 'surfaceId' prop"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "renderers/web_core/src/v0_8/types/primitives.ts:1"
-                }
-              }
-            }
-          ]
-        },
-        {
-          "ruleId": "missing_'surfaceid'_mapping",
-          "message": {
-            "text": "Add 'surfaceId' prop to"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "renderers/web_core/src/v0_8/styles/colors.ts:1"
-                }
-              }
-            }
-          ]
-        },
-        {
-          "ruleId": "missing_'surfaceid'_mapping",
-          "message": {
-            "text": "Add 'surfaceId' prop to"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "renderers/web_core/src/v0_8/styles/border.ts:1"
-                }
-              }
-            }
-          ]
-        },
-        {
-          "ruleId": "missing_'surfaceid'_mapping",
-          "message": {
-            "text": "Add 'surfaceId' prop to"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "renderers/web_core/src/v0_8/styles/opacity.ts:1"
-                }
-              }
-            }
-          ]
-        },
-        {
-          "ruleId": "missing_'surfaceid'_mapping",
-          "message": {
-            "text": "Add 'surfaceId' prop to"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "renderers/web_core/src/v0_8/styles/utils.ts:1"
-                }
-              }
-            }
-          ]
-        },
-        {
-          "ruleId": "missing_'surfaceid'_mapping",
-          "message": {
-            "text": "Add 'surfaceId' prop to the"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "renderers/web_core/src/v0_8/styles/type.ts:1"
-                }
-              }
-            }
-          ]
-        },
-        {
-          "ruleId": "missing_'surfaceid'_mapping",
-          "message": {
-            "text": "Add 'surfaceId' prop to"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "renderers/web_core/src/v0_8/styles/layout.ts:1"
-                }
-              }
-            }
-          ]
-        },
-        {
-          "ruleId": "missing_'surfaceid'_mapping",
-          "message": {
-            "text": "Add 'surfaceId' prop to"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "renderers/web_core/src/v0_8/styles/icons.ts:1"
-                }
-              }
-            }
-          ]
-        },
-        {
-          "ruleId": "missing_'surfaceid'_mapping",
-          "message": {
-            "text": "Add 'surfaceId' prop to"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "renderers/web_core/src/v0_8/styles/behavior.ts:1"
-                }
-              }
-            }
-          ]
-        },
-        {
-          "ruleId": "missing_'surfaceid'_mapping",
-          "message": {
-            "text": "Add 'surfaceId' prop to the"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "renderers/web_core/src/v0_8/data/guards.ts:1"
-                }
-              }
-            }
-          ]
-        },
-        {
-          "ruleId": "missing_'surfaceid'_mapping",
-          "message": {
-            "text": "Add 'surfaceId' prop to the root component or"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "src/firebase-auth.ts:1"
-                }
-              }
-            }
-          ]
-        },
-        {
-          "ruleId": "missing_'surfaceid'_mapping",
-          "message": {
-            "text": "Add 'surfaceId' prop to the root component or"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "src/chat-orchestrator.ts:1"
-                }
-              }
-            }
-          ]
-        },
-        {
-          "ruleId": "missing_'surfaceid'_mapping",
-          "message": {
-            "text": "Add 'surfaceId' prop to the root component or exported"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "src/types.ts:1"
-                }
-              }
-            }
-          ]
-        },
-        {
-          "ruleId": "missing_'surfaceid'_mapping",
-          "message": {
-            "text": "Add 'surfaceId' prop to the root component or"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "src/strategic-matrix.ts:1"
-                }
-              }
-            }
-          ]
-        },
-        {
-          "ruleId": "missing_'surfaceid'_mapping",
-          "message": {
-            "text": "Add 'surfaceId' prop to the root component or"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "src/skill-radar.ts:1"
-                }
-              }
-            }
-          ]
-        },
-        {
-          "ruleId": "missing_'surfaceid'_mapping",
-          "message": {
-            "text": "Add 'surfaceId' prop to the root component or"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "src/profile-bubble.ts:1"
-                }
-              }
-            }
-          ]
-        },
-        {
-          "ruleId": "missing_'surfaceid'_mapping",
-          "message": {
-            "text": "Add 'surfaceId' prop to the root component or exported"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "src/theme.ts:1"
-                }
-              }
-            }
-          ]
-        },
-        {
-          "ruleId": "missing_'surfaceid'_mapping",
-          "message": {
-            "text": "Add 'surfaceId' prop to the root component or"
-          },
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "src/ui-manager.ts:1"
+                  "uri": "/Users/enriq/Documents/git/portfolio-agent/agent/app_utils/telemetry.py:1"
                 }
               }
             }

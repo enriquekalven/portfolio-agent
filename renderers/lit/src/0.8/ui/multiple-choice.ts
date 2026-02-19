@@ -27,6 +27,9 @@ import { extractStringValue } from "./utils/utils";
 @customElement("a2ui-multiplechoice")
 export class MultipleChoice extends Root {
   @property()
+  surfaceId: string | null = null;
+
+  @property()
   description: string | null = null;
 
   @property()
