@@ -1,0 +1,9 @@
+{
+  "name": "context_compactor_optimization",
+  "description": "Evolutionary optimization of context compaction strategy for Portfolio Agent",
+  "project_dir": "/Users/enriq/Documents/git/portfolio-agent/experiments/context_compactor_experiment",
+  "initial_program": "initial_program.py",
+  "evaluator": "evaluator.py",
+  "problem_description": "problem_description.md",
+  "target_file": "/Users/enriq/Documents/git/portfolio-agent/agent/agent.py"
+}

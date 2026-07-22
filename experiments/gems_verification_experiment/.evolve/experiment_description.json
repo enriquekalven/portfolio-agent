@@ -1,0 +1,9 @@
+{
+  "name": "gems_verification_optimization",
+  "description": "Evolutionary optimization and verification of all 11 sidebar Gems routing logic",
+  "project_dir": "/Users/enriq/Documents/git/portfolio-agent/experiments/gems_verification_experiment",
+  "initial_program": "initial_program.py",
+  "evaluator": "evaluator.py",
+  "problem_description": "problem_description.md",
+  "target_file": "/Users/enriq/Documents/git/portfolio-agent/src/main.ts"
+}

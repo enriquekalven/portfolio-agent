@@ -139,7 +139,7 @@ const PORT = process.env.PORT || 8080;
 const PROJECT = process.env.GOOGLE_CLOUD_PROJECT;
 // Use us-central1 region for consistency with Agent Engine
 const LOCATION = process.env.GOOGLE_CLOUD_LOCATION || "us-central1";
-const MODEL = process.env.GENAI_MODEL || "gemini-2.5-flash";
+const MODEL = process.env.GENAI_MODEL || "gemini-3.6-flash";
 
 const auth = new GoogleAuth({
   scopes: "https://www.googleapis.com/auth/cloud-platform",

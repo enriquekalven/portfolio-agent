@@ -365,7 +365,7 @@ async def fetch_content_for_topic(topic: str, max_chapters: int=3) -> dict:
     Returns:
         Dict with matched chapters and their content.
     """
-    result = await fetch_modules_for_topic(topic, max_modules=max_chapters, timeout=10, timeout=10)
+    result = await fetch_modules_for_topic(topic, max_modules=max_chapters, timeout=10)
     return {'topic': result['topic'], 'matched_chapters': [{'slug': m.get('id', ''), 'title': m.get('title', ''), 'url': m.get('url', '')} for m in result.get('matched_modules', [])], 'combined_content': result.get('combined_content', ''), 'sources': result.get('sources', [])}
 
 async def _llm_match_topic_to_chapters(topic: str, max_chapters: int=3) -> list[str]:

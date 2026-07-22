@@ -1,0 +1,15 @@
+name: "portfolio-agent"
+acli_version: "0.2.0"
+agent_directory: "agent"
+region: "us-east1"
+base_template: "local_portfolio-agent"
+generated_at: "2026-07-22T16:36:35.747404+00:00"
+language: "python"
+create_params:
+  deployment_target: "agent_runtime"
+  session_type: "none"
+  cicd_runner: "skip"
+  include_data_ingestion: false
+  
+  datastore: "none"
+  agent_guidance_filename: "GEMINI.md"

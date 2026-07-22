@@ -1,0 +1,9 @@
+{
+  "name": "response_router_optimization",
+  "description": "Evolutionary optimization of intent routing and keyword enrichment for response generation",
+  "project_dir": "/Users/enriq/Documents/git/portfolio-agent/experiments/response_router_experiment",
+  "initial_program": "initial_program.py",
+  "evaluator": "evaluator.py",
+  "problem_description": "problem_description.md",
+  "target_file": "/Users/enriq/Documents/git/portfolio-agent/agent/agent.py"
+}
