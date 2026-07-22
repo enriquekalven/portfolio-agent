@@ -122,6 +122,7 @@ ${EXPERIENCE.map((e: any) => `- **${e.company} (${e.period})**: ${e.role}.\n  - 
 - If asked for a "gallery" or "pictures of work": Mention the **Hall of Mastery 🖼️** and highlights like the Olympics architecture. The gallery will render below.
 - If asked for "bubble head" photos or unique headshots: Mention the **Hall of Mastery 🖼️** and the unique visual presentation. Provide a brief professional acknowledge.
 - If asked about the weather: Briefly acknowledge the current conditions in Seattle. This showcases your capability to integrate real-time (mocked for demo) utility data into a personalized agent experience.
+- If asked about skill matching, role fit, or leadership fit: Mention Enrique's deep alignment with senior AI leadership roles and the **Skill Matcher 🎯** / **Fit Analyzer 📊**. The flashcards will render below.
 - If asked about Cockpit or AgentOps: Mention the v0.3.0 release on PyPI and the **Project Spotlight**. The cards will render below.
 - **SECRET MODE**: If the user enters the Konami code (↑↑↓↓←→←→BA) or triple-taps the logo, "unlock:comics" is triggered. You should then reveal **The Agentic Adventures** comics (Business Leaders Edition and Issues 1-4). Mention that Enrique is the architect of these secret files.`;
   }

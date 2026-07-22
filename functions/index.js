@@ -8,7 +8,7 @@ dotenv.config();
 
 const PROJECT = process.env.GOOGLE_CLOUD_PROJECT || "enriquekchan-b646b";
 const LOCATION = process.env.GOOGLE_CLOUD_LOCATION || "us-central1";
-const MODEL = process.env.GENAI_MODEL || "gemini-2.5-flash";
+const MODEL = process.env.GENAI_MODEL || "gemini-3.6-flash";
 
 const AGENT_ENGINE_CONFIG = {
   projectNumber: process.env.AGENT_ENGINE_PROJECT_NUMBER || "1069572400509",
@@ -158,7 +158,11 @@ export const chat = onRequest({ timeoutSeconds: 300, memory: "1GiB", cors: true,
   logger.info(`Request path: ${path}`);
 
   try {
-    if (path.includes("/health")) return res.json({ status: "healthy", project: PROJECT });
+    if (path.includes("/health") || path.includes("/warmup")) {
+      getAccessToken().catch(() => {});
+      queryAgentEngine("flashcards", "warmup").catch(() => {});
+      return res.json({ status: "warm", project: PROJECT, timestamp: Date.now() });
+    }
 
     if (path.includes("/chat")) {
       const isCombined = path.includes("/chat-with-intent");

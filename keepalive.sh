@@ -19,5 +19,5 @@ do
   else
     echo "  ❌ Failed or still starting: $RESPONSE"
   fi
-  sleep 1800
+  sleep 300
 done

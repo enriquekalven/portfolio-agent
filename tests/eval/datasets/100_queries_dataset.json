@@ -1,0 +1,1104 @@
+{
+  "eval_cases": [
+    {
+      "eval_case_id": "case_001",
+      "prompt": {
+        "role": "user",
+        "parts": [
+          {
+            "text": "Who is Enrique K Chan?"
+          }
+        ]
+      }
+    },
+    {
+      "eval_case_id": "case_002",
+      "prompt": {
+        "role": "user",
+        "parts": [
+          {
+            "text": "What is Enrique's current role at Google Cloud?"
+          }
+        ]
+      }
+    },
+    {
+      "eval_case_id": "case_003",
+      "prompt": {
+        "role": "user",
+        "parts": [
+          {
+            "text": "Where is Enrique based?"
+          }
+        ]
+      }
+    },
+    {
+      "eval_case_id": "case_004",
+      "prompt": {
+        "role": "user",
+        "parts": [
+          {
+            "text": "What languages does Enrique speak?"
+          }
+        ]
+      }
+    },
+    {
+      "eval_case_id": "case_005",
+      "prompt": {
+        "role": "user",
+        "parts": [
+          {
+            "text": "What is Enrique's summary of expertise?"
+          }
+        ]
+      }
+    },
+    {
+      "eval_case_id": "case_006",
+      "prompt": {
+        "role": "user",
+        "parts": [
+          {
+            "text": "What companies has Enrique worked for over his career?"
+          }
+        ]
+      }
+    },
+    {
+      "eval_case_id": "case_007",
+      "prompt": {
+        "role": "user",
+        "parts": [
+          {
+            "text": "What is Enrique's professional background?"
+          }
+        ]
+      }
+    },
+    {
+      "eval_case_id": "case_008",
+      "prompt": {
+        "role": "user",
+        "parts": [
+          {
+            "text": "How many years of experience does Enrique have in AI and Cloud?"
+          }
+        ]
+      }
+    },
+    {
+      "eval_case_id": "case_009",
+      "prompt": {
+        "role": "user",
+        "parts": [
+          {
+            "text": "Does Enrique have experience in Real Estate Investing?"
+          }
+        ]
+      }
+    },
+    {
+      "eval_case_id": "case_010",
+      "prompt": {
+        "role": "user",
+        "parts": [
+          {
+            "text": "Can you share Enrique's social media links like LinkedIn and GitHub?"
+          }
+        ]
+      }
+    },
+    {
+      "eval_case_id": "case_011",
+      "prompt": {
+        "role": "user",
+        "parts": [
+          {
+            "text": "Tell me about Enrique's role as Outbound Product Manager for Cloud AI."
+          }
+        ]
+      }
+    },
+    {
+      "eval_case_id": "case_012",
+      "prompt": {
+        "role": "user",
+        "parts": [
+          {
+            "text": "What did Enrique do as a Senior AI Consultant in PSO?"
+          }
+        ]
+      }
+    },
+    {
+      "eval_case_id": "case_013",
+      "prompt": {
+        "role": "user",
+        "parts": [
+          {
+            "text": "What whitepaper did Enrique co-author at Google Cloud?"
+          }
+        ]
+      }
+    },
+    {
+      "eval_case_id": "case_014",
+      "prompt": {
+        "role": "user",
+        "parts": [
+          {
+            "text": "How many attendees did the Intro to Agents whitepaper reach?"
+          }
+        ]
+      }
+    },
+    {
+      "eval_case_id": "case_015",
+      "prompt": {
+        "role": "user",
+        "parts": [
+          {
+            "text": "What CoE is Enrique leading at Google?"
+          }
+        ]
+      }
+    },
+    {
+      "eval_case_id": "case_016",
+      "prompt": {
+        "role": "user",
+        "parts": [
+          {
+            "text": "What is Enrique's focus regarding RAG and Agentic Workflows?"
+          }
+        ]
+      }
+    },
+    {
+      "eval_case_id": "case_017",
+      "prompt": {
+        "role": "user",
+        "parts": [
+          {
+            "text": "What go-to-market initiatives has Enrique driven for Cloud AI?"
+          }
+        ]
+      }
+    },
+    {
+      "eval_case_id": "case_018",
+      "prompt": {
+        "role": "user",
+        "parts": [
+          {
+            "text": "What impact did Enrique make as an Outbound PM?"
+          }
+        ]
+      }
+    },
+    {
+      "eval_case_id": "case_019",
+      "prompt": {
+        "role": "user",
+        "parts": [
+          {
+            "text": "Did Enrique lead any partner enablement campaigns?"
+          }
+        ]
+      }
+    },
+    {
+      "eval_case_id": "case_020",
+      "prompt": {
+        "role": "user",
+        "parts": [
+          {
+            "text": "What tools does Enrique use for agent governance at Google?"
+          }
+        ]
+      }
+    },
+    {
+      "eval_case_id": "case_021",
+      "prompt": {
+        "role": "user",
+        "parts": [
+          {
+            "text": "Tell me about the NBC Olympic Concierge (Oli AI) project."
+          }
+        ]
+      }
+    },
+    {
+      "eval_case_id": "case_022",
+      "prompt": {
+        "role": "user",
+        "parts": [
+          {
+            "text": "How many viewers did the NBC Olympic Concierge serve?"
+          }
+        ]
+      }
+    },
+    {
+      "eval_case_id": "case_023",
+      "prompt": {
+        "role": "user",
+        "parts": [
+          {
+            "text": "What latency and uptime were achieved for the Olympics chatbot?"
+          }
+        ]
+      }
+    },
+    {
+      "eval_case_id": "case_024",
+      "prompt": {
+        "role": "user",
+        "parts": [
+          {
+            "text": "What is AgentOps Cockpit v2.0.2?"
+          }
+        ]
+      }
+    },
+    {
+      "eval_case_id": "case_025",
+      "prompt": {
+        "role": "user",
+        "parts": [
+          {
+            "text": "Where can I find the AgentOps Cockpit PyPI package?"
+          }
+        ]
+      }
+    },
+    {
+      "eval_case_id": "case_026",
+      "prompt": {
+        "role": "user",
+        "parts": [
+          {
+            "text": "Tell me about the Disney+ Global Scaling project."
+          }
+        ]
+      }
+    },
+    {
+      "eval_case_id": "case_027",
+      "prompt": {
+        "role": "user",
+        "parts": [
+          {
+            "text": "What was Enrique's role in Project Bozeman for Wayfair Agentspace?"
+          }
+        ]
+      }
+    },
+    {
+      "eval_case_id": "case_028",
+      "prompt": {
+        "role": "user",
+        "parts": [
+          {
+            "text": "What did Enrique build for WBD Translation & Caption AI?"
+          }
+        ]
+      }
+    },
+    {
+      "eval_case_id": "case_029",
+      "prompt": {
+        "role": "user",
+        "parts": [
+          {
+            "text": "What was the Advent of Agents holiday developer campaign?"
+          }
+        ]
+      }
+    },
+    {
+      "eval_case_id": "case_030",
+      "prompt": {
+        "role": "user",
+        "parts": [
+          {
+            "text": "Where can I view the architecture diagram for Oli AI?"
+          }
+        ]
+      }
+    },
+    {
+      "eval_case_id": "case_031",
+      "prompt": {
+        "role": "user",
+        "parts": [
+          {
+            "text": "What was Enrique's role at Amazon Web Services (AWS)?"
+          }
+        ]
+      }
+    },
+    {
+      "eval_case_id": "case_032",
+      "prompt": {
+        "role": "user",
+        "parts": [
+          {
+            "text": "How long was Enrique at Accenture and what was his position?"
+          }
+        ]
+      }
+    },
+    {
+      "eval_case_id": "case_033",
+      "prompt": {
+        "role": "user",
+        "parts": [
+          {
+            "text": "What distributed microservice tools did Enrique use at AWS?"
+          }
+        ]
+      }
+    },
+    {
+      "eval_case_id": "case_034",
+      "prompt": {
+        "role": "user",
+        "parts": [
+          {
+            "text": "How much pre-sales pipeline did Enrique generate at Accenture?"
+          }
+        ]
+      }
+    },
+    {
+      "eval_case_id": "case_035",
+      "prompt": {
+        "role": "user",
+        "parts": [
+          {
+            "text": "How much delivery work did Enrique sell at Accenture?"
+          }
+        ]
+      }
+    },
+    {
+      "eval_case_id": "case_036",
+      "prompt": {
+        "role": "user",
+        "parts": [
+          {
+            "text": "Did Enrique perform AWS Well-Architected Framework reviews?"
+          }
+        ]
+      }
+    },
+    {
+      "eval_case_id": "case_037",
+      "prompt": {
+        "role": "user",
+        "parts": [
+          {
+            "text": "What cloud modernization projects did Enrique lead at Accenture?"
+          }
+        ]
+      }
+    },
+    {
+      "eval_case_id": "case_038",
+      "prompt": {
+        "role": "user",
+        "parts": [
+          {
+            "text": "How many direct reports did Enrique manage at Accenture?"
+          }
+        ]
+      }
+    },
+    {
+      "eval_case_id": "case_039",
+      "prompt": {
+        "role": "user",
+        "parts": [
+          {
+            "text": "What AWS certifications does Enrique hold?"
+          }
+        ]
+      }
+    },
+    {
+      "eval_case_id": "case_040",
+      "prompt": {
+        "role": "user",
+        "parts": [
+          {
+            "text": "Compare Enrique's impact at AWS vs Accenture."
+          }
+        ]
+      }
+    },
+    {
+      "eval_case_id": "case_041",
+      "prompt": {
+        "role": "user",
+        "parts": [
+          {
+            "text": "What Google Cloud certifications does Enrique hold?"
+          }
+        ]
+      }
+    },
+    {
+      "eval_case_id": "case_042",
+      "prompt": {
+        "role": "user",
+        "parts": [
+          {
+            "text": "Is Enrique a Google Cloud Professional ML Engineer?"
+          }
+        ]
+      }
+    },
+    {
+      "eval_case_id": "case_043",
+      "prompt": {
+        "role": "user",
+        "parts": [
+          {
+            "text": "Is Enrique a Professional Cloud Architect?"
+          }
+        ]
+      }
+    },
+    {
+      "eval_case_id": "case_044",
+      "prompt": {
+        "role": "user",
+        "parts": [
+          {
+            "text": "What AWS certifications does Enrique possess?"
+          }
+        ]
+      }
+    },
+    {
+      "eval_case_id": "case_045",
+      "prompt": {
+        "role": "user",
+        "parts": [
+          {
+            "text": "How many total cloud certifications does Enrique hold across GCP, AWS, and Azure?"
+          }
+        ]
+      }
+    },
+    {
+      "eval_case_id": "case_046",
+      "prompt": {
+        "role": "user",
+        "parts": [
+          {
+            "text": "Show me Enrique's certification wall."
+          }
+        ]
+      }
+    },
+    {
+      "eval_case_id": "case_047",
+      "prompt": {
+        "role": "user",
+        "parts": [
+          {
+            "text": "Where can I verify Enrique's cloud credentials?"
+          }
+        ]
+      }
+    },
+    {
+      "eval_case_id": "case_048",
+      "prompt": {
+        "role": "user",
+        "parts": [
+          {
+            "text": "Does Enrique have enterprise-grade MLOps certification?"
+          }
+        ]
+      }
+    },
+    {
+      "eval_case_id": "case_049",
+      "prompt": {
+        "role": "user",
+        "parts": [
+          {
+            "text": "What skills are covered by Enrique's ML Engineer cert?"
+          }
+        ]
+      }
+    },
+    {
+      "eval_case_id": "case_050",
+      "prompt": {
+        "role": "user",
+        "parts": [
+          {
+            "text": "Show me Enrique's Cloud Badge Wall."
+          }
+        ]
+      }
+    },
+    {
+      "eval_case_id": "case_051",
+      "prompt": {
+        "role": "user",
+        "parts": [
+          {
+            "text": "What awards has Enrique won at Google Cloud?"
+          }
+        ]
+      }
+    },
+    {
+      "eval_case_id": "case_052",
+      "prompt": {
+        "role": "user",
+        "parts": [
+          {
+            "text": "What is the GTM Cloud Tech Impact Award 2024?"
+          }
+        ]
+      }
+    },
+    {
+      "eval_case_id": "case_053",
+      "prompt": {
+        "role": "user",
+        "parts": [
+          {
+            "text": "Tell me about winning the 2025 Google AIS Offsite Hackathon."
+          }
+        ]
+      }
+    },
+    {
+      "eval_case_id": "case_054",
+      "prompt": {
+        "role": "user",
+        "parts": [
+          {
+            "text": "What agent did Enrique build for the AIS Offsite Hackathon?"
+          }
+        ]
+      }
+    },
+    {
+      "eval_case_id": "case_055",
+      "prompt": {
+        "role": "user",
+        "parts": [
+          {
+            "text": "What is the Cloud GTM Excellence Award 2025?"
+          }
+        ]
+      }
+    },
+    {
+      "eval_case_id": "case_056",
+      "prompt": {
+        "role": "user",
+        "parts": [
+          {
+            "text": "Show me the Trophy Room for Enrique's honors."
+          }
+        ]
+      }
+    },
+    {
+      "eval_case_id": "case_057",
+      "prompt": {
+        "role": "user",
+        "parts": [
+          {
+            "text": "Why was Enrique awarded the GTM Regional Award?"
+          }
+        ]
+      }
+    },
+    {
+      "eval_case_id": "case_058",
+      "prompt": {
+        "role": "user",
+        "parts": [
+          {
+            "text": "What recognition did Enrique receive from Google Cloud NorthAm leadership?"
+          }
+        ]
+      }
+    },
+    {
+      "eval_case_id": "case_059",
+      "prompt": {
+        "role": "user",
+        "parts": [
+          {
+            "text": "Where can I view Enrique's honors on LinkedIn?"
+          }
+        ]
+      }
+    },
+    {
+      "eval_case_id": "case_060",
+      "prompt": {
+        "role": "user",
+        "parts": [
+          {
+            "text": "Summarize Enrique's top 3 career awards."
+          }
+        ]
+      }
+    },
+    {
+      "eval_case_id": "case_061",
+      "prompt": {
+        "role": "user",
+        "parts": [
+          {
+            "text": "What did Thomas Kurian say about Enrique?"
+          }
+        ]
+      }
+    },
+    {
+      "eval_case_id": "case_062",
+      "prompt": {
+        "role": "user",
+        "parts": [
+          {
+            "text": "What quote did Michael Clark give for Enrique's award?"
+          }
+        ]
+      }
+    },
+    {
+      "eval_case_id": "case_063",
+      "prompt": {
+        "role": "user",
+        "parts": [
+          {
+            "text": "What did Brian Delahunty say about Enrique's agent whitepaper?"
+          }
+        ]
+      }
+    },
+    {
+      "eval_case_id": "case_064",
+      "prompt": {
+        "role": "user",
+        "parts": [
+          {
+            "text": "What do Google Cloud Architects say about Enrique?"
+          }
+        ]
+      }
+    },
+    {
+      "eval_case_id": "case_065",
+      "prompt": {
+        "role": "user",
+        "parts": [
+          {
+            "text": "Show me Googler testimonials for Enrique."
+          }
+        ]
+      }
+    },
+    {
+      "eval_case_id": "case_066",
+      "prompt": {
+        "role": "user",
+        "parts": [
+          {
+            "text": "Does Enrique lead with customer empathy?"
+          }
+        ]
+      }
+    },
+    {
+      "eval_case_id": "case_067",
+      "prompt": {
+        "role": "user",
+        "parts": [
+          {
+            "text": "What is the executive feedback on Enrique's technical leadership?"
+          }
+        ]
+      }
+    },
+    {
+      "eval_case_id": "case_068",
+      "prompt": {
+        "role": "user",
+        "parts": [
+          {
+            "text": "What do peers say about Enrique's work on agentic substrates?"
+          }
+        ]
+      }
+    },
+    {
+      "eval_case_id": "case_069",
+      "prompt": {
+        "role": "user",
+        "parts": [
+          {
+            "text": "Summarize executive quotes about Enrique K Chan."
+          }
+        ]
+      }
+    },
+    {
+      "eval_case_id": "case_070",
+      "prompt": {
+        "role": "user",
+        "parts": [
+          {
+            "text": "Show me Googler Vibes and feedback."
+          }
+        ]
+      }
+    },
+    {
+      "eval_case_id": "case_071",
+      "prompt": {
+        "role": "user",
+        "parts": [
+          {
+            "text": "What articles has Enrique written on Medium?"
+          }
+        ]
+      }
+    },
+    {
+      "eval_case_id": "case_072",
+      "prompt": {
+        "role": "user",
+        "parts": [
+          {
+            "text": "Tell me about 'How I Built a Living AI Portfolio in a few Hours'."
+          }
+        ]
+      }
+    },
+    {
+      "eval_case_id": "case_073",
+      "prompt": {
+        "role": "user",
+        "parts": [
+          {
+            "text": "What is 'Building the Future of Agentic Interfaces' about?"
+          }
+        ]
+      }
+    },
+    {
+      "eval_case_id": "case_074",
+      "prompt": {
+        "role": "user",
+        "parts": [
+          {
+            "text": "Summarize 'The Architect's Guide to the BigQuery AI Agent Ecosystem'."
+          }
+        ]
+      }
+    },
+    {
+      "eval_case_id": "case_075",
+      "prompt": {
+        "role": "user",
+        "parts": [
+          {
+            "text": "What is 'From OpenAI to Gemini Enterprise: Automating Agent Migration' about?"
+          }
+        ]
+      }
+    },
+    {
+      "eval_case_id": "case_076",
+      "prompt": {
+        "role": "user",
+        "parts": [
+          {
+            "text": "What is 'Introducing the Agent Optimizer' about?"
+          }
+        ]
+      }
+    },
+    {
+      "eval_case_id": "case_077",
+      "prompt": {
+        "role": "user",
+        "parts": [
+          {
+            "text": "What is '3 Commands to Create, Deploy, and Register an ADK Agent'?"
+          }
+        ]
+      }
+    },
+    {
+      "eval_case_id": "case_078",
+      "prompt": {
+        "role": "user",
+        "parts": [
+          {
+            "text": "Where can I find Enrique's Medium blog profile?"
+          }
+        ]
+      }
+    },
+    {
+      "eval_case_id": "case_079",
+      "prompt": {
+        "role": "user",
+        "parts": [
+          {
+            "text": "How many technical articles has Enrique published?"
+          }
+        ]
+      }
+    },
+    {
+      "eval_case_id": "case_080",
+      "prompt": {
+        "role": "user",
+        "parts": [
+          {
+            "text": "Show me Enrique's Insight Stream blog cards."
+          }
+        ]
+      }
+    },
+    {
+      "eval_case_id": "case_081",
+      "prompt": {
+        "role": "user",
+        "parts": [
+          {
+            "text": "What sessions has Enrique presented at Google Cloud Next '25?"
+          }
+        ]
+      }
+    },
+    {
+      "eval_case_id": "case_082",
+      "prompt": {
+        "role": "user",
+        "parts": [
+          {
+            "text": "Tell me about Enrique's talk 'Architecting GenAI Agents'."
+          }
+        ]
+      }
+    },
+    {
+      "eval_case_id": "case_083",
+      "prompt": {
+        "role": "user",
+        "parts": [
+          {
+            "text": "What was Enrique's role as Booth Lead for AI Agents at Cloud Next '25?"
+          }
+        ]
+      }
+    },
+    {
+      "eval_case_id": "case_084",
+      "prompt": {
+        "role": "user",
+        "parts": [
+          {
+            "text": "What did Enrique present at the Google ADK Summit?"
+          }
+        ]
+      }
+    },
+    {
+      "eval_case_id": "case_085",
+      "prompt": {
+        "role": "user",
+        "parts": [
+          {
+            "text": "Tell me about the YouTube video 'From Talking to Doing: The Rise of Agentic AI'."
+          }
+        ]
+      }
+    },
+    {
+      "eval_case_id": "case_086",
+      "prompt": {
+        "role": "user",
+        "parts": [
+          {
+            "text": "What is the video 'The Ultimate Guide to AI Agent Quality' about?"
+          }
+        ]
+      }
+    },
+    {
+      "eval_case_id": "case_087",
+      "prompt": {
+        "role": "user",
+        "parts": [
+          {
+            "text": "What is the video 'Why 80% of AI Agents Fail' about?"
+          }
+        ]
+      }
+    },
+    {
+      "eval_case_id": "case_088",
+      "prompt": {
+        "role": "user",
+        "parts": [
+          {
+            "text": "Tell me about the 'Advent of Agents Day 15 - A2UI' video."
+          }
+        ]
+      }
+    },
+    {
+      "eval_case_id": "case_089",
+      "prompt": {
+        "role": "user",
+        "parts": [
+          {
+            "text": "Where can I watch Enrique's keynote speeches?"
+          }
+        ]
+      }
+    },
+    {
+      "eval_case_id": "case_090",
+      "prompt": {
+        "role": "user",
+        "parts": [
+          {
+            "text": "Show me Enrique's Cinema Hub video cards."
+          }
+        ]
+      }
+    },
+    {
+      "eval_case_id": "case_091",
+      "prompt": {
+        "role": "user",
+        "parts": [
+          {
+            "text": "Can you analyze Enrique's skill match for a Principal AI Product Manager role?"
+          }
+        ]
+      }
+    },
+    {
+      "eval_case_id": "case_092",
+      "prompt": {
+        "role": "user",
+        "parts": [
+          {
+            "text": "Evaluate Enrique's fit for an Enterprise MLOps Architect position."
+          }
+        ]
+      }
+    },
+    {
+      "eval_case_id": "case_093",
+      "prompt": {
+        "role": "user",
+        "parts": [
+          {
+            "text": "Show me a visual timeline of Enrique's career journey."
+          }
+        ]
+      }
+    },
+    {
+      "eval_case_id": "case_094",
+      "prompt": {
+        "role": "user",
+        "parts": [
+          {
+            "text": "Generate a quiz about Enrique's professional achievements."
+          }
+        ]
+      }
+    },
+    {
+      "eval_case_id": "case_095",
+      "prompt": {
+        "role": "user",
+        "parts": [
+          {
+            "text": "Show me the Agentic Adventures comic series."
+          }
+        ]
+      }
+    },
+    {
+      "eval_case_id": "case_096",
+      "prompt": {
+        "role": "user",
+        "parts": [
+          {
+            "text": "What comics has Enrique authored?"
+          }
+        ]
+      }
+    },
+    {
+      "eval_case_id": "case_097",
+      "prompt": {
+        "role": "user",
+        "parts": [
+          {
+            "text": "Show me Enrique's Hall of Mastery gallery."
+          }
+        ]
+      }
+    },
+    {
+      "eval_case_id": "case_098",
+      "prompt": {
+        "role": "user",
+        "parts": [
+          {
+            "text": "Can you render flashcards highlighting Enrique's AI/ML skills?"
+          }
+        ]
+      }
+    },
+    {
+      "eval_case_id": "case_099",
+      "prompt": {
+        "role": "user",
+        "parts": [
+          {
+            "text": "Show me Enrique's top open source repositories on GitHub."
+          }
+        ]
+      }
+    },
+    {
+      "eval_case_id": "case_100",
+      "prompt": {
+        "role": "user",
+        "parts": [
+          {
+            "text": "Give me a complete overview of why Enrique is a top AI leader."
+          }
+        ]
+      }
+    }
+  ]
+}

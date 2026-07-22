@@ -141,7 +141,7 @@ except ImportError as e:
     print(f'  (Skipping agent tests: {e})')
     AGENT_AVAILABLE = False
 if AGENT_AVAILABLE:
-    _test_agent = LearningMaterialAgent(init_client=False)
+    _test_agent = LearningMaterialAgent()
 
     @test('LearningMaterialAgent has correct supported formats')
     def test_agent_formats():
@@ -256,8 +256,9 @@ if AGENT_AVAILABLE:
         result = _test_agent._get_video_reference()
         valid, error = validate_a2ui_payload(result['a2ui'])
         assert valid, f'Video A2UI validation failed: {error}'
-print('\n' + '=' * 60)
-print(f'Python Tests Complete: {passed} passed, {failed} failed')
-print('=' * 60)
-if failed > 0:
-    sys.exit(1)
+if __name__ == '__main__':
+    print('\n' + '=' * 60)
+    print(f'Python Tests Complete: {passed} passed, {failed} failed')
+    print('=' * 60)
+    if failed > 0:
+        sys.exit(1)

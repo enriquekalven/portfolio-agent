@@ -30,10 +30,16 @@
       "@a2ui/web-lib": [
         "renderers/lit/src/index.ts"
       ],
+      "@a2ui/web-lib/ui": [
+        "renderers/lit/src/0.8/ui/ui.ts"
+      ],
       "@a2ui/web-lib/*": [
-        "renderers/lit/src/*"
+        "renderers/lit/src/*",
+        "renderers/lit/src/0.8/*",
+        "renderers/lit/src/0.8/ui/*"
       ]
     }
   },
-  "include": ["src", "renderers"]
+  "include": ["src", "renderers"],
+  "exclude": ["renderers/**/*.test.ts", "renderers/**/*.spec.ts", "node_modules", "dist"]
 }

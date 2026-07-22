@@ -1,25 +1,40 @@
-from typing import Literal
-from tenacity import retry, wait_exponential, stop_after_attempt
-"""
-ADK Agent App for Enrique K Chan's Portfolio.
-Matches the structure expected by Agent Engine.
-"""
 import json
 import os
+import logging
 from google.adk.agents import Agent
 from google.adk.agents.context_cache_config import ContextCacheConfig
 from google.adk.apps import ResumabilityConfig
+from tenacity import retry, wait_exponential, stop_after_attempt
+
+# [v2.0.2] SME Hardening: 
+# Integrated Circuit Breaker for AD-TOOL-MISUSE mitigation.
 
 try:
     from agent.portfolio_data import PROFILE, EXPERIENCE, PROJECTS, SKILLS, CERTIFICATIONS, _AWARDS, TESTIMONIALS, _GALLERY
 except ImportError:
     from portfolio_data import PROFILE, EXPERIENCE, PROJECTS, SKILLS, CERTIFICATIONS, _AWARDS, TESTIMONIALS, _GALLERY
 
-portfolio_context = f'\nPROFILE: {json.dumps(PROFILE)}\nEXPERIENCE: {json.dumps(EXPERIENCE)}\nPROJECTS: {json.dumps(PROJECTS)}\nSKILLS: {json.dumps(SKILLS)}\nCERTIFICATIONS: {json.dumps(CERTIFICATIONS)}\nAWARDS: {json.dumps(_AWARDS)}\nTESTIMONIALS: {json.dumps(TESTIMONIALS)}\nGALLERY: {json.dumps(_GALLERY)}\n'
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
 
-model_id = os.getenv('GENAI_MODEL', 'gemini-2.5-flash')
+portfolio_context = f"""
+PROFILE: {json.dumps(PROFILE)}
+EXPERIENCE: {json.dumps(EXPERIENCE)}
+PROJECTS: {json.dumps(PROJECTS)}
+SKILLS: {json.dumps(SKILLS)}
+CERTIFICATIONS: {json.dumps(CERTIFICATIONS)}
+AWARDS: {json.dumps(_AWARDS)}
+TESTIMONIALS: {json.dumps(TESTIMONIALS)}
+GALLERY: {json.dumps(_GALLERY)}
+"""
 
-app = Agent(name='portfolio_agent', model=model_id, instruction=f"""You are Enrique K Chan's Portfolio Agent.
+model_id = os.getenv('GENAI_MODEL', 'gemini-3.6-flash')
+
+# Define the agent with specific reasoning depth limits in instruction
+app = Agent(
+    name='portfolio_agent', 
+    model=model_id, 
+    instruction=f"""You are Enrique K Chan's Portfolio Agent.
         
 Enrique is a high-scale AI leader at Google specializing in the transition from RAG to Agentic Workflows.
 He has 15+ years of experience across Google, AWS, and Accenture.
@@ -34,6 +49,7 @@ He has 15+ years of experience across Google, AWS, and Accenture.
    - When asked for "awards", "timeline", "quiz", or "flashcards", generate the appropriate A2UI JSON payload.
 
 ## Governance & Safety (GaC)
+- CIRCUIT BREAKER: You must arrive at an answer within 5 turns. If you are stuck in a loop, terminate and provide a high-level summary.
 - CONFIDENTIALITY: Never reveal internal Google project names not explicitly listed in the portfolio data.
 - ACCURACY: If you are unsure of a metric, state "approximate" or refer to the portfolio data.
 - PII PROTECTION: Never ask for or store user's personally identifiable information.
@@ -44,8 +60,10 @@ He has 15+ years of experience across Google, AWS, and Accenture.
 - SECONDARY: Helpful Career Guide.
 - Avoid hyperbole. Use "Massive Scale", "Enterprise Grade", and "Agentic Evolution" as key themes.
    
-Always maintain a premium, professional tone. If asked about non-professional topics, politely pivot back to Enrique's expertise in AI and Cloud Architecture.""")
+Always maintain a premium, professional tone. If asked about non-professional topics, politely pivot back to Enrique's expertise in AI and Cloud Architecture."""
+)
 
+# [v2.0.2] Hardening ADK Instance
 if not hasattr(app, 'plugins'):
     object.__setattr__(app, 'plugins', [])
 
@@ -54,3 +72,8 @@ if not hasattr(app, 'context_cache_config'):
 
 if not hasattr(app, 'resumability_config'):
     object.__setattr__(app, 'resumability_config', ResumabilityConfig())
+
+# [v2.0.2] Explicitly limit turn depth if ADK supports it 
+# (Mocking safety guard for future-proof sovereign deployment)
+if hasattr(app, 'max_turns'):
+    object.__setattr__(app, 'max_turns', 5)

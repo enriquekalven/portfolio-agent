@@ -11,7 +11,10 @@ sys.modules["google.genai"] = MagicMock()
 
 import unittest
 import logging
-from agent.agent import LearningMaterialAgent
+try:
+    from agent.agent import LearningMaterialAgent
+except ImportError:
+    from agent import LearningMaterialAgent
 
 # Configure logging to see blocks
 logging.basicConfig(level=logging.INFO)

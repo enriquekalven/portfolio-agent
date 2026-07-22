@@ -4,7 +4,43 @@ from tenacity import retry, wait_exponential, stop_after_attempt
 from tenacity import retry, wait_exponential, stop_after_attempt
 SURFACE_ID = 'portfolioContent'
 FLASHCARD_EXAMPLE = f'\n[\n  {{"beginRendering": {{"surfaceId": "{SURFACE_ID}", "root": "mainColumn"}}}},\n  {{\n    "surfaceUpdate": {{\n      "surfaceId": "{SURFACE_ID}",\n      "components": [\n        {{\n          "id": "mainColumn",\n          "component": {{\n            "Column": {{\n              "children": {{"explicitList": ["card1", "card2", "card3"]}},\n              "distribution": "start",\n              "alignment": "stretch"\n            }}\n          }}\n        }},\n        {{\n          "id": "card1",\n          "component": {{\n            "Flashcard": {{\n              "front": {{"literalString": "[SPECIFIC_DATA_QUESTION_ABOUT_EXPERIENCE]"}},\n              "back": {{"literalString": "[HIGH_IMPACT_ANSWER_FROM_EXPERIENCE_DATA]"}},\n              "category": {{"literalString": "[RELEVANT_CATEGORY]"}}\n            }}\n          }}\n        }}\n        // Add card2, card3 following the same pattern with unique IDs\n      ]\n    }}\n  }}\n]\n'
-QUIZ_EXAMPLE = f'\n[\n  {{"beginRendering": {{"surfaceId": "{SURFACE_ID}", "root": "mainColumn"}}}},\n  {{\n    "surfaceUpdate": {{\n      "surfaceId": "{SURFACE_ID}",\n      "components": [\n        {{\n          "id": "mainColumn",\n          "component": {{\n            "Column": {{\n              "children": {{"explicitList": ["q1"]}},\n              "distribution": "start",\n              "alignment": "stretch"\n            }}\n          }}\n        }},\n        {{\n          "id": "q1",\n          "component": {{\n            "QuizCard": {{\n              "question": {{"literalString": "Which company did Enrique NOT work for?"}},\n              "options": [\n                {{"label": {{"literalString": "Google"}}, "value": "google", "isCorrect": false}},\n                {{"label": {{"literalString": "Netflix"}}, "value": "netflix", "isCorrect": true}},\n                {{"label": {{"literalString": "AWS"}}, "value": "aws", "isCorrect": false}}\n              ],\n              "explanation": {{"literalString": "Enrique has worked at Google, AWS, and Accenture, but never Netflix."}},\n              "category": {{"literalString": "Career Trivia"}}\n            }}\n          }}\n        }}\n      ]\n    }}\n  }}\n]\n'
+QUIZ_EXAMPLE = f'''
+[
+  {{"beginRendering": {{"surfaceId": "{SURFACE_ID}", "root": "mainColumn"}}}},
+  {{
+    "surfaceUpdate": {{
+      "surfaceId": "{SURFACE_ID}",
+      "components": [
+        {{
+          "id": "mainColumn",
+          "component": {{
+            "Column": {{
+              "children": {{"explicitList": ["q1"]}},
+              "distribution": "start",
+              "alignment": "stretch"
+            }}
+          }}
+        }},
+        {{
+          "id": "q1",
+          "component": {{
+            "QuizCard": {{
+              "question": {{"literalString": "[DYNAMIC_QUESTION_ABOUT_EXPERIENCE]"}},
+              "options": [
+                {{"label": {{"literalString": "[OPTION_1]"}}, "value": "opt1", "isCorrect": false}},
+                {{"label": {{"literalString": "[CORRECT_OPTION]"}}, "value": "opt2", "isCorrect": true}},
+                {{"label": {{"literalString": "[OPTION_3]"}}, "value": "opt3", "isCorrect": false}}
+              ],
+              "explanation": {{"literalString": "[EXPLANATION_GROUNDED_IN_PORTFOLIO_DATA]"}},
+              "category": {{"literalString": "[DYNAMIC_CATEGORY]"}}
+            }}
+          }}
+        }}
+      ]
+    }}
+  }}
+]
+'''
 IMAGE_EXAMPLE = f'\n[\n  {{"beginRendering": {{"surfaceId": "{SURFACE_ID}", "root": "mainColumn"}}}},\n  {{\n    "surfaceUpdate": {{\n      "surfaceId": "{SURFACE_ID}",\n      "components": [\n        {{\n          "id": "mainColumn",\n          "component": {{"Image": {{"url": "/assets/hero.png", "alt": "Enrique K Chan"}}}}\n        }}\n      ]\n    }}\n  }}\n]\n'
 VIDEO_EXAMPLE = f'\n[\n  {{"beginRendering": {{"surfaceId": "{SURFACE_ID}", "root": "mainColumn"}}}},\n  {{\n    "surfaceUpdate": {{\n      "surfaceId": "{SURFACE_ID}",\n      "components": [\n        {{\n          "id": "mainColumn",\n          "component": {{"Video": {{"url": "https://www.youtube.com/watch?v=nZa5-WyN-rE"}}}}\n        }}\n      ]\n    }}\n  }}\n]\n'
 AUDIO_EXAMPLE = f'''\n[\n  {{"beginRendering": {{"surfaceId": "{SURFACE_ID}", "root": "mainColumn"}}}},\n  {{\n    "surfaceUpdate": {{\n      "surfaceId": "{SURFACE_ID}",\n      "components": [\n        {{\n          "id": "mainColumn",\n          "component": {{"Audio": {{"url": "/assets/podcast.m4a", "title": "Enrique's AI Vision"}}}}\n        }}\n      ]\n    }}\n  }}\n]\n'''

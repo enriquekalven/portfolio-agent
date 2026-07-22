@@ -84,3 +84,18 @@ For more granular control, see the [Deployment Workflow](.agent/workflows/quick-
 ---
 **Crafted with ❤️ by [Enrique K Chan](https://www.linkedin.com/in/enriquechan/)**  
 *Building the future of Agentic Interfaces at [enriquekchan-concierge.web.app](https://enriquekchan-concierge.web.app)*
+
+### 🛡️ Safety Validation
+We have implemented an advanced multi-stage safety gate to protect against adversarial attacks. To verify the safety guardrails:
+
+**JavaScript/API Layer:**
+```bash
+node tests/test-safety.mjs
+```
+
+**Python/Agent Layer:**
+```bash
+PYTHONPATH=. python3 agent/tests/test_safety.py
+```
+
+These tests verify protection against Payload Splitting, Prompt Injection, and Domain-Specific Sensitive topics (Finance/Medical).
