@@ -1163,10 +1163,11 @@ async function main() {
         const recentContext = readString(body.recentContext).slice(-MAX_CONTEXT_CHARS);
         console.log(`[API Server] Combined chat request (history: ${history.length}, model: ${model})`);
 
+        // Not "X-Cache": Firebase Hosting's CDN appends its own X-Cache value (e.g. "HIT, MISS").
         const cacheKey = history.length === 0 && !recentContext ? `${model}::${safety.text.trim().toLowerCase()}` : null;
         const cached = cacheKey ? getCachedResponse(cacheKey) : undefined;
         if (cached) {
-          sendJson(res, 200, cached, { "X-Cache": "HIT" });
+          sendJson(res, 200, cached, { "X-Concierge-Cache": "HIT" });
           return;
         }
 
@@ -1175,7 +1176,7 @@ async function main() {
           setCachedResponse(cacheKey, result);
         }
         console.log(`[API Server] Intent: ${result.intent} | Keywords: ${result.keywords || "(none)"}`);
-        sendJson(res, 200, result, { "X-Cache": "MISS" });
+        sendJson(res, 200, result, { "X-Concierge-Cache": "MISS" });
         return;
       }
 

@@ -222,7 +222,7 @@ try {
 
     if (intentMatch && data.text && data.text.length > 10) {
       console.log(
-        `✅ [Gem E2E] ${gem.label.padEnd(22)} | Intent: ${data.intent.padEnd(13)} | ${elapsed}s ${res.headers.get("x-cache") === "HIT" ? "(cached)" : ""} | "${data.text.slice(0, 75)}..."`
+        `✅ [Gem E2E] ${gem.label.padEnd(22)} | Intent: ${data.intent.padEnd(13)} | ${elapsed}s ${res.headers.get("x-concierge-cache") === "HIT" ? "(cached)" : ""} | "${data.text.slice(0, 75)}..."`
       );
       gemPassed++;
     } else {

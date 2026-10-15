@@ -170,10 +170,10 @@ await check("live chat answers a Gem prompt, and a repeat is served from cache",
     const repeat = await post("/api/chat-with-intent", body);
     await repeat.json();
     repeatMs = Date.now() - repeatStarted;
-    cacheHeader = repeat.headers.get("x-cache") || "";
+    cacheHeader = repeat.headers.get("x-concierge-cache") || "";
   }
-  assert(cacheHeader === "HIT", `repeat X-Cache=${cacheHeader}`);
-  console.log(`   first ${firstMs}ms (${first.headers.get("x-cache")}), cached repeat ${repeatMs}ms`);
+  assert(cacheHeader === "HIT", `repeat X-Concierge-Cache=${cacheHeader}`);
+  console.log(`   first ${firstMs}ms (${first.headers.get("x-concierge-cache")}), cached repeat ${repeatMs}ms`);
 });
 
 await check("selectable models answer; unknown models fall back to the default", async () => {
