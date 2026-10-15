@@ -40,3 +40,6 @@ agent/venv*/
 dist_cockpit/
 cockpit_final_report_v1.md
 
+
+# Local-only PII denylist for tests/smoke-prod.mjs (never commit the terms themselves)
+tests/*.local.txt

@@ -90,7 +90,9 @@ We have implemented an advanced multi-stage safety gate to protect against adver
 
 **JavaScript/API Layer:**
 ```bash
-node tests/test-safety.mjs
+npx tsx tests/safety.test.ts     # safety gate (src/safety.ts, the code the server runs)
+npx tsx tests/markdown.test.ts   # chat markdown rendering / XSS
+node tests/smoke-prod.mjs        # post-deploy checks against the live site
 ```
 
 **Python/Agent Layer:**

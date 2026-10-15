@@ -23,6 +23,7 @@
 
 import { v0_8 } from "@a2ui/web-lib";
 import type { SourceInfo } from "./a2a-client";
+import { sanitizeUrl } from "./markdown";
 // Import the theme provider to register the custom element
 import "./theme-provider.js";
 
@@ -85,27 +86,32 @@ export class A2UIRenderer {
 
   /**
    * Render source attribution below the A2UI content.
+   * The source comes from the agent's response, so it is treated as untrusted text.
    */
   private renderSourceAttribution(container: HTMLElement, source: SourceInfo): void {
     const attribution = document.createElement("div");
     attribution.className = "source-attribution";
 
-    // If we have a URL, make it a link; otherwise just show the text
-    if (source.url) {
-      attribution.innerHTML = `
-        <span class="source-label">Source:</span>
-        <a href="${source.url}" target="_blank" rel="noopener noreferrer" class="source-link">
-          ${source.title || source.provider}
-        </a>
-        <span class="source-provider">— ${source.provider}</span>
-      `;
-    } else {
-      attribution.innerHTML = `
-        <span class="source-label">Source:</span>
-        <span class="source-link">${source.title || source.provider}</span>
-        <span class="source-provider">— ${source.provider}</span>
-      `;
+    const label = document.createElement("span");
+    label.className = "source-label";
+    label.textContent = "Source:";
+
+    // Link only to http(s) or same-site URLs; anything else is shown as plain text.
+    const safeUrl = source.url ? sanitizeUrl(String(source.url)) : null;
+    const link = document.createElement(safeUrl ? "a" : "span");
+    link.className = "source-link";
+    link.textContent = String(source.title || source.provider || "");
+    if (safeUrl && link instanceof HTMLAnchorElement) {
+      link.href = safeUrl;
+      link.target = "_blank";
+      link.rel = "noopener noreferrer";
     }
+
+    const provider = document.createElement("span");
+    provider.className = "source-provider";
+    provider.textContent = `— ${String(source.provider || "")}`;
+
+    attribution.append(label, link, provider);
     container.appendChild(attribution);
   }
 

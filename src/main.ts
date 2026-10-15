@@ -4,12 +4,51 @@
 
 console.log("[Demo] main.ts starting...");
 
-import { ChatOrchestrator } from "./chat-orchestrator";
+import { ChatOrchestrator, DEFAULT_MODEL } from "./chat-orchestrator";
 import { A2UIRenderer } from "./a2ui-renderer";
 import { UIManager } from "./ui-manager";
+import portfolioData from "./portfolio-data.json";
 
 // Registry for components (side-effect import)
 import "./theme-provider";
+
+const THEME_STORAGE_KEY = "enriq_theme";
+const MODEL_STORAGE_KEY = "enriq_model";
+
+// Models offered in the selector; the server only honors models on its own allow-list.
+const MODEL_OPTIONS = [
+  { id: DEFAULT_MODEL, label: "Gemini 4 Argon" },
+  { id: "gemini-3.6-flash", label: "Gemini 3.6 Flash" },
+];
+
+// True while a question is being answered, so overlapping sends can't interleave history.
+let isProcessing = false;
+
+function readStorage(key: string): string | null {
+  try {
+    return localStorage.getItem(key);
+  } catch {
+    return null;
+  }
+}
+
+function writeStorage(key: string, value: string): void {
+  try {
+    localStorage.setItem(key, value);
+  } catch {
+    // Storage can be unavailable (private mode); the preference just won't persist.
+  }
+}
+
+/** Applies the saved theme, or the OS preference on first visit, before the UI renders. */
+function applyInitialTheme(): void {
+  const saved = readStorage(THEME_STORAGE_KEY);
+  const prefersLight = window.matchMedia?.("(prefers-color-scheme: light)").matches ?? false;
+  const useLight = saved ? saved === "light" : prefersLight;
+  document.body.classList.toggle("light-mode", useLight);
+  const icon = document.querySelector("#theme-toggle .material-symbols-outlined");
+  if (icon) icon.textContent = useLight ? "dark_mode" : "light_mode";
+}
 
 async function init() {
   console.log("[Demo] init() running");
@@ -24,6 +63,7 @@ async function init() {
 
 function start() {
   console.log("[Demo] Starting application");
+  applyInitialTheme();
   
   // Show app container
   const appContainer = document.getElementById("app-container");
@@ -56,15 +96,20 @@ function setupUI(orchestrator: ChatOrchestrator, uiManager: UIManager) {
     return;
   }
 
+  // The backdrop's CSS is keyed on .active (see .sidebar-backdrop.active in index.html).
   const closeMobileSidebar = () => {
     sidebar?.classList.remove("open");
-    sidebarBackdrop?.classList.remove("open");
+    sidebarBackdrop?.classList.remove("active");
+    mobileMenuBtn?.setAttribute("aria-expanded", "false");
   };
 
   if (mobileMenuBtn && sidebar) {
+    mobileMenuBtn.setAttribute("aria-controls", "app-sidebar");
+    mobileMenuBtn.setAttribute("aria-expanded", "false");
     mobileMenuBtn.addEventListener("click", () => {
       const isOpen = sidebar.classList.toggle("open");
-      sidebarBackdrop?.classList.toggle("open", isOpen);
+      sidebarBackdrop?.classList.toggle("active", isOpen);
+      mobileMenuBtn.setAttribute("aria-expanded", String(isOpen));
     });
   }
 
@@ -76,6 +121,10 @@ function setupUI(orchestrator: ChatOrchestrator, uiManager: UIManager) {
 
   const triggerPrompt = (prompt: string, activeGemEl?: HTMLElement | null) => {
     if (!prompt) return;
+    if (isProcessing) {
+      uiManager.showToast("Still answering your last question. One moment…");
+      return;
+    }
     if (activeGemEl) {
       document.querySelectorAll(".sidebar-nav .sidebar-item").forEach((el) => {
         el.classList.remove("active");
@@ -129,20 +178,22 @@ function setupUI(orchestrator: ChatOrchestrator, uiManager: UIManager) {
   });
 
   // Suggestion Chips, Bento KPI Cards, and Announcement Pill
-  const interactivePrompts = document.querySelectorAll(
+  const interactivePrompts = document.querySelectorAll<HTMLElement>(
     ".suggestion-chip[data-prompt], .bento-kpi-card[data-prompt], #hero-announcement-pill[data-prompt]"
   );
   interactivePrompts.forEach((el) => {
+    // These are divs in the markup; give them button semantics so keyboard users can reach them.
+    el.setAttribute("role", "button");
+    el.setAttribute("tabindex", "0");
     el.addEventListener("click", () => {
       const prompt = el.getAttribute("data-prompt");
       if (prompt) {
         triggerPrompt(prompt);
       }
     });
-    el.addEventListener("keydown", (e: Event) => {
-      const ke = e as KeyboardEvent;
-      if (ke.key === "Enter" || ke.key === " ") {
-        ke.preventDefault();
+    el.addEventListener("keydown", (e: KeyboardEvent) => {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
         const prompt = el.getAttribute("data-prompt");
         if (prompt) {
           triggerPrompt(prompt);
@@ -203,20 +254,39 @@ function setupUI(orchestrator: ChatOrchestrator, uiManager: UIManager) {
       if (icon) {
         icon.textContent = isLight ? "dark_mode" : "light_mode";
       }
+      writeStorage(THEME_STORAGE_KEY, isLight ? "light" : "dark");
       uiManager.showToast(isLight ? "Switched to Executive Light theme" : "Switched to Executive Dark theme");
     });
   }
 
-  // Model Selector button
+  // Model Selector button: switches the model used for chat answers
   const modelSelectorBtn = document.getElementById("model-selector-btn");
   const modelSelectorLabel = document.getElementById("model-selector-label");
   if (modelSelectorBtn && modelSelectorLabel) {
-    const models = ["Gemini 4 Argon", "Gemini 3.6 Flash"];
-    let modelIdx = 0;
-    modelSelectorBtn.addEventListener("click", () => {
-      modelIdx = (modelIdx + 1) % models.length;
-      modelSelectorLabel.textContent = models[modelIdx];
-      uiManager.showToast(`Active reasoning indicator: ${models[modelIdx]}`);
+    const savedModel = readStorage(MODEL_STORAGE_KEY);
+    let modelIdx = Math.max(0, MODEL_OPTIONS.findIndex((m) => m.id === savedModel));
+    const applyModel = () => {
+      const option = MODEL_OPTIONS[modelIdx];
+      orchestrator.setModel(option.id);
+      modelSelectorLabel.textContent = option.label;
+      modelSelectorBtn.setAttribute("aria-label", `Model: ${option.label}. Activate to switch.`);
+    };
+    const cycleModel = () => {
+      modelIdx = (modelIdx + 1) % MODEL_OPTIONS.length;
+      applyModel();
+      writeStorage(MODEL_STORAGE_KEY, MODEL_OPTIONS[modelIdx].id);
+      uiManager.showToast(`Answers now use ${MODEL_OPTIONS[modelIdx].label}`);
+    };
+
+    modelSelectorBtn.setAttribute("role", "button");
+    modelSelectorBtn.setAttribute("tabindex", "0");
+    applyModel();
+    modelSelectorBtn.addEventListener("click", cycleModel);
+    modelSelectorBtn.addEventListener("keydown", (e: KeyboardEvent) => {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        cycleModel();
+      }
     });
   }
 
@@ -365,33 +435,11 @@ function triggerEasterEgg(
   showComicModal();
 }
 
-const COMICS_DATA = [
-  {
-    title: "Business Leaders Edition",
-    image: "/assets/agent_comic.png",
-    url: "https://enriquekchan-concierge.web.app/agent_adventures_business_leaders.pdf"
-  },
-  {
-    title: "Issue #1: Origin",
-    image: "/assets/agent_comic.png",
-    url: "https://enriquekchan-concierge.web.app/agent_adventures_part_1.pdf"
-  },
-  {
-    title: "Issue #2: Core",
-    image: "/assets/agent_comic.png",
-    url: "https://enriquekchan-concierge.web.app/agent_adventures_part_2.pdf"
-  },
-  {
-    title: "Issue #3: Evolution",
-    image: "/assets/agent_comic.png",
-    url: "https://enriquekchan-concierge.web.app/agent_adventures_part_3.pdf"
-  },
-  {
-    title: "Issue #4: Horizon",
-    image: "/assets/agent_comic.png",
-    url: "https://enriquekchan-concierge.web.app/agent_adventures_part_4.pdf"
-  }
-];
+// The PDFs are hosted on the main portfolio (enriquekchan.web.app); the concierge domain
+// doesn't serve them. Only https links from the synced dataset are used.
+const COMICS_DATA: Array<{ title: string; url: string }> = ((portfolioData as any).COMICS || [])
+  .map((comic: any) => ({ title: String(comic.title || comic.name || "Comic"), url: String(comic.url || "") }))
+  .filter((comic: { url: string }) => comic.url.startsWith("https://"));
 
 function showComicModal() {
   const modal = document.getElementById("comic-modal");
@@ -403,22 +451,26 @@ function showComicModal() {
   // Populate list using safe DOM construction
   list.replaceChildren();
   COMICS_DATA.forEach((comic) => {
-    const item = document.createElement("div");
+    const item = document.createElement("a");
     item.className = "comic-item";
-    item.addEventListener("click", () => {
-      window.open(comic.url, "_blank", "noopener,noreferrer");
-    });
+    item.href = comic.url;
+    item.target = "_blank";
+    item.rel = "noopener noreferrer";
 
-    const img = document.createElement("img");
-    img.src = comic.image;
-    img.className = "comic-thumb";
-    img.alt = comic.title;
+    // No cover art is published for the issues, so show an icon tile instead of a broken image.
+    const thumb = document.createElement("div");
+    thumb.className = "comic-thumb comic-thumb-icon";
+    thumb.setAttribute("aria-hidden", "true");
+    const icon = document.createElement("span");
+    icon.className = "material-symbols-outlined";
+    icon.textContent = "auto_stories";
+    thumb.appendChild(icon);
 
     const title = document.createElement("div");
     title.className = "comic-title";
     title.textContent = comic.title;
 
-    item.append(img, title);
+    item.append(thumb, title);
     list.appendChild(item);
   });
 
@@ -429,10 +481,15 @@ function showComicModal() {
   // Close logic
   const close = () => {
     modal.classList.remove("active");
+    document.removeEventListener("keydown", onKeydown);
     setTimeout(() => {
       modal.style.display = "none";
     }, 300);
   };
+  const onKeydown = (e: KeyboardEvent) => {
+    if (e.key === "Escape") close();
+  };
+  document.addEventListener("keydown", onKeydown);
 
   if (closeBtn) closeBtn.onclick = close;
   modal.onclick = (e) => {
@@ -448,6 +505,27 @@ async function handleSend(
 ) {
   const message = input.value.trim();
   if (!message) return;
+  if (isProcessing) {
+    uiManager.showToast("Still answering your last question. One moment…");
+    return;
+  }
+  isProcessing = true;
+  try {
+    await sendMessage(message, orchestrator, input, chatArea, uiManager);
+  } finally {
+    isProcessing = false;
+    const sendBtn = document.getElementById("sendBtn") as HTMLButtonElement | null;
+    if (sendBtn) sendBtn.disabled = input.value.trim() === "";
+  }
+}
+
+async function sendMessage(
+  message: string,
+  orchestrator: ChatOrchestrator,
+  input: HTMLTextAreaElement,
+  chatArea: HTMLDivElement,
+  uiManager: UIManager
+) {
 
   // Save to sidebar history
   uiManager.saveToHistory(message);

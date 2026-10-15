@@ -1188,7 +1188,8 @@
       }
 
       /* JSON Viewer Styles */
-      .json-toggle-btn {
+      .json-toggle-btn,
+      .copy-msg-btn {
         display: inline-flex;
         align-items: center;
         justify-content: center;
@@ -1204,13 +1205,15 @@
         vertical-align: middle;
       }
 
-      .json-toggle-btn:hover {
+      .json-toggle-btn:hover,
+      .copy-msg-btn:hover {
         background: var(--sidebar-hover);
         color: var(--accent-blue);
         border-color: var(--accent-blue);
       }
 
-      .json-toggle-btn.active {
+      .json-toggle-btn.active,
+      .copy-msg-btn.copied {
         background: rgba(138, 180, 248, 0.1);
         color: var(--accent-blue);
         border-color: var(--accent-blue);
@@ -1574,6 +1577,9 @@
         gap: 20px;
       }
       .comic-item {
+        display: block;
+        color: inherit;
+        text-decoration: none;
         background: rgba(255, 255, 255, 0.03);
         border: 1px solid var(--border-color);
         border-radius: 18px;
@@ -1594,6 +1600,28 @@
         border-radius: 10px;
         margin-bottom: 12px;
         object-fit: cover;
+      }
+      .comic-thumb-icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(145deg, rgba(66, 133, 244, 0.25), rgba(168, 85, 247, 0.2));
+        color: var(--accent-blue);
+      }
+      .comic-thumb-icon .material-symbols-outlined {
+        font-size: 48px;
+      }
+
+      /* Visible focus for keyboard users on custom interactive controls */
+      .bento-kpi-card:focus-visible,
+      .hero-announcement-pill:focus-visible,
+      .suggestion-chip:focus-visible,
+      .model-selector:focus-visible,
+      .sidebar-item:focus-visible,
+      .followup-chip:focus-visible,
+      .comic-item:focus-visible {
+        outline: 2px solid var(--accent-blue);
+        outline-offset: 3px;
       }
       .comic-title {
         font-size: 14px;

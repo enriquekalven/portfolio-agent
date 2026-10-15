@@ -1,11 +1,29 @@
-# Include dist and necessary artifacts
+# Cloud Run source upload. The container only needs package*.json, api-server.ts,
+# dist/ (the Vite build), src/prompts.ts, src/safety.ts, and src/portfolio-data.json.
+# Everything else stays out of the image so it can never be served or leaked.
 .git
+.gitignore
 node_modules
 venv
 .venv
 .env
-# Keep dist!
-# renderers # vite bundled this into dist
-agent/venv
-agent/release_venv
-# Dockerfile and api-server.ts are already in root
+.env.*
+!.env.template
+
+# Python agent (deployed separately to Agent Engine), local sessions, and venvs
+agent/
+**/.adk/
+*.db
+*.sqlite
+
+# Tests, evals, reports, and tooling that aren't used at runtime
+tests/
+artifacts/
+dist_cockpit/
+cockpit_final_report_v1.md
+deployment/
+functions/
+notebooks/
+renderers/
+demo-message-log.json
+*.log

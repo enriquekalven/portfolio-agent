@@ -53,7 +53,9 @@ export class A2AClient {
     console.log(`[A2AClient] Requesting ${format} content`);
 
     const lowerFormat = format.toLowerCase();
-    const backendFormat = lowerFormat === "blog" ? "blog_cards" : (lowerFormat === "video" || lowerFormat === "video_cards") ? "video_cards" : (lowerFormat === "matrix" || lowerFormat === "framework") ? "matrix" : (lowerFormat === "charts" || lowerFormat === "radar") ? "charts" : lowerFormat;
+    // No podcast episode is published yet (/assets/podcast.m4a doesn't exist), so audio requests
+    // show the recorded talks instead of an audio player that can't load.
+    const backendFormat = lowerFormat === "blog" ? "blog_cards" : (lowerFormat === "video" || lowerFormat === "video_cards" || lowerFormat === "podcast" || lowerFormat === "audio") ? "video_cards" : (lowerFormat === "matrix" || lowerFormat === "framework") ? "matrix" : (lowerFormat === "charts" || lowerFormat === "radar") ? "charts" : lowerFormat;
 
     // Local media assets and real-time client utilities render directly
     if (
@@ -983,11 +985,11 @@ export class A2AClient {
         let quizCategory = "Certification Mastery";
         let quizOptions = [
           { label: "10x", value: "10", isCorrect: false },
-          { label: "15x", value: "15", isCorrect: false },
-          { label: "19x", value: "19", isCorrect: true },
-          { label: "25x", value: "25", isCorrect: false }
+          { label: "12x", value: "12", isCorrect: false },
+          { label: "16x", value: "16", isCorrect: true },
+          { label: "20x", value: "20", isCorrect: false }
         ];
-        let quizExplanation = "Enrique holds 19x professional certifications across Google Cloud, AWS, and Azure, demonstrating top-tier multi-cloud expertise.";
+        let quizExplanation = "Enrique holds 16 professional certifications: 8 Google Cloud, 6 AWS, plus SAFe and Splunk, demonstrating multi-cloud architecture depth.";
 
         if (lowerQuizContext.includes("google") || lowerQuizContext.includes("next") || lowerQuizContext.includes("cloud")) {
           quizTitle = "Cloud Challenge: Google Cloud Experience ☁️";

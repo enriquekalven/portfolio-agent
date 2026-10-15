@@ -151,49 +151,65 @@ console.log("=".repeat(80));
 console.log("PART 2: LIVE E2E VERIFICATION OF ALL GEMS VIA POST /api/chat-with-intent (gemini-4-argon)");
 console.log("=".repeat(80));
 
+// Point E2E_BASE_URL at a deployed revision to test it; otherwise a local server is started.
+const REMOTE_BASE = (process.env.E2E_BASE_URL || "").replace(/\/$/, "");
 const TEST_PORT = 18089;
-const serverProc = spawn("npx", ["tsx", "api-server.ts"], {
-  env: {
-    ...process.env,
-    PORT: String(TEST_PORT),
-    GENAI_MODEL: "gemini-4-argon",
-    GOOGLE_CLOUD_LOCATION: "global",
-    GOOGLE_CLOUD_PROJECT: "enriquekchan-b646b",
-  },
-  stdio: ["ignore", "pipe", "pipe"],
-});
+let serverProc = null;
 
-await new Promise((resolve, reject) => {
-  const timeout = setTimeout(() => reject(new Error("API server startup timeout")), 15000);
-  serverProc.stdout.on("data", (chunk) => {
-    if (chunk.toString().includes("API server ready")) {
-      clearTimeout(timeout);
-      resolve();
-    }
+if (!REMOTE_BASE) {
+  serverProc = spawn("npx", ["tsx", "api-server.ts"], {
+    env: {
+      ...process.env,
+      PORT: String(TEST_PORT),
+      HOST: "127.0.0.1",
+      GENAI_MODEL: "gemini-4-argon",
+      GOOGLE_CLOUD_LOCATION: "global",
+      GOOGLE_CLOUD_PROJECT: "enriquekchan-b646b",
+    },
+    stdio: ["ignore", "pipe", "pipe"],
   });
-  serverProc.stderr.on("data", (chunk) => {
-    // log warnings if any
+
+  await new Promise((resolve, reject) => {
+    const timeout = setTimeout(() => reject(new Error("API server startup timeout")), 15000);
+    serverProc.stdout.on("data", (chunk) => {
+      if (chunk.toString().includes("API server ready")) {
+        clearTimeout(timeout);
+        resolve();
+      }
+    });
+    serverProc.stderr.on("data", () => {
+      // log warnings if any
+    });
   });
-});
+}
+
+const BASE_URL = REMOTE_BASE || `http://127.0.0.1:${TEST_PORT}`;
+const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+
+/** POST a chat request, waiting out the per-IP rate limit (20/min) instead of failing. */
+async function postChat(body) {
+  for (let attempt = 0; attempt < 3; attempt++) {
+    const res = await fetch(`${BASE_URL}/api/chat-with-intent`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(body),
+    });
+    if (res.status !== 429) return res;
+    const wait = Number(res.headers.get("retry-after") || 30);
+    console.log(`   (rate limited, waiting ${wait}s)`);
+    await sleep(wait * 1000);
+  }
+  throw new Error("still rate limited after retries");
+}
 
 let gemPassed = 0;
 let gemFailed = 0;
 
 try {
-  const systemPrompt = `You are the AI Concierge for ${portfolioData.PROFILE.name} (${portfolioData.PROFILE.role}). ${portfolioData.PROFILE.summary}`;
-
   for (const gem of sidebarGems.filter(g => g.prompt)) {
     const t0 = Date.now();
-    const res = await fetch(`http://localhost:${TEST_PORT}/api/chat-with-intent`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        isCombined: true,
-        systemPrompt,
-        userMessage: gem.prompt,
-        messages: [],
-      }),
-    });
+    // The server owns the system prompt; the client only sends the question.
+    const res = await postChat({ userMessage: gem.prompt, messages: [] });
 
     const elapsed = ((Date.now() - t0) / 1000).toFixed(2);
     assert.equal(res.status, 200, `Expected HTTP 200 for ${gem.label}, got ${res.status}`);
@@ -206,7 +222,7 @@ try {
 
     if (intentMatch && data.text && data.text.length > 10) {
       console.log(
-        `✅ [Gem E2E] ${gem.label.padEnd(22)} | Intent: ${data.intent.padEnd(13)} | ${elapsed}s | "${data.text.slice(0, 75)}..."`
+        `✅ [Gem E2E] ${gem.label.padEnd(22)} | Intent: ${data.intent.padEnd(13)} | ${elapsed}s ${res.headers.get("x-cache") === "HIT" ? "(cached)" : ""} | "${data.text.slice(0, 75)}..."`
       );
       gemPassed++;
     } else {
@@ -217,11 +233,11 @@ try {
     }
   }
 } finally {
-  serverProc.kill();
+  serverProc?.kill();
 }
 
 console.log("=".repeat(80));
-console.log(`FINAL E2E SUMMARY: ${uiPassed}/${uiPassed} UI Buttons & Links Passed | ${gemPassed}/${gemPassed + gemFailed} Live Gems Passed (gemini-4-argon)`);
+console.log(`FINAL E2E SUMMARY: ${uiPassed}/${uiPassed} UI Buttons & Links Passed | ${gemPassed}/${gemPassed + gemFailed} Live Gems Passed (gemini-4-argon) against ${BASE_URL}`);
 console.log("=".repeat(80));
 
 if (gemFailed > 0) process.exit(1);

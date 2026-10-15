@@ -35,6 +35,12 @@ export class UIManager {
     this.initHistoryAndActions();
     this.renderRecentChats();
     this.initPromptTicker();
+
+    // Lets other modules (e.g. the chat orchestrator) raise toasts without a direct reference.
+    window.addEventListener("portfolio:toast", (e: Event) => {
+      const message = (e as CustomEvent<{ message?: string }>).detail?.message;
+      if (message) this.showToast(message);
+    });
   }
 
   /**
@@ -42,10 +48,11 @@ export class UIManager {
    */
   public showToast(message: string) {
     const toast = document.getElementById("ui-toast");
-    const toastText = document.getElementById("ui-toast-text");
-    if (!toast || !toastText) return;
+    if (!toast) return;
+    // Write into the dedicated text node if the markup has one; otherwise into the toast itself.
+    const target = document.getElementById("ui-toast-text") ?? toast;
 
-    toastText.textContent = message;
+    target.textContent = message;
     toast.classList.add("visible");
 
     if (this.toastTimeout) {
@@ -85,7 +92,7 @@ export class UIManager {
       "Show me the Strategic Integration Matrix",
       "Walk me through your career journey",
       "Show me your technical proficiency radar",
-      "Listen to your vision in a podcast deep dive",
+      "Show me his top YouTube videos",
       "Show me your stage presence at Google Cloud Next",
       "Show me your featured open source repositories"
     ];
@@ -179,9 +186,23 @@ export class UIManager {
     const profileActionsBtn = document.getElementById("profile-actions-btn");
     const profileActionsMenu = document.getElementById("profile-actions-menu");
 
+    const popovers: Array<[HTMLElement | null, HTMLElement | null]> = [
+      [moreActionsBtn, moreActionsMenu],
+      [profileActionsBtn, profileActionsMenu],
+    ];
+    popovers.forEach(([trigger, menu]) => {
+      trigger?.setAttribute("aria-haspopup", "menu");
+      trigger?.setAttribute("aria-expanded", "false");
+      if (trigger && menu?.id) trigger.setAttribute("aria-controls", menu.id);
+    });
+
+    const setPopoverOpen = (trigger: HTMLElement | null, menu: HTMLElement | null, open: boolean) => {
+      menu?.classList.toggle("open", open);
+      trigger?.setAttribute("aria-expanded", String(open));
+    };
+
     const closeAllPopovers = () => {
-      moreActionsMenu?.classList.remove("open");
-      profileActionsMenu?.classList.remove("open");
+      popovers.forEach(([trigger, menu]) => setPopoverOpen(trigger, menu, false));
     };
 
     if (historyBtn) {
@@ -190,7 +211,8 @@ export class UIManager {
         const backdrop = document.getElementById("sidebar-backdrop");
         if (window.innerWidth <= 820 && sidebar) {
           sidebar.classList.add("open");
-          backdrop?.classList.add("open");
+          // The backdrop's CSS is keyed on .active (see .sidebar-backdrop.active in index.html).
+          backdrop?.classList.add("active");
         }
         if (this.recentContainer) {
           this.recentContainer.scrollIntoView({ behavior: "smooth", block: "center" });
@@ -199,27 +221,15 @@ export class UIManager {
       });
     }
 
-    if (moreActionsBtn && moreActionsMenu) {
-      moreActionsBtn.addEventListener("click", (e) => {
+    popovers.forEach(([trigger, menu]) => {
+      if (!trigger || !menu) return;
+      trigger.addEventListener("click", (e) => {
         e.stopPropagation();
-        const isOpen = moreActionsMenu.classList.contains("open");
+        const isOpen = menu.classList.contains("open");
         closeAllPopovers();
-        if (!isOpen) {
-          moreActionsMenu.classList.add("open");
-        }
+        if (!isOpen) setPopoverOpen(trigger, menu, true);
       });
-    }
-
-    if (profileActionsBtn && profileActionsMenu) {
-      profileActionsBtn.addEventListener("click", (e) => {
-        e.stopPropagation();
-        const isOpen = profileActionsMenu.classList.contains("open");
-        closeAllPopovers();
-        if (!isOpen) {
-          profileActionsMenu.classList.add("open");
-        }
-      });
-    }
+    });
 
     // Close popovers on outside click or Escape
     document.addEventListener("click", () => closeAllPopovers());
