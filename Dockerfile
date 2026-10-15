@@ -1,12 +1,12 @@
 # Portfolio Agent - Cloud Run Dockerfile
 # Serves both the pre-built Vite frontend and the API server
 
-# SRE Resource Consternation
+FROM node:20-slim
+
+# SRE Resource Configuration
 # Expected: CPU 1, Memory 1Gi
 ENV RESOURCE_CPU=1
 ENV RESOURCE_MEMORY=1Gi
-
-FROM node:20-slim
 
 WORKDIR /app
 
@@ -29,6 +29,9 @@ USER node
 # Set production environment
 ENV PORT=8080
 ENV NODE_ENV=production
+ENV GOOGLE_CLOUD_LOCATION=global
+ENV GENAI_MODEL=gemini-4-argon
+ENV GOOGLE_GENAI_USE_VERTEXAI=TRUE
 
 # Expose port
 EXPOSE 8080

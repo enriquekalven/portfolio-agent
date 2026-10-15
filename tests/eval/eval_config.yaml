@@ -1,0 +1,19 @@
+metrics_to_run:
+  - portfolio_2026_grounding
+
+custom_metrics:
+  - name: portfolio_2026_grounding
+    custom_function: |
+      def evaluate(instance):
+          resp_obj = instance.get("response") or {}
+          parts = resp_obj.get("parts") or []
+          text = " ".join(p.get("text", "") for p in parts if isinstance(p, dict)).lower()
+          if not text:
+              responses = instance.get("responses") or []
+              if responses:
+                  r_parts = (responses[0].get("response") or {}).get("parts") or []
+                  text = " ".join(p.get("text", "") for p in r_parts if isinstance(p, dict)).lower()
+          keywords = ["enrique", "google cloud", "delta", "gartner", "forrester", "swifty", "advent of agents", "cockpit", "olympic", "next"]
+          hits = sum(1 for k in keywords if k in text)
+          score = 1.0 if (len(text) > 100 and hits >= 2) else 0.0
+          return {"score": score}

@@ -47,11 +47,59 @@ function setupUI(orchestrator: ChatOrchestrator, uiManager: UIManager) {
   const sendBtn = document.getElementById("sendBtn") as HTMLButtonElement;
   const chatArea = document.getElementById("chatArea") as HTMLDivElement;
   const newChatBtn = document.getElementById("new-chat-btn");
+  const mobileMenuBtn = document.getElementById("mobile-menu-btn");
+  const sidebar = document.getElementById("app-sidebar");
+  const sidebarBackdrop = document.getElementById("sidebar-backdrop");
 
   if (!chatInput || !sendBtn || !chatArea) {
     console.warn("[Demo] Missing UI elements");
     return;
   }
+
+  const closeMobileSidebar = () => {
+    sidebar?.classList.remove("open");
+    sidebarBackdrop?.classList.remove("open");
+  };
+
+  if (mobileMenuBtn && sidebar) {
+    mobileMenuBtn.addEventListener("click", () => {
+      const isOpen = sidebar.classList.toggle("open");
+      sidebarBackdrop?.classList.toggle("open", isOpen);
+    });
+  }
+
+  if (sidebarBackdrop) {
+    sidebarBackdrop.addEventListener("click", () => {
+      closeMobileSidebar();
+    });
+  }
+
+  const triggerPrompt = (prompt: string, activeGemEl?: HTMLElement | null) => {
+    if (!prompt) return;
+    if (activeGemEl) {
+      document.querySelectorAll(".sidebar-nav .sidebar-item").forEach((el) => {
+        el.classList.remove("active");
+      });
+      activeGemEl.classList.add("active");
+    }
+    closeMobileSidebar();
+    chatInput.value = prompt;
+    chatInput.dispatchEvent(new Event("input"));
+    handleSend(orchestrator, chatInput, chatArea, uiManager);
+  };
+
+  // Global custom events for recent chats, prompt ticker, follow-up chips, and comics
+  window.addEventListener("portfolio:send-prompt", (e: Event) => {
+    const customEvent = e as CustomEvent<{ prompt: string }>;
+    if (customEvent.detail?.prompt) {
+      triggerPrompt(customEvent.detail.prompt);
+    }
+  });
+
+  window.addEventListener("portfolio:unlock-comics", () => {
+    closeMobileSidebar();
+    triggerEasterEgg(orchestrator, chatInput, chatArea, uiManager);
+  });
 
   // New Chat
   if (newChatBtn) {
@@ -80,117 +128,69 @@ function setupUI(orchestrator: ChatOrchestrator, uiManager: UIManager) {
     handleSend(orchestrator, chatInput, chatArea, uiManager);
   });
 
-  // Chips
-  const chips = document.querySelectorAll(".suggestion-chip");
-  chips.forEach((chip) => {
-    chip.addEventListener("click", () => {
-      const prompt = chip.getAttribute("data-prompt");
+  // Suggestion Chips, Bento KPI Cards, and Announcement Pill
+  const interactivePrompts = document.querySelectorAll(
+    ".suggestion-chip[data-prompt], .bento-kpi-card[data-prompt], #hero-announcement-pill[data-prompt]"
+  );
+  interactivePrompts.forEach((el) => {
+    el.addEventListener("click", () => {
+      const prompt = el.getAttribute("data-prompt");
       if (prompt) {
-        chatInput.value = prompt;
-        chatInput.dispatchEvent(new Event("input"));
-        handleSend(orchestrator, chatInput, chatArea, uiManager);
+        triggerPrompt(prompt);
+      }
+    });
+    el.addEventListener("keydown", (e: Event) => {
+      const ke = e as KeyboardEvent;
+      if (ke.key === "Enter" || ke.key === " ") {
+        ke.preventDefault();
+        const prompt = el.getAttribute("data-prompt");
+        if (prompt) {
+          triggerPrompt(prompt);
+        }
       }
     });
   });
 
-  // Sidebar Gems
-  const gemHistorian = document.getElementById("gem-historian");
-  const gemMatcher = document.getElementById("gem-matcher");
-  const gemAnalyzer = document.getElementById("gem-analyzer");
-  const gemMedia = document.getElementById("gem-media");
-  const gemBlogs = document.getElementById("gem-blogs");
-  const gemAwards = document.getElementById("gem-awards");
-  const gemCerts = document.getElementById("gem-certs");
-  const gemSpeaker = document.getElementById("gem-speaker");
-  const gemRepos = document.getElementById("gem-repos");
+  // Sidebar Gems mapping
+  const gemConfigs: Array<{ id: string; prompt: string }> = [
+    { id: "gem-historian", prompt: "Show me Enrique's career highlights as a sequential timeline" },
+    { id: "gem-matcher", prompt: "How do Enrique's skills match a Senior AI role?" },
+    { id: "gem-analyzer", prompt: "Analyze Enrique's fit for an AI Lead role" },
+    { id: "gem-media", prompt: "Show me his top YouTube videos" },
+    { id: "gem-blogs", prompt: "Show me some of his Medium blog posts" },
+    { id: "gem-awards", prompt: "List Enrique's major awards and hackathon wins" },
+    { id: "gem-certs", prompt: "Show Enrique's cloud certifications" },
+    { id: "gem-speaker", prompt: "Show Enrique's speaking engagements and keynotes" },
+    { id: "gem-testimonials", prompt: "Show me what people think of Enrique (testimonials)" },
+    { id: "gem-gallery", prompt: "Show me a gallery of your work and highlights" },
+    { id: "gem-repos", prompt: "Show me your featured open source repositories" }
+  ];
 
-  if (gemHistorian) {
-    gemHistorian.addEventListener("click", () => {
-      chatInput.value = "Show me Enrique's career highlights as a sequential timeline";
-      chatInput.dispatchEvent(new Event("input"));
-      handleSend(orchestrator, chatInput, chatArea, uiManager);
-    });
-  }
-  if (gemMatcher) {
-    gemMatcher.addEventListener("click", () => {
-      chatInput.value = "How do Enrique's skills match a Senior AI role?";
-      chatInput.dispatchEvent(new Event("input"));
-      handleSend(orchestrator, chatInput, chatArea, uiManager);
-    });
-  }
-  if (gemAnalyzer) {
-    gemAnalyzer.addEventListener("click", () => {
-      chatInput.value = "Analyze Enrique's fit for an AI Lead role";
-      chatInput.dispatchEvent(new Event("input"));
-      handleSend(orchestrator, chatInput, chatArea, uiManager);
-    });
-  }
-  if (gemMedia) {
-    gemMedia.addEventListener("click", () => {
-      chatInput.value = "Show me his top YouTube videos";
-      chatInput.dispatchEvent(new Event("input"));
-      handleSend(orchestrator, chatInput, chatArea, uiManager);
-    });
-  }
-  if (gemBlogs) {
-    gemBlogs.addEventListener("click", () => {
-      chatInput.value = "Show me some of his Medium blog posts";
-      chatInput.dispatchEvent(new Event("input"));
-      handleSend(orchestrator, chatInput, chatArea, uiManager);
-    });
-  }
-  if (gemAwards) {
-    gemAwards.addEventListener("click", () => {
-      chatInput.value = "List Enrique's major awards and hackathon wins";
-      chatInput.dispatchEvent(new Event("input"));
-      handleSend(orchestrator, chatInput, chatArea, uiManager);
-    });
-  }
-  if (gemCerts) {
-    gemCerts.addEventListener("click", () => {
-      chatInput.value = "Show Enrique's cloud certifications";
-      chatInput.dispatchEvent(new Event("input"));
-      handleSend(orchestrator, chatInput, chatArea, uiManager);
-    });
-  }
-  if (gemSpeaker) {
-    gemSpeaker.addEventListener("click", () => {
-      chatInput.value = "Show Enrique's speaking engagements and keynotes";
-      chatInput.dispatchEvent(new Event("input"));
-      handleSend(orchestrator, chatInput, chatArea, uiManager);
-    });
-  }
-
-  const gemTestimonials = document.getElementById("gem-testimonials");
-  if (gemTestimonials) {
-    gemTestimonials.addEventListener("click", () => {
-      chatInput.value = "Show me what people think of Enrique (testimonials)";
-      chatInput.dispatchEvent(new Event("input"));
-      handleSend(orchestrator, chatInput, chatArea, uiManager);
-    });
-  }
-
-  const gemGallery = document.getElementById("gem-gallery");
-  if (gemGallery) {
-    gemGallery.addEventListener("click", () => {
-      chatInput.value = "Show me a gallery of your work and highlights";
-      chatInput.dispatchEvent(new Event("input"));
-      handleSend(orchestrator, chatInput, chatArea, uiManager);
-    });
-  }
-
-  if (gemRepos) {
-    gemRepos.addEventListener("click", () => {
-      chatInput.value = "Show me your featured open source repositories";
-      chatInput.dispatchEvent(new Event("input"));
-      handleSend(orchestrator, chatInput, chatArea, uiManager);
-    });
-  }
+  gemConfigs.forEach(({ id, prompt }) => {
+    const gemEl = document.getElementById(id);
+    if (gemEl) {
+      gemEl.addEventListener("click", () => triggerPrompt(prompt, gemEl));
+      gemEl.addEventListener("keydown", (e: KeyboardEvent) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          triggerPrompt(prompt, gemEl);
+        }
+      });
+    }
+  });
 
   const gemComics = document.getElementById("gem-comics");
   if (gemComics) {
     gemComics.addEventListener("click", () => {
+      closeMobileSidebar();
       showComicModal();
+    });
+    gemComics.addEventListener("keydown", (e: KeyboardEvent) => {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        closeMobileSidebar();
+        showComicModal();
+      }
     });
   }
 
@@ -198,11 +198,53 @@ function setupUI(orchestrator: ChatOrchestrator, uiManager: UIManager) {
   const themeToggle = document.getElementById("theme-toggle");
   if (themeToggle) {
     themeToggle.addEventListener("click", () => {
-      document.body.classList.toggle("light-mode");
+      const isLight = document.body.classList.toggle("light-mode");
       const icon = themeToggle.querySelector(".material-symbols-outlined");
       if (icon) {
-        icon.textContent = document.body.classList.contains("light-mode") ? "dark_mode" : "light_mode";
+        icon.textContent = isLight ? "dark_mode" : "light_mode";
       }
+      uiManager.showToast(isLight ? "Switched to Executive Light theme" : "Switched to Executive Dark theme");
+    });
+  }
+
+  // Model Selector button
+  const modelSelectorBtn = document.getElementById("model-selector-btn");
+  const modelSelectorLabel = document.getElementById("model-selector-label");
+  if (modelSelectorBtn && modelSelectorLabel) {
+    const models = ["Gemini 4 Argon", "Gemini 3.6 Flash"];
+    let modelIdx = 0;
+    modelSelectorBtn.addEventListener("click", () => {
+      modelIdx = (modelIdx + 1) % models.length;
+      modelSelectorLabel.textContent = models[modelIdx];
+      uiManager.showToast(`Active reasoning indicator: ${models[modelIdx]}`);
+    });
+  }
+
+  // Quick Prompt (+) button
+  const addPromptBtn = document.getElementById("add-prompt-btn");
+  if (addPromptBtn) {
+    const quickPrompts = [
+      "What is Enrique's current 2026 role at Google Cloud Delta and his 4x Gartner/Forrester Leader wins?",
+      "Tell me about the Q3 2026 Silver Google AI Award (SWIFTY) and Advent of Agents",
+      "Show me the Strategic Integration Matrix",
+      "Show me your technical proficiency radar"
+    ];
+    let qpIdx = 0;
+    addPromptBtn.addEventListener("click", () => {
+      const prompt = quickPrompts[qpIdx % quickPrompts.length];
+      qpIdx++;
+      triggerPrompt(prompt);
+    });
+  }
+
+  // User Profile card in sidebar footer
+  const userProfile = document.querySelector(".user-profile");
+  if (userProfile) {
+    userProfile.addEventListener("click", (e) => {
+      if ((e.target as HTMLElement).closest("#profile-actions-btn") || (e.target as HTMLElement).closest("#profile-actions-menu")) {
+        return;
+      }
+      triggerPrompt("Who is Enrique K Chan and what is his current 2026 role at Google Cloud Delta?");
     });
   }
 
@@ -210,16 +252,18 @@ function setupUI(orchestrator: ChatOrchestrator, uiManager: UIManager) {
   const hint = document.getElementById("easter-egg-hint");
   if (hint) {
     hint.addEventListener("click", () => {
-      console.log("Looking for a secret? Maybe an old school code (↑↑↓↓←→←→BA) or a triple-tap on the logo...");
-      // Add a little shake animation
-      hint.animate([
-        { transform: 'translateX(0)' },
-        { transform: 'translateX(-5px)' },
-        { transform: 'translateX(5px)' },
-        { transform: 'translateX(-5px)' },
-        { transform: 'translateX(5px)' },
-        { transform: 'translateX(0)' }
-      ], { duration: 500 });
+      console.log("Looking for a secret? Unlocking The Agentic Adventures...");
+      if (typeof hint.animate === "function") {
+        hint.animate([
+          { transform: "translateX(0)" },
+          { transform: "translateX(-5px)" },
+          { transform: "translateX(5px)" },
+          { transform: "translateX(-5px)" },
+          { transform: "translateX(5px)" },
+          { transform: "translateX(0)" }
+        ], { duration: 500 });
+      }
+      triggerEasterEgg(orchestrator, chatInput, chatArea, uiManager);
     });
   }
 
@@ -274,16 +318,17 @@ function setupKonamiCode(
 }
 
 function triggerEasterEgg(
-  orchestrator: ChatOrchestrator,
-  input: HTMLTextAreaElement,
-  chatArea: HTMLDivElement,
+  _orchestrator: ChatOrchestrator,
+  _input: HTMLTextAreaElement,
+  _chatArea: HTMLDivElement,
   uiManager: UIManager
 ) {
   console.log("CLASSIFIED ACCESS GRANTED: Unlocking The Agentic Adventures...");
+  uiManager.showToast("Unlocked: The Agentic Adventures Comic Series!");
 
   // Visual feedback (CSS Confetti)
   const container = document.body;
-  for (let i = 0; i < 50; i++) {
+  for (let i = 0; i < 45; i++) {
     const confetti = document.createElement("div");
     confetti.style.position = "fixed";
     confetti.style.width = "10px";
@@ -295,15 +340,19 @@ function triggerEasterEgg(
     confetti.style.borderRadius = "2px";
     container.appendChild(confetti);
 
-    const animation = confetti.animate([
-      { transform: `translate3d(0, 0, 0) rotate(0deg)`, opacity: 1 },
-      { transform: `translate3d(${(Math.random() - 0.5) * 200}px, 100vh, 0) rotate(${Math.random() * 360}deg)`, opacity: 0 }
-    ], {
-      duration: 2000 + Math.random() * 3000,
-      easing: "cubic-bezier(0, .9, .57, 1)"
-    });
+    if (typeof confetti.animate === "function") {
+      const animation = confetti.animate([
+        { transform: "translate3d(0, 0, 0) rotate(0deg)", opacity: 1 },
+        { transform: `translate3d(${(Math.random() - 0.5) * 200}px, 100vh, 0) rotate(${Math.random() * 360}deg)`, opacity: 0 }
+      ], {
+        duration: 2000 + Math.random() * 3000,
+        easing: "cubic-bezier(0, .9, .57, 1)"
+      });
 
-    animation.onfinish = () => confetti.remove();
+      animation.onfinish = () => confetti.remove();
+    } else {
+      setTimeout(() => confetti.remove(), 2500);
+    }
   }
 
   // Reveal hidden sidebar gem
@@ -351,13 +400,27 @@ function showComicModal() {
 
   if (!modal || !list) return;
 
-  // Populate list
-  list.innerHTML = COMICS_DATA.map(comic => `
-    <div class="comic-item" onclick="window.open('${comic.url}', '_blank')">
-      <img src="${comic.image}" class="comic-thumb" alt="${comic.title}">
-      <div class="comic-title">${comic.title}</div>
-    </div>
-  `).join("");
+  // Populate list using safe DOM construction
+  list.replaceChildren();
+  COMICS_DATA.forEach((comic) => {
+    const item = document.createElement("div");
+    item.className = "comic-item";
+    item.addEventListener("click", () => {
+      window.open(comic.url, "_blank", "noopener,noreferrer");
+    });
+
+    const img = document.createElement("img");
+    img.src = comic.image;
+    img.className = "comic-thumb";
+    img.alt = comic.title;
+
+    const title = document.createElement("div");
+    title.className = "comic-title";
+    title.textContent = comic.title;
+
+    item.append(img, title);
+    list.appendChild(item);
+  });
 
   // Show modal
   modal.style.display = "flex";
@@ -366,7 +429,9 @@ function showComicModal() {
   // Close logic
   const close = () => {
     modal.classList.remove("active");
-    setTimeout(() => modal.style.display = "none", 300);
+    setTimeout(() => {
+      modal.style.display = "none";
+    }, 300);
   };
 
   if (closeBtn) closeBtn.onclick = close;
@@ -397,31 +462,69 @@ async function handleSend(
   const welcome = chatArea.querySelector(".welcome-screen");
   if (welcome) welcome.remove();
 
-  // Add user msg
+  // Add user msg with safe DOM APIs
   const userMsg = document.createElement("div");
   userMsg.className = "message user";
-  userMsg.innerHTML = `
-    <div class="message-avatar">V</div>
-    <div class="message-content">
-      <div class="message-sender">You</div>
-      <div class="message-text">${escapeHtml(message)}</div>
-    </div>
-  `;
+
+  const userAvatar = document.createElement("div");
+  userAvatar.className = "message-avatar";
+  userAvatar.textContent = "Y";
+
+  const userContent = document.createElement("div");
+  userContent.className = "message-content";
+
+  const userSender = document.createElement("div");
+  userSender.className = "message-sender";
+  userSender.textContent = "You";
+
+  const userText = document.createElement("div");
+  userText.className = "message-text";
+  userText.textContent = message;
+
+  userContent.append(userSender, userText);
+  userMsg.append(userAvatar, userContent);
   chatArea.appendChild(userMsg);
 
-  // Add assistant msg
+  // Add assistant msg container
   const assistantMsg = document.createElement("div");
   assistantMsg.className = "message assistant";
-  assistantMsg.innerHTML = `
-    <div class="message-avatar"><span class="material-symbols-outlined">auto_awesome</span></div>
-    <div class="message-content">
-      <div class="message-header">
-        <div class="message-sender">Gemini</div>
-        <div class="message-actions"></div>
-      </div>
-      <div class="message-text"><div class="typing-indicator"><span></span><span></span><span></span></div></div>
-    </div>
-  `;
+
+  const assistantAvatar = document.createElement("div");
+  assistantAvatar.className = "message-avatar";
+  const avatarIcon = document.createElement("span");
+  avatarIcon.className = "material-symbols-outlined";
+  avatarIcon.textContent = "auto_awesome";
+  assistantAvatar.appendChild(avatarIcon);
+
+  const assistantContent = document.createElement("div");
+  assistantContent.className = "message-content";
+
+  const messageHeader = document.createElement("div");
+  messageHeader.className = "message-header";
+
+  const assistantSender = document.createElement("div");
+  assistantSender.className = "message-sender";
+  assistantSender.textContent = "Enrique's Concierge";
+
+  const messageActions = document.createElement("div");
+  messageActions.className = "message-actions";
+
+  messageHeader.append(assistantSender, messageActions);
+
+  const assistantText = document.createElement("div");
+  assistantText.className = "message-text";
+
+  const typingIndicator = document.createElement("div");
+  typingIndicator.className = "typing-indicator";
+  typingIndicator.append(
+    document.createElement("span"),
+    document.createElement("span"),
+    document.createElement("span")
+  );
+  assistantText.appendChild(typingIndicator);
+
+  assistantContent.append(messageHeader, assistantText);
+  assistantMsg.append(assistantAvatar, assistantContent);
   chatArea.appendChild(assistantMsg);
   chatArea.scrollTop = chatArea.scrollHeight;
 
@@ -429,17 +532,15 @@ async function handleSend(
     await orchestrator.processMessage(message, assistantMsg);
   } catch (err) {
     console.error("[Demo] Error:", err);
-    const text = assistantMsg.querySelector(".message-text");
-    if (text) text.innerHTML = '<span style="color:red">Error processing message.</span>';
+    assistantText.replaceChildren();
+    const errSpan = document.createElement("span");
+    errSpan.style.color = "#f87171";
+    errSpan.textContent = "Error processing message. Please try again.";
+    assistantText.appendChild(errSpan);
   }
 
   chatArea.scrollTop = chatArea.scrollHeight;
 }
 
-function escapeHtml(text: string): string {
-  const div = document.createElement("div");
-  div.textContent = text;
-  return div.innerHTML;
-}
-
 init();
+

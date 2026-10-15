@@ -33,6 +33,7 @@ def test(name):
             failed += 1
         return fn
     return decorator
+test.__test__ = False
 print('=' * 60)
 print('Personalized Learning Agent - Python Tests')
 print('=' * 60)

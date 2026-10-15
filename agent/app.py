@@ -10,33 +10,43 @@ from tenacity import retry, wait_exponential, stop_after_attempt
 # Integrated Circuit Breaker for AD-TOOL-MISUSE mitigation.
 
 try:
-    from agent.portfolio_data import PROFILE, EXPERIENCE, PROJECTS, SKILLS, CERTIFICATIONS, _AWARDS, TESTIMONIALS, _GALLERY
+    from agent.portfolio_data import (
+        PROFILE, ANALYST_RELATIONS, EXPERIENCE, PROJECTS, SKILLS,
+        CERTIFICATIONS, _AWARDS, TESTIMONIALS, _GALLERY, SPEAKING, BLOGS, VIDEOS
+    )
 except ImportError:
-    from portfolio_data import PROFILE, EXPERIENCE, PROJECTS, SKILLS, CERTIFICATIONS, _AWARDS, TESTIMONIALS, _GALLERY
+    from portfolio_data import (
+        PROFILE, ANALYST_RELATIONS, EXPERIENCE, PROJECTS, SKILLS,
+        CERTIFICATIONS, _AWARDS, TESTIMONIALS, _GALLERY, SPEAKING, BLOGS, VIDEOS
+    )
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 portfolio_context = f"""
 PROFILE: {json.dumps(PROFILE)}
+ANALYST_RELATIONS: {json.dumps(ANALYST_RELATIONS)}
 EXPERIENCE: {json.dumps(EXPERIENCE)}
 PROJECTS: {json.dumps(PROJECTS)}
 SKILLS: {json.dumps(SKILLS)}
 CERTIFICATIONS: {json.dumps(CERTIFICATIONS)}
 AWARDS: {json.dumps(_AWARDS)}
+SPEAKING: {json.dumps(SPEAKING)}
+BLOGS: {json.dumps(BLOGS)}
+VIDEOS: {json.dumps(VIDEOS)}
 TESTIMONIALS: {json.dumps(TESTIMONIALS)}
 GALLERY: {json.dumps(_GALLERY)}
 """
 
-model_id = os.getenv('GENAI_MODEL', 'gemini-3.6-flash')
+model_id = os.getenv('GENAI_MODEL', 'gemini-4-argon')
 
 # Define the agent with specific reasoning depth limits in instruction
 app = Agent(
     name='portfolio_agent', 
     model=model_id, 
-    instruction=f"""You are Enrique K Chan's Portfolio Agent.
+    instruction=f"""You are Enrique K Chan's Portfolio Agent (synchronized with https://enriquekchan.web.app).
         
-Enrique is a high-scale AI leader at Google specializing in the transition from RAG to Agentic Workflows.
+Enrique is a Staff AI Technical Deployment Lead @ Google Cloud Delta & Outbound Product Manager, Cloud AI, driving $2B+ in enterprise AI transformations and 4 consecutive 2026 Gartner/Forrester Leader recognitions.
 He has 15+ years of experience across Google, AWS, and Accenture.
 
 ## Enrique's Portfolio Data
@@ -44,7 +54,7 @@ He has 15+ years of experience across Google, AWS, and Accenture.
 
 ## Your Mission
 1. Represent Enrique's brand with technical rigor, customer empathy, and executive clarity.
-2. Provide specific, data-driven answers about his career impact (e.g., Olympic 'Oli' chatbot scale, Disney+ rollout).
+2. Provide specific, data-driven answers about his career impact (e.g., Q3 2026 Silver Google AI Award SWIFTY, 4x 2026 Gartner/Forrester Leader wins, Advent of Agents 32K+ developers & 5T+ tokens, NBC Olympics 'Oli' chatbot 40M+ viewers, Disney+ rollout).
 3. Support A2UI component generation for high-signal requests:
    - When asked for "awards", "timeline", "quiz", or "flashcards", generate the appropriate A2UI JSON payload.
 

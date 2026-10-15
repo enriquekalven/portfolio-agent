@@ -1,21 +1,11 @@
 {
-  "criteria": {
-    "rubric_based_final_response_quality_v1": {
-      "threshold": 0.8,
-      "judgeModelOptions": {
-        "judgeModel": "gemini-flash-latest",
-        "numSamples": 1
-      },
-      "rubrics": [
-        {
-          "rubricId": "relevance",
-          "rubricContent": { "textProperty": "The response directly addresses the user's query." }
-        },
-        {
-          "rubricId": "helpfulness",
-          "rubricContent": { "textProperty": "The response is helpful and provides useful information." }
-        }
-      ]
+  "metrics_to_run": [
+    "portfolio_2026_grounding"
+  ],
+  "custom_metrics": [
+    {
+      "name": "portfolio_2026_grounding",
+      "custom_function": "def evaluate(instance):\n    resp_obj = instance.get('response') or {}\n    parts = resp_obj.get('parts') or []\n    text = ' '.join(p.get('text', '') for p in parts if isinstance(p, dict)).lower()\n    if not text:\n        responses = instance.get('responses') or []\n        if responses:\n            r_parts = (responses[0].get('response') or {}).get('parts') or []\n            text = ' '.join(p.get('text', '') for p in r_parts if isinstance(p, dict)).lower()\n    keywords = ['enrique', 'google cloud', 'delta', 'gartner', 'forrester', 'swifty', 'advent of agents', 'cockpit', 'olympic', 'next']\n    hits = sum(1 for k in keywords if k in text)\n    score = 1.0 if (len(text) > 100 and hits >= 2) else 0.0\n    return {'score': score}\n"
     }
-  }
+  ]
 }

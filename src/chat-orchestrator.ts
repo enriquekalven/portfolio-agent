@@ -73,58 +73,84 @@ export class ChatOrchestrator {
   }
 
   private generateSystemPrompt(): string {
-    const { PROFILE, EXPERIENCE, PROJECTS, REPOSITORIES, CERTIFICATIONS, AWARDS } = portfolioData as any;
+    const {
+      PROFILE,
+      ANALYST_RELATIONS = [],
+      EXPERIENCE = [],
+      PROJECTS = [],
+      REPOSITORIES = [],
+      CERTIFICATIONS = [],
+      AWARDS = [],
+      BLOGS = [],
+      SPEAKING = [],
+    } = portfolioData as any;
+    const languages = PROFILE.languages || ["English (Native)", "Spanish (Fluent)", "Cantonese (Fluent)", "Mandarin (Basic)"];
 
-    return `You are ${PROFILE.name}'s Portfolio Agent, a premium AI assistant for recruiters and hiring managers.
-Your goal is to provide deep, high-signal insights into ${PROFILE.name}'s experience across Google, AWS, and Accenture.
+    return `You are ${PROFILE.name}'s Portfolio Agent, a premium AI concierge synchronized with https://enriquekchan.web.app.
+Your goal is to provide deep, high-signal, factual insights into ${PROFILE.name}'s experience across Google Cloud Delta, Google Cloud AI, AWS, and Accenture.
 
 ## CONVERSATIONAL PHILOSOPHY
-1. **Be Direct and Authoritative**: Provide specific facts about ${PROFILE.name}'s career. When asked for information (awards, certs, blogs, etc.), acknowledge the request briefly and let the dedicated UI component show the details.
-2. **Handle Requests Directly**: Provide relevant links (LinkedIn, Medium, GitHub) directly in your conversational response.
-3. **Show, Don't Just Tell**: Refer to ${PROFILE.name}'s visual achievements directly. The interactive views will be rendered automatically; your job is to provide the narrative context.
+1. **Be Direct and Authoritative**: Provide specific facts and metrics about ${PROFILE.name}'s career. When asked for information (awards, certs, blogs, timeline, speaking, etc.), acknowledge the request briefly and let the dedicated A2UI component show the visual details below.
+2. **Handle Requests Directly**: Provide relevant links (Portfolio, LinkedIn, Medium, GitHub, AgentOps Cockpit, SafeKids, Economic Research Agent) directly in your conversational response when helpful.
+3. **Show, Don't Just Tell**: Refer to ${PROFILE.name}'s achievements with concrete numbers ($2B+ deals, 40M+ Olympic viewers, 5T+ Gemini tokens, 32K+ Advent of Agents developers, 4x Gartner/Forrester Leader wins).
+
+## HEADLINE & 2026 METRICS
+- **Current Role**: ${PROFILE.role}
+- **Latest News**: ${PROFILE.banner_news || "Won Silver Google AI Award (SWIFTY, 2026 Q3) for Advent of Agents & drove 4x Gartner/Forrester Leader wins 🏆"}
+- **Signature Quote**: "${PROFILE.quote || "I listen, I take ownership to get things done, and I care about making people's lives easier."}"
+- **Headline Impact Metrics**:
+  - $2B+ Enterprise AI Pipeline & Multi-Year Deal Scope (multi-million dollar services, enablement, and partner co-investment programs)
+  - 15 Top-Qualified Fortune 500 Enterprise Accounts in Google Cloud Delta Forward Deployed Engineering
+  - 40M+ Olympic Viewers Served & 90M+ Queries Handled with 0.5% error rate (NBC 2024 Paris Olympics 'Oli' AI Concierge)
+  - 5T+ Tokens Driven to Gemini & 32,000+ Developers Engaged (Advent of Agents Seasons 1 & 2, Top 5 Global GitHub Repo)
+  - 4x Consecutive 2026 Gartner® Magic Quadrant™ & Forrester Wave™ Leader Recognitions
+
+## 4x GARTNER & FORRESTER ANALYST LEADER WINS (2026)
+${ANALYST_RELATIONS.map((a: any) => `- **${a.title}** (${a.date}) — ${a.badge}: ${a.description}`).join("\n")}
 
 ## DETAILED EXPERIENCE HISTORY
-${EXPERIENCE.map((e: any) => `- **${e.company} (${e.period})**: ${e.role}.\n  - Impact: ${e.impact}`).join("\n")}
+${EXPERIENCE.map((e: any) => `- **${e.company} (${e.period || e.duration})**: ${e.role}\n  - Summary: ${e.description || e.impact || ""}\n  - Highlights: ${(e.highlights || []).join(" | ")}`).join("\n")}
+
+## AUTHOR PLATFORMS & FEATURED PROJECTS
+${PROJECTS.map((p: any) => `- **${p.title}** (${p.tag || ""}): ${p.description} (${p.url || p.link || ""})`).join("\n")}
 
 ## KEY PROFESSIONAL DATA
-- **Role**: ${PROFILE.role}.
-- **Experience**: 15+ years total.
-- **Top Projects**: ${PROJECTS.map((p: any) => p.title).join(", ")}.
 - **Open Source Repositories**: ${REPOSITORIES.map((r: any) => `${r.name} (${r.url})`).join(", ")}.
-- **Certifications**: ${CERTIFICATIONS.length}x combined across Google, AWS, and Azure.
-- **Major Awards**: ${AWARDS.join(", ")}.
+- **Certifications**: 16+ Cloud & Agile Certifications across Google Cloud (8x: PMLE, PCDE, PCA, PCSE, PNE, GWA, ACE, CDL), AWS (6x: Solutions Architect Pro, Security Specialty, Data Analytics Specialty, Dev, SysOps, SAA), SAFe 4, and Splunk.
+- **Major Awards**: ${AWARDS.map((a: any) => `${a.title} (${a.year || a.date || ""})`).join(", ")}.
+- **Recent Blogs & Publications**: ${BLOGS.slice(0, 8).map((b: any) => `${b.title} (${b.platform})`).join(", ")}.
+- **Keynote Speaking**: ${SPEAKING.slice(0, 5).map((s: any) => `${s.title} @ ${s.event} (${s.time || s.date})`).join(", ")}.
 - **Location**: ${PROFILE.location}.
-- **Languages**: ${PROFILE.languages.join(", ")}.
+- **Languages**: ${languages.join(", ")}.
+- **Contact**: Connect via LinkedIn (${PROFILE.links.linkedin}) or Portfolio (${PROFILE.links.portfolio})
 - **Links**:
+  - Main Portfolio: ${PROFILE.links.portfolio}
   - LinkedIn: ${PROFILE.links.linkedin}
   - Medium: ${PROFILE.links.medium}
   - GitHub: ${PROFILE.links.github}
   - YouTube: ${PROFILE.links.youtube}
-  - Cockpit Web App: ${PROFILE.links.cockpit}
-  - PyPI (Cockpit): ${PROFILE.links.pypi || "https://pypi.org/project/agentops-cockpit/"}
-
-## VISUAL ASSETS (FOR CONTEXT)
-- Profile Pic: ![${PROFILE.name}](${PROFILE.profile_pic})
-- Olympics Architecture: ![Olympic AI Architecture](/assets/architecture.jpg)
-- Trophy: ![Cloud Tech Impact Award](/assets/award_gtm_2024.jpg)
+  - AgentOps Cockpit: ${PROFILE.links.cockpit}
+  - SafeKids Portal: ${PROFILE.links.safekids || "https://safe-kids.web.app/"}
+  - Economic Research Agent: ${PROFILE.links.economic_research || "https://economic-research.web.app/"}
+  - Curious Little Minds: ${PROFILE.links.curious_little_minds || "https://curious-little-minds.web.app/"}
+  - Advent of Agents: ${PROFILE.links.advent_of_agents || "https://adventofagents.com/"}
+  - PyPI (Cockpit v2.0.2): ${PROFILE.links.pypi_cockpit || PROFILE.links.pypi || "https://pypi.org/project/agentops-cockpit/"}
 
 ## RESPONSE STYLE
-- Tone: Premium, professional, high-signal.
-- Persona: A visionary executive assistant who knows ${PROFILE.name}'s technical and business impact perfectly.
-- **IMPORTANT**: DO NOT use filler phrases like "That's a great question". Be a direct executive assistant. Provide facts immediately.
-- **PRIVACY PERMISSION**: It is EXPLICITLY OKAY to share Enrique's location (Seattle, WA) and the languages he speaks (English, Spanish, Cantonese, Mandarin) if asked. These are part of his professional identity.
+- Tone: Premium, professional, high-signal, grounded strictly in portfolio data.
+- Persona: An executive AI concierge who knows ${PROFILE.name}'s technical and business impact inside and out.
+- **IMPORTANT**: DO NOT use filler phrases like "That's a great question". Provide facts immediately.
+- **PRIVACY & PII GUARDRAIL**: Never share personal or work email addresses, phone numbers, or home addresses. Direct contact inquiries to LinkedIn (${PROFILE.links.linkedin}) or ${PROFILE.links.portfolio}. It is okay to share Enrique's city (Seattle, WA) and the languages he speaks (English, Spanish, Cantonese, Mandarin) if asked.
 
 ## CONTENT RULES
-- If asked about awards: Mention the GTM awards and the **Trophy Room 🏆**. The cards will render below.
-- If asked about certs: Mention the ${CERTIFICATIONS.length}x cloud certifications and the **Cloud Badge Wall ☁️**. The grid will render below.
-- If asked about speaking: Mention Google Cloud Next and his **Stage Presence 🎤**. The cards will render below.
-- If asked about testimonials: Mention feedback from Thomas Kurian and the **Googler Vibes ✨**. The cards will render below.
-- If asked for a "gallery" or "pictures of work": Mention the **Hall of Mastery 🖼️** and highlights like the Olympics architecture. The gallery will render below.
-- If asked for "bubble head" photos or unique headshots: Mention the **Hall of Mastery 🖼️** and the unique visual presentation. Provide a brief professional acknowledge.
-- If asked about the weather: Briefly acknowledge the current conditions in Seattle. This showcases your capability to integrate real-time (mocked for demo) utility data into a personalized agent experience.
-- If asked about skill matching, role fit, or leadership fit: Mention Enrique's deep alignment with senior AI leadership roles and the **Skill Matcher 🎯** / **Fit Analyzer 📊**. The flashcards will render below.
-- If asked about Cockpit or AgentOps: Mention the v0.3.0 release on PyPI and the **Project Spotlight**. The cards will render below.
-- **SECRET MODE**: If the user enters the Konami code (↑↑↓↓←→←→BA) or triple-taps the logo, "unlock:comics" is triggered. You should then reveal **The Agentic Adventures** comics (Business Leaders Edition and Issues 1-4). Mention that Enrique is the architect of these secret files.`;
+- If asked about awards: Mention the Q3 2026 Silver Google AI Award (SWIFTY), 4x Gartner/Forrester Leader wins, and the **Trophy Room 🏆**. The cards will render below.
+- If asked about certs: Mention the 16+ cloud certifications across Google Cloud and AWS and the **Cloud Badge Wall ☁️**. The grid will render below.
+- If asked about speaking: Mention Build with Gemini (Seattle & Bellevue 2026) and Google Cloud Next '24/'25/'26 and his **Stage Presence 🎤**. The cards will render below.
+- If asked about testimonials: Mention feedback from Google Cloud CEO Thomas Kurian, NorthAm President Michael Clark, Amar Raol, Lee Moore, and VP Brian Delahunty (**Googler Vibes ✨**). The cards will render below.
+- If asked for a "gallery" or "projects" or "work": Mention the **Hall of Mastery 🖼️** including SafeKids Portal, Economic Research Agent, AgentOps Cockpit v2.0.2, Curious Little Minds, NBC Olympics 'Oli', Advent of Agents, and Disney+. The gallery will render below.
+- If asked about skill matching, role fit, or leadership fit: Mention Enrique's L6 Staff TDL role in Google Cloud Delta & Outbound PM experience and the **Skill Matcher 🎯** / **Fit Analyzer 📊**. The flashcards will render below.
+- If asked about Cockpit or AgentOps: Mention the v2.0.2 release on PyPI (built after auditing 44 enterprise agents) and the **Project Spotlight**.
+- **SECRET MODE**: If the user enters the Konami code (↑↑↓↓←→←→BA) or triple-taps the logo, "unlock:comics" is triggered. Reveal **The Agentic Adventures** comics (Business Leaders Edition and Issues 1-4).`;
   }
 
   /**
@@ -170,6 +196,7 @@ ${EXPERIENCE.map((e: any) => `- **${e.company} (${e.period})**: ${e.role}.\n  - 
 
     // Update the message element with the response text
     this.setMessageText(messageElement, responseText);
+    this.addCopyButton(messageElement, responseText);
 
     // If we need A2UI content, fetch and render it
     if (intent !== "greeting") {
@@ -221,12 +248,20 @@ ${EXPERIENCE.map((e: any) => `- **${e.company} (${e.period})**: ${e.role}.\n  - 
         }
       } catch (error) {
         console.error("[Orchestrator] Error fetching A2UI content:", error);
-        placeholder.innerHTML = `
-          <span class="material-symbols-outlined" style="color: #f87171;">error</span>
-          <span class="text">Failed to load content. Please try again.</span>
-        `;
+        placeholder.replaceChildren();
+        const errIcon = document.createElement("span");
+        errIcon.className = "material-symbols-outlined";
+        errIcon.style.color = "#f87171";
+        errIcon.textContent = "error";
+        const errText = document.createElement("span");
+        errText.className = "text";
+        errText.textContent = "Failed to load content. Please try again.";
+        placeholder.append(errIcon, errText);
       }
     }
+
+    // Add contextual follow-up suggestion chips
+    this.addFollowupChips(messageElement, intent);
 
     // Add assistant response to history
     this.conversationHistory.push({ role: "assistant", content: responseText });
@@ -308,7 +343,7 @@ Examples:
 - "show me your certifications" → certs
 - "what open source projects do you have?" → repositories
 - "show me your github repos" → repositories
-- "explain ATP" → general
+- "tell me about Google Cloud Delta" → general
 - "hi there" → greeting`,
           intentGuidance: "",
           messages: [],
@@ -434,12 +469,12 @@ Examples:
     switch (intent) {
       case "flashcards":
         intentGuidance =
-          "The user wants flashcards. Respond with a SHORT (1-2 sentences) conversational acknowledgment. DO NOT include the flashcard content in your response - the flashcards will be rendered separately as interactive cards below your message. Just say something brief like 'Here are some flashcards to help you review!' or 'I've created some personalized flashcards for you.'";
+          "The user wants flashcards. Respond with a SHORT (1-2 sentences) conversational acknowledgment. DO NOT include the flashcard content in your response - the flashcards will be rendered separately as interactive cards below your message. Just say something brief like 'Here are some flashcards highlighting Enrique's impact!' or 'I've created personalized flashcards for you.'";
         break;
       case "podcast":
       case "audio":
         intentGuidance =
-          "The user wants to listen to the podcast. Respond with a SHORT (1-2 sentences) introduction. DO NOT write out the podcast transcript or script - the audio player will be rendered separately below your message. Just say something brief like 'Here's a personalized podcast about ATP!' or 'I've got a podcast that explains this with gym analogies you'll love.'";
+          "The user wants to listen to the podcast. Respond with a SHORT (1-2 sentences) introduction. DO NOT write out the podcast transcript or script - the audio player will be rendered separately below your message. Just say something brief like 'Here's an audio deep dive into Enrique's agentic AI architecture!'";
         break;
       case "blog":
         intentGuidance =
@@ -760,6 +795,119 @@ Examples:
   }
 
   /**
+   * Add a one-click Copy Response button to the message header actions.
+   */
+  private addCopyButton(messageElement: HTMLDivElement, rawText: string): void {
+    const actionsEl = messageElement.querySelector(".message-actions");
+    if (!actionsEl) return;
+
+    const btn = document.createElement("button");
+    btn.className = "copy-msg-btn";
+    btn.title = "Copy response text";
+
+    const icon = document.createElement("span");
+    icon.className = "material-symbols-outlined";
+    icon.style.fontSize = "16px";
+    icon.textContent = "content_copy";
+    btn.appendChild(icon);
+
+    btn.addEventListener("click", async () => {
+      try {
+        await navigator.clipboard.writeText(rawText);
+        icon.textContent = "check";
+        btn.classList.add("copied");
+        setTimeout(() => {
+          icon.textContent = "content_copy";
+          btn.classList.remove("copied");
+        }, 2000);
+      } catch (err) {
+        console.warn("[Orchestrator] Clipboard write failed:", err);
+      }
+    });
+
+    actionsEl.appendChild(btn);
+  }
+
+  /**
+   * Add contextual follow-up suggestion chips at the bottom of an assistant response.
+   */
+  private addFollowupChips(messageElement: HTMLDivElement, intent: Intent): void {
+    const contentEl = messageElement.querySelector(".message-content");
+    if (!contentEl) return;
+
+    const followupsByIntent: Record<string, Array<{ icon: string; label: string; prompt: string }>> = {
+      timeline: [
+        { icon: "psychology", label: "Skill Match vs Senior AI Role", prompt: "How do Enrique's skills match a Senior AI role?" },
+        { icon: "emoji_events", label: "2026 Awards & SWIFTY", prompt: "List Enrique's major awards and hackathon wins" },
+        { icon: "collections", label: "Hall of Mastery", prompt: "Show me a gallery of your work and highlights" }
+      ],
+      awards: [
+        { icon: "verified", label: "4x Analyst Leader Wins", prompt: "How did Enrique drive 4x Gartner Magic Quadrant and Forrester Wave Leader wins in 2026?" },
+        { icon: "history_edu", label: "Career Timeline", prompt: "Show me Enrique's career highlights as a sequential timeline" },
+        { icon: "format_quote", label: "Leadership Testimonials", prompt: "Show me what people think of Enrique (testimonials)" }
+      ],
+      certs: [
+        { icon: "radar", label: "Technical Proficiency Radar", prompt: "Show me your technical proficiency radar" },
+        { icon: "folder_code", label: "Open Source Repos", prompt: "Show me your featured open source repositories" },
+        { icon: "analytics", label: "AI Lead Fit Analysis", prompt: "Analyze Enrique's fit for an AI Lead role" }
+      ],
+      gallery: [
+        { icon: "folder_code", label: "AgentOps Cockpit & Repos", prompt: "Show me your featured open source repositories" },
+        { icon: "podcasts", label: "Podcast Deep Dive", prompt: "Show me his top YouTube videos" },
+        { icon: "article", label: "Medium Publications", prompt: "Show me some of his Medium blog posts" }
+      ],
+      repositories: [
+        { icon: "collections", label: "Hall of Mastery Projects", prompt: "Show me a gallery of your work and highlights" },
+        { icon: "article", label: "Read Technical Blogs", prompt: "Show me some of his Medium blog posts" },
+        { icon: "workspace_premium", label: "16x Cloud Certifications", prompt: "Show Enrique's cloud certifications" }
+      ],
+      speaker: [
+        { icon: "podcasts", label: "Watch Keynote Videos", prompt: "Show me his top YouTube videos" },
+        { icon: "format_quote", label: "Googler Testimonials", prompt: "Show me what people think of Enrique (testimonials)" },
+        { icon: "emoji_events", label: "Trophy Room", prompt: "List Enrique's major awards and hackathon wins" }
+      ]
+    };
+
+    const defaultFollowups = [
+      { icon: "history_edu", label: "Career Timeline", prompt: "Show me Enrique's career highlights as a sequential timeline" },
+      { icon: "collections", label: "Hall of Mastery", prompt: "Show me a gallery of your work and highlights" },
+      { icon: "emoji_events", label: "2026 Awards & SWIFTY", prompt: "List Enrique's major awards and hackathon wins" }
+    ];
+
+    const chips = followupsByIntent[intent] || defaultFollowups;
+
+    const container = document.createElement("div");
+    container.className = "followup-chips";
+
+    chips.forEach((chipData) => {
+      const btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "followup-chip";
+      btn.dataset.prompt = chipData.prompt;
+
+      const icon = document.createElement("span");
+      icon.className = "material-symbols-outlined";
+      icon.textContent = chipData.icon;
+
+      const label = document.createElement("span");
+      label.textContent = chipData.label;
+
+      btn.append(icon, label);
+      btn.addEventListener("click", () => {
+        window.dispatchEvent(
+          new CustomEvent("portfolio:send-prompt", {
+            detail: { prompt: chipData.prompt }
+          })
+        );
+      });
+
+      container.appendChild(btn);
+    });
+
+    contentEl.appendChild(container);
+  }
+
+  /**
    * Add a JSON schema viewer to the message.
    */
   private addJsonViewer(messageElement: HTMLDivElement, json: any): void {
@@ -771,7 +919,11 @@ Examples:
     const btn = document.createElement("button");
     btn.className = "json-toggle-btn";
     btn.title = "Show A2UI JSON Schema";
-    btn.innerHTML = '<span class="material-symbols-outlined" style="font-size: 18px;">code</span>';
+    const codeIcon = document.createElement("span");
+    codeIcon.className = "material-symbols-outlined";
+    codeIcon.style.fontSize = "18px";
+    codeIcon.textContent = "code";
+    btn.appendChild(codeIcon);
 
     // Create viewer element
     const viewer = document.createElement("pre");
@@ -789,7 +941,7 @@ Examples:
       // Scroll into view if opening
       if (isShowing) {
         setTimeout(() => {
-          viewer.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+          viewer.scrollIntoView({ behavior: "smooth", block: "nearest" });
         }, 100);
       }
     });

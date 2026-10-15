@@ -24,8 +24,19 @@ firebase-debug.log*
 *-key.json
 maui_policy.json
 
-# Local artifacts
+# Local artifacts & environments
 package.json.bak
 temp-test/
 .wireit/
 a2ui-web-lib/
+**/.env
+.env.*
+!**/.env.template
+agent/.adk/
+artifacts/
+agent/release_venv/
+agent/venv*/
+.venv/
+dist_cockpit/
+cockpit_final_report_v1.md
+

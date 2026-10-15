@@ -1,32 +1,59 @@
 /*
  * UI Manager
- * Handles Speech Recognition, Chat History (Recent), and Dropdown Menus.
+ * Handles Speech Recognition, Chat History (Recent), Toast Notifications, and Popover Menus.
  */
+
+export interface RecentChatItem {
+  id: number;
+  title: string;
+  prompt: string;
+  timestamp: string;
+}
 
 export class UIManager {
   private chatInput: HTMLTextAreaElement;
   private recentContainer: HTMLDivElement | null;
+  private toastTimeout: number | null = null;
   private placeholders = [
-    "Ask about Enrique's AI journey...",
-    "Show me photos in bubble heads",
-    "Test me on your career highlights",
-    "Give me some quiz questions",
+    "Ask about Enrique's 2026 Google Cloud Delta role...",
+    "Tell me about the 4x Gartner & Forrester Leader wins",
+    "What is the Q3 2026 Silver Google AI Award (SWIFTY)?",
     "Show me the Strategic Integration Matrix",
     "How do your skills match a Senior AI role?",
     "Show me the Hall of Mastery 🖼️",
-    "What do Googlers say about him? ✨"
+    "What do Googlers say about him? ✨",
+    "Show me your featured open source repositories"
   ];
   private currentPlaceholderIndex = 0;
 
   constructor() {
     this.chatInput = document.getElementById("chatInput") as HTMLTextAreaElement;
     this.recentContainer = document.getElementById("recent-chats-container") as HTMLDivElement;
-    
+
     this.initPlaceholderRotation();
     this.initSpeechRecognition();
     this.initHistoryAndActions();
     this.renderRecentChats();
     this.initPromptTicker();
+  }
+
+  /**
+   * Displays a non-blocking glassmorphic toast notification.
+   */
+  public showToast(message: string) {
+    const toast = document.getElementById("ui-toast");
+    const toastText = document.getElementById("ui-toast-text");
+    if (!toast || !toastText) return;
+
+    toastText.textContent = message;
+    toast.classList.add("visible");
+
+    if (this.toastTimeout) {
+      window.clearTimeout(this.toastTimeout);
+    }
+    this.toastTimeout = window.setTimeout(() => {
+      toast.classList.remove("visible");
+    }, 3200);
   }
 
   /**
@@ -42,7 +69,7 @@ export class UIManager {
   }
 
   /**
-   * Initializes the flashing high-fidelity prompt ticker.
+   * Initializes the high-fidelity prompt ticker.
    */
   private initPromptTicker() {
     const tickerContainer = document.getElementById("prompt-ticker");
@@ -51,45 +78,40 @@ export class UIManager {
     if (!tickerContainer || !tickerText || !this.chatInput) return;
 
     const prompts = [
-      "Show me photos in bubble heads",
-      "Test me on your career highlights",
-      "Give me some quiz questions",
+      "Tell me about the Q3 2026 Silver Google AI Award (SWIFTY) and Advent of Agents",
+      "How did Enrique drive 4x Gartner Magic Quadrant and Forrester Wave Leader wins in 2026?",
+      "Tell me about Enrique's $2B+ enterprise AI deal scope and Google Cloud Delta role",
       "How do your skills match a Senior AI role?",
       "Show me the Strategic Integration Matrix",
       "Walk me through your career journey",
       "Show me your technical proficiency radar",
       "Listen to your vision in a podcast deep dive",
       "Show me your stage presence at Google Cloud Next",
-      "What awards have you won at Google?"
+      "Show me your featured open source repositories"
     ];
 
     let currentPromptIndex = 0;
 
     // Click to send prompt
     tickerContainer.addEventListener("click", () => {
-      if (this.chatInput) {
-        this.chatInput.value = prompts[currentPromptIndex];
-        this.chatInput.dispatchEvent(new Event("input"));
-
-        // Find and click the send button
-        const sendBtn = document.getElementById("sendBtn") as HTMLButtonElement;
-        if (sendBtn) {
-          sendBtn.click();
-        }
-      }
+      window.dispatchEvent(
+        new CustomEvent("portfolio:send-prompt", {
+          detail: { prompt: prompts[currentPromptIndex] }
+        })
+      );
     });
 
     // Rotate prompts with a fade effect
     setInterval(() => {
       tickerContainer.style.opacity = "0";
-      tickerContainer.style.transform = "translateY(10px)";
+      tickerContainer.style.transform = "translateY(8px)";
 
       setTimeout(() => {
         currentPromptIndex = (currentPromptIndex + 1) % prompts.length;
         tickerText.textContent = prompts[currentPromptIndex];
         tickerContainer.style.opacity = "1";
         tickerContainer.style.transform = "translateY(0)";
-      }, 500);
+      }, 400);
     }, 5000);
   }
 
@@ -101,7 +123,12 @@ export class UIManager {
     const SpeechRecognition = (window as any).SpeechRecognition || (window as any).webkitSpeechRecognition;
 
     if (!micBtn || !SpeechRecognition) {
-      if (micBtn) micBtn.style.opacity = "0.5";
+      if (micBtn) {
+        micBtn.style.opacity = "0.6";
+        micBtn.addEventListener("click", () => {
+          this.showToast("Voice input requires a browser with Web Speech API support.");
+        });
+      }
       return;
     }
 
@@ -113,10 +140,10 @@ export class UIManager {
       try {
         recognition.start();
         micBtn.classList.add("recording");
-        (micBtn.querySelector(".material-symbols-outlined") as HTMLElement).textContent = "graphic_eq";
-        
-        // Visual feedback
+        const iconEl = micBtn.querySelector(".material-symbols-outlined") as HTMLElement;
+        if (iconEl) iconEl.textContent = "graphic_eq";
         this.chatInput.placeholder = "Listening...";
+        this.showToast("Listening... Speak your question for Enrique's Agent.");
       } catch (e) {
         console.warn("Speech recognition already started or error:", e);
       }
@@ -132,8 +159,8 @@ export class UIManager {
 
     recognition.onend = () => {
       micBtn.classList.remove("recording");
-      (micBtn.querySelector(".material-symbols-outlined") as HTMLElement).textContent = "mic";
-      this.initPlaceholderRotation(); // Restore placeholder
+      const iconEl = micBtn.querySelector(".material-symbols-outlined") as HTMLElement;
+      if (iconEl) iconEl.textContent = "mic";
     };
 
     recognition.onerror = (event: any) => {
@@ -143,90 +170,227 @@ export class UIManager {
   }
 
   /**
-   * Initializes History and More Actions buttons.
+   * Initializes History, Popover Menus, and Action Items using non-blocking popovers.
    */
   private initHistoryAndActions() {
     const historyBtn = document.getElementById("history-btn");
     const moreActionsBtn = document.getElementById("more-actions-btn");
+    const moreActionsMenu = document.getElementById("more-actions-menu");
     const profileActionsBtn = document.getElementById("profile-actions-btn");
+    const profileActionsMenu = document.getElementById("profile-actions-menu");
+
+    const closeAllPopovers = () => {
+      moreActionsMenu?.classList.remove("open");
+      profileActionsMenu?.classList.remove("open");
+    };
 
     if (historyBtn) {
       historyBtn.addEventListener("click", () => {
-        alert("Chat History feature coming soon! Your recent chats are saved in the sidebar.");
+        const sidebar = document.getElementById("app-sidebar");
+        const backdrop = document.getElementById("sidebar-backdrop");
+        if (window.innerWidth <= 820 && sidebar) {
+          sidebar.classList.add("open");
+          backdrop?.classList.add("open");
+        }
+        if (this.recentContainer) {
+          this.recentContainer.scrollIntoView({ behavior: "smooth", block: "center" });
+        }
+        this.showToast("Recent conversations are pinned in the left sidebar.");
       });
     }
 
-    if (moreActionsBtn) {
-      moreActionsBtn.addEventListener("click", () => {
-        const menu = ["Clear Chat", "Settings", "Export PDF"];
-        console.log("Showing more actions menu:", menu);
-        alert("More Actions: \n- Clear Chat\n- Settings\n- Export PDF\n(Coming Soon!)");
+    if (moreActionsBtn && moreActionsMenu) {
+      moreActionsBtn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        const isOpen = moreActionsMenu.classList.contains("open");
+        closeAllPopovers();
+        if (!isOpen) {
+          moreActionsMenu.classList.add("open");
+        }
       });
     }
 
-    if (profileActionsBtn) {
-      profileActionsBtn.addEventListener("click", () => {
-        alert("Account Settings & Profile Management\n(Coming Soon!)");
+    if (profileActionsBtn && profileActionsMenu) {
+      profileActionsBtn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        const isOpen = profileActionsMenu.classList.contains("open");
+        closeAllPopovers();
+        if (!isOpen) {
+          profileActionsMenu.classList.add("open");
+        }
+      });
+    }
+
+    // Close popovers on outside click or Escape
+    document.addEventListener("click", () => closeAllPopovers());
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") closeAllPopovers();
+    });
+
+    // Action: Clear Chat / Reset to Welcome Screen
+    const actionClearChat = document.getElementById("action-clear-chat");
+    if (actionClearChat) {
+      actionClearChat.addEventListener("click", () => {
+        closeAllPopovers();
+        window.location.reload();
+      });
+    }
+
+    // Action: Export Conversation to Markdown
+    const actionExportMd = document.getElementById("action-export-md");
+    if (actionExportMd) {
+      actionExportMd.addEventListener("click", () => {
+        closeAllPopovers();
+        this.exportConversationMarkdown();
+      });
+    }
+
+    // Action: Clear Recent History
+    const actionClearHistory = document.getElementById("action-clear-history");
+    if (actionClearHistory) {
+      actionClearHistory.addEventListener("click", () => {
+        closeAllPopovers();
+        localStorage.removeItem("enriq_chat_history");
+        this.renderRecentChats();
+        this.showToast("Cleared recent chat history.");
+      });
+    }
+
+    // Action: Unlock Secret Comics
+    const actionUnlockComics = document.getElementById("action-unlock-comics");
+    if (actionUnlockComics) {
+      actionUnlockComics.addEventListener("click", () => {
+        closeAllPopovers();
+        window.dispatchEvent(new CustomEvent("portfolio:unlock-comics"));
       });
     }
   }
 
   /**
-   * Saves a message summary to the recent chats.
+   * Exports the current chat transcript as a downloadable Markdown file.
+   */
+  private exportConversationMarkdown() {
+    const messages = document.querySelectorAll("#chatArea .message");
+    if (!messages.length) {
+      this.showToast("Start a conversation first before exporting.");
+      return;
+    }
+
+    const lines: string[] = [
+      "# Enrique K Chan — Portfolio Concierge Transcript",
+      `Exported: ${new Date().toISOString()}`,
+      ""
+    ];
+
+    messages.forEach((msg) => {
+      const sender = msg.querySelector(".message-sender")?.textContent?.trim() || "Speaker";
+      const text = msg.querySelector(".message-text")?.textContent?.trim() || "";
+      lines.push(`### ${sender}\n\n${text}\n`);
+    });
+
+    const blob = new Blob([lines.join("\n")], { type: "text/markdown;charset=utf-8" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = `enriquekchan-concierge-${Date.now()}.md`;
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    URL.revokeObjectURL(url);
+    this.showToast("Conversation exported as Markdown (.md)");
+  }
+
+  /**
+   * Saves a message summary and full prompt to recent chats.
    */
   public saveToHistory(message: string) {
-    if (!message || message.length < 5) return;
+    if (!message || message.length < 4) return;
 
-    const history = JSON.parse(localStorage.getItem("enriq_chat_history") || "[]");
-    
-    // Check if this title already exists to avoid duplicates in one session
-    const title = message.length > 25 ? message.substring(0, 25) + "..." : message;
-    if (history.length > 0 && history[0].title === title) return;
+    let history: RecentChatItem[] = [];
+    try {
+      history = JSON.parse(localStorage.getItem("enriq_chat_history") || "[]");
+    } catch {
+      history = [];
+    }
+
+    const title = message.length > 28 ? message.substring(0, 28) + "..." : message;
+    // Remove existing duplicate prompt
+    history = history.filter((item) => item.prompt !== message && item.title !== title);
 
     history.unshift({
       id: Date.now(),
-      title: title,
+      title,
+      prompt: message,
       timestamp: new Date().toISOString()
     });
 
-    // Keep only last 8
     localStorage.setItem("enriq_chat_history", JSON.stringify(history.slice(0, 8)));
     this.renderRecentChats();
   }
 
   /**
-   * Renders the recent chats in the sidebar.
+   * Renders the recent chats in the sidebar using XSS-safe DOM APIs.
    */
   private renderRecentChats() {
     if (!this.recentContainer) return;
 
-    const history = JSON.parse(localStorage.getItem("enriq_chat_history") || "[]");
-    
+    let history: RecentChatItem[] = [];
+    try {
+      history = JSON.parse(localStorage.getItem("enriq_chat_history") || "[]");
+    } catch {
+      history = [];
+    }
+
+    this.recentContainer.replaceChildren();
+
     if (history.length === 0) {
-      this.recentContainer.innerHTML = `
-        <div class="sidebar-item" style="pointer-events: none; opacity: 0.6;">
-          <span class="material-symbols-outlined">history</span>
-          <span>No recent chats yet</span>
-        </div>
-      `;
+      const emptyEl = document.createElement("div");
+      emptyEl.className = "sidebar-item";
+      emptyEl.style.pointerEvents = "none";
+      emptyEl.style.opacity = "0.6";
+
+      const icon = document.createElement("span");
+      icon.className = "material-symbols-outlined";
+      icon.textContent = "history";
+
+      const label = document.createElement("span");
+      label.textContent = "No recent chats yet";
+
+      emptyEl.append(icon, label);
+      this.recentContainer.appendChild(emptyEl);
       return;
     }
 
-    this.recentContainer.innerHTML = history.map((item: any) => `
-      <div class="sidebar-item" data-id="${item.id}" style="cursor: pointer;">
-        <span class="material-symbols-outlined">chat_bubble_outline</span>
-        <span>${item.title}</span>
-      </div>
-    `).join("");
+    history.forEach((item) => {
+      const row = document.createElement("div");
+      row.className = "sidebar-item";
+      row.dataset.id = String(item.id);
+      row.dataset.prompt = item.prompt || item.title;
+      row.title = item.prompt || item.title;
+      row.style.cursor = "pointer";
 
-    // Add click events to chips if they should reload (demo just reloads currently)
-    const items = this.recentContainer.querySelectorAll(".sidebar-item");
-    items.forEach(item => {
-      item.addEventListener("click", () => {
-        if (confirm("Would you like to reload this session? (Demo currently just starts a new one)")) {
-          window.location.reload();
-        }
+      const icon = document.createElement("span");
+      icon.className = "material-symbols-outlined";
+      icon.textContent = "chat_bubble_outline";
+
+      const label = document.createElement("span");
+      label.textContent = item.title;
+      label.style.overflow = "hidden";
+      label.style.textOverflow = "ellipsis";
+      label.style.whiteSpace = "nowrap";
+
+      row.append(icon, label);
+      row.addEventListener("click", () => {
+        const promptToSend = item.prompt || item.title.replace(/\.\.\.$/, "");
+        window.dispatchEvent(
+          new CustomEvent("portfolio:send-prompt", {
+            detail: { prompt: promptToSend }
+          })
+        );
       });
+
+      this.recentContainer?.appendChild(row);
     });
   }
 }
+

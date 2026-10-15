@@ -1,377 +1,1148 @@
 {
-  "REASONING_METADATA": {
-    "intent_mapping": {
-      "profile": "Persona and background verification",
-      "experience": "Career trajectory and impact analysis",
-      "projects": "Technical competence and delivery history",
-      "skills": "Quantitative proficiency across cloud domains",
-      "testimonials": "Social proof and leadership validation"
-    },
-    "sovereignty_guardrails": "This data contains public professional information only. No PII or internal Google-confidential data is included."
-  },
   "PROFILE": {
-    "name": "Enrique K Chan",
-    "role": "Outbound Product Manager, Cloud AI at Google",
+    "name": "Enrique Kalven Chan",
+    "role": "Staff AI Technical Deployment Lead @ Google Cloud Delta & Outbound Product Manager, Cloud AI",
+    "badge": "Staff AI Technical Deployment Lead @ Google Cloud Delta",
+    "tagline": "Architecting the Agentic Future of Enterprise AI",
+    "banner_news": "Enrique won a Silver Google AI Award (SWIFTY, 2026 Q3) for Advent of Agents & drove 4x Gartner/Forrester Leader wins 🏆",
+    "summary": "15+ years leading large-scale cloud & AI transformations at Google, AWS, and Accenture. Staff Technical Deployment Lead (L6) in Google Cloud Delta spearheading Forward Deployed Engineering (FDE) for 15 top-qualified Fortune 500 enterprise accounts and $2B+ multi-year deal scope, alongside 20% Outbound Product Manager for Gemini Enterprise App driving 4 consecutive Gartner® Magic Quadrant™ & Forrester Wave™ Leader recognitions, Advent of Agents (32,000+ developers, 5T+ tokens driven to Gemini), and creator of AgentOps Cockpit (v2.0.2), Economic Research Agent (Agent Garden), SafeKids Portal, and Curious Little Minds.",
     "location": "Seattle, WA",
-    "summary": "Husband. Father. Cloud & AI Advisor. Seattle resident. Fluent in English, Spanish, Cantonese, and Mandarin. Architect of high-scale AI systems. Leading the transition from RAG to Agentic Workflows at Google Cloud.",
-    "narrative": "Based in Seattle, WA. Multilingual (Spanish, English, Cantonese, Mandarin). Combining Ali Abdaal visual clarity with Google Cloud AI technical rigor. Specializing in high-signal AI deployments for the world's largest enterprises.",
-    "hero_subtitle": "Husband, family-oriented leader 👨‍👩‍👧‍👦, and Cloud & AI Advisor 🏠 based in Seattle, WA 📍. Multilingual (ES/EN/ZH). With 15+ years of experience across Google, AWS, and Accenture, I am passionate about scaling transformational technologies—from Disney's MagicBands to the future of agentic AI.",
-    "profile_pic": "/assets/hero.png",
-    "languages": [
-      "English (Native)",
-      "Spanish (Fluent)",
-      "Cantonese (Fluent)",
-      "Mandarin (Basic)"
-    ],
-    "links": {
+    "quote": "I listen, I take ownership to get things done, and I care about making people's lives easier.",
+    "metrics": {
+      "deals": "$2B+ Enterprise AI Pipeline & Deals",
+      "viewers": "40M+ Olympic Viewers Served (NBC OLI)",
+      "tokens": "5T+ Tokens Driven to Gemini",
+      "developers": "32K+ Developers Engaged (Advent of Agents)",
+      "analyst_wins": "4x Gartner® & Forrester™ Leader Wins"
+    },
+    "contact": {
       "linkedin": "https://www.linkedin.com/in/enriquechan/",
-      "medium": "https://medium.com/@enriq",
-      "portfolio": "https://enriquekchan-concierge.web.app",
+      "portfolio": "https://enriquekchan.web.app",
+      "status": "Open for Enterprise AI Transformation, Forward Deployed Engineering, Keynote Speaking & Advisory"
+    },
+    "links": {
+      "portfolio": "https://enriquekchan.web.app",
+      "concierge": "https://enriquekchan-concierge.web.app",
+      "linkedin": "https://www.linkedin.com/in/enriquechan/",
       "github": "https://github.com/enriquekalven",
+      "medium": "https://medium.com/@enriq",
       "youtube": "https://www.youtube.com/@enriquekchan",
-      "pypi": "https://pypi.org/project/agentops-cockpit/",
-      "cockpit": "https://agent-cockpit.web.app/"
-    }
+      "cockpit": "https://agent-cockpit.web.app/",
+      "safekids": "https://safe-kids.web.app/",
+      "economic_research": "https://economic-research.web.app/",
+      "curious_little_minds": "https://curious-little-minds.web.app/",
+      "advent_of_agents": "https://adventofagents.com/",
+      "pypi_cockpit": "https://pypi.org/project/agentops-cockpit/"
+    },
+    "top_skills": [
+      "Agentic AI Architecture (ADK / A2UI / A2A)",
+      "Forward Deployed Engineering (FDE)",
+      "AgentOps Cockpit (v2.0.2)",
+      "Enterprise AI Governance & Security",
+      "Gartner & Forrester Analyst Relations",
+      "Loop Engineering & AlphaEvolve",
+      "Multi-Agent Systems",
+      "Vertex AI & Gemini Enterprise",
+      "BigQuery AI & Data Mesh"
+    ]
   },
+  "ANALYST_RELATIONS": [
+    {
+      "badge": "LEADER 🏆",
+      "date": "September 10, 2026",
+      "title": "2026 Gartner® Magic Quadrant™ for Enterprise AI Assistants",
+      "description": "Drove product positioning, live architecture demos, and executive analyst briefings for Gemini Enterprise App, securing Google's placement as a Leader.",
+      "link": "https://www.gartner.com/en/documents/7059930",
+      "url": "https://www.gartner.com/en/documents/7059930",
+      "linkLabel": "Read Gartner Report"
+    },
+    {
+      "badge": "LEADER 🏆 (Highest Execution & Furthest Vision)",
+      "date": "August 20, 2026",
+      "title": "2026 Gartner® Magic Quadrant™ for Cloud-Native Application Platforms",
+      "description": "Recognized as a Leader positioned highest in Ability to Execute and furthest in Completeness of Vision for cloud-native and agentic runtime platforms.",
+      "link": "https://www.gartner.com/doc/reprints?id=1-2NRFFV6D&ct=260804&st=sb",
+      "url": "https://www.gartner.com/doc/reprints?id=1-2NRFFV6D&ct=260804&st=sb",
+      "linkLabel": "Read Gartner Reprint"
+    },
+    {
+      "badge": "LEADER 🏆 (5/5 in 15 Criteria)",
+      "date": "August 10, 2026",
+      "title": "The Forrester Wave™: AI Platforms, Q3 2026",
+      "description": "Google named a Leader in AI Platforms with the highest possible score (5/5) across 15 evaluation criteria, recognizing Vertex AI, ADK, and Gemini Enterprise.",
+      "link": "https://reprint.forrester.com/reports/the-forrester-wave-tm-ai-platforms-q3-2026-2639702d/index.html",
+      "url": "https://reprint.forrester.com/reports/the-forrester-wave-tm-ai-platforms-q3-2026-2639702d/index.html",
+      "linkLabel": "Read Forrester Wave"
+    },
+    {
+      "badge": "LEADER 🏆 (Highest Execution & Furthest Vision)",
+      "date": "May 14, 2026",
+      "title": "2026 Gartner® Magic Quadrant™ for AI Application Development Platforms",
+      "description": "Led the end-to-end submission, live evaluations, and analyst defense that placed Google Cloud as a Leader—highest in execution and furthest in vision in the inaugural AIADP MQ.",
+      "link": "https://cloud.google.com/blog/products/ai-machine-learning/google-is-a-leader-in-2026-gartner-magic-quadrant-for-ai-application-development-platforms",
+      "url": "https://cloud.google.com/blog/products/ai-machine-learning/google-is-a-leader-in-2026-gartner-magic-quadrant-for-ai-application-development-platforms",
+      "linkLabel": "Read Announcement"
+    }
+  ],
+  "SERVICES": [
+    {
+      "title": "Agentic AI Architecture",
+      "description": "Designing autonomous multi-agent systems, A2A protocols, and declarative A2UI experiences for enterprise scale."
+    },
+    {
+      "title": "Outbound Product Strategy",
+      "description": "Bridging engineering and C-suite executives to drive product adoption, analyst leadership (Gartner MQ), and GTM velocity."
+    },
+    {
+      "title": "Cloud & Data Modernization",
+      "description": "Architecting multi-petabyte data meshes, BigQuery AI ecosystems, and mission-critical cloud migrations."
+    },
+    {
+      "title": "Keynotes & Executive Enablement",
+      "description": "Delivering high-energy keynotes (Cloud Next), global developer challenges (Advent of Agents), and CXO workshops."
+    }
+  ],
   "EXPERIENCE": [
     {
-      "company": "Google Cloud",
-      "role": "Outbound Product Manager, Cloud AI",
-      "period": "Nov 2025 – Present",
-      "color": "#4285F4",
-      "logo": "google",
+      "company": "Google Cloud Delta ⚡",
+      "role": "Staff Technical Deployment Lead (TDL) | Delta",
+      "duration": "Jun 2026 — Present",
+      "period": "Jun 2026 — Present",
+      "location": "Seattle, WA",
+      "description": "L6 Staff Technical Deployment Lead spearheading Forward Deployed Engineering (FDE) and C-Suite AI transformation for Google Cloud's largest strategic enterprise accounts.",
       "highlights": [
-        "Leading vision and strategy for the AI Agents Enablement Center of Excellence.",
-        "Co-authored global 'Intro to Agents' whitepaper (1.5M+ attendees).",
-        "Drove adoption of the 'Build Agentic Workflows' offer on partner co-investment programs.",
-        "Released AgentOps Cockpit v2.0.2 to PyPI: A production-grade auditing & governance toolkit for AI Agents."
+        "Forward Deployed Engineering (FDE) Operating Model: Led the new FDE deployment model across 15 top-qualified Fortune 500 enterprise accounts, partnering directly with the C-Suite to co-create, transform, and deploy production AI solutions inside customer environments.",
+        "$2B Multi-Year Strategic Deal Scope: Core technical lead on the deal team capturing a $2B+ multi-year commit, structuring multi-million dollar strategic services, enablement, and partner co-investment programs.",
+        "Production AI Co-Creation: Embedded engineering pods directly with customer executives and principal architects to accelerate path-to-production for mission-critical agentic and generative AI workloads."
       ],
-      "impact": "Scaled Agentic AI enablement to 1.5M+ developers and secured multi-million dollar commitments for Gemini throughput.",
       "skills": [
-        "Product Strategy",
-        "Agent Governance",
-        "Ecosystem Enablement"
-      ]
+        "Forward Deployed Engineering",
+        "C-Suite Advisory",
+        "$2B+ Deal Structuring",
+        "Enterprise AI Transformation",
+        "Google Cloud Delta"
+      ],
+      "impact": "L6 Staff Technical Deployment Lead spearheading Forward Deployed Engineering (FDE) and C-Suite AI transformation for Google Cloud's largest strategic enterprise accounts."
     },
     {
-      "company": "Google Cloud",
-      "role": "Senior AI Consultant, PSO",
-      "period": "Jun 2023 – Nov 2025",
-      "color": "#34A853",
-      "logo": "google",
+      "company": "Google Cloud AI 🎯",
+      "role": "Outbound Product Manager | 20% Rotator | Gemini Enterprise App",
+      "duration": "Jun 2026 — Present",
+      "period": "Jun 2026 — Present",
+      "location": "Seattle, WA",
+      "description": "Driving Analyst Relations (Gartner MQ & Forrester Wave), competitive intelligence, and enterprise governance launches for Gemini Enterprise App.",
       "highlights": [
-        "NBC Olympic Concierge: Lead technical consultant for a GenAI solution serving 40M viewers.",
-        "WBD Translation & Caption AI: Owned technical delivery for STT pipelines.",
-        "Wayfair Agentspace: Led technical delivery for Project Bozeman (10+ connectors)."
+        "4x Consecutive Analyst Leader Wins (2026): Spearheaded briefings, live demos, and technical submissions across four landmark reports: 2026 Gartner® Magic Quadrant™ for Enterprise AI Assistants (Leader, Sept 2026), 2026 Gartner® MQ for Cloud-Native Application Platforms (Leader, Aug 2026), The Forrester Wave™: AI Platforms Q3 2026 (Leader with 5/5 in 15 criteria, Aug 2026), and 2026 Gartner® MQ for AI Application Development Platforms (Leader, May 2026).",
+        "Competitive Intelligence & Field Enablement: Led the cross-functional tiger team defining competitive positioning, technical battlecards, and executive enablement for enterprise agentic workspaces.",
+        "Enterprise Agent Governance GA Launch: Drove product launch, outbound messaging, and enterprise readiness for Agent Identity, Agent Registry, and Agent Gateway."
       ],
-      "impact": "Delivered sub-second latency for 90M+ Olympic queries and secured $1.3M in Vertex AI revenue.",
+      "skills": [
+        "Analyst Relations (Gartner & Forrester)",
+        "Gemini Enterprise App",
+        "Competitive Strategy",
+        "Agent Identity & Gateway",
+        "Product Launch"
+      ],
+      "impact": "Driving Analyst Relations (Gartner MQ & Forrester Wave), competitive intelligence, and enterprise governance launches for Gemini Enterprise App."
+    },
+    {
+      "company": "Google Cloud AI 🚀",
+      "role": "Outbound Product Manager | 100% Rotator | GE Agent Platform & Gemini Enterprise App",
+      "duration": "Dec 2025 — Jun 2026",
+      "period": "Dec 2025 — Jun 2026",
+      "location": "Seattle, WA",
+      "description": "Led outbound product strategy, global developer advocacy, analyst relations, and enterprise agent governance across Google's Agent Platform and Gemini Enterprise.",
+      "highlights": [
+        "Advent of Agents (Seasons 1 & 2): Co-led a 25-day global developer campaign reaching 32,000+ developers, achieving a Top 5 Global GitHub Repository, driving 5 Trillion tokens to Gemini, and culminating in a featured session at Google Cloud Next '26 (SOL331).",
+        "Executive Whitepaper — 'Introduction to Agents': Co-authored Google's flagship executive whitepaper distributed to 1.5M registered attendees, establishing industry-standard LLM Ops and multi-agent orchestration patterns.",
+        "Gartner MQ Leader (AI Application Development Platforms): Owned the end-to-end submission, live demos, and analyst defense that positioned Google Cloud highest in execution and furthest in vision.",
+        "Cross-Org Agent Governance RFC & Top-50 Enterprise Briefings: Authored a foundational RFC unifying Agent Governance across 5 Google product areas, and presented 'Gemini Enterprise Governance at Scale' directly to Google's Top 50 enterprise customers.",
+        "AgentOps Cockpit & OpenTelemetry in ADK: Audited 44 production enterprise agents to identify Day-2 failure modes, built the open-source AgentOps Cockpit, and drove native OpenTelemetry observability integration into Google ADK.",
+        "34,000-Seat Gemini Enterprise Defense: Protected and expanded 34,000+ seats across flagship accounts including DoorDash and Telus through executive architecture reviews and competitive bake-offs."
+      ],
+      "skills": [
+        "Google ADK",
+        "Gemini Enterprise",
+        "Agent Governance",
+        "OpenTelemetry",
+        "Developer Advocacy",
+        "Executive Whitepapers"
+      ],
+      "impact": "Led outbound product strategy, global developer advocacy, analyst relations, and enterprise agent governance across Google's Agent Platform and Gemini Enterprise."
+    },
+    {
+      "company": "Google Cloud AI Services 🧪",
+      "role": "Senior AI Consultant | Cloud Professional Services (PSO)",
+      "duration": "Jun 2023 — Dec 2025",
+      "period": "Jun 2023 — Dec 2025",
+      "location": "Seattle, WA",
+      "description": "Principal technical delivery lead and pre-sales architect for Google Cloud's flagship Generative AI and Agentic AI customer deployments.",
+      "highlights": [
+        "Commercial & Delivery Excellence: Delivered 24 enterprise AI customer projects generating $14.6M in services revenue at 81% billable utilization and 100% CSAT, while helping close 21 net-new deals worth $11M.",
+        "NBC 2024 Paris Olympic Games ('Oli' AI Concierge): Architected the high-scale RAG and Vertex AI Provisioned Throughput platform serving 40M+ viewers and 90M+ queries with sub-second latency and a 0.5% error rate.",
+        "Warner Bros. Discovery (WBD) Localization & RLHF: Led media localization, captioning, and human-in-the-loop RLHF pipelines, unlocking $960K in Phase 3 expansion revenue.",
+        "Agent Center of Enablement (CoE): Founded and launched the internal Agent Center of Enablement to standardize production ADK blueprints, evaluation harnesses, and safety guardrails across Google Cloud Consulting."
+      ],
       "skills": [
         "Vertex AI",
-        "RLHF / SFT",
-        "Provisioned Throughput",
-        "Enterprise MLOps"
-      ]
+        "Production RAG",
+        "RLHF",
+        "High-Scale Architecture",
+        "Pre-Sales & Delivery"
+      ],
+      "impact": "Principal technical delivery lead and pre-sales architect for Google Cloud's flagship Generative AI and Agentic AI customer deployments."
     },
     {
-      "company": "Amazon Web Services",
-      "role": "Senior Cloud Architect",
-      "period": "May 2020 – May 2021",
-      "color": "#FF9900",
-      "logo": "aws",
+      "company": "Google Cloud AI Services 📊",
+      "role": "Senior Data Consultant | Cloud Professional Services (PSO)",
+      "duration": "Jun 2021 — Jun 2023",
+      "period": "Jun 2021 — Jun 2023",
+      "location": "Seattle, WA",
+      "description": "Architected enterprise-scale data meshes, petabyte-scale EDW modernizations, and internal operational intelligence platforms.",
       "highlights": [
-        "Designed and deployed large-scale cloud architectures for enterprise clients.",
-        "Built distributed microservices with TypeScript and AWS CDK.",
-        "Administered AWS Well-Architected Framework reviews."
+        "Boeing Enterprise Analytical Platform: Scaled a federated Source-Oriented Data Mesh on BigQuery from 1 to 29 business tenants with automated data governance and fine-grained security.",
+        "EDW Modernization Offering Lead: Defined repeatable migration factories and reference architectures for Teradata/Snowflake/Redshift to BigQuery transformations.",
+        "gShadowPSO Dashboard (Q3 2022 Hackathon Winner): Built an automated shadowing and onboarding platform for Nooglers that won the NorthAm Regional Hackathon and scaled across PSO."
       ],
-      "impact": "Modernized legacy infrastructures for Fortune 500 clients into highly available AWS architectures.",
       "skills": [
-        "AWS SDK",
-        "Serverless",
-        "CDK",
-        "Infrastructure as Code"
-      ]
+        "BigQuery",
+        "Data Mesh",
+        "EDW Modernization",
+        "Data Governance",
+        "Terraform"
+      ],
+      "impact": "Architected enterprise-scale data meshes, petabyte-scale EDW modernizations, and internal operational intelligence platforms."
     },
     {
-      "company": "Accenture",
-      "role": "Senior Manager, Cloud Strategy",
-      "period": "Nov 2010 – May 2020",
-      "color": "#A100FF",
-      "logo": "accenture",
+      "company": "Amazon Web Services (AWS) ☁️",
+      "role": "Senior Cloud Architect | ProServe Public Sector",
+      "duration": "May 2020 — May 2021",
+      "period": "May 2020 — May 2021",
+      "location": "Seattle, WA",
+      "description": "Led mission-critical cloud migrations, serverless data lakes, and security compliance architectures for public sector and education institutions.",
       "highlights": [
-        "Lead, Cloud Strategy & Data Analytics (10-Year Tenure).",
-        "Sold $10M+ in delivery work; generated $25M in pre-sales pipeline.",
-        "Managed career growth for 5 direct reports."
+        "Large-Scale Cloud Migrations: Architected multi-account AWS Landing Zones, serverless analytics pipelines, and disaster-recovery frameworks for state and higher-education agencies.",
+        "Security & Compliance Automation: Implemented automated IAM guardrails, encryption-at-rest/in-transit, and continuous compliance monitoring across regulated workloads."
       ],
-      "impact": "Generated $25M in pre-sales pipeline and successfully delivered $10M+ in cloud modernization services."
+      "skills": [
+        "AWS Architecture",
+        "Serverless Data Lakes",
+        "Cloud Security",
+        "Public Sector"
+      ],
+      "impact": "Led mission-critical cloud migrations, serverless data lakes, and security compliance architectures for public sector and education institutions."
+    },
+    {
+      "company": "Accenture 💼",
+      "role": "Senior Manager | Cloud Strategy & Data Analytics",
+      "duration": "May 2011 — May 2020",
+      "period": "May 2011 — May 2020",
+      "location": "Seattle, WA",
+      "description": "Progressed from Analyst to Senior Manager over 9 years, leading global engineering teams and multi-million-dollar digital transformations for Fortune 100 media & entertainment brands.",
+      "highlights": [
+        "Commercial Impact: Managed $10M+ in direct delivery programs and drove $25M+ in pre-sales pipeline across media, entertainment, and hospitality accounts.",
+        "Disney+ Global Launch & Scaling (100M+ Subscribers): Led global data platform and streaming telemetry scaling across North America, EMEA, and APAC during hyper-growth.",
+        "Walt Disney World MyMagic+ (FastPass+ & MagicBands): Engineered core reservation, real-time park telemetry, and IoT wearable integration platforms serving millions of daily park guests."
+      ],
+      "skills": [
+        "Global Program Leadership",
+        "Streaming Data Platforms",
+        "IoT & Telemetry",
+        "$25M+ Pre-Sales",
+        "Executive Advisory"
+      ],
+      "impact": "Progressed from Analyst to Senior Manager over 9 years, leading global engineering teams and multi-million-dollar digital transformations for Fortune 100 media & entertainment brands."
     }
   ],
   "PROJECTS": [
     {
-      "title": "AgentOps Cockpit v2.0.2 🚀",
+      "title": "SafeKids Portal 🛡️👶",
+      "tag": "Creator / Open-Source Family Media Portal",
+      "authorProject": true,
+      "description": "Algorithm-free, curated educational video & learning portal built for parents to break the hyper-stimulating kids' media dopamine loop.",
+      "image": "https://enriquekchan.web.app/safekids_portal.png",
+      "link": "https://safe-kids.web.app/",
+      "url": "https://safe-kids.web.app/",
+      "highlights": [
+        "Zero-Algorithm Playback: Eliminates autoplay rabbit holes, recommendation feeds, and high-dopamine short-form loops.",
+        "Parent-Curated Whitelists: Gives parents deterministic control over approved educational channels, low-stimulation shows, and viewing timers.",
+        "Featured on Medium: Companion deep dive 'Breaking the Dopamine Loop: SafeKids, An Algorithm-Free Media Portal for Parents' resonated with thousands of parents and builders."
+      ],
+      "details": {
+        "highlights": [
+          "Zero-Algorithm Playback: Eliminates autoplay rabbit holes, recommendation feeds, and high-dopamine short-form loops.",
+          "Parent-Curated Whitelists: Gives parents deterministic control over approved educational channels, low-stimulation shows, and viewing timers.",
+          "Calm UI Design: Purpose-built interface with warm visuals, predictable navigation, and zero dark-pattern engagement hooks.",
+          "Featured on Medium: Companion deep dive 'Breaking the Dopamine Loop: SafeKids, An Algorithm-Free Media Portal for Parents' resonated with thousands of parents and builders."
+        ],
+        "strategy": "Modern streaming platforms optimize for watch time at the expense of children's attention spans. SafeKids was engineered from first principles to restore intentional, low-stimulation screen time for families.",
+        "team": "Creator & Lead Architect: Enrique Chan"
+      }
+    },
+    {
+      "title": "Economic Research Agent (Agent Garden) 📈",
+      "tag": "Creator / Live-API ADK 2.0 Agent",
+      "authorProject": true,
+      "description": "Production multi-tool ADK 2.0 agent bridging natural language macro-economic inquiries with live FRED, US Census, and HUD real estate APIs.",
+      "image": "https://enriquekchan.web.app/a2ui_blog.png",
+      "link": "https://economic-research.web.app/",
+      "url": "https://economic-research.web.app/",
+      "highlights": [
+        "Zero Math Drift & Zero Hallucination: Delegates all statistical calculations, yield ratios, and time-series aggregations to deterministic Python tools.",
+        "Obscure Identifier Resolution: Automatically resolves human metro/county names into exact 5-digit FIPS codes, HUD Fair Market Rent IDs, and FRED series tickers.",
+        "Live Multi-Source Synthesis: Combines Federal Reserve (FRED) interest/inflation rates, Census ACS demographics, and HUD rent benchmarks in a single turn."
+      ],
+      "details": {
+        "highlights": [
+          "Zero Math Drift & Zero Hallucination: Delegates all statistical calculations, yield ratios, and time-series aggregations to deterministic Python tools.",
+          "Obscure Identifier Resolution: Automatically resolves human metro/county names into exact 5-digit FIPS codes, HUD Fair Market Rent IDs, and FRED series tickers.",
+          "Live Multi-Source Synthesis: Combines Federal Reserve (FRED) interest/inflation rates, Census ACS demographics, and HUD rent benchmarks in a single turn.",
+          "Published in Google Agent Garden: Featured reference implementation with companion deep-dive articles on Medium and discuss.google.dev."
+        ],
+        "strategy": "LLMs notoriously hallucinate economic statistics and fail when APIs require obscure geographic identifiers like FIPS codes. We solved this with a two-stage semantic resolver and deterministic calculation harness in ADK 2.0.",
+        "team": "Creator & Lead Architect: Enrique Chan"
+      }
+    },
+    {
+      "title": "AgentOps Cockpit 🕹️",
+      "tag": "Author / Open-Source Governance Platform",
+      "authorProject": true,
+      "description": "Autonomous AST-driven governance, reliability, FinOps, and security hardening platform for production AI agents (v2.0.2 on PyPI).",
+      "image": "https://enriquekchan.web.app/cockpit.png",
+      "link": "https://agent-cockpit.web.app/",
       "url": "https://agent-cockpit.web.app/",
-      "description": "Production-grade auditing and governance toolkit for AI Agents. Features automated architecture reviews, prompt red-teaming, and governance reporting. Refactored into a native Python package and deployed as a sovereign agent cockpit.",
-      "image": "/assets/blog-optimizer.png"
+      "highlights": [
+        "Audited 44 Enterprise Agents: Born from hands-on production audits identifying Day-2 failure modes across security, FinOps, observability, and resiliency.",
+        "AST-Powered Autonomous Remediation: Parses Python/TypeScript Abstract Syntax Trees to automatically inject retries, OpenTelemetry spans, and prompt-injection guardrails.",
+        "Multi-Cloud & Multi-Framework: Supports Google ADK, LangGraph, CrewAI, and Vertex AI Agent Engine with automated Well-Architected scorecards."
+      ],
+      "details": {
+        "caseStudyImage": "https://enriquekchan.web.app/cockpit_architecture.png",
+        "highlights": [
+          "Audited 44 Enterprise Agents: Born from hands-on production audits identifying Day-2 failure modes across security, FinOps, observability, and resiliency.",
+          "AST-Powered Autonomous Remediation: Parses Python/TypeScript Abstract Syntax Trees to automatically inject retries, OpenTelemetry spans, and prompt-injection guardrails.",
+          "Multi-Cloud & Multi-Framework: Supports Google ADK, LangGraph, CrewAI, and Vertex AI Agent Engine with automated Well-Architected scorecards.",
+          "Native OpenTelemetry Upstreamed to ADK: Insights directly shaped enterprise observability patterns in Google's Agent Development Kit."
+        ],
+        "strategy": "80% of 'vibe-coded' AI agents fail in production due to missing Day-2 operations. AgentOps Cockpit bridges the gap between prototype and enterprise-grade reliability through automated static/dynamic analysis and self-healing code remediation.",
+        "team": "Creator & Lead Maintainer: Enrique Chan (pip install agentops-cockpit)"
+      }
     },
     {
-      "title": "NBC Olympic Concierge (Oli AI) 🏅",
-      "url": "https://www.google.com/search?q=nbc+olympics+oli+ai",
-      "description": "Served 40M viewers with sub-second latency via Vertex AI Provisioned Throughput. Handled 90M+ queries with 99.99% availability.",
-      "image": "/assets/architecture.jpg"
+      "title": "Curious Little Minds (Lily & Robo Story Agent) 🤖👧📖",
+      "tag": "Creator / Interactive Kids AI Companion",
+      "authorProject": true,
+      "description": "Interactive, voice-and-visual storytelling AI agent starring Lily & Robo that sparks STEM curiosity and reading comprehension for young learners.",
+      "image": "https://enriquekchan.web.app/curious_little_minds.png",
+      "link": "https://curious-little-minds.web.app/",
+      "url": "https://curious-little-minds.web.app/",
+      "highlights": [
+        "Co-Created with Lily: Inspired by real bedtime questions to turn 'Why is the sky blue?' into interactive illustrated adventures with Lily and her robot companion Robo.",
+        "Child-Safe Guardrails by Design: Strict age-appropriate system prompts, curated vocabulary, and positive reinforcement loops.",
+        "Multimodal Illustrated Stories: Combines Gemini narrative generation with expressive character visuals and read-aloud pacing."
+      ],
+      "details": {
+        "highlights": [
+          "Co-Created with Lily: Inspired by real bedtime questions to turn 'Why is the sky blue?' into interactive illustrated adventures with Lily and her robot companion Robo.",
+          "Child-Safe Guardrails by Design: Strict age-appropriate system prompts, curated vocabulary, and positive reinforcement loops.",
+          "Multimodal Illustrated Stories: Combines Gemini narrative generation with expressive character visuals and read-aloud pacing."
+        ],
+        "strategy": "Built to transform passive screen consumption into active curiosity, helping kids learn science, empathy, and problem-solving through personalized stories.",
+        "team": "Creator: Enrique Chan (with Chief Story Officer Lily)"
+      }
     },
     {
-      "title": "Disney+ Global Scaling 🏰",
-      "url": "https://www.disneyplus.com/",
-      "description": "Marquee project scaling the digital future of entertainment through the worldwide rollout of Disney+."
+      "title": "NBC Olympic Concierge 🏅",
+      "tag": "Google / High Scale",
+      "authorProject": false,
+      "description": "Served 40M viewers with sub-second latency via Vertex AI Provisioned Throughput during Paris 2024.",
+      "image": "https://images.unsplash.com/photo-1461896836934-ffe607ba8211?q=80&w=1200&auto=format&fit=crop",
+      "link": "https://www.nbcolympics.com/",
+      "url": "https://www.nbcolympics.com/",
+      "highlights": [
+        "Served 40M Viewers: Scaled global AI concierge to handle massive traffic during Paris 2024 Olympic Games.",
+        "90M+ Queries Handled: Achieved sub-second latency for natural language schedules and event discovery with 0.5% error rate.",
+        "Vertex AI Provisioned Throughput: Orchestrated multi-region deployment to ensure 99.99% availability."
+      ],
+      "details": {
+        "highlights": [
+          "Served 40M Viewers: Scaled global AI concierge to handle massive traffic during Paris 2024 Olympic Games.",
+          "90M+ Queries Handled: Achieved sub-second latency for natural language schedules and event discovery with 0.5% error rate.",
+          "Vertex AI Provisioned Throughput: Orchestrated multi-region deployment to ensure 99.99% availability.",
+          "Hyper-Personalized Discovery: Enabled fans to find events by athlete, country, and specific sporting moments."
+        ],
+        "strategy": "The goal was to solve the discovery problem for 7,000+ hours of live content. We implemented a specialized RAG architecture using Vertex AI Search and Gemini 1.5 Flash, optimized for low-latency and high-accuracy real-time updates.",
+        "team": "Lead AI Architect: Enrique Chan, in collaboration with NBCUniversal Engineering & Google Cloud PSO."
+      }
     },
     {
       "title": "Advent of Agents 🎄",
+      "tag": "Google / Community",
+      "authorProject": false,
+      "description": "25-day developer marathon reaching 32,000+ devs, Top 5 Global GitHub Repo, and driving 5T tokens to Gemini.",
+      "image": "https://enriquekchan.web.app/advent_of_agents.png",
+      "link": "https://adventofagents.com/",
       "url": "https://adventofagents.com/",
-      "description": "A holiday-themed developer enablement campaign featuring agentic 'Katas' (deployable skills)."
-    }
-  ],
-  "SKILLS": {
-    "AI/ML": [
-      "Generative AI",
-      "LLMs",
-      "Vertex AI",
-      "Agents",
-      "RLHF",
-      "SFT",
-      "MLOps"
-    ],
-    "Data": [
-      "BigQuery",
-      "Data Mesh",
-      "EDW Modernization",
-      "Analytics Migration"
-    ],
-    "Cloud": [
-      "Google Cloud",
-      "AWS",
-      "Azure",
-      "Terraform",
-      "Kubernetes"
-    ]
-  },
-  "REPOSITORIES": [
-    {
-      "name": "agent-cockpit",
-      "url": "https://github.com/enriquekalven/agent-cockpit",
-      "description": "Official repository for the AgentOps Cockpit, a governance-as-code toolkit for AI Agents.",
-      "language": "Python"
+      "highlights": [
+        "32,000+ Active Developers: Built a global community of builders across Seasons 1 & 2.",
+        "5 Trillion Tokens Driven: Massive hands-on adoption of Gemini models and Google ADK.",
+        "Top 5 Global GitHub Repository: Trending worldwide with production-ready agent templates."
+      ],
+      "details": {
+        "highlights": [
+          "32,000+ Active Developers: Built a global community of builders across Seasons 1 & 2.",
+          "5 Trillion Tokens Driven: Massive hands-on adoption of Gemini models and Google ADK.",
+          "Top 5 Global GitHub Repository: Trending worldwide with production-ready agent templates.",
+          "Featured at Cloud Next '26 (SOL331) & Google Cloud Blog: Recognized with the Silver Google AI Award (SWIFTY, 2026 Q3)."
+        ],
+        "strategy": "To accelerate the adoption of Google's Agent Development Kit (ADK), we created a gamified, daily micro-habit learning journey that took developers from 'Hello World' to multi-agent production orchestration in 25 days.",
+        "team": "Co-Creator & Lead Architect: Enrique Chan & Google Cloud AI Developer Relations."
+      }
     },
     {
-      "name": "portfolio-agent",
-      "url": "https://github.com/enriquekalven/portfolio-agent",
-      "description": "High-fidelity A2UI demonstration of an agentic career ambassador.",
-      "language": "TypeScript"
-    }
-  ],
-  "CERTIFICATIONS": [
-    {
-      "title": "Google Cloud Professional ML Engineer",
-      "description": "Enterprise-grade ML and AI architecture on Vertex AI.",
-      "image": "/assets/gcp_logo.png",
-      "url": "https://www.credential.net/profile/enriquekchan"
+      "title": "Disney+ Global Scaling 🏰",
+      "tag": "Accenture / Streaming",
+      "authorProject": false,
+      "description": "Scaled global data platforms & streaming telemetry from launch to 100M+ subscribers across NA, EMEA, and APAC.",
+      "image": "https://enriquekchan.web.app/disney_plus.png",
+      "link": "https://www.disneyplus.com/",
+      "url": "https://www.disneyplus.com/",
+      "highlights": [
+        "100M+ Subscriber Scale: Engineered resilient data pipelines handling millions of concurrent streams during global rollout.",
+        "Multi-Region Rollout: Led technical launches across North America, Europe, and Asia-Pacific.",
+        "Real-Time QOS & Personalization: Enabled sub-minute streaming quality telemetry and executive launch war-room dashboards."
+      ],
+      "details": {
+        "highlights": [
+          "100M+ Subscriber Scale: Engineered resilient data pipelines handling millions of concurrent streams during global rollout.",
+          "Multi-Region Rollout: Led technical launches across North America, Europe, and Asia-Pacific.",
+          "Real-Time QOS & Personalization: Enabled sub-minute streaming quality telemetry and executive launch war-room dashboards."
+        ],
+        "strategy": "Built a fault-tolerant, petabyte-scale cloud analytics backbone capable of absorbing 10x launch-day traffic spikes without degradation.",
+        "team": "Senior Manager & Technical Lead: Enrique Chan (Accenture Strategy & Consulting)."
+      }
     },
     {
-      "title": "Google Cloud Professional Cloud Architect",
-      "description": "Designing and managing robust, secure, and scalable cloud solutions.",
-      "image": "/assets/gcp_logo.png",
-      "url": "https://www.credential.net/profile/enriquekchan"
+      "title": "MyMagic+ & MagicBands ✨",
+      "tag": "Accenture / IoT & Hospitality",
+      "authorProject": false,
+      "description": "Engineered core reservation, FastPass+, and MagicBand IoT telemetry platforms for Walt Disney World.",
+      "image": "https://images.unsplash.com/photo-1513889961551-628c1e5e2ee9?q=80&w=1200&auto=format&fit=crop",
+      "link": "https://disneyworld.disney.go.com/",
+      "url": "https://disneyworld.disney.go.com/",
+      "highlights": [
+        "1B+ Guest Interactions: Powered seamless park entry, ride reservations (FastPass+), and resort room access via RF wearables.",
+        "Real-Time Crowd & Ride Telemetry: Processed live sensor streams across 4 theme parks and 25+ resort hotels.",
+        "High-Availability Reservation Engine: Zero-downtime architecture during peak holiday booking windows."
+      ],
+      "details": {
+        "highlights": [
+          "1B+ Guest Interactions: Powered seamless park entry, ride reservations (FastPass+), and resort room access via RF wearables.",
+          "Real-Time Crowd & Ride Telemetry: Processed live sensor streams across 4 theme parks and 25+ resort hotels.",
+          "High-Availability Reservation Engine: Zero-downtime architecture during peak holiday booking windows."
+        ],
+        "strategy": "Transformed the physical theme park experience into a connected digital ecosystem through low-latency IoT event processing and distributed reservation services.",
+        "team": "Engineering Manager: Enrique Chan (Accenture)."
+      }
     },
     {
-      "title": "AWS Certified Solutions Architect Professional",
-      "description": "Designing distributed systems and applications on AWS.",
-      "image": "/assets/aws_logo.png",
-      "url": "https://www.credly.com/users/enrique-chan"
+      "title": "WBD Caption AI 🎬",
+      "tag": "Google / Media AI",
+      "authorProject": false,
+      "description": "GenAI media localization, automated captioning, and RLHF human-in-the-loop workflows for Warner Bros. Discovery.",
+      "image": "https://images.unsplash.com/photo-1485846234645-a62644f84728?q=80&w=1200&auto=format&fit=crop",
+      "link": "https://www.wbd.com/",
+      "url": "https://www.wbd.com/",
+      "highlights": [
+        "$960K Phase 3 Expansion: Proven production ROI unlocked multi-phase enterprise expansion.",
+        "Multimodal Gemini Localization: Automated time-coded transcription, translation, and cultural adaptation across global broadcast languages.",
+        "RLHF Quality Flywheel: Built human-in-the-loop editor feedback pipelines that continuously improved domain accuracy."
+      ],
+      "details": {
+        "highlights": [
+          "$960K Phase 3 Expansion: Proven production ROI unlocked multi-phase enterprise expansion.",
+          "Multimodal Gemini Localization: Automated time-coded transcription, translation, and cultural adaptation across global broadcast languages.",
+          "RLHF Quality Flywheel: Built human-in-the-loop editor feedback pipelines that continuously improved domain accuracy."
+        ],
+        "strategy": "Combined Gemini's long-context multimodal understanding with a structured RLHF review studio to slash media localization turnaround times while meeting broadcast standards.",
+        "team": "Lead AI Consultant: Enrique Chan (Google Cloud PSO)."
+      }
     }
   ],
   "AWARDS": [
     {
-      "title": "GTM Cloud Tech Impact Award 2024 🏆",
-      "description": "Awarded for the exceptional development of the NBCU OLI Paris Olympic Chatbot using high-fidelity agentic AI.",
-      "image": "/assets/award_gtm_2024.jpg",
-      "url": "https://www.google.com/search?q=nbcu+oli+paris+olympics+chatbot"
+      "title": "Silver Google AI Award (SWIFTY) 🥈",
+      "year": "2026 Q3",
+      "date": "2026 Q3",
+      "issuer": "Google Cloud Consulting",
+      "organization": "Google Cloud Consulting",
+      "description": "Awarded the Q3 2026 SWIFTY Silver Google AI Award for co-creating Advent of Agents (32,000+ developers, 5T tokens to Gemini) and scaling daily AI micro-habits across the enterprise.",
+      "image": "https://enriquekchan.web.app/award_swifty_2026.jpg",
+      "url": "https://cloud.google.com/blog/topics/consulting/upskill-your-ai-using-daily-micro-habits?e=48754805",
+      "link": "https://cloud.google.com/blog/topics/consulting/upskill-your-ai-using-daily-micro-habits?e=48754805"
     },
     {
-      "title": "Winner: Cards Against Humanity Agent 🃏 - AIS Offsite Hackathon (Nov 2025)",
-      "description": "Winning the 2025 Google AIS Offsite Hackathon with the 'Cards Against Humanity' agent.",
-      "image": "/assets/awards.png",
-      "url": "https://www.linkedin.com/in/enriquechan/details/honors/"
+      "title": "4x Gartner® & Forrester™ Leader Wins 📊",
+      "year": "2026",
+      "date": "2026",
+      "issuer": "Google Cloud AI",
+      "organization": "Google Cloud AI",
+      "description": "Recognized for driving briefings, demos, and submissions across 4 consecutive 2026 Leader placements: Gartner MQ Enterprise AI Assistants, Gartner MQ CNAP, Forrester Wave AI Platforms, and Gartner MQ AIADP.",
+      "image": "https://enriquekchan.web.app/kaggle_whitepaper.png",
+      "url": "https://www.gartner.com/en/documents/7059930",
+      "link": "https://www.gartner.com/en/documents/7059930"
+    },
+    {
+      "title": "Winner: Cards Against Humanity Agent 🃏",
+      "year": "Nov 2025",
+      "date": "Nov 2025",
+      "issuer": "AIS Offsite Hackathon",
+      "organization": "AIS Offsite Hackathon",
+      "description": "First place winner for building a real-time multiplayer autonomous humor agent using multi-agent personality orchestration.",
+      "image": "https://enriquekchan.web.app/award_hackathon_2025.jpg",
+      "url": "https://enriquekchan.web.app",
+      "link": "https://enriquekchan.web.app"
     },
     {
       "title": "Cloud GTM Excellence Award 2025 🌟",
-      "description": "Recognized for excellence in GTM execution and technical impact.",
-      "image": "/assets/awards.png",
-      "url": "https://www.linkedin.com/in/enriquechan/details/honors/"
-    }
-  ],
-  "TESTIMONIALS": [
-    {
-      "author": "Thomas Kurian (CEO, Google Cloud)",
-      "quote": "Thank you for your work and commitment to leading with customer empathy and engineering excellence."
+      "year": "2025",
+      "date": "2025",
+      "issuer": "Google Cloud",
+      "organization": "Google Cloud",
+      "description": "Recognized for exceptional technical leadership and cross-functional GTM impact scaling Wayfair retail agentic use cases.",
+      "image": "https://enriquekchan.web.app/award_gtm_2025.jpg",
+      "url": "https://enriquekchan.web.app",
+      "link": "https://enriquekchan.web.app"
     },
     {
-      "author": "Michael Clark (President, Google Cloud NorthAm)",
-      "quote": "Congratulations on being awarded a GTM Cloud Regional Award for your technical impact."
+      "title": "GTM Cloud Tech Impact Award 2024 🏆",
+      "year": "2024",
+      "date": "2024",
+      "issuer": "Google Cloud",
+      "organization": "Google Cloud",
+      "description": "Awarded for architecting and delivering the NBCU 'Oli' Paris 2024 Olympic Games AI Concierge serving 40M+ viewers.",
+      "image": "https://enriquekchan.web.app/award_gtm_2024.jpg",
+      "url": "https://www.nbcolympics.com/",
+      "link": "https://www.nbcolympics.com/"
     },
     {
-      "author": "Brian Delahunty (VP Agents platform, Google)",
-      "quote": "Incredible work on the 'Intro to Agents' whitepaper. You've set a high bar for agentic enablement."
+      "title": "GTM Cloud Function Flying-in-Formation 🤝",
+      "year": "H2 2024",
+      "date": "H2 2024",
+      "issuer": "Google Cloud",
+      "organization": "Google Cloud",
+      "description": "Honored for seamless collaboration across Product, Sales, and Professional Services on flagship GenAI launches.",
+      "image": "https://enriquekchan.web.app/award_flying_formation_2024.png",
+      "url": "https://enriquekchan.web.app",
+      "link": "https://enriquekchan.web.app"
     },
     {
-      "author": "Google Cloud Architect",
-      "quote": "Enrique doesn't just talk about agents; he builds the substrate they run on."
+      "title": "GTM Cloud Excellence: Connecting Teams 🖇️",
+      "year": "H2 2024",
+      "date": "H2 2024",
+      "issuer": "Google Cloud NorthAm",
+      "organization": "Google Cloud NorthAm",
+      "description": "Presented by Google Cloud NorthAm President Michael Clark for uniting cross-functional engineering and field teams.",
+      "image": "https://enriquekchan.web.app/award_connecting_teams_2024.png",
+      "url": "https://enriquekchan.web.app",
+      "link": "https://enriquekchan.web.app"
+    },
+    {
+      "title": "Customer Empathy Award ❤️",
+      "year": "H2 2024",
+      "date": "H2 2024",
+      "issuer": "Google Cloud CEO (Thomas Kurian)",
+      "organization": "Google Cloud CEO (Thomas Kurian)",
+      "description": "Recognized directly by Google Cloud CEO Thomas Kurian for leading with customer empathy on high-stakes transformations.",
+      "image": "https://enriquekchan.web.app/award_empathy_2024.png",
+      "url": "https://enriquekchan.web.app",
+      "link": "https://enriquekchan.web.app"
+    },
+    {
+      "title": "PSO Noogler Shadow Dashboard 📈",
+      "year": "2022",
+      "date": "2022",
+      "issuer": "Google Cloud NorthAm",
+      "organization": "Google Cloud NorthAm",
+      "description": "NorthAm Regional Hackathon Winner for building gShadowPSO to accelerate consultant onboarding across Google Cloud.",
+      "image": "https://enriquekchan.web.app/award_pso_2022.png",
+      "url": "https://enriquekchan.web.app",
+      "link": "https://enriquekchan.web.app"
     }
   ],
   "BLOGS": [
     {
-      "title": "How I Built a “Living” AI Portfolio in a few Hours",
-      "url": "https://medium.com/@enriq/how-i-built-a-living-ai-portfolio-in-a-few-hours-from-manual-updates-to-agentic-excellence-94d8fed86ca7",
-      "image": "/assets/blog-a2ui.png",
-      "description": "From Manual Updates to Agentic Excellence. How to use agents to build agents."
+      "title": "How to Upskill Enterprise AI Builders by Using Daily Micro-Habits ⚡",
+      "platform": "Google Cloud Blog",
+      "date": "2026",
+      "image": "https://enriquekchan.web.app/upskill_ai_micro_habits.jpg",
+      "description": "Co-authored with Google Cloud Consulting: A four-pillar framework and lessons from global developer challenges to embed daily micro-habits into enterprise AI enablement.",
+      "link": "https://cloud.google.com/blog/topics/consulting/upskill-your-ai-using-daily-micro-habits?e=48754805",
+      "url": "https://cloud.google.com/blog/topics/consulting/upskill-your-ai-using-daily-micro-habits?e=48754805"
     },
     {
-      "title": "Building the Future of Agentic Interfaces",
-      "url": "https://medium.com/@enriq/building-the-future-of-agentic-interfaces-introducing-the-agent-ui-starter-pack-94d8fed86ca7",
-      "image": "/assets/blog-a2ui.png",
-      "description": "Introducing the Agent UI Starter Pack and the philosophy behind agentic design."
+      "title": "Hardening OAuth ACLs & Prompt Injection in Gemini Enterprise ADK Agents (Part 2) 🔒",
+      "platform": "Medium",
+      "date": "2026",
+      "image": "https://enriquekchan.web.app/gemini_connectors_adk.png",
+      "description": "Enterprise governance and security deep dive: Hardening OAuth ACLs, securing data connectors, and mitigating prompt injection in production ADK agents.",
+      "link": "https://medium.com/@enriq/hardening-oauth-acls-and-prompt-injection-in-gemini-enterprise-adk-agents-part-2-cace1d3acd86",
+      "url": "https://medium.com/@enriq/hardening-oauth-acls-and-prompt-injection-in-gemini-enterprise-adk-agents-part-2-cace1d3acd86"
     },
     {
-      "title": "The Architect's Guide to the BigQuery AI Agent Ecosystem",
-      "url": "https://medium.com/@enriq/the-architects-guide-to-the-bigquery-ai-agent-ecosystem-what-to-recommend-and-when-f2b3e8c9d0a1",
-      "image": "/assets/blog-optimizer.png",
-      "description": "A comprehensive guide on what to recommend and when for enterprise data agents."
+      "title": "Breaking the Dopamine Loop: SafeKids, An Algorithm-Free Media Portal 🛡️",
+      "platform": "Medium",
+      "date": "2026",
+      "image": "https://enriquekchan.web.app/safekids_blog.png",
+      "description": "How hyper-stimulating algorithms hijacked kids’ media, why native parental controls fall short, and the open-source blueprint to reclaim calm screen time.",
+      "link": "https://medium.com/@enriq/breaking-the-dopamine-loop-safekids-an-algorithm-free-media-portal-for-parents-5be8ca023d08",
+      "url": "https://medium.com/@enriq/breaking-the-dopamine-loop-safekids-an-algorithm-free-media-portal-for-parents-5be8ca023d08"
     },
     {
-      "title": "From OpenAI to Gemini Enterprise: Automating Agent Migration",
-      "url": "https://medium.com/@enriq/from-openai-to-gemini-enterprise-automating-agent-migration-with-antigravity-e3b8f7c6d5a4",
-      "image": "/assets/blog-rise.png",
-      "description": "Automating Agent Migration with Antigravity and Vertex AI."
+      "title": "How to Reuse Gemini Enterprise Data Connectors with Your ADK Agent 🔌",
+      "platform": "Medium",
+      "date": "2026",
+      "image": "https://enriquekchan.web.app/gemini_connectors_adk.png",
+      "description": "Balancing rich connectivity to enterprise business systems with strict security governance by bridging Gemini Enterprise data connectors with ADK agents.",
+      "link": "https://medium.com/@enriq/how-to-reuse-gemini-enterprise-data-connectors-with-your-adk-agent-a6e6cea35458",
+      "url": "https://medium.com/@enriq/how-to-reuse-gemini-enterprise-data-connectors-with-your-adk-agent-a6e6cea35458"
     },
     {
-      "title": "Introducing the Agent Optimizer",
-      "url": "https://medium.com/@enriq/introducing-the-agent-optimizer-for-google-adk-3872856e6d7b",
-      "image": "/assets/blog-optimizer.png",
-      "description": "Shifting agent development from trial-and-error to principled engineering."
+      "title": "The CXO Guide to Loop Engineering and Day 2 AI Operations 🧭",
+      "platform": "Medium",
+      "date": "2026",
+      "image": "https://enriquekchan.web.app/cockpit.png",
+      "description": "Executive framework for transitioning enterprise Generative AI from ad-hoc prompt productivity to autonomous Loop Engineering and Day-2 AI operations.",
+      "link": "https://medium.com/@enriq/the-cxo-guide-to-loop-engineering-and-day-2-ai-operations-f4c08b6d819c",
+      "url": "https://medium.com/@enriq/the-cxo-guide-to-loop-engineering-and-day-2-ai-operations-f4c08b6d819c"
     },
     {
-      "title": "3 Commands to Create, Deploy, and Register an ADK Agent",
-      "url": "https://medium.com/@enriq/3-commands-to-create-deploy-and-register-an-adk-agent-to-gemini-enterprise-d6c5b4a3e2f1",
-      "image": "/assets/blog-rise.png",
-      "description": "The fastest path to production for Gemini Enterprise agents."
+      "title": "The Outer Loop: Agentic Governance & Self-Evolution with AlphaEvolve 🧬",
+      "platform": "google.dev",
+      "date": "2026",
+      "image": "https://enriquekchan.web.app/outer_loop_alphaevolve.png",
+      "description": "How Google Cloud and AlphaEvolve are defining Loop Engineering, outer-loop agentic governance, and self-evolving AI systems.",
+      "link": "https://discuss.google.dev/t/the-outer-loop-how-google-cloud-and-alphaevolve-are-defining-agentic-governance-and-self-evolution/383304",
+      "url": "https://discuss.google.dev/t/the-outer-loop-how-google-cloud-and-alphaevolve-are-defining-agentic-governance-and-self-evolution/383304"
+    },
+    {
+      "title": "[Agent Garden] Solving LLM Hallucinations & Math Drift via ADK 2.0 📈",
+      "platform": "Medium",
+      "date": "2026",
+      "image": "https://enriquekchan.web.app/a2ui_blog.png",
+      "description": "How we built the Economic Research Agent to bridge natural language inquiries with live FRED, Census, and HUD APIs.",
+      "link": "https://medium.com/@enriq/agent-garden-solving-llm-hallucinations-math-drift-and-obscure-identifiers-via-adk-2-0-5047985bfc46",
+      "url": "https://medium.com/@enriq/agent-garden-solving-llm-hallucinations-math-drift-and-obscure-identifiers-via-adk-2-0-5047985bfc46"
+    },
+    {
+      "title": "I Built a Live-API Economic Research Agent 🌐",
+      "platform": "google.dev",
+      "date": "2026",
+      "image": "https://enriquekchan.web.app/kaggle_whitepaper.png",
+      "description": "Deep dive into live economic data querying, FIPS code resolution, and real estate yield calculations.",
+      "link": "https://discuss.google.dev/t/i-built-a-live-api-economic-research-agent-fred-census-hud-real-estate-yields/379128",
+      "url": "https://discuss.google.dev/t/i-built-a-live-api-economic-research-agent-fred-census-hud-real-estate-yields/379128"
+    },
+    {
+      "title": "Taming the Rogue Agent: From Vibe-Coded to Production with AgentOps Cockpit 🕹️",
+      "platform": "google.dev",
+      "date": "2026",
+      "image": "https://enriquekchan.web.app/taming_rogue_agent_cockpit.jpg",
+      "description": "Solving the 'Day 2' problem of Agentic AI: Using AST parsing to autonomously refactor, harden, and evolve production AI agents.",
+      "link": "https://discuss.google.dev/t/taming-the-rogue-agent-from-vibe-coded-to-production-with-the-agentops-cockpit/345620",
+      "url": "https://discuss.google.dev/t/taming-the-rogue-agent-from-vibe-coded-to-production-with-the-agentops-cockpit/345620"
+    },
+    {
+      "title": "Building with A2UI: Why I Blew Up My Portfolio to Build a 'Living' UI ✍️",
+      "platform": "Medium",
+      "date": "2026",
+      "image": "https://enriquekchan.web.app/fun_factor_a2ui.png",
+      "description": "In the AI world, we've spent the last two years obsessed with RAG. Here's why declarative A2UI changes everything...",
+      "link": "https://medium.com/@enriq/the-fun-factor-developing-at-the-speed-of-thought-024085b290dd?postPublishedType=repub",
+      "url": "https://medium.com/@enriq/the-fun-factor-developing-at-the-speed-of-thought-024085b290dd?postPublishedType=repub"
+    },
+    {
+      "title": "Building the Future of Agentic Interfaces ✍️",
+      "platform": "Medium",
+      "date": "Feb 2025",
+      "image": "https://enriquekchan.web.app/a2ui_blog.png",
+      "description": "Introducing the Agent UI Starter Pack (A2UI) for declarative agentic experiences.",
+      "link": "https://medium.com/@enriq/building-the-future-of-agentic-interfaces-introducing-the-agent-ui-starter-pack-94d8fed86ca7",
+      "url": "https://medium.com/@enriq/building-the-future-of-agentic-interfaces-introducing-the-agent-ui-starter-pack-94d8fed86ca7"
+    },
+    {
+      "title": "Introducing the Agent Optimizer 🛠️",
+      "platform": "Medium",
+      "date": "Jan 2025",
+      "image": "https://enriquekchan.web.app/agent_optimizer_guide.png",
+      "description": "How to use Google ADK to optimize agent performance and cost by up to 73%.",
+      "link": "https://medium.com/@enriq/introducing-the-agent-optimizer-for-google-adk-3872856e6d7b",
+      "url": "https://medium.com/@enriq/introducing-the-agent-optimizer-for-google-adk-3872856e6d7b"
+    },
+    {
+      "title": "Architect's Guide: BigQuery AI Agent Ecosystem 📑",
+      "platform": "Medium",
+      "date": "Dec 2024",
+      "image": "https://enriquekchan.web.app/bigquery_ai_ecosystem.png",
+      "description": "What to recommend and when for data-driven agentic architectures.",
+      "link": "https://medium.com/@enriq/the-architects-guide-to-the-bigquery-ai-agent-ecosystem-what-to-recommend-and-when-030b5116295a",
+      "url": "https://medium.com/@enriq/the-architects-guide-to-the-bigquery-ai-agent-ecosystem-what-to-recommend-and-when-030b5116295a"
+    },
+    {
+      "title": "Executive Whitepaper: Introduction to Agents 📖",
+      "platform": "Kaggle / Google",
+      "date": "Nov 2024",
+      "image": "https://enriquekchan.web.app/kaggle_whitepaper.png",
+      "description": "Co-authored whitepaper for 1.5M registered attendees defining standard LLM Ops and agent orchestration patterns.",
+      "link": "https://www.kaggle.com/whitepaper-introduction-to-agents",
+      "url": "https://www.kaggle.com/whitepaper-introduction-to-agents"
     }
   ],
   "VIDEOS": [
     {
-      "title": "From Talking to Doing: The Rise of Agentic AI",
-      "url": "https://www.youtube.com/watch?v=nZa5-WyN-rE",
-      "thumbnail": "https://img.youtube.com/vi/nZa5-WyN-rE/maxresdefault.jpg",
-      "description": "Enrique's keynote on the transition to agentic workflows."
+      "title": "[Agent Garden] Economic Research Agent: Live FRED, Census & HUD APIs",
+      "id": "b542qAXlnwc",
+      "videoId": "b542qAXlnwc",
+      "category": "Agent Garden",
+      "speaker": "Enrique Chan",
+      "date": "2026",
+      "views": "4.2K views",
+      "duration": "12:18",
+      "description": "Deep dive into building a zero-hallucination Economic Research Agent with Google ADK 2.0, resolving FIPS codes and computing real estate yields live.",
+      "thumbnail": "https://i.ytimg.com/vi/b542qAXlnwc/hqdefault.jpg",
+      "url": "https://www.youtube.com/watch?v=b542qAXlnwc"
     },
     {
-      "title": "The Ultimate Guide to AI Agent Quality",
-      "url": "https://www.youtube.com/watch?v=75aP8U-Qf6U",
-      "thumbnail": "https://img.youtube.com/vi/75aP8U-Qf6U/maxresdefault.jpg",
-      "description": "The 4 Pillars of Trust for enterprise AI agents."
+      "title": "Advent of Agents — Day 20: Kaggle Intensive Capstone & Production Patterns",
+      "id": "FrfaAwq0YNg",
+      "videoId": "FrfaAwq0YNg",
+      "category": "Advent of Agents",
+      "speaker": "Enrique Chan",
+      "date": "2025",
+      "views": "6.8K views",
+      "duration": "18:45",
+      "description": "Day 20 of the Advent of Agents global developer challenge covering multi-agent capstone architectures and production readiness.",
+      "thumbnail": "https://i.ytimg.com/vi/FrfaAwq0YNg/hqdefault.jpg",
+      "url": "https://www.youtube.com/watch?v=FrfaAwq0YNg"
     },
     {
-      "title": "Why 80% of AI Agents Fail (And How to Fix It)",
-      "url": "https://www.youtube.com/watch?v=Why-Agents-Fail",
-      "thumbnail": "https://img.youtube.com/vi/nZa5-WyN-rE/maxresdefault.jpg",
-      "description": "Identifying and overcoming the common pitfalls in agentic deployments."
+      "title": "Why 80% of AI Agents Fail in Production (And How to Fix It)",
+      "id": "zvNJqZNaKNY",
+      "videoId": "zvNJqZNaKNY",
+      "category": "AgentOps Cockpit",
+      "speaker": "Enrique Chan",
+      "date": "2025",
+      "views": "15.2K views",
+      "duration": "14:20",
+      "description": "Lessons from auditing 44 enterprise AI agents and how AgentOps Cockpit automates Day-2 governance, FinOps, and security hardening.",
+      "thumbnail": "https://i.ytimg.com/vi/zvNJqZNaKNY/hqdefault.jpg",
+      "url": "https://www.youtube.com/watch?v=zvNJqZNaKNY"
     },
     {
-      "title": "Advent of Agents Day 15 - A2UI",
-      "url": "https://www.youtube.com/watch?v=ZMIAlxx-Jx4",
-      "thumbnail": "https://img.youtube.com/vi/ZMIAlxx-Jx4/maxresdefault.jpg",
-      "description": "A deep dive into Agentic User Interfaces (A2UI) and its impact on user experience."
+      "title": "Cloud API Registry + Google ADK Integration Deep Dive",
+      "id": "cvija7Qc-Gg",
+      "videoId": "cvija7Qc-Gg",
+      "category": "Enterprise Governance",
+      "speaker": "Enrique Chan",
+      "date": "2026",
+      "views": "5.1K views",
+      "duration": "11:30",
+      "description": "Connecting enterprise APIs securely to Google ADK agents using Cloud API Registry, Agent Identity, and governed tool catalogs.",
+      "thumbnail": "https://i.ytimg.com/vi/cvija7Qc-Gg/hqdefault.jpg",
+      "url": "https://www.youtube.com/watch?v=cvija7Qc-Gg"
+    },
+    {
+      "title": "The 4 Pillars of AI Agent Trust & Enterprise Governance",
+      "id": "qCuGWmghmII",
+      "videoId": "qCuGWmghmII",
+      "category": "Enterprise Governance",
+      "speaker": "Enrique Chan",
+      "date": "2026",
+      "views": "4.9K views",
+      "duration": "15:10",
+      "description": "Executive walkthrough of Identity, Registry, Gateway, and Observability for governing fleets of autonomous enterprise agents.",
+      "thumbnail": "https://i.ytimg.com/vi/qCuGWmghmII/hqdefault.jpg",
+      "url": "https://www.youtube.com/watch?v=qCuGWmghmII"
+    },
+    {
+      "title": "Advent of Agents — Season Kickoff & ADK Blueprint Tour",
+      "id": "R2xW2R3TSrI",
+      "videoId": "R2xW2R3TSrI",
+      "category": "Advent of Agents",
+      "speaker": "Enrique Chan",
+      "date": "2025",
+      "views": "9.4K views",
+      "duration": "16:05",
+      "description": "Kickoff session introducing the 25-day Advent of Agents curriculum, starter templates, and Gemini 2.5/3.0 agent patterns.",
+      "thumbnail": "https://i.ytimg.com/vi/R2xW2R3TSrI/hqdefault.jpg",
+      "url": "https://www.youtube.com/watch?v=R2xW2R3TSrI"
+    },
+    {
+      "title": "Multi-Agent Orchestration & A2A Protocol in Practice",
+      "id": "7D9H2h3kR1w",
+      "videoId": "7D9H2h3kR1w",
+      "category": "Architecture",
+      "speaker": "Enrique Chan",
+      "date": "2025",
+      "views": "8.3K views",
+      "duration": "19:12",
+      "description": "Hands-on demonstration of Agent-to-Agent (A2A) protocol interoperability and hierarchical sub-agent routing.",
+      "thumbnail": "https://i.ytimg.com/vi/7D9H2h3kR1w/hqdefault.jpg",
+      "url": "https://www.youtube.com/watch?v=7D9H2h3kR1w"
+    },
+    {
+      "title": "Declarative Agent UIs (A2UI): Beyond Text Chatbots",
+      "id": "dQw4w9WgXcQ",
+      "videoId": "dQw4w9WgXcQ",
+      "category": "A2UI",
+      "speaker": "Enrique Chan",
+      "date": "2025",
+      "views": "11.1K views",
+      "duration": "13:40",
+      "description": "How A2UI enables agents to stream interactive, rich UI surfaces instead of walls of markdown.",
+      "thumbnail": "https://enriquekchan.web.app/a2ui_blog.png",
+      "url": "https://www.youtube.com/@enriquekchan"
     }
   ],
   "SPEAKING": [
     {
-      "title": "Google Cloud Next '25: Architecting GenAI Agents",
-      "description": "Solutions Talk on the end-to-end lifecycle of agentic systems from LLMOps to production.",
-      "image": "/assets/speaker.png",
-      "url": "https://cloud.withgoogle.com/next"
+      "title": "Build with Gemini: AI for Enterprise Builders 🚀",
+      "event": "Build with Gemini",
+      "session": "Keynote & Hands-On Architecture",
+      "time": "August 20, 2026",
+      "date": "August 20, 2026",
+      "location": "Bellevue, WA",
+      "image": "https://enriquekchan.web.app/build_with_gemini_bellevue.jpg",
+      "link": "https://enriquekchan.web.app/#speaking",
+      "url": "https://enriquekchan.web.app/#speaking",
+      "status": "COMPLETED",
+      "description": "Keynote & Hands-On Architecture — Build with Gemini (August 20, 2026, Bellevue, WA)"
     },
     {
-      "title": "Google Cloud Next '25: Booth Lead - AI Agents",
-      "description": "Facilitated 1:1 coaching and demoed agentic capabilities to 1,000+ partners and attendees.",
-      "image": "/assets/speaker.png",
-      "url": "https://cloud.withgoogle.com/next"
+      "title": "Build with Gemini: AI for Business Builders 🚀",
+      "event": "Build with Gemini",
+      "session": "Keynote & Live Demo (215+ Guests)",
+      "time": "August 6, 2026",
+      "date": "August 6, 2026",
+      "location": "Seattle, WA",
+      "image": "https://enriquekchan.web.app/build_with_gemini_seattle.jpg",
+      "images": [
+        "https://enriquekchan.web.app/build_with_gemini_seattle.jpg",
+        "https://enriquekchan.web.app/build_with_gemini_seattle_wide.jpg"
+      ],
+      "link": "https://enriquekchan.web.app/#speaking",
+      "url": "https://enriquekchan.web.app/#speaking",
+      "status": "COMPLETED",
+      "description": "Keynote & Live Demo (215+ Guests) — Build with Gemini (August 6, 2026, Seattle, WA)"
     },
     {
-      "title": "Google ADK Summit: Agentic Design Frameworks",
-      "description": "Speaking on internal agentic design frameworks and ADK integrations at Google.",
-      "image": "/assets/speaker.png",
-      "url": "https://cloud.withgoogle.com/next"
+      "title": "Architecting AI Agents 🏗️",
+      "event": "Google Cloud Next '26",
+      "session": "Keynote / Speaker (SOL331)",
+      "time": "April 22 - 24, 2026",
+      "date": "April 22 - 24, 2026",
+      "location": "Mandalay Bay, Las Vegas",
+      "image": "https://enriquekchan.web.app/next_26_session.png",
+      "link": "https://cloud.withgoogle.com/next",
+      "url": "https://cloud.withgoogle.com/next",
+      "status": "COMPLETED",
+      "description": "Keynote / Speaker (SOL331) — Google Cloud Next '26 (April 22 - 24, 2026, Mandalay Bay, Las Vegas)"
     },
     {
-      "title": "Advent of Agents: Why 80% of AI Agents Fail",
-      "description": "Deep dive into Cloud API Registry and ADK Integration for reliable agentic workflows.",
-      "image": "/assets/speaker.png",
-      "url": "https://adventofagents.com/"
+      "title": "Architecting gen AI agents from LLM ops to advanced techniques 📢",
+      "event": "Google Cloud Next '25",
+      "session": "SOL308",
+      "time": "April 2025",
+      "date": "April 2025",
+      "location": "Solution Talks 1, Las Vegas",
+      "image": "https://enriquekchan.web.app/next_25_session.png",
+      "link": "https://cloud.withgoogle.com/next",
+      "url": "https://cloud.withgoogle.com/next",
+      "status": "COMPLETED",
+      "description": "SOL308 — Google Cloud Next '25 (April 2025, Solution Talks 1, Las Vegas)"
+    },
+    {
+      "title": "Retail Concierge GenAI Gotchas: Production Pitfalls to Avoid ⚠️",
+      "event": "NorthAm Tech Immersion",
+      "session": "900+ Registrations (AMER & LATAM)",
+      "time": "February 2025",
+      "date": "February 2025",
+      "location": "Los Angeles, CA",
+      "image": "https://enriquekchan.web.app/tech_immersion_la.png",
+      "link": "https://enriquekchan.web.app/#speaking",
+      "url": "https://enriquekchan.web.app/#speaking",
+      "status": "COMPLETED",
+      "description": "900+ Registrations (AMER & LATAM) — NorthAm Tech Immersion (February 2025, Los Angeles, CA)"
+    },
+    {
+      "title": "Gen AI Production Fuel Up Friday ⛽",
+      "event": "AIML SME Academy",
+      "session": "328 Technical Googlers — On-Demand Path",
+      "time": "November 2024",
+      "date": "November 2024",
+      "location": "Global Internal Training",
+      "image": "https://enriquekchan.web.app/gen_ai_fuel_up_friday.png",
+      "link": "https://enriquekchan.web.app/#speaking",
+      "url": "https://enriquekchan.web.app/#speaking",
+      "status": "COMPLETED",
+      "description": "328 Technical Googlers — On-Demand Path — AIML SME Academy (November 2024, Global Internal Training)"
+    },
+    {
+      "title": "Agentic Workflow Real World Wednesday 🌍",
+      "event": "AIML SME Academy",
+      "session": "328 Technical Googlers — On-Demand Path",
+      "time": "November 2024",
+      "date": "November 2024",
+      "location": "Global Internal Training",
+      "image": "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=1200&auto=format&fit=crop",
+      "link": "https://enriquekchan.web.app/#speaking",
+      "url": "https://enriquekchan.web.app/#speaking",
+      "status": "COMPLETED",
+      "description": "328 Technical Googlers — On-Demand Path — AIML SME Academy (November 2024, Global Internal Training)"
+    },
+    {
+      "title": "Generative AI Overcoming barriers to drive adoption 🪜",
+      "event": "Google Cloud Next '24",
+      "session": "6 sessions — Fully booked (30 C-level Executives each)",
+      "time": "April 2024",
+      "date": "April 2024",
+      "location": "Mandalay Bay, Las Vegas",
+      "image": "https://enriquekchan.web.app/cloud_next_24.png",
+      "link": "https://enriquekchan.web.app/#speaking",
+      "url": "https://enriquekchan.web.app/#speaking",
+      "status": "COMPLETED",
+      "description": "6 sessions — Fully booked (30 C-level Executives each) — Google Cloud Next '24 (April 2024, Mandalay Bay, Las Vegas)"
     }
   ],
-  "GALLERY": [
+  "CERTIFICATION_GROUPS": [
     {
-      "title": "NBC Olympic Concierge Architecture",
-      "image": "/assets/architecture.jpg",
-      "description": "High-fidelity architecture diagram for the OLI AI agent serving 40M viewers."
+      "provider": "Google Cloud (Professional)",
+      "logo": "https://www.vectorlogo.zone/logos/google_cloud/google_cloud-icon.svg",
+      "certs": [
+        "Machine Learning Engineer (PMLE)",
+        "Cloud Database Engineer (PCDE)",
+        "Cloud Architect (PCA)",
+        "Cloud Security Engineer (PCSE)",
+        "Network Engineer (PNE)",
+        "Workspace Administrator (GWA)",
+        "Associate Cloud Engineer",
+        "Cloud Digital Leader"
+      ]
     },
     {
-      "title": "Cloud Tech Impact Award 2024",
-      "image": "/assets/award_gtm_2024.jpg",
-      "description": "Enrique receiving the GTM Cloud Regional Award for technical excellence."
+      "provider": "Amazon Web Services",
+      "logo": "https://www.vectorlogo.zone/logos/amazon_aws/amazon_aws-icon.svg",
+      "certs": [
+        "Solutions Architect Professional",
+        "Solutions Architect Associate",
+        "Developer Associate",
+        "Security Specialty",
+        "Data Analytics Specialty",
+        "SysOps Administrator Associate"
+      ]
     },
     {
-      "title": "Google Cloud Next '25 Session",
-      "image": "/assets/speaker.png",
-      "description": "Presenting 'Architecting GenAI Agents' at Google Cloud Next in Las Vegas."
+      "provider": "Agile & Data",
+      "logo": "https://www.vectorlogo.zone/logos/splunk/splunk-icon.svg",
+      "certs": [
+        "Scaled Agile SAFe 4",
+        "Splunk Certified Power User"
+      ]
+    }
+  ],
+  "CERTIFICATIONS": [
+    {
+      "name": "Google Cloud Professional Machine Learning Engineer (PMLE)",
+      "title": "Google Cloud Professional Machine Learning Engineer (PMLE)",
+      "issuer": "Google Cloud",
+      "date": "2024 - 2026",
+      "image": "/assets/gcp_logo.png",
+      "logo": "https://www.vectorlogo.zone/logos/google_cloud/google_cloud-icon.svg",
+      "url": "https://cloud.google.com/certification/machine-learning-engineer",
+      "description": "Issued by Google Cloud (2024 - 2026)"
     },
     {
-      "title": "Professional Certifications Wall",
+      "name": "Google Cloud Professional Cloud Architect (PCA)",
+      "title": "Google Cloud Professional Cloud Architect (PCA)",
+      "issuer": "Google Cloud",
+      "date": "2021 - 2026",
+      "image": "/assets/gcp_logo.png",
+      "logo": "https://www.vectorlogo.zone/logos/google_cloud/google_cloud-icon.svg",
+      "url": "https://cloud.google.com/certification/cloud-architect",
+      "description": "Issued by Google Cloud (2021 - 2026)"
+    },
+    {
+      "name": "Google Cloud Professional Cloud Database Engineer (PCDE)",
+      "title": "Google Cloud Professional Cloud Database Engineer (PCDE)",
+      "issuer": "Google Cloud",
+      "date": "2023 - 2026",
+      "image": "/assets/gcp_logo.png",
+      "logo": "https://www.vectorlogo.zone/logos/google_cloud/google_cloud-icon.svg",
+      "url": "https://cloud.google.com/certification/cloud-database-engineer",
+      "description": "Issued by Google Cloud (2023 - 2026)"
+    },
+    {
+      "name": "Google Cloud Professional Cloud Security Engineer (PCSE)",
+      "title": "Google Cloud Professional Cloud Security Engineer (PCSE)",
+      "issuer": "Google Cloud",
+      "date": "2023 - 2026",
+      "image": "/assets/gcp_logo.png",
+      "logo": "https://www.vectorlogo.zone/logos/google_cloud/google_cloud-icon.svg",
+      "url": "https://cloud.google.com/certification/cloud-security-engineer",
+      "description": "Issued by Google Cloud (2023 - 2026)"
+    },
+    {
+      "name": "Google Cloud Professional Cloud Network Engineer (PNE)",
+      "title": "Google Cloud Professional Cloud Network Engineer (PNE)",
+      "issuer": "Google Cloud",
+      "date": "2023 - 2026",
+      "image": "/assets/gcp_logo.png",
+      "logo": "https://www.vectorlogo.zone/logos/google_cloud/google_cloud-icon.svg",
+      "url": "https://cloud.google.com/certification/cloud-network-engineer",
+      "description": "Issued by Google Cloud (2023 - 2026)"
+    },
+    {
+      "name": "Google Cloud Professional Workspace Administrator (GWA) & ACE & CDL (8x GCP Certified)",
+      "title": "Google Cloud Professional Workspace Administrator (GWA) & ACE & CDL (8x GCP Certified)",
+      "issuer": "Google Cloud",
+      "date": "2021 - 2026",
+      "image": "/assets/gcp_logo.png",
+      "logo": "https://www.vectorlogo.zone/logos/google_cloud/google_cloud-icon.svg",
+      "url": "https://cloud.google.com/certification",
+      "description": "Issued by Google Cloud (2021 - 2026)"
+    },
+    {
+      "name": "AWS Certified Solutions Architect – Professional & 6x AWS Certifications (Security, Data Analytics, Dev, SysOps, SAA)",
+      "title": "AWS Certified Solutions Architect – Professional & 6x AWS Certifications (Security, Data Analytics, Dev, SysOps, SAA)",
+      "issuer": "Amazon Web Services (AWS)",
+      "date": "2020 - 2024",
+      "image": "/assets/aws_logo.png",
+      "logo": "https://www.vectorlogo.zone/logos/amazon_aws/amazon_aws-icon.svg",
+      "url": "https://aws.amazon.com/certification/",
+      "description": "Issued by Amazon Web Services (AWS) (2020 - 2024)"
+    },
+    {
+      "name": "Scaled Agile SAFe 4 Certified & Splunk Certified Power User",
+      "title": "Scaled Agile SAFe 4 Certified & Splunk Certified Power User",
+      "issuer": "Scaled Agile / Splunk",
+      "date": "2019 - 2024",
       "image": "/assets/certs.png",
-      "description": "A showcase of Enrique's 19x professional cloud certifications across Google, AWS, and Azure."
+      "logo": "https://www.vectorlogo.zone/logos/splunk/splunk-icon.svg",
+      "url": "https://scaledagile.com/",
+      "description": "Issued by Scaled Agile / Splunk (2019 - 2024)"
+    }
+  ],
+  "TESTIMONIALS": [
+    {
+      "quote": "Thank you for your work and commitment to leading with customer empathy. Your team's story is a great example of how we work together to best support our customers and support each other.",
+      "author": "Thomas Kurian",
+      "role": "CEO Google Cloud"
     },
     {
-      "title": "Enrique K Chan - AI Leadership",
-      "image": "/assets/hero.png",
-      "description": "Official leadership portrait for Enrique K Chan, Outbound PM at Google Cloud."
+      "quote": "GTM Cloud Excellence Connecting Teams Award: Congratulations on being awarded a GTM Cloud Regional Award. On behalf of Michael Clark and the Leadership Team we thank you for your dedication and impactful work!",
+      "author": "Michael Clark",
+      "role": "President Google Cloud NorthAm"
     },
     {
-      "title": "AIS Offsite Hackathon Victory",
-      "image": "/assets/awards.png",
-      "description": "Winning the 2025 Google AIS Offsite Hackathon with the 'Cards Against Humanity' agent."
+      "quote": "Enrique was central to influencing the customer on Google's ability to deliver on their solution… he maintained leadership of Google's solution with deep dives, workshops, and direct executive engagements.",
+      "author": "Amar Raol",
+      "role": "Director Global Strategic Initiatives, Google"
+    },
+    {
+      "quote": "Amazing work for GCC at Next'24! Your expertise and impactful engagement were instrumental in the GenAI workshop's success.",
+      "author": "Lee Moore",
+      "role": "VP Google Cloud Consulting"
+    },
+    {
+      "quote": "Thank you for your willingness to review Day 1 whitepaper for Kaggle 5days of AI agents. Your insights were helpful in guiding us to a great whitepaper.",
+      "author": "Brian Delahunty",
+      "role": "VP Agents Platform"
     }
   ],
   "COMICS": [
     {
-      "title": "Business Leaders Edition",
-      "image": "/assets/agent_comic.png",
+      "name": "Business Leaders Edition",
       "url": "https://enriquekchan.web.app/agent_adventures_business_leaders.pdf"
     },
     {
-      "title": "Issue #1: Origin",
-      "image": "/assets/agent_comic.png",
+      "name": "Issue #1: Origin",
       "url": "https://enriquekchan.web.app/agent_adventures_part_1.pdf"
     },
     {
-      "title": "Issue #2: Core",
-      "image": "/assets/agent_comic.png",
+      "name": "Issue #2: Core",
       "url": "https://enriquekchan.web.app/agent_adventures_part_2.pdf"
     },
     {
-      "title": "Issue #3: Evolution",
-      "image": "/assets/agent_comic.png",
+      "name": "Issue #3: Evolution",
       "url": "https://enriquekchan.web.app/agent_adventures_part_3.pdf"
     },
     {
+      "name": "Issue #4: Horizon",
       "title": "Issue #4: Horizon",
       "image": "/assets/agent_comic.png",
       "url": "https://enriquekchan.web.app/agent_adventures_part_4.pdf"
+    }
+  ],
+  "REPOSITORIES": [
+    {
+      "name": "agent-cockpit",
+      "title": "AgentOps Cockpit (v2.0.2)",
+      "description": "Autonomous AST-driven governance, reliability, FinOps, and security hardening platform for production AI agents.",
+      "url": "https://github.com/enriquekalven/agent-cockpit",
+      "language": "Python / TypeScript",
+      "stars": "450+"
+    },
+    {
+      "name": "portfolio-agent",
+      "title": "Living A2UI Portfolio Concierge Agent",
+      "description": "Declarative Agent-to-UI (A2UI) and A2A portfolio concierge powered by Google ADK and Gemini.",
+      "url": "https://github.com/enriquekalven/portfolio-agent",
+      "language": "Python / Lit / TypeScript",
+      "stars": "180+"
+    },
+    {
+      "name": "advent-of-agents",
+      "title": "Advent of Agents (Top 5 Global GitHub Repo)",
+      "description": "25-day production AI agent curriculum reaching 32,000+ developers and driving 5T+ tokens to Gemini.",
+      "url": "https://github.com/enriquekalven/advent-of-agents",
+      "language": "Python (Google ADK)",
+      "stars": "3,200+"
+    },
+    {
+      "name": "economic-research-agent",
+      "title": "Economic Research Agent (Google Agent Garden)",
+      "description": "Zero-hallucination ADK 2.0 macro-economic & real estate yield agent integrating live FRED, US Census, and HUD APIs.",
+      "url": "https://github.com/enriquekalven/economic-research-agent",
+      "language": "Python (ADK 2.0)",
+      "stars": "290+"
+    },
+    {
+      "name": "safekids-portal",
+      "title": "SafeKids Algorithm-Free Media Portal",
+      "description": "Open-source, zero-algorithm educational media portal for parents to eliminate high-dopamine video loops.",
+      "url": "https://github.com/enriquekalven/safekids-portal",
+      "language": "TypeScript / React",
+      "stars": "210+"
+    }
+  ],
+  "GALLERY": [
+    {
+      "title": "Google Cloud Delta & AI Engineering",
+      "description": "Staff AI Technical Deployment Lead driving $2B+ in enterprise AI transformations and 4x Gartner/Forrester Leader recognitions.",
+      "image": "/assets/hero.png",
+      "url": "https://enriquekchan.web.app"
+    },
+    {
+      "title": "Google Cloud Next 26 — SOL331",
+      "description": "Unlock the Value of Cloud Investment with FinOps Hub 2.0 & Gemini Cloud Assist at Mandalay Bay, Las Vegas.",
+      "image": "/assets/gallery_keynote.jpg",
+      "url": "https://www.GoogleCloudNext.com"
+    },
+    {
+      "title": "Advent of Agents (32,000+ Developers)",
+      "description": "25-day global AI Agents builder campaign reaching 32K+ developers and processing 5T+ tokens on Vertex AI.",
+      "image": "/assets/blog-cockpit.png",
+      "url": "https://adventofagents.com"
     }
   ]
 }

@@ -137,9 +137,9 @@ function sanitizeInput(input: string): string {
 
 const PORT = process.env.PORT || 8080;
 const PROJECT = process.env.GOOGLE_CLOUD_PROJECT;
-// Use us-central1 region for consistency with Agent Engine
-const LOCATION = process.env.GOOGLE_CLOUD_LOCATION || "us-central1";
-const MODEL = process.env.GENAI_MODEL || "gemini-3.6-flash";
+// Use global location for gemini-4-argon / gemini-3.6-flash on Vertex AI
+const LOCATION = process.env.GOOGLE_CLOUD_LOCATION || "global";
+const MODEL = process.env.GENAI_MODEL || "gemini-4-argon";
 
 const auth = new GoogleAuth({
   scopes: "https://www.googleapis.com/auth/cloud-platform",
@@ -611,7 +611,7 @@ Replace all [BRACKETED] placeholders with actual content. Vary which option is c
   try {
     const response = await genai.models.generateContent({
       model: MODEL,
-      contents: [{ role: "user", parts: [{ text: `Generate quiz questions about: ${topic || 'ATP and bond energy'}` }] }],
+      contents: [{ role: "user", parts: [{ text: `Generate quiz questions about: ${topic || 'Enrique K Chan AI Architecture and Google Cloud career'}` }] }],
       config: {
         systemInstruction: systemPrompt,
         responseMimeType: "application/json",
@@ -717,7 +717,7 @@ You MUST respond with a valid JSON object.
 DO NOT use filler phrases like "That's a great question" or "Let me think".
 The format depends on the intent:
 
-For content-generating intents (awards, certs, speaker, testimonials, timeline, flashcards, blog_cards, video_cards, podcast, video, quiz, weather, stock, time):
+For content-generating intents (awards, certs, speaker, testimonials, timeline, flashcards, blog_cards, video_cards, gallery, repositories, matrix, charts, bubble, podcast, video, quiz, weather, stock, time):
 {
   "intent": "<the detected intent>",
   "text": "<your conversational response summarizing the specific facts>",
@@ -733,17 +733,21 @@ For non-content intents (greeting, general):
 ## INTENT CLASSIFICATION
 Analyze the user's message and context to determine the most high-signal intent:
 - general: questions about specific projects, technical details, or specific companies (e.g. 'What did he do at Accenture?'). Respond with FACTS.
-- timeline: user explicitly wants to 'see', 'view', or 'visualize' the career journey, history, or timeline.
-- awards: user asks for awards, honors, hackathons, or recognitions (Default to this for trophy requests).
-- certs: user asks for certifications or credentials. (Google, AWS, Azure).
-- speaker: user asks for speaking engagements, keynotes, or Cloud Next.
-- testimonials: user asks for what people say, feedback, or Googler quotes.
-- flashcards: user wants "Skill Matcher", "Fit Analyzer", or highlights.
-- blog_cards: user wants to see medium blogs or articles.
-- video_cards: user wants to see youtube videos or a gallery.
-- podcast: user wants audio content.
+- timeline: user explicitly wants to 'see', 'view', or 'visualize' the career journey, history, or sequential timeline ("Career Historian").
+- awards: user asks for awards, honors, hackathons, or recognitions ("Trophy Room").
+- certs: user asks for certifications or credentials ("Cloud Badge Wall" - Google Cloud, AWS, SAFe, Splunk).
+- speaker: user asks for speaking engagements, keynotes, Build with Gemini, or Cloud Next ("Stage Presence").
+- testimonials: user asks for what people think/say of Enrique, feedback, or Googler quotes ("Googler Vibes").
+- flashcards: user wants "Skill Matcher", "Fit Analyzer", study cards, or career highlights.
+- blog_cards: user wants to see Medium blog posts, whitepapers, or articles ("Insight Stream").
+- video_cards: user wants to see YouTube videos ("Cinema Hub").
+- gallery: user wants to see a gallery of work and highlights ("Hall of Mastery").
+- repositories: user wants to see featured open source repositories or GitHub repos ("Repo Scout").
+- matrix: user asks for the Strategic Integration Matrix or agentic workflow framework.
+- charts: user asks for the technical proficiency radar or skill chart.
+- podcast: user wants audio content or podcast deep dive.
 - video: user wants a single video message.
-- quiz: user wants a quiz about Enrique.
+- quiz: user wants a quiz or to be tested about Enrique.
 - bubble: user wants 'bubble head' photos, pictures in bubbles, or profile visuals.
 - weather: user asks about the weather, temperature, or conditions.
 - stock: user asks for stock market data, market price, or GOOGL info.
@@ -756,14 +760,23 @@ Analyze the user's message and context to determine the most high-signal intent:
 3. **Be Direct**: Provide facts first. acknowledgment should be brief.
 
 ## EXAMPLES
-- "What's the weather?" → intent: "weather", keywords: "seattle weather"
-- "How do his skills match a Senior AI role?" → intent: "flashcards", keywords: "Skill Matcher"
-- "Analyze his fit for an AI Lead role" → intent: "flashcards", keywords: "Fit Analyzer"
-- "What is Google's stock price?" → intent: "stock", keywords: "GOOGL stock"
+- "Show me Enrique's career highlights as a sequential timeline" → intent: "timeline", keywords: "Career Historian, Google Cloud Delta, AWS, Accenture"
+- "How do Enrique's skills match a Senior AI role?" → intent: "flashcards", keywords: "Skill Matcher"
+- "Analyze Enrique's fit for an AI Lead role" → intent: "flashcards", keywords: "Fit Analyzer"
+- "Show me his top YouTube videos" → intent: "video_cards", keywords: "Cinema Hub, YouTube"
+- "Show me some of his Medium blog posts" → intent: "blog_cards", keywords: "Insight Stream, Medium"
+- "List Enrique's major awards and hackathon wins" → intent: "awards", keywords: "Trophy Room, SWIFTY, Gartner"
+- "Show Enrique's cloud certifications" → intent: "certs", keywords: "Google Cloud, AWS, SAFe, Splunk"
+- "Show Enrique's speaking engagements and keynotes" → intent: "speaker", keywords: "Google Cloud Next, Build with Gemini"
+- "Show me what people think of Enrique (testimonials)" → intent: "testimonials", keywords: "Thomas Kurian, Michael Clark"
+- "Show me a gallery of your work and highlights" → intent: "gallery", keywords: "Hall of Mastery, Projects"
+- "Show me your featured open source repositories" → intent: "repositories", keywords: "GitHub, agentops-cockpit"
+- "Show me the Strategic Integration Matrix" → intent: "matrix", keywords: "Strategic Integration Matrix"
+- "Show me your technical proficiency radar" → intent: "charts", keywords: "Skill Radar"
 - "What's the weather in Seattle?" → intent: "weather", keywords: "Seattle"
+- "What is Google's stock price?" → intent: "stock", keywords: "GOOGL stock"
 - "What time is it?" → intent: "time", keywords: "current time"
 - "Show me bubble head photos" → intent: "bubble", keywords: "profile bubbles"
-- "Show me his cloud certs" → intent: "certs", keywords: "Google Cloud, AWS, Azure"
 
 Then provide an appropriate conversational response highlighting the utility integration as part of your agentic capabilities.`;
 

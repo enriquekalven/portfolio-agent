@@ -53,7 +53,7 @@ deploy-backend:
 deploy-frontend: build
 	@echo "📦 Deploying UI Bridge to Cloud Run..."
 	gcloud run deploy $(SERVICE_NAME) --project $(PROJECT_ID) --source . --region $(REGION) --allow-unauthenticated --memory 1Gi --cpu 1 --min-instances 1 \
-		--set-env-vars GOOGLE_CLOUD_PROJECT=$(PROJECT_ID),AGENT_ENGINE_RESOURCE_ID=152896987446902784,AGENT_ENGINE_PROJECT_NUMBER=1069572400509,USE_LOCAL_AGENT=FALSE,GENAI_MODEL=gemini-1.5-flash
+		--set-env-vars GOOGLE_CLOUD_PROJECT=$(PROJECT_ID),GOOGLE_CLOUD_LOCATION=global,GOOGLE_GENAI_USE_VERTEXAI=TRUE,AGENT_ENGINE_RESOURCE_ID=152896987446902784,AGENT_ENGINE_PROJECT_NUMBER=1069572400509,USE_LOCAL_AGENT=FALSE,GENAI_MODEL=gemini-4-argon
 	@echo "🔥 Deploying static assets to Firebase Hosting..."
 	firebase deploy --only hosting:enriquekchan-concierge --project $(PROJECT_ID)
 

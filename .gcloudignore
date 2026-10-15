@@ -2,9 +2,10 @@
 .git
 node_modules
 venv
+.venv
 .env
 # Keep dist!
 # renderers # vite bundled this into dist
 agent/venv
+agent/release_venv
 # Dockerfile and api-server.ts are already in root
-venv

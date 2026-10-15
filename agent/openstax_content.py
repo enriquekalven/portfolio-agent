@@ -204,7 +204,10 @@ def fetch_chapter_content(chapter_slug: str) -> Optional[dict]:
     Returns:
         Dict with chapter info and combined content, or None if not found.
     """
-    from .openstax_chapters import OPENSTAX_CHAPTERS, CHAPTER_TO_MODULES, get_openstax_url_for_chapter
+    try:
+        from openstax_chapters import OPENSTAX_CHAPTERS, CHAPTER_TO_MODULES, get_openstax_url_for_chapter
+    except ImportError:
+        from .openstax_chapters import OPENSTAX_CHAPTERS, CHAPTER_TO_MODULES, get_openstax_url_for_chapter
     if chapter_slug not in CHAPTER_TO_MODULES:
         logger.warning(f'Unknown chapter: {chapter_slug}')
         return None

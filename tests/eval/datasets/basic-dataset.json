@@ -1,0 +1,59 @@
+{
+  "eval_cases": [
+    {
+      "eval_case_id": "case_001_role_2026",
+      "prompt": {
+        "role": "user",
+        "parts": [
+          {
+            "text": "Who is Enrique K Chan and what is his current role at Google Cloud in 2026?"
+          }
+        ]
+      }
+    },
+    {
+      "eval_case_id": "case_002_analyst_wins",
+      "prompt": {
+        "role": "user",
+        "parts": [
+          {
+            "text": "Tell me about Enrique's 2026 Gartner Magic Quadrant and Forrester Wave Leader recognitions."
+          }
+        ]
+      }
+    },
+    {
+      "eval_case_id": "case_003_swifty_award",
+      "prompt": {
+        "role": "user",
+        "parts": [
+          {
+            "text": "What is the Silver Google AI Award (SWIFTY) that Enrique won in Q3 2026?"
+          }
+        ]
+      }
+    },
+    {
+      "eval_case_id": "case_004_flagship_projects",
+      "prompt": {
+        "role": "user",
+        "parts": [
+          {
+            "text": "What are Enrique's flagship projects like Advent of Agents, AgentOps Cockpit, and NBC Olympic Concierge?"
+          }
+        ]
+      }
+    },
+    {
+      "eval_case_id": "case_005_speaking_next26",
+      "prompt": {
+        "role": "user",
+        "parts": [
+          {
+            "text": "What speaking sessions did Enrique deliver at Google Cloud Next '26 and Build with Gemini in 2026?"
+          }
+        ]
+      }
+    }
+  ]
+}

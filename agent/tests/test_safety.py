@@ -1,13 +1,16 @@
 import sys
 from unittest.mock import MagicMock
 
-# Mock google module before importing agent
-mock_google = MagicMock()
-sys.modules["google"] = mock_google
-sys.modules["google.adk"] = MagicMock()
-sys.modules["google.adk.agents"] = MagicMock()
-sys.modules["google.adk.agents.context_cache_config"] = MagicMock()
-sys.modules["google.genai"] = MagicMock()
+# Only mock google module if not installed in environment
+try:
+    import google.genai  # noqa: F401
+except ImportError:
+    mock_google = MagicMock()
+    sys.modules["google"] = mock_google
+    sys.modules["google.adk"] = MagicMock()
+    sys.modules["google.adk.agents"] = MagicMock()
+    sys.modules["google.adk.agents.context_cache_config"] = MagicMock()
+    sys.modules["google.genai"] = MagicMock()
 
 import unittest
 import logging

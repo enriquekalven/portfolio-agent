@@ -1,34 +1,49 @@
 {
   "eval_set_id": "basic_eval",
-  "name": "Basic Agent Evaluation",
-  "description": "Sample evaluation set for testing core agent functionality. Customize these cases for your agent.",
+  "name": "Portfolio Concierge 2026 Sync Evaluation",
+  "description": "Evaluation set testing Enrique K Chan's 2026 portfolio concierge synchronization and grounding.",
   "eval_cases": [
     {
-      "eval_id": "greeting",
+      "eval_id": "greeting_and_capabilities",
       "conversation": [
         {
           "user_content": {
-            "parts": [{"text": "Hello, what can you help me with?"}]
+            "parts": [{"text": "Hello! Who is Enrique K Chan and what is his current role at Google Cloud in 2026?"}]
           }
         }
       ],
       "session_input": {
-        "app_name": "app",
+        "app_name": "agent",
         "user_id": "eval_user",
         "state": {}
       }
     },
     {
-      "eval_id": "weather_query",
+      "eval_id": "analyst_wins_and_swifty_award",
       "conversation": [
         {
           "user_content": {
-            "parts": [{"text": "What's the weather like in San Francisco?"}]
+            "parts": [{"text": "Tell me about Enrique's 2026 Gartner and Forrester Leader recognitions and his Silver Google AI Award (SWIFTY)."}]
           }
         }
       ],
       "session_input": {
-        "app_name": "app",
+        "app_name": "agent",
+        "user_id": "eval_user",
+        "state": {}
+      }
+    },
+    {
+      "eval_id": "projects_and_advent_of_agents",
+      "conversation": [
+        {
+          "user_content": {
+            "parts": [{"text": "What are Enrique's flagship projects like Advent of Agents, AgentOps Cockpit, and NBC Olympic Concierge?"}]
+          }
+        }
+      ],
+      "session_input": {
+        "app_name": "agent",
         "user_id": "eval_user",
         "state": {}
       }

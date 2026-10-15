@@ -42,8 +42,96 @@ QUIZ_EXAMPLE = f'''
 ]
 '''
 IMAGE_EXAMPLE = f'\n[\n  {{"beginRendering": {{"surfaceId": "{SURFACE_ID}", "root": "mainColumn"}}}},\n  {{\n    "surfaceUpdate": {{\n      "surfaceId": "{SURFACE_ID}",\n      "components": [\n        {{\n          "id": "mainColumn",\n          "component": {{"Image": {{"url": "/assets/hero.png", "alt": "Enrique K Chan"}}}}\n        }}\n      ]\n    }}\n  }}\n]\n'
-VIDEO_EXAMPLE = f'\n[\n  {{"beginRendering": {{"surfaceId": "{SURFACE_ID}", "root": "mainColumn"}}}},\n  {{\n    "surfaceUpdate": {{\n      "surfaceId": "{SURFACE_ID}",\n      "components": [\n        {{\n          "id": "mainColumn",\n          "component": {{"Video": {{"url": "https://www.youtube.com/watch?v=nZa5-WyN-rE"}}}}\n        }}\n      ]\n    }}\n  }}\n]\n'
-AUDIO_EXAMPLE = f'''\n[\n  {{"beginRendering": {{"surfaceId": "{SURFACE_ID}", "root": "mainColumn"}}}},\n  {{\n    "surfaceUpdate": {{\n      "surfaceId": "{SURFACE_ID}",\n      "components": [\n        {{\n          "id": "mainColumn",\n          "component": {{"Audio": {{"url": "/assets/podcast.m4a", "title": "Enrique's AI Vision"}}}}\n        }}\n      ]\n    }}\n  }}\n]\n'''
+VIDEO_EXAMPLE = f'''
+[
+  {{"beginRendering": {{"surfaceId": "{SURFACE_ID}", "root": "videoCard"}}}},
+  {{
+    "surfaceUpdate": {{
+      "surfaceId": "{SURFACE_ID}",
+      "components": [
+        {{
+          "id": "videoCard",
+          "component": {{"Card": {{"child": "videoContent"}}}}
+        }},
+        {{
+          "id": "videoContent",
+          "component": {{
+            "Column": {{
+              "children": {{"explicitList": ["videoTitle", "videoPlayer", "videoDescription"]}},
+              "distribution": "start",
+              "alignment": "stretch"
+            }}
+          }}
+        }},
+        {{
+          "id": "videoTitle",
+          "component": {{"Text": {{"text": {{"literalString": "Why 80% of AI Agents Fail in Production (And How to Fix It)"}}, "usageHint": "h3"}}}}
+        }},
+        {{
+          "id": "videoPlayer",
+          "component": {{"Video": {{"url": {{"literalString": "https://www.youtube.com/watch?v=zvNJqZNaKNY"}}, "title": {{"literalString": "AgentOps Cockpit & Enterprise AI Governance"}}}}}}
+        }},
+        {{
+          "id": "videoDescription",
+          "component": {{"Text": {{"text": {{"literalString": "Enrique Chan shares lessons from auditing 44 enterprise AI agents and how AgentOps Cockpit automates Day-2 governance."}}, "usageHint": "body"}}}}
+        }}
+      ]
+    }}
+  }}
+]
+'''
+AUDIO_EXAMPLE = f'''
+[
+  {{"beginRendering": {{"surfaceId": "{SURFACE_ID}", "root": "audioCard"}}}},
+  {{
+    "surfaceUpdate": {{
+      "surfaceId": "{SURFACE_ID}",
+      "components": [
+        {{
+          "id": "audioCard",
+          "component": {{"Card": {{"child": "audioContent"}}}}
+        }},
+        {{
+          "id": "audioContent",
+          "component": {{
+            "Column": {{
+              "children": {{"explicitList": ["audioHeader", "audioPlayer", "audioDescription"]}},
+              "distribution": "start",
+              "alignment": "stretch"
+            }}
+          }}
+        }},
+        {{
+          "id": "audioHeader",
+          "component": {{
+            "Row": {{
+              "children": {{"explicitList": ["audioIcon", "audioTitle"]}},
+              "distribution": "start",
+              "alignment": "center"
+            }}
+          }}
+        }},
+        {{
+          "id": "audioIcon",
+          "component": {{"Icon": {{"name": {{"literalString": "podcasts"}}}}}}
+        }},
+        {{
+          "id": "audioTitle",
+          "component": {{"Text": {{"text": {{"literalString": "Deep Dive: Architecting Enterprise AI Agents"}}, "usageHint": "h3"}}}}
+        }},
+        {{
+          "id": "audioPlayer",
+          "component": {{"AudioPlayer": {{"url": {{"literalString": "/assets/podcast.m4a"}}, "description": {{"literalString": "Enrique's AI Vision & Agentic Architecture"}}}}}}
+        }},
+        {{
+          "id": "audioDescription",
+          "component": {{"Text": {{"text": {{"literalString": "Explore how Enrique leads Forward Deployed Engineering at Google Cloud Delta, Advent of Agents, and AgentOps Cockpit."}}, "usageHint": "body"}}}}
+        }}
+      ]
+    }}
+  }}
+]
+'''
 TIMELINE_EXAMPLE = f'\n[\n  {{"beginRendering": {{"surfaceId": "{SURFACE_ID}", "root": "mainColumn"}}}},\n  {{\n    "surfaceUpdate": {{\n      "surfaceId": "{SURFACE_ID}",\n      "components": [\n        {{\n          "id": "mainColumn",\n          "component": {{\n            "Column": {{\n              "children": {{"explicitList": ["header", "exp1", "exp2", "exp3"]}},\n              "distribution": "start",\n              "alignment": "stretch"\n            }}\n          }}\n        }},\n        {{\n            "id": "header",\n            "component": {{"Text": {{"text": {{"literalString": "Career Historian 📜"}}, "usageHint": "h2"}}}}\n        }},\n        {{\n          "id": "exp1",\n          "component": {{\n            "ExperienceCard": {{\n              "company": "Google Cloud",\n              "role": "Outbound Product Manager, Cloud AI",\n              "period": "Nov 2025 – Present",\n              "logo": "google",\n              "color": "#4285F4",\n              "highlights": ["Highlight 1", "Highlight 2"],\n              "impact": "Multi-million dollar impact..."\n            }}\n          }}\n        }}\n      ]\n    }}\n  }}\n]\n'
 VIDEO_CARDS_EXAMPLE = f'''\n[\n  {{"beginRendering": {{"surfaceId": "{SURFACE_ID}", "root": "mainColumn"}}}},\n  {{\n    "surfaceUpdate": {{\n      "surfaceId": "{SURFACE_ID}",\n      "components": [\n        {{\n          "id": "mainColumn",\n          "component": {{\n            "Column": {{\n              "children": {{"explicitList": ["header", "videoGrid"]}},\n              "distribution": "start",\n              "alignment": "stretch"\n            }}\n          }}\n        }},\n        {{\n            "id": "header",\n            "component": {{"Text": {{"text": {{"literalString": "Cinema Hub 🎬"}}, "usageHint": "h2"}}}}\n        }},\n        {{\n          "id": "videoGrid",\n          "component": {{\n            "Row": {{\n              "children": {{"explicitList": ["v1", "v2", "v3", "v4"]}},\n              "distribution": "start",\n              "alignment": "stretch"\n            }}\n          }}\n        }},\n        {{\n          "id": "v1",\n          "component": {{\n            "PortfolioCard": {{\n              "type": "video",\n              "title": {{"literalString": "Rise of Agentic AI"}},\n              "description": {{"literalString": "Enrique's keynote on the transition to autonomous AI agents."}},\n              "image": {{"literalString": "https://img.youtube.com/vi/nZa5-WyN-rE/maxresdefault.jpg"}},\n              "url": {{"literalString": "https://www.youtube.com/watch?v=nZa5-WyN-rE"}}\n            }}\n          }}\n        }},\n        {{\n          "id": "v2",\n          "component": {{\n            "PortfolioCard": {{\n              "type": "video",\n              "title": {{"literalString": "A2UI & Agentic Interfaces"}},\n              "description": {{"literalString": "A deep dive into high-fidelity Agentic User Interfaces."}},\n              "image": {{"literalString": "https://img.youtube.com/vi/ZMIAlxx-Jx4/maxresdefault.jpg"}},\n              "url": {{"literalString": "https://www.youtube.com/watch?v=ZMIAlxx-Jx4"}}\n            }}\n          }}\n        }}\n        // ... v3 and v4 unique IDs\n      ]\n    }}\n  }}\n]\n'''
 BLOG_CARDS_EXAMPLE = f'\n[\n  {{"beginRendering": {{"surfaceId": "{SURFACE_ID}", "root": "mainColumn"}}}},\n  {{\n    "surfaceUpdate": {{\n      "surfaceId": "{SURFACE_ID}",\n      "components": [\n        {{\n          "id": "mainColumn",\n          "component": {{\n            "Column": {{\n              "children": {{"explicitList": ["header", "blogRow1", "blogRow2"]}},\n              "distribution": "start",\n              "alignment": "stretch"\n            }}\n          }}\n        }},\n        {{\n          "id": "header",\n          "component": {{"Text": {{"text": {{"literalString": "Insight Stream ✍️"}}, "usageHint": "h2"}}}}\n        }},\n        {{\n          "id": "blogRow1",\n          "component": {{\n            "Row": {{\n              "children": {{"explicitList": ["b1", "b2", "b3"]}},\n              "distribution": "start",\n              "alignment": "stretch"\n            }}\n          }}\n        }},\n        {{\n          "id": "blogRow2",\n          "component": {{\n            "Row": {{\n              "children": {{"explicitList": ["b4", "b5", "b6"]}},\n              "distribution": "start",\n              "alignment": "stretch"\n            }}\n          }}\n        }},\n        {{\n          "id": "b1",\n          "component": {{\n            "PortfolioCard": {{\n              "type": "blog",\n              "title": {{"literalString": "Intro to Agents Whitepaper"}},\n              "description": {{"literalString": "The definitive Kaggle guide to the future of AI agents."}},\n              "image": {{"literalString": "/assets/blog-a2ui.png"}},\n              "url": {{"literalString": "https://www.kaggle.com/whitepaper-introduction-to-agents"}}\n            }}\n          }}\n        }},\n        {{\n          "id": "b2",\n          "component": {{\n            "PortfolioCard": {{\n              "type": "blog",\n              "title": {{"literalString": "Advent of Agents"}},\n              "description": {{"literalString": "A 25-day journey into building and deploying agentic workflows."}},\n              "image": {{"literalString": "/assets/blog-optimizer.png"}},\n              "url": {{"literalString": "https://adventofagents.com/"}}\n            }}\n          }}\n        }}\n        // ... b3 through b6 unique IDs\n      ]\n    }}\n  }}\n]\n'

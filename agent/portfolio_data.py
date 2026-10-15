@@ -1,37 +1,62 @@
+"""
+Structured Portfolio Data for Enrique Kalven Chan.
+Loads from portfolio_data.json for single-source-of-truth maintenance
+and 100% synchronization with https://enriquekchan.web.app.
+"""
 import json
 import os
+import logging
 
-def load_data():
-    current_dir = os.path.dirname(os.path.abspath(__file__))
-    json_path = os.path.join(current_dir, 'portfolio_data.json')
-    try:
-        with open(json_path, 'r') as f:
-            return json.load(f)
-    except FileNotFoundError:
-        # Fallback for local testing if needed
-        return {}
+logger = logging.getLogger(__name__)
 
-DATA = load_data()
+# Fallback defaults in case JSON is missing or corrupted
+DEFAULT_DATA = {
+    "PROFILE": {},
+    "ANALYST_RELATIONS": [],
+    "SERVICES": [],
+    "EXPERIENCE": [],
+    "PROJECTS": [],
+    "AWARDS": [],
+    "BLOGS": [],
+    "VIDEOS": [],
+    "SPEAKING": [],
+    "CERTIFICATIONS": [],
+    "CERTIFICATION_GROUPS": [],
+    "TESTIMONIALS": [],
+    "COMICS": [],
+}
 
-# Export specific fields for compatibility with existing imports
-PROFILE = DATA.get('PROFILE', {})
-EXPERIENCE = DATA.get('EXPERIENCE', [])
+DATA_PATH = os.path.join(os.path.dirname(__file__), "portfolio_data.json")
+
+try:
+    with open(DATA_PATH, "r", encoding="utf-8") as f:
+        DATA = json.load(f)
+except Exception as e:
+    logger.error(f"Failed to load portfolio_data.json from {DATA_PATH}: {e}")
+    DATA = DEFAULT_DATA
+
+PROFILE = DATA.get("PROFILE", {})
+ANALYST_RELATIONS = DATA.get("ANALYST_RELATIONS", [])
+SERVICES = DATA.get("SERVICES", [])
+EXPERIENCE = DATA.get("EXPERIENCE", [])
 PROJECTS = DATA.get("PROJECTS", [])
-SKILLS = DATA.get("SKILLS", [])
-CERTIFICATIONS = DATA.get("CERTIFICATIONS", [])
-_AWARDS = DATA.get("AWARDS", [])
-TESTIMONIALS = DATA.get("TESTIMONIALS", [])
-PUBLICATIONS = DATA.get("PUBLICATIONS", [])
-_GALLERY = DATA.get("GALLERY", [])
-MATRIX = DATA.get("MATRIX", {})
-COMICS = DATA.get("COMICS", [])
+AWARDS = DATA.get("AWARDS", [])
 BLOGS = DATA.get("BLOGS", [])
 VIDEOS = DATA.get("VIDEOS", [])
+SPEAKING = DATA.get("SPEAKING", [])
+CERTIFICATIONS = DATA.get("CERTIFICATIONS", [])
+CERTIFICATION_GROUPS = DATA.get("CERTIFICATION_GROUPS", [])
+TESTIMONIALS = DATA.get("TESTIMONIALS", [])
+COMICS = DATA.get("COMICS", [])
+REPOSITORIES = DATA.get("REPOSITORIES", [])
 
-# Legacy Aliases for Agent Compatibility
+# Backward-compatible aliases used across agent/agent.py and agent/app.py
+SKILLS = PROFILE.get("top_skills", [])
 _CERTIFICATIONS = CERTIFICATIONS
-AWARDS = _AWARDS
+_AWARDS = AWARDS
+PUBLICATIONS = BLOGS
 _BLOGS = BLOGS
 _VIDEOS = VIDEOS
-_SPEAKING = [] # Placeholder
-REPOSITORIES = DATA.get("REPOSITORIES", PROJECTS)
+_SPEAKING = SPEAKING
+GALLERY = PROJECTS
+_GALLERY = PROJECTS

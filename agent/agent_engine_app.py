@@ -24,9 +24,10 @@ class AgentEngineApp(AdkApp):
         super().set_up()
         logging.basicConfig(level=logging.INFO)
         self.logger = logging.getLogger(__name__)
-        gemini_location = os.environ.get('GOOGLE_CLOUD_LOCATION')
-        if gemini_location:
-            os.environ['GOOGLE_CLOUD_LOCATION'] = gemini_location
+        gemini_location = os.environ.get('GOOGLE_CLOUD_LOCATION', 'global')
+        if gemini_location in ('us-central1', 'us-east1', ''):
+            gemini_location = 'global'
+        os.environ['GOOGLE_CLOUD_LOCATION'] = gemini_location
 
     def register_feedback(self, feedback: dict[str, Any]) -> None:
         """Collect and log feedback."""

@@ -55,36 +55,21 @@ export class A2AClient {
     const lowerFormat = format.toLowerCase();
     const backendFormat = lowerFormat === "blog" ? "blog_cards" : (lowerFormat === "video" || lowerFormat === "video_cards") ? "video_cards" : (lowerFormat === "matrix" || lowerFormat === "framework") ? "matrix" : (lowerFormat === "charts" || lowerFormat === "radar") ? "charts" : lowerFormat;
 
-    // "Gems" are fixed-content modules that should always use local fallbacks for reliability and consistency.
-    // New questions or general queries will continue through to the remote Agent Engine.
+    // Local media assets and real-time client utilities render directly
     if (
       backendFormat === "podcast" ||
       backendFormat === "audio" ||
       backendFormat === "video" ||
-      backendFormat === "blog_cards" ||
-      backendFormat === "video_cards" ||
-      backendFormat === "awards" ||
-      backendFormat === "certs" ||
-      backendFormat === "speaker" ||
-      backendFormat === "testimonials" ||
-      backendFormat === "gallery" ||
-      backendFormat === "timeline" ||
-      backendFormat === "matrix" ||
-      backendFormat === "charts" ||
-      backendFormat === "flashcards" ||
-      backendFormat === "quiz" ||
       backendFormat === "bubble" ||
       backendFormat === "weather" ||
       backendFormat === "stock" ||
-      backendFormat === "time" ||
-      backendFormat === "repositories" ||
-      backendFormat === "general"
+      backendFormat === "time"
     ) {
-      console.log(`[A2AClient] Using local fallback for Gem: ${format}`);
+      console.log(`[A2AClient] Using local media/utility handler for: ${format}`);
       return this.getFallbackContent(backendFormat, context);
     }
 
-    console.log(`[A2AClient] Routing new query to Agent Engine for format: ${format}`);
+    console.log(`[A2AClient] Routing query to Agent Engine for format: ${format}`);
 
     try {
       const response = await fetch(`${this.baseUrl}/a2a/query`, {
@@ -104,23 +89,30 @@ export class A2AClient {
       const data = await response.json();
       console.log(`[A2AClient] Received response:`, data);
 
-      // Check if the response has valid A2UI content
-      // If empty, has an error, or agent couldn't fulfill request, use fallback
+      const a2uiStr = JSON.stringify(data.a2ui || []);
+      const hasValidA2UIStructure =
+        Array.isArray(data.a2ui) &&
+        data.a2ui.length > 0 &&
+        data.a2ui.some((m: any) => m && (m.beginRendering || m.surfaceUpdate));
+      const hasStaleLegacyData =
+        a2uiStr.includes("Why-Agents-Fail") ||
+        a2uiStr.includes("ATP and bond energy");
+
+      // Check if the response has valid A2UI content and is in sync with 2026 portfolio
       if (
-        !data.a2ui ||
-        data.a2ui.length === 0 ||
+        !hasValidA2UIStructure ||
+        hasStaleLegacyData ||
         data.error ||
         data.rawText?.includes("cannot fulfill") ||
         data.rawText?.includes("do not have the functionality")
       ) {
-        console.log(`[A2AClient] Agent returned empty/error, using fallback for ${backendFormat}`);
+        console.log(`[A2AClient] Agent returned non-A2UI or stale payload, using synchronized 2026 portfolio data for ${backendFormat}`);
         return this.getFallbackContent(backendFormat, context);
       }
 
       // Special case: if we requested a quiz but agent returned flashcards,
       // use our quiz fallback instead (agent doesn't know about QuizCard)
       if (backendFormat === "quiz") {
-        const a2uiStr = JSON.stringify(data.a2ui);
         if (a2uiStr.includes("Flashcard") && !a2uiStr.includes("QuizCard")) {
           console.log(`[A2AClient] Agent returned Flashcards for quiz request, using QuizCard fallback`);
           return this.getFallbackContent(backendFormat, context);
@@ -131,7 +123,7 @@ export class A2AClient {
     } catch (error) {
       console.error("[A2AClient] Error calling agent:", error);
 
-      // Return fallback content for demo purposes
+      // Return synchronized 2026 portfolio content
       return this.getFallbackContent(backendFormat, context);
     }
   }
@@ -223,46 +215,46 @@ export class A2AClient {
       case "flashcards":
         const skillPool = [
           {
-            front: "What is his unique edge in Agentic workflows?",
-            back: "Specializes in transition from RAG to autonomous agents. Leads AI Agents Enablement COE at Google Cloud.",
+            front: "What is his current dual role at Google Cloud (2026)?",
+            back: "Staff AI Technical Deployment Lead @ Google Cloud Delta & Outbound Product Manager, Cloud AI — driving $2B+ in enterprise AI transformations.",
             category: "Skill Matcher"
           },
           {
-            front: "Which Cloud platforms is Enrique certified in?",
-            back: "Enrique holds 19x professional certifications across Google Cloud, AWS, and Microsoft Azure.",
-            category: "Cloud Mastery"
+            front: "What analyst recognition has Enrique helped Google Cloud win in 2026?",
+            back: "4 consecutive 2026 Leader recognitions across Gartner Magic Quadrants (Enterprise AI Assistants, CNAP, AIADP) and Forrester Wave (AI Platforms Q3 2026).",
+            category: "Analyst Leadership"
           },
           {
-            front: "What are his core AI/ML competencies?",
-            back: "Vertex AI, LLMOps, RLHF, SFT, and building autonomous agent substrates.",
+            front: "What are his core Agentic AI & Production competencies?",
+            back: "Vertex AI Agent Engine, Google ADK, A2A, MCP, A2UI, AgentOps Cockpit v2.0.2, and Gemini 2.5/3.6 enterprise deployment.",
             category: "Technical Skills"
           },
           {
-            front: "How does he approach Enterprise Data?",
-            back: "Expert in BigQuery, Data Mesh architecture, and migrating legacy analytics to modern AI-ready stacks.",
-            category: "Data Strategy"
+            front: "What global developer scale has he achieved?",
+            back: "Architected Advent of Agents reaching 32,000+ developers with 5T+ tokens processed, and Kaggle Intro to Agents Whitepaper (1.5M+ readers).",
+            category: "Developer Ecosystem"
           }
         ];
 
         const fitPool = [
           {
             front: `How does ${PROFILE.name.split(' ')[0]}'s background fit an AI Lead role?`,
-            back: `Combining 15+ years of distributed systems with a focus on Agentic AI. Lead on NBC Olympics 'Oli' chatbot for 40M viewers.`,
+            back: `15+ years scaling distributed systems & Agentic AI. Staff TDL @ Google Cloud Delta, Q3 2026 Silver Google AI Award (SWIFTY) winner, and Lead on NBC Olympics 'Oli' (40M+ viewers).`,
             category: "Fit Analyzer"
           },
           {
             front: "What is his architectural philosophy for AI?",
-            back: "Architecture-first AI. Success depends on GenAI infrastructure (Cloud Run, Vertex AI) and verifiable logic.",
+            back: "Architecture-first, Day-2 production readiness: AgentOps Cockpit v2.0.2, FinOps governance, Red-Team security, and verifiable evaluation gates.",
             category: "Visionary Fit"
           },
           {
             front: "Why is Enrique a good fit for high-scale AI systems?",
-            back: "Proven track record scaling Disney+ and Disney MagicBands globally. Expert in high-availability cloud architecture.",
+            back: "Proven track record scaling NBC Olympics (40M+ viewers), Disney+ (50M+ users), and Disney MagicBands (290K+ guests).",
             category: "Enterprise Fit"
           },
           {
-            front: "What did he achieve with the NBC Olympics chatbot?",
-            back: "Handled 90M+ queries with sub-second latency for 40M viewers using Vertex AI Provisioned Throughput.",
+            front: "What did he achieve with the SWIFTY AI Initiative (2026)?",
+            back: "Earned the Q3 2026 Silver Google AI Award for leading a 16-expert Tiger Team automating global contract renewal workflows.",
             category: "Project Impact"
           },
           {
@@ -390,7 +382,7 @@ export class A2AClient {
                         logo: exp.logo || "business",
                         color: exp.color || "#4285F4",
                         highlights: exp.highlights,
-                        impact: exp.impact,
+                        impact: exp.impact || exp.description,
                       },
                     },
                   })),
@@ -503,7 +495,7 @@ export class A2AClient {
                       PortfolioCard: {
                         type: "project",
                         title: cert.title,
-                        description: cert.description,
+                        description: cert.description || `Issued by ${cert.issuer} (${cert.date})`,
                         image: cert.image,
                         url: cert.url
                       }
@@ -559,7 +551,7 @@ export class A2AClient {
                     component: {
                       Flashcard: {
                         front: s.title,
-                        back: s.description,
+                        back: s.description || `${s.session || s.title} — ${s.event} (${s.time}, ${s.location})`,
                         category: "Public Speaking"
                       }
                     },
