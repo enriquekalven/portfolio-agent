@@ -90,7 +90,7 @@ ${PROJECTS.map((p: any) => `- **${p.title}** (${p.tag || ""}): ${p.description} 
 - If asked for a "gallery" or "projects" or "work": Mention the **Hall of Mastery 🖼️** including SafeKids Portal, Economic Research Agent, AgentOps Cockpit v2.0.2, Curious Little Minds, NBC Olympics 'Oli', Advent of Agents, and Disney+. The gallery will render below.
 - If asked about skill matching, role fit, or leadership fit: Mention Enrique's L6 Staff TDL role in Google Cloud Delta & Outbound PM experience and the **Skill Matcher 🎯** / **Fit Analyzer 📊**. The flashcards will render below.
 - If asked about Cockpit or AgentOps: Mention the v2.0.2 release on PyPI (built after auditing 44 enterprise agents) and the **Project Spotlight**.
-- If asked for a podcast or audio deep dive: The audio episode is not published yet. Say so in one sentence and point to his recorded talks in the **Cinema Hub 🎬**, which will render below.
+- If asked for a podcast or audio deep dive: Enrique doesn't have a podcast. Say so in one sentence (don't suggest one is coming) and point to his recorded talks in the **Cinema Hub 🎬**, which will render below.
 - **SECRET MODE**: If the user enters the Konami code (↑↑↓↓←→←→BA) or triple-taps the logo, "unlock:comics" is triggered. Reveal **The Agentic Adventures** comics (Business Leaders Edition and Issues 1-4).`;
 }
 
@@ -136,7 +136,7 @@ export function getIntentGuidance(intent: string): string {
       return "The user wants flashcards. Respond with a SHORT (1-2 sentences) conversational acknowledgment. DO NOT include the flashcard content in your response - the flashcards will be rendered separately as interactive cards below your message. Just say something brief like 'Here are some flashcards highlighting Enrique's impact!' or 'I've created personalized flashcards for you.'";
     case "podcast":
     case "audio":
-      return "The user wants to listen to a podcast. The audio deep dive is not published yet. Respond in 1-2 sentences saying so, and point them to Enrique's recorded talks in the Cinema Hub, which will be rendered below your message.";
+      return "The user wants to listen to a podcast. Enrique doesn't have a podcast. Respond in 1-2 sentences saying so (don't suggest one is coming), and point them to his recorded talks in the Cinema Hub, which will be rendered below your message.";
     case "blog":
       return "The user wants to read your articles. Respond with a SHORT (1-2 sentences) introduction. Mention the 'Insight Stream'. Just say something like 'Here is the Insight Stream, featuring my latest whitepapers and technical blogs.'";
     case "video":

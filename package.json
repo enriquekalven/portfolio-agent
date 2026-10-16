@@ -13,9 +13,9 @@
     "preview": "vite preview",
     "start": "tsx api-server.ts",
     "start:all": "concurrently \"npm run dev:api\" \"npm run dev:vite\" \"npm run dev:agent\"",
-    "test": "node tests/unit-tests.mjs && node tests/integration-tests.mjs",
-    "test:unit": "node tests/unit-tests.mjs",
-    "test:integration": "node tests/integration-tests.mjs",
+    "test": "npx tsx tests/safety.test.ts && npx tsx tests/markdown.test.ts && npx tsx tests/gem-content.test.ts",
+    "test:unit": "npx tsx tests/safety.test.ts && npx tsx tests/markdown.test.ts && npx tsx tests/gem-content.test.ts",
+    "test:integration": "node tests/smoke-prod.mjs",
     "typecheck": "tsc --noEmit",
     "deploy:hosting": "python3 deploy_hosting.py",
     "deploy:all": "make deploy-all"

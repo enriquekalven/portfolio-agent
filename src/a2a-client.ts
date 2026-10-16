@@ -53,15 +53,11 @@ export class A2AClient {
     console.log(`[A2AClient] Requesting ${format} content`);
 
     const lowerFormat = format.toLowerCase();
-    // No podcast episode is published yet (/assets/podcast.m4a doesn't exist), so audio requests
-    // show the recorded talks instead of an audio player that can't load.
+    // There is no podcast, so podcast/audio requests show the recorded talks (Cinema Hub).
     const backendFormat = lowerFormat === "blog" ? "blog_cards" : (lowerFormat === "video" || lowerFormat === "video_cards" || lowerFormat === "podcast" || lowerFormat === "audio") ? "video_cards" : (lowerFormat === "matrix" || lowerFormat === "framework") ? "matrix" : (lowerFormat === "charts" || lowerFormat === "radar") ? "charts" : lowerFormat;
 
-    // Local media assets and real-time client utilities render directly
+    // Real-time client utilities render directly
     if (
-      backendFormat === "podcast" ||
-      backendFormat === "audio" ||
-      backendFormat === "video" ||
       backendFormat === "bubble" ||
       backendFormat === "weather" ||
       backendFormat === "stock" ||
@@ -826,62 +822,8 @@ export class A2AClient {
 
       case "podcast":
       case "audio":
-        return {
-          format: "audio",
-          surfaceId,
-          a2ui: [
-            { beginRendering: { surfaceId, root: "audioCard" } },
-            {
-              surfaceUpdate: {
-                surfaceId,
-                components: [
-                  { id: "audioCard", component: { Card: { child: "audioContent" } } },
-                  {
-                    id: "audioContent",
-                    component: {
-                      Column: {
-                        children: { explicitList: ["audioHeader", "audioPlayer", "audioDescription"] },
-                        distribution: "start",
-                        alignment: "stretch",
-                      },
-                    },
-                  },
-                  {
-                    id: "audioHeader",
-                    component: {
-                      Row: {
-                        children: { explicitList: ["audioIcon", "audioTitle"] },
-                        distribution: "start",
-                        alignment: "center",
-                      },
-                    },
-                  },
-                  { id: "audioIcon", component: { Icon: { name: "podcasts" } } },
-                  { id: "audioTitle", component: { Text: { text: "Portfolio Deep Dive", usageHint: "h3" } } },
-                  {
-                    id: "audioPlayer",
-                    component: {
-                      AudioPlayer: {
-                        url: "/assets/podcast.m4a",
-                        audioTitle: `${PROFILE.name}: Career & Vision`,
-                        audioDescription: "A personalized audio overview of Enrique's journey.",
-                      },
-                    },
-                  },
-                  {
-                    id: "audioDescription",
-                    component: {
-                      Text: {
-                        text: "A deep dive into Enrique's background as an architect and his vision for agentic workflows.",
-                        usageHint: "body",
-                      },
-                    },
-                  },
-                ],
-              },
-            },
-          ],
-        };
+        // There is no podcast episode; show the recorded talks instead of an audio player.
+        return this.getFallbackContent("video_cards", context);
 
       case "matrix":
       case "creative":

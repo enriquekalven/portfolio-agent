@@ -29,7 +29,6 @@ export default defineConfig({
     rollupOptions: {
       input: {
         main: resolve(__dirname, "index.html"),
-        primer: resolve(__dirname, "a2ui-primer.html"),
       },
     },
   },

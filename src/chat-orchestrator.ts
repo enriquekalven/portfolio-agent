@@ -324,7 +324,7 @@ export class ChatOrchestrator {
     if (lower.match(/timeline|career journey|sequential|history/i)) {
       return "timeline";
     }
-    if (lower.match(/skill match|analyze fit|role fit|fit analyze|skill set/i)) {
+    if (lower.match(/skills?\s+match|analyze fit|role fit|fit analyze|skill set/i)) {
       return "flashcards";
     }
     if (lower.match(/flash\s*card|study\s*card|review\s*card|f'?card/i)) {
@@ -434,7 +434,7 @@ export class ChatOrchestrator {
       case "podcast":
       case "audio":
         return {
-          text: "The audio deep dive isn't published yet, so here are Enrique's recorded talks and keynotes from the Cinema Hub instead.",
+          text: "There's no podcast episode, but here are Enrique's recorded talks and keynotes from the Cinema Hub.",
         };
       case "video_cards":
         return {
@@ -614,7 +614,7 @@ export class ChatOrchestrator {
       ],
       gallery: [
         { icon: "folder_code", label: "AgentOps Cockpit & Repos", prompt: "Show me your featured open source repositories" },
-        { icon: "podcasts", label: "Podcast Deep Dive", prompt: "Show me his top YouTube videos" },
+        { icon: "smart_display", label: "Cinema Hub Keynotes", prompt: "Show me his top YouTube videos" },
         { icon: "article", label: "Medium Publications", prompt: "Show me some of his Medium blog posts" }
       ],
       repositories: [
@@ -623,7 +623,7 @@ export class ChatOrchestrator {
         { icon: "workspace_premium", label: "16x Cloud Certifications", prompt: "Show Enrique's cloud certifications" }
       ],
       speaker: [
-        { icon: "podcasts", label: "Watch Keynote Videos", prompt: "Show me his top YouTube videos" },
+        { icon: "smart_display", label: "Watch Keynote Videos", prompt: "Show me his top YouTube videos" },
         { icon: "format_quote", label: "Googler Testimonials", prompt: "Show me what people think of Enrique (testimonials)" },
         { icon: "emoji_events", label: "Trophy Room", prompt: "List Enrique's major awards and hackathon wins" }
       ]

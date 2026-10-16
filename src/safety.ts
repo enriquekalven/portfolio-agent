@@ -6,12 +6,19 @@
  * one person's blocked phrase could block the next visitors' innocent questions.
  */
 
+// Only requests for someone's personal financial/identity data or for financial/medical advice are
+// refused. Topic words alone ("credit card fraud detection", "financial planning tools",
+// "prescription workflows") are normal career questions about projects and stay allowed.
 const SENSITIVE_CATEGORIES: Record<string, string[]> = {
   finance: [
-    'bank account', 'credit card', 'social security', 'ssn', 'routing number',
-    'investment advice', 'stock tip', 'financial planning', 'wealth management'
+    'bank account number', 'account number', 'routing number', 'credit card number', 'card number',
+    'cvv', 'social security number', 'ssn', 'his bank account', 'your bank account', 'bank details',
+    'investment advice', 'financial advice', 'stock tip', 'stock tips', 'should i invest', 'should i buy'
   ],
-  medical: ['medical diagnosis', 'prescription', 'doctor says', 'medical advice'],
+  medical: [
+    'medical advice', 'medical diagnosis', 'diagnose me', 'diagnose my', 'prescribe me',
+    'what medication should'
+  ],
 };
 
 const TONE_MISMATCH_PATTERNS = [

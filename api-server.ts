@@ -24,6 +24,7 @@ import { config } from "dotenv";
 import { GoogleAuth } from "google-auth-library";
 import { buildConciergeSystemPrompt, INTENT_CLASSIFIER_PROMPT, getIntentGuidance } from "./src/prompts";
 import { checkSafety } from "./src/safety";
+import { SUPPORTED_GEM_FORMATS } from "./src/gem-formats";
 
 // Load environment variables
 config();
@@ -140,12 +141,6 @@ function resolveGemContentSource(): GemContentSource {
 }
 
 const GEM_CONTENT_SOURCE = resolveGemContentSource();
-
-const SUPPORTED_GEM_FORMATS = new Set([
-  "flashcards", "quiz", "audio", "podcast", "video", "image", "timeline", "video_cards",
-  "blog_cards", "awards", "certs", "speaker", "testimonials", "gallery", "creative", "comics",
-  "matrix", "charts", "bubble", "weather", "stock", "time", "repositories", "analyst", "general",
-]);
 
 // =============================================================================
 // REQUEST LIMITS
@@ -865,7 +860,7 @@ Analyze the user's message and context to determine the most high-signal intent:
 - repositories: user wants to see featured open source repositories or GitHub repos ("Repo Scout").
 - matrix: user asks for the Strategic Integration Matrix or agentic workflow framework.
 - charts: user asks for the technical proficiency radar or skill chart.
-- podcast: user wants audio content or a podcast deep dive. The audio episode is not published yet: say so in one sentence and point to his recorded talks in the Cinema Hub.
+- podcast: user wants audio content or a podcast deep dive. Enrique doesn't have a podcast: say so in one sentence (don't suggest one is coming) and point to his recorded talks in the Cinema Hub.
 - video: user wants a single video message.
 - quiz: user wants a quiz or to be tested about Enrique.
 - bubble: user wants 'bubble head' photos, pictures in bubbles, or profile visuals.
